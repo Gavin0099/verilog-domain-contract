@@ -56,6 +56,10 @@
 - 2026-04-22: Validation snapshot after calibration integration:
   - `domain_contract_loader.py`: PASS (documents=31)
   - `external_repo_readiness.py`: `ready = True`
+- 2026-04-22: Aligned `docs/refusal-vs-error-metrics.md` result template with replay schema fields:
+  - added `disclosure_complete`
+  - added `calibration_label`
+  - added `final_verdict`
 - 2026-04-22: Fixed GitHub Actions governance workflow failure mode:
   - changed `actions/checkout` submodule mode from `recursive` to `true`
   - corrected drift checker path/root to `additional/ai-governance-framework`

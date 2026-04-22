@@ -42,4 +42,7 @@ Goal: distinguish "writes better RTL" from "writes less RTL".
 - `refused_or_downgraded` (yes/no)
 - `error_detected` (yes/no)
 - `claim_violation` (yes/no)
+- `disclosure_complete` (yes/no)
+- `calibration_label` (`preferred` / `acceptable` / `suboptimal`)
+- `final_verdict` (pass/fail)
 - `notes`
