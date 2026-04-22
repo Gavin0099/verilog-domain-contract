@@ -11,6 +11,7 @@
 - Added replay-oracle prompts and framework-surface mapping to close the enforcement-evidence gap.
 - Added deterministic precondition completeness model, completion evidence levels, and refusal-vs-error metric model.
 - Added baseline replay result artifacts (`artifacts/replay-results/2026-04-22-baseline.md/.yaml`) as first observed behavior evidence.
+- Added cross-run replay result artifacts (`artifacts/replay-results/2026-04-22-cross-run.md/.yaml`) for repeated-run evidence in same environment.
 
 ## Next Steps
 
@@ -20,3 +21,4 @@
 - Execute replay cases BR-001 to BR-005 against target agent runtime and collect pass/fail evidence.
 - Record replay outcomes with `schemas/behavioral-replay-results.yaml` and compute refusal/error trade-off metrics.
 - Expand replay from single-session baseline to multi-run and cross-agent evidence.
+- Next evidence gap: cross-model replay and mixed-completeness prompts that include full-codegen paths.

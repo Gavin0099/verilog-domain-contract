@@ -44,5 +44,11 @@
 - 2026-04-22: Added first replay evidence artifact:
   - `artifacts/replay-results/2026-04-22-baseline.md`
   - `artifacts/replay-results/2026-04-22-baseline.yaml`
+- 2026-04-22: Added cross-run replay evidence artifact:
+  - `artifacts/replay-results/2026-04-22-cross-run.md`
+  - `artifacts/replay-results/2026-04-22-cross-run.yaml`
+- 2026-04-22: Validation snapshot after cross-run artifact integration:
+  - `domain_contract_loader.py`: PASS (documents=29)
+  - `external_repo_readiness.py`: `ready = True`
 - 2026-04-22: Fixed framework mapping doc links to portable relative paths.
 - 2026-04-22: Added `docs/contract-format-evolution-note.md` clarifying current flat contract encoding is v0.1 transitional format.

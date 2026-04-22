@@ -46,6 +46,7 @@ Domain contract content in this repo is consumed by governance tooling through:
 - [schemas/review-checklist.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/review-checklist.yaml)
 - [schemas/behavioral-replay-results.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/behavioral-replay-results.yaml)
 - [artifacts/replay-results/2026-04-22-baseline.md](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/replay-results/2026-04-22-baseline.md)
+- [artifacts/replay-results/2026-04-22-cross-run.md](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/replay-results/2026-04-22-cross-run.md)
 
 ## v0.1 Scope
 

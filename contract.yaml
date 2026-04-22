@@ -32,6 +32,8 @@ documents:
   - schemas/behavioral-replay-results.yaml
   - artifacts/replay-results/2026-04-22-baseline.md
   - artifacts/replay-results/2026-04-22-baseline.yaml
+  - artifacts/replay-results/2026-04-22-cross-run.md
+  - artifacts/replay-results/2026-04-22-cross-run.yaml
 
 ai_behavior_override:
   - AGENTS.base.md
