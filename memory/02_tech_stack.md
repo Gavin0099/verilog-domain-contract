@@ -12,8 +12,9 @@
   - `docs/precondition-completeness-model.md`
   - `docs/completion-evidence-levels.md`
   - `docs/coverage-model.md`
-  - `docs/refusal-vs-error-metrics.md`
-  - `schemas/behavioral-replay-results.yaml`
+- `docs/refusal-vs-error-metrics.md`
+- `schemas/behavioral-replay-results.yaml`
+- Baseline evidence artifact path: `artifacts/replay-results/2026-04-22-baseline.md` and `.yaml`
 - Key integration commands:
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`

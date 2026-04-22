@@ -10,6 +10,7 @@
 - Added rule extraction table and behavior validation matrix to verify decision-impacting constraints.
 - Added replay-oracle prompts and framework-surface mapping to close the enforcement-evidence gap.
 - Added deterministic precondition completeness model, completion evidence levels, and refusal-vs-error metric model.
+- Added baseline replay result artifacts (`artifacts/replay-results/2026-04-22-baseline.md/.yaml`) as first observed behavior evidence.
 
 ## Next Steps
 
@@ -18,3 +19,4 @@
 - Expand behavior validation from expected matrix to executable scenario tests in next iteration.
 - Execute replay cases BR-001 to BR-005 against target agent runtime and collect pass/fail evidence.
 - Record replay outcomes with `schemas/behavioral-replay-results.yaml` and compute refusal/error trade-off metrics.
+- Expand replay from single-session baseline to multi-run and cross-agent evidence.

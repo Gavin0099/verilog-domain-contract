@@ -23,12 +23,15 @@ documents:
   - docs/completion-evidence-levels.md
   - docs/coverage-model.md
   - docs/refusal-vs-error-metrics.md
+  - docs/contract-format-evolution-note.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md
   - governance/TESTING.md
   - governance/ARCHITECTURE.md
   - schemas/review-checklist.yaml
   - schemas/behavioral-replay-results.yaml
+  - artifacts/replay-results/2026-04-22-baseline.md
+  - artifacts/replay-results/2026-04-22-baseline.yaml
 
 ai_behavior_override:
   - AGENTS.base.md

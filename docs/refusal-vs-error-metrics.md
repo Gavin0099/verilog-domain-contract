@@ -27,6 +27,7 @@ Goal: distinguish "writes better RTL" from "writes less RTL".
 
 - run BR-001 to BR-005 replay prompts for at least 3 runs each
 - record per-run verdict in a structured result table
+- store baseline artifacts under `artifacts/replay-results/`
 
 ## Result Record Template
 

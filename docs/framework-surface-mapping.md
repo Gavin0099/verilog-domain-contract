@@ -54,8 +54,8 @@ This note maps rule intent to governance runtime surfaces.
 
 Behavior enforcement requires replay validation using:
 
-- [behavior-validation.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/behavior-validation.md)
-- [behavioral-replay-oracle.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/behavioral-replay-oracle.md)
-- [precondition-completeness-model.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/precondition-completeness-model.md)
-- [completion-evidence-levels.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/completion-evidence-levels.md)
-- [refusal-vs-error-metrics.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/refusal-vs-error-metrics.md)
+- [behavior-validation.md](behavior-validation.md)
+- [behavioral-replay-oracle.md](behavioral-replay-oracle.md)
+- [precondition-completeness-model.md](precondition-completeness-model.md)
+- [completion-evidence-levels.md](completion-evidence-levels.md)
+- [refusal-vs-error-metrics.md](refusal-vs-error-metrics.md)
