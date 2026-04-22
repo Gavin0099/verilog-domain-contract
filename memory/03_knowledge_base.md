@@ -14,3 +14,5 @@
 - Documentation links in repo files should be portable (relative paths), not local absolute workspace paths.
 - `oracle pass` and `deterministic mode identity` are distinct; boundary adherence can be stable while output mode still varies within safe bounds.
 - `mode volatility` and `mode calibration` are separate layers: one explains variation, the other evaluates whether variation is optimal.
+- `actions/checkout` with `submodules: recursive` can fail if a first-level submodule contains unresolved nested gitlinks; use `submodules: true` unless recursive nesting is intentionally configured.
+- Current framework drift checker exits non-zero on warning; CI should parse JSON severity and fail only on `critical` if warning is policy-nonblocking.

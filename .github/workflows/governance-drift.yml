@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: true
 
       - uses: actions/setup-python@v5
         with:
@@ -36,7 +36,30 @@ jobs:
 
       - name: Run governance drift check
         run: |
-          python governance/governance_tools/governance_drift_checker.py \
+          python additional/ai-governance-framework/governance_tools/governance_drift_checker.py \
             --repo . \
-            --framework-root governance \
+            --framework-root additional/ai-governance-framework \
             --format human
+
+          python additional/ai-governance-framework/governance_tools/governance_drift_checker.py \
+            --repo . \
+            --framework-root additional/ai-governance-framework \
+            --format json > drift-result.json
+
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          payload = json.loads(Path("drift-result.json").read_text(encoding="utf-8"))
+          severity = (payload.get("severity") or "").lower()
+
+          if severity == "critical":
+              print("Governance drift severity=critical -> failing workflow.")
+              sys.exit(1)
+
+          if severity == "warning":
+              print("::notice::Governance drift severity=warning (non-blocking).")
+          else:
+              print("Governance drift severity=ok.")
+          PY

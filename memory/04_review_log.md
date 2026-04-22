@@ -56,5 +56,9 @@
 - 2026-04-22: Validation snapshot after calibration integration:
   - `domain_contract_loader.py`: PASS (documents=31)
   - `external_repo_readiness.py`: `ready = True`
+- 2026-04-22: Fixed GitHub Actions governance workflow failure mode:
+  - changed `actions/checkout` submodule mode from `recursive` to `true`
+  - corrected drift checker path/root to `additional/ai-governance-framework`
+  - added severity-aware drift gate: fail on `critical`, non-blocking notice on `warning`
 - 2026-04-22: Fixed framework mapping doc links to portable relative paths.
 - 2026-04-22: Added `docs/contract-format-evolution-note.md` clarifying current flat contract encoding is v0.1 transitional format.
