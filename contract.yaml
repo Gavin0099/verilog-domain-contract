@@ -1,0 +1,61 @@
+name: verilog-rtl-domain-contract-pack
+plugin_version: "0.1.0"
+framework_interface_version: "1"
+framework_compatible: ">=1.0.0,<2.0.0"
+domain: verilog-rtl
+
+documents:
+  - AGENTS.base.md
+  - AGENTS.md
+  - PLAN.md
+  - README.md
+  - docs/rtl-scope-boundary.md
+  - docs/synthesizable-vs-testbench.md
+  - docs/clock-reset-contract.md
+  - docs/assignment-semantics.md
+  - docs/fsm-contract.md
+  - docs/handshake-contract.md
+  - docs/verification-minimums.md
+  - docs/completion-claim-policy.md
+  - governance/TESTING.md
+  - governance/ARCHITECTURE.md
+  - schemas/review-checklist.yaml
+
+ai_behavior_override:
+  - AGENTS.base.md
+  - AGENTS.md
+
+rule_roots:
+  - governance/rules
+  - docs
+
+validators: []
+
+precondition_effects:
+  - clock_definition_present|required|restrict_codegen_and_escalate
+  - reset_definition_present|required|restrict_codegen_and_escalate
+  - interface_spec_present|required|analysis_only
+  - timing_expectation_present|required|draft_with_explicit_assumptions
+  - scope_is_synthesizable_or_tb_defined|required|analysis_only
+  - verification_expectation_present|required|draft_only_no_completion_claim
+  - cdc_strategy_present_when_multi_clock_implied|conditional|stop_insufficient_preconditions
+
+must_not_assume:
+  - single_clock_domain
+  - clock_edge_polarity
+  - derived_clock_safety
+  - reset_polarity
+  - async_or_sync_reset_type
+  - reset_coverage_scope
+  - handshake_protocol_semantics
+  - fixed_latency_or_always_ready_behavior
+  - fsm_style_or_output_model
+  - compile_or_lint_success_equals_completion
+
+completion_claim_allow:
+  - analysis_provided
+  - draft_rtl_provided
+  - candidate_implementation_provided
+
+completion_claim_disallow_without_evidence:
+  - verified_implementation

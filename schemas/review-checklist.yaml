@@ -1,0 +1,42 @@
+schema_version: "0.1"
+name: verilog-rtl-review-checklist
+description: Machine-readable checklist scaffold for Verilog / RTL contract review.
+
+sections:
+  - id: preconditions
+    required: true
+    items:
+      - id: clock_definition_present
+        severity: high
+      - id: reset_definition_present
+        severity: high
+      - id: interface_spec_present
+        severity: high
+      - id: timing_expectation_present
+        severity: medium
+      - id: verification_expectation_present
+        severity: medium
+      - id: scope_declared
+        severity: high
+
+  - id: assumption_controls
+    required: true
+    items:
+      - id: no_implicit_clock_assumptions
+        severity: high
+      - id: no_implicit_reset_assumptions
+        severity: high
+      - id: assignment_semantics_consistent
+        severity: high
+      - id: handshake_assumptions_explicit
+        severity: high
+
+  - id: completion_claim
+    required: true
+    items:
+      - id: claim_level_declared
+        severity: high
+      - id: evidence_scope_declared
+        severity: high
+      - id: unresolved_risks_disclosed
+        severity: medium
