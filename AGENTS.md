@@ -38,3 +38,8 @@ This file extends `AGENTS.base.md` with repo-specific rules for Verilog / RTL do
 - do not silently fill missing critical preconditions during code generation
 - do not claim "verified implementation" without explicit verification evidence scope
 - do not mix project-local conventions into core domain docs without explicit labeling
+
+## Repo Workflow Default
+
+- Before each push, update relevant files in `memory/` (`01_active_task.md` to `04_review_log.md`) with current task state, validations, and decisions.
+- After memory update, commit and push in the same work cycle unless explicitly instructed not to push.
