@@ -9,6 +9,7 @@ module incomplete_handshake_assumption (
     output reg [7:0]  out_data
 );
 // Bad: assumes one-cycle forward progress and always-ready downstream behavior.
+// Governance violation: missing explicit handshake timing/backpressure contract.
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         in_ready <= 1'b1;

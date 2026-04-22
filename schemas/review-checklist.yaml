@@ -1,42 +1,49 @@
-schema_version: "0.1"
+schema_version: "0.2"
 name: verilog-rtl-review-checklist
-description: Machine-readable checklist scaffold for Verilog / RTL contract review.
+description: Reviewer checklist for decision-affecting Verilog / RTL governance constraints.
 
 sections:
-  - id: preconditions
+  - id: reset_contract
     required: true
     items:
-      - id: clock_definition_present
+      - id: RESET_DEFINED
+        question: Is reset polarity explicitly defined?
         severity: high
-      - id: reset_definition_present
+      - id: RESET_TYPE_DEFINED
+        question: Is reset type (sync or async) explicitly defined?
         severity: high
-      - id: interface_spec_present
+      - id: RESET_ASSUMPTION_DISCLOSED
+        question: If reset is assumed, is the assumption explicitly documented?
         severity: high
-      - id: timing_expectation_present
-        severity: medium
-      - id: verification_expectation_present
-        severity: medium
-      - id: scope_declared
-        severity: high
+      - id: RESET_COMPLETION_CLAIM
+        question: Is completion claimed without reset definition?
+        severity: critical
 
-  - id: assumption_controls
+  - id: assignment_contract
     required: true
     items:
-      - id: no_implicit_clock_assumptions
+      - id: ASSIGNMENT_INTENT_CLEAR
+        question: Is sequential vs combinational intent explicitly partitioned?
         severity: high
-      - id: no_implicit_reset_assumptions
+      - id: ASSIGNMENT_OPERATOR_MATCH
+        question: Are assignment operators consistent with intended semantics?
         severity: high
-      - id: assignment_semantics_consistent
-        severity: high
-      - id: handshake_assumptions_explicit
-        severity: high
+      - id: ASSIGNMENT_MIXED_STATE_PATH
+        question: Is blocking and non-blocking assignment mixed on a state path?
+        severity: critical
 
-  - id: completion_claim
+  - id: handshake_contract
     required: true
     items:
-      - id: claim_level_declared
+      - id: HANDSHAKE_PROTOCOL_DEFINED
+        question: Are protocol semantics (for example valid/ready or req/ack) explicit?
         severity: high
-      - id: evidence_scope_declared
+      - id: HANDSHAKE_BACKPRESSURE_DEFINED
+        question: Is backpressure/acceptance behavior explicitly defined?
         severity: high
-      - id: unresolved_risks_disclosed
-        severity: medium
+      - id: HANDSHAKE_LATENCY_DEFINED
+        question: Is latency/timing expectation explicitly defined?
+        severity: high
+      - id: HANDSHAKE_COMPLETION_CLAIM
+        question: Is implementation claimed complete without handshake timing definition?
+        severity: critical

@@ -15,6 +15,8 @@ documents:
   - docs/assignment-semantics.md
   - docs/fsm-contract.md
   - docs/handshake-contract.md
+  - docs/rule-extraction-table.md
+  - docs/behavior-validation.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md
   - governance/TESTING.md
@@ -33,9 +35,13 @@ validators: []
 
 precondition_effects:
   - clock_definition_present|required|restrict_codegen_and_escalate
-  - reset_definition_present|required|restrict_codegen_and_escalate
-  - interface_spec_present|required|analysis_only
-  - timing_expectation_present|required|draft_with_explicit_assumptions
+  - reset_polarity_defined|required|restrict_codegen
+  - reset_type_defined|required|restrict_codegen
+  - reset_definition_complete|required|escalate
+  - interface_protocol_semantics_defined|required|analysis_only
+  - backpressure_behavior_defined|required|draft_with_explicit_assumptions
+  - latency_expectation_defined|required|draft_with_explicit_assumptions
+  - assignment_intent_partition_defined|required|draft_only_and_escalate
   - scope_is_synthesizable_or_tb_defined|required|analysis_only
   - verification_expectation_present|required|draft_only_no_completion_claim
   - cdc_strategy_present_when_multi_clock_implied|conditional|stop_insufficient_preconditions
@@ -52,6 +58,19 @@ must_not_assume:
   - fsm_style_or_output_model
   - compile_or_lint_success_equals_completion
 
+governance_rules:
+  - RESET_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK|required:reset_polarity_defined,reset_type_defined|missing_effect:restrict_codegen,escalate|allowed_if_missing:analysis_only,draft_with_explicit_assumptions|forbidden:implicit_reset_assumption,silent_default_reset|forbidden_claim:implementation_complete,synthesizable_ready|required_disclosure:assumed_reset_polarity,assumed_reset_type
+  - ASSIGNMENT_SEMANTICS_REQUIRED|SEMANTIC_RULE+ASSUMPTION_RISK|required:state_update_intent_defined,comb_or_seq_partition_defined|missing_effect:draft_only,escalate|allowed_if_missing:analysis_only,draft_with_explicit_semantic_assumptions|forbidden:mixed_blocking_nonblocking_on_state,latch_prone_incomplete_comb_logic|forbidden_claim:implementation_complete,behaviorally_verified|required_disclosure:state_update_model,comb_logic_model
+  - HANDSHAKE_TIMING_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK+VERIFICATION_REQUIREMENT|required:interface_protocol_semantics_defined,backpressure_behavior_defined,latency_expectation_defined|missing_effect:analysis_only_or_draft_only_with_escalation|allowed_if_missing:analysis_only,draft_with_explicit_handshake_assumptions|forbidden:implicit_always_ready_sink,implicit_one_cycle_acceptance,silent_fixed_latency_assumption|forbidden_claim:implementation_complete,interface_timing_verified|required_disclosure:assumed_protocol_semantics,assumed_backpressure_model,assumed_latency_model
+
+rule_sources:
+  - RESET_DEFINITION_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:101-102|anchor:RESET_ASYNC_SYNC_DIFF
+  - RESET_DEFINITION_REQUIRED|docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md|page:32|anchor:RESET_PROCEDURAL_MODELING
+  - ASSIGNMENT_SEMANTICS_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:101-102|anchor:NONBLOCKING_FOR_SEQUENTIAL_LOGIC
+  - ASSIGNMENT_SEMANTICS_REQUIRED|docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md|page:131|anchor:BLOCKING_NONBLOCKING_PROCEDURAL_ASSIGNMENT
+  - HANDSHAKE_TIMING_DEFINITION_REQUIRED|docs/knowhow/RTS5264_Datasheet_1.0.md|page:8,37|anchor:INTERFACE_TIMING_LATENCY_CONSTRAINT
+  - HANDSHAKE_TIMING_DEFINITION_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:27|anchor:SYSTEM_INTERFACE_TIMING_DEPENDENCY
+
 completion_claim_allow:
   - analysis_provided
   - draft_rtl_provided
@@ -59,3 +78,6 @@ completion_claim_allow:
 
 completion_claim_disallow_without_evidence:
   - verified_implementation
+  - implementation_complete_without_reset_definition
+  - implementation_complete_without_assignment_semantic_clarity
+  - implementation_complete_without_handshake_timing_definition

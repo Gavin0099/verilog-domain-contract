@@ -1,20 +1,54 @@
 # Handshake / Interface Timing Contract
 
-## Required Preconditions
+## Interface Definition Requirement
 
-- protocol semantics (for example `valid/ready` or `req/ack`)
+### Rule
+
+Before implementation claims, interface behavior must define:
+
+- protocol semantics (`valid/ready`, `req/ack`, or explicit equivalent)
 - acceptance and backpressure behavior
-- timing/latency expectation
-- ordering/loss behavior expectation
+- latency/timing expectation
 
-## Must Not Assume
+## Risk
+
+If these are not explicit, AI may assume:
 
 - always-ready sink
 - one-cycle acceptance
 - fixed latency
-- lossless downstream behavior without declaration
 
-## Downgrade Behavior
+These assumptions can break integration while still looking plausible in local simulation.
 
-- missing interface spec -> analysis only
-- missing timing expectation -> draft with explicit assumptions only
+## Constraint on AI Behavior
+
+If interface protocol semantics are missing:
+
+- allowed output: `analysis_only`
+- enforcement effect: `analysis_only`, `escalate`
+
+If protocol exists but timing expectation is missing:
+
+- allowed output: `draft_with_explicit_assumptions`
+- enforcement effect: `draft_only`, `escalate`
+
+## Forbidden Behavior
+
+- implicit always-ready downstream assumption
+- implicit one-cycle forward progress assumption
+- silent fixed-latency assumption
+
+## Required Disclosure
+
+If draft is provided, AI must disclose:
+
+- assumed protocol semantics
+- assumed backpressure model
+- assumed latency model
+
+## Completion Policy
+
+Without explicit protocol and timing definition, AI must not claim:
+
+- `implementation_complete`
+- `interface_timing_verified`

@@ -12,6 +12,11 @@ It is a domain boundary layer, not a generic Verilog tutorial and not a full cod
 - constrain completion claims unless evidence is sufficient
 - support reviewer-auditable reasoning, not implicit confidence
 
+Domain integration principle:
+
+- extract only constraints that change AI decisions (`PRECONDITION`, `SEMANTIC_RULE`, `ASSUMPTION_RISK`, `COMPLETION_POLICY`, `VERIFICATION_REQUIREMENT`)
+- reject low-value tutorial/style content that does not change governance behavior
+
 ## What This Repo Is Not For
 
 - full Verilog or SystemVerilog language reference
@@ -30,6 +35,7 @@ Domain contract content in this repo is consumed by governance tooling through:
 - [contract.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/contract.yaml)
 - [AGENTS.md](/e:/BackUp/Git_EE/verilog-domain-contract/AGENTS.md)
 - [docs/](/e:/BackUp/Git_EE/verilog-domain-contract/docs)
+- [docs/rule-extraction-table.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/rule-extraction-table.md)
 - [schemas/review-checklist.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/review-checklist.yaml)
 
 ## v0.1 Scope

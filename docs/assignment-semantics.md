@@ -1,18 +1,46 @@
 # Assignment Semantics Contract
 
-## Intent
+## Semantic Requirement
 
-Prevent semantic blur between combinational and sequential logic.
+### Rule
 
-## Operational Constraints
+Assignment operators and process partitioning must match logic intent:
 
-- sequential state updates use non-blocking assignments in clocked processes
-- combinational logic uses blocking assignments in combinational processes
-- temporary variables in combinational blocks must not be presented as state
-- state-transition and output logic partitioning must be explicit when FSM-like behavior exists
+- sequential state updates -> non-blocking assignment
+- combinational logic -> blocking assignment with complete assignment paths
 
-## Violation Signals
+## Risk
 
-- mixed blocking/non-blocking updates to state register in one sequential path
-- latch-prone combinational blocks from incomplete assignment intent
-- code that obscures whether behavior is combinational or sequential
+Syntax-valid code can still be semantically wrong when:
+
+- blocking and non-blocking assignments are mixed on state
+- combinational outputs are incompletely assigned
+- combinational vs sequential intent is unclear
+
+## Constraint on AI Behavior
+
+If assignment intent or partitioning is unclear:
+
+- AI must not claim implementation completion
+- AI must downgrade to:
+  - `analysis_only`, or
+  - `draft_with_explicit_semantic_assumptions`
+
+Enforcement effect:
+
+- `draft_only`
+- `escalate`
+
+## Forbidden Behavior
+
+- mixed blocking/non-blocking assignment on the same state path
+- latch-prone combinational logic from incomplete assignments
+- implicit interpretation of process intent without disclosure
+
+## Required Disclosure
+
+If draft is provided under ambiguity, AI must disclose:
+
+- state update model
+- combinational logic model
+- residual semantic risk

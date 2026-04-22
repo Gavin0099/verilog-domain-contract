@@ -13,3 +13,16 @@
   - `docs/knowhow/digital_system_design_with_system_verilog.md`
   - `docs/knowhow/RTS5264_Datasheet_1.0.md`
   - `docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md`
+- 2026-04-22: Applied governance-focused pipeline for 3 core rules:
+  - reset definition required
+  - assignment semantics required
+  - handshake timing definition required
+- 2026-04-22: Added:
+  - `docs/rule-extraction-table.md`
+  - `docs/behavior-validation.md`
+  - stronger decision constraints in `contract.yaml`
+  - reviewer checks in `schemas/review-checklist.yaml`
+- 2026-04-22: Validation snapshot after changes:
+  - `domain_contract_loader.py`: PASS (documents resolved)
+  - `external_repo_readiness.py`: `ready = True`
+  - `governance_drift_checker.py`: `ok = True`, warning only on expansion-boundary
