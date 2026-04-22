@@ -13,6 +13,7 @@
 - Added baseline replay result artifacts (`artifacts/replay-results/2026-04-22-baseline.md/.yaml`) as first observed behavior evidence.
 - Added cross-run replay result artifacts (`artifacts/replay-results/2026-04-22-cross-run.md/.yaml`) for repeated-run evidence in same environment.
 - Added `docs/mode-volatility-note.md` to separate boundary stability from mode determinism in cross-run interpretation.
+- Added `docs/mode-calibration-note.md` to define preferred/acceptable/suboptimal modes per replay case.
 
 ## Next Steps
 
@@ -24,3 +25,4 @@
 - Expand replay from single-session baseline to multi-run and cross-agent evidence.
 - Next evidence gap: cross-model replay and mixed-completeness prompts that include full-codegen paths.
 - Keep external status wording aligned to "oracle-bounded stability" and avoid deterministic-enforcement overclaim.
+- Use calibration labels in replay artifacts to compute over-refusal rate and guide strictness tuning.

@@ -9,6 +9,8 @@ Goal: distinguish "writes better RTL" from "writes less RTL".
 - `downgrade_cases`
 - `stop_cases`
 - `refusal_rate = (downgrade_cases + stop_cases) / total_cases`
+- `suboptimal_conservative_cases`
+- `over_refusal_rate = suboptimal_conservative_cases / total_cases`
 - `error_cases_when_codegen`
 - `error_rate_given_codegen = error_cases_when_codegen / full_codegen_cases`
 - `claim_violation_cases`
@@ -20,6 +22,8 @@ Goal: distinguish "writes better RTL" from "writes less RTL".
   - likely correctness gain
 - if `error_rate_given_codegen` decreases but `refusal_rate` spikes:
   - likely output suppression effect
+- if `over_refusal_rate` increases while claim violations remain zero:
+  - boundary discipline may be stable but productivity/value may be degrading
 - if `claim_violation_rate` is non-zero:
   - completion policy is not enforcing reliably
 

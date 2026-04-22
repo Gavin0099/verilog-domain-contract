@@ -43,6 +43,7 @@ Domain contract content in this repo is consumed by governance tooling through:
 - [docs/coverage-model.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/coverage-model.md)
 - [docs/refusal-vs-error-metrics.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/refusal-vs-error-metrics.md)
 - [docs/mode-volatility-note.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/mode-volatility-note.md)
+- [docs/mode-calibration-note.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/mode-calibration-note.md)
 - [docs/contract-format-evolution-note.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/contract-format-evolution-note.md)
 - [schemas/review-checklist.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/review-checklist.yaml)
 - [schemas/behavioral-replay-results.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/behavioral-replay-results.yaml)

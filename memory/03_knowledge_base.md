@@ -13,3 +13,4 @@
 - Refusal-driven error reduction can mask productivity loss; track `refusal_rate` together with `error_rate_given_codegen`.
 - Documentation links in repo files should be portable (relative paths), not local absolute workspace paths.
 - `oracle pass` and `deterministic mode identity` are distinct; boundary adherence can be stable while output mode still varies within safe bounds.
+- `mode volatility` and `mode calibration` are separate layers: one explains variation, the other evaluates whether variation is optimal.

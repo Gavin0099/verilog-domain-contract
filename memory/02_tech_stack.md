@@ -16,6 +16,7 @@
 - `schemas/behavioral-replay-results.yaml`
 - Baseline evidence artifact path: `artifacts/replay-results/2026-04-22-baseline.md` and `.yaml`
 - Cross-run interpretation guardrail: `docs/mode-volatility-note.md`
+- Mode strictness calibration reference: `docs/mode-calibration-note.md`
 - Key integration commands:
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`

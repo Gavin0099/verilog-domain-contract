@@ -24,6 +24,7 @@ documents:
   - docs/coverage-model.md
   - docs/refusal-vs-error-metrics.md
   - docs/mode-volatility-note.md
+  - docs/mode-calibration-note.md
   - docs/contract-format-evolution-note.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md

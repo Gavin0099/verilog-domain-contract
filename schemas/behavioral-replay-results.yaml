@@ -10,5 +10,6 @@ fields:
   - error_detected
   - claim_violation
   - disclosure_complete
+  - calibration_label
   - final_verdict
   - notes

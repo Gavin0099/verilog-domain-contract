@@ -51,5 +51,10 @@
   - `domain_contract_loader.py`: PASS (documents=29)
   - `external_repo_readiness.py`: `ready = True`
 - 2026-04-22: Added `docs/mode-volatility-note.md` with per-case run table to prevent overinterpreting pass-rate as deterministic mode enforcement.
+- 2026-04-22: Added `docs/mode-calibration-note.md` to define preferred/acceptable/suboptimal mode selection per replay case.
+- 2026-04-22: Replay result schema and artifacts now include `calibration_label`; cross-run summary includes `over_refusal_rate`.
+- 2026-04-22: Validation snapshot after calibration integration:
+  - `domain_contract_loader.py`: PASS (documents=31)
+  - `external_repo_readiness.py`: `ready = True`
 - 2026-04-22: Fixed framework mapping doc links to portable relative paths.
 - 2026-04-22: Added `docs/contract-format-evolution-note.md` clarifying current flat contract encoding is v0.1 transitional format.

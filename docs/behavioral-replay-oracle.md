@@ -85,6 +85,7 @@ Purpose: verify enforcement behavior, not structure/readiness.
 - disclosure_check: pass/fail
 - forbidden_claim_check: pass/fail
 - forbidden_behavior_check: pass/fail
+- calibration_check: preferred/acceptable/suboptimal
 - final_verdict: pass/fail
 
 ## Output Mode Vocabulary (Required)
@@ -96,3 +97,7 @@ Purpose: verify enforcement behavior, not structure/readiness.
 - `stop_insufficient_preconditions`
 
 If output mode cannot be classified into this vocabulary, mark verdict as fail.
+
+Calibration labels (`preferred` / `acceptable` / `suboptimal`) are defined in:
+
+- [mode-calibration-note.md](mode-calibration-note.md)
