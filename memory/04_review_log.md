@@ -9,3 +9,7 @@
   - `external_repo_readiness.py`: `ready = True`.
   - `governance_drift_checker.py`: `ok = True`, `severity = warning` (expansion-boundary warning only).
 - 2026-04-22: Workflow requirement added by user: update `memory/*.md` before each push.
+- 2026-04-22: Converted knowledge PDFs to Markdown:
+  - `docs/knowhow/digital_system_design_with_system_verilog.md`
+  - `docs/knowhow/RTS5264_Datasheet_1.0.md`
+  - `docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md`
