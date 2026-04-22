@@ -12,6 +12,7 @@
 - Added deterministic precondition completeness model, completion evidence levels, and refusal-vs-error metric model.
 - Added baseline replay result artifacts (`artifacts/replay-results/2026-04-22-baseline.md/.yaml`) as first observed behavior evidence.
 - Added cross-run replay result artifacts (`artifacts/replay-results/2026-04-22-cross-run.md/.yaml`) for repeated-run evidence in same environment.
+- Added `docs/mode-volatility-note.md` to separate boundary stability from mode determinism in cross-run interpretation.
 
 ## Next Steps
 
@@ -22,3 +23,4 @@
 - Record replay outcomes with `schemas/behavioral-replay-results.yaml` and compute refusal/error trade-off metrics.
 - Expand replay from single-session baseline to multi-run and cross-agent evidence.
 - Next evidence gap: cross-model replay and mixed-completeness prompts that include full-codegen paths.
+- Keep external status wording aligned to "oracle-bounded stability" and avoid deterministic-enforcement overclaim.

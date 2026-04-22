@@ -23,6 +23,7 @@ documents:
   - docs/completion-evidence-levels.md
   - docs/coverage-model.md
   - docs/refusal-vs-error-metrics.md
+  - docs/mode-volatility-note.md
   - docs/contract-format-evolution-note.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md

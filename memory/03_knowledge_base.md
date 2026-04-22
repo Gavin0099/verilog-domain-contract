@@ -12,3 +12,4 @@
 - `loader/readiness PASS` confirms ingestion/adoption only; behavior enforcement must be proven with replay oracle evidence.
 - Refusal-driven error reduction can mask productivity loss; track `refusal_rate` together with `error_rate_given_codegen`.
 - Documentation links in repo files should be portable (relative paths), not local absolute workspace paths.
+- `oracle pass` and `deterministic mode identity` are distinct; boundary adherence can be stable while output mode still varies within safe bounds.
