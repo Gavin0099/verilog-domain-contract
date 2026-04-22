@@ -66,3 +66,13 @@
   - added severity-aware drift gate: fail on `critical`, non-blocking notice on `warning`
 - 2026-04-22: Fixed framework mapping doc links to portable relative paths.
 - 2026-04-22: Added `docs/contract-format-evolution-note.md` clarifying current flat contract encoding is v0.1 transitional format.
+- 2026-04-22: Added executable pre-task gate slice:
+  - `validators/precondition_gate_validator.py` (reset/interface input completeness)
+  - `scripts/precondition_gate_smoke.py` (PG-001~PG-003)
+  - `docs/pre-task-gate-integration.md`
+  - `artifacts/precondition-gate/2026-04-22-smoke.json`
+- 2026-04-22: Smoke validation result:
+  - PG-001 missing reset definition -> `restrict_codegen`
+  - PG-002 missing interface protocol -> `allow_analysis_only`
+  - PG-003 sufficiently defined task -> `allow_draft_with_assumptions`
+  - all smoke cases pass

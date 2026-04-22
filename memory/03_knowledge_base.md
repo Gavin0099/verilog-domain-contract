@@ -16,3 +16,4 @@
 - `mode volatility` and `mode calibration` are separate layers: one explains variation, the other evaluates whether variation is optimal.
 - `actions/checkout` with `submodules: recursive` can fail if a first-level submodule contains unresolved nested gitlinks; use `submodules: true` unless recursive nesting is intentionally configured.
 - Current framework drift checker exits non-zero on warning; CI should parse JSON severity and fail only on `critical` if warning is policy-nonblocking.
+- Pre-task gating should focus on input completeness (reset/interface); assignment semantic ambiguity is usually better handled in post-generation review.

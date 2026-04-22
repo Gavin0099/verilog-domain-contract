@@ -1,0 +1,33 @@
+{
+  "run_set": "precondition-gate-smoke-v1",
+  "date": "2026-04-22",
+  "cases": [
+    {
+      "id": "PG-001",
+      "expected_mode": "restrict_codegen",
+      "observed_mode": "restrict_codegen",
+      "pass": true,
+      "missing_preconditions": [
+        "reset_polarity_defined",
+        "reset_type_defined"
+      ]
+    },
+    {
+      "id": "PG-002",
+      "expected_mode": "allow_analysis_only",
+      "observed_mode": "allow_analysis_only",
+      "pass": true,
+      "missing_preconditions": [
+        "interface_protocol_semantics_defined"
+      ]
+    },
+    {
+      "id": "PG-003",
+      "expected_mode": "allow_draft_with_assumptions",
+      "observed_mode": "allow_draft_with_assumptions",
+      "pass": true,
+      "missing_preconditions": []
+    }
+  ],
+  "failed": 0
+}

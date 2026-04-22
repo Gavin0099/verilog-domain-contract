@@ -17,6 +17,11 @@
 - Fixed CI governance workflow checkout/drift behavior:
   - avoid recursive submodule fetch (prevents nested `.latest-main` submodule failure)
   - fail only on `critical` drift severity, keep `warning` as non-blocking notice
+- Added executable pre-task gate slice for missing preconditions:
+  - `validators/precondition_gate_validator.py`
+  - `scripts/precondition_gate_smoke.py`
+  - `docs/pre-task-gate-integration.md`
+  - `artifacts/precondition-gate/2026-04-22-smoke.json`
 
 ## Next Steps
 
@@ -30,3 +35,4 @@
 - Keep external status wording aligned to "oracle-bounded stability" and avoid deterministic-enforcement overclaim.
 - Use calibration labels in replay artifacts to compute over-refusal rate and guide strictness tuning.
 - Monitor workflow runs after this patch to confirm checkout and drift gate behavior.
+- Feed precondition-gate output into runtime pre-task payload path as machine-readable decision input.

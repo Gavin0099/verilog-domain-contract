@@ -20,6 +20,7 @@ documents:
   - docs/behavioral-replay-oracle.md
   - docs/framework-surface-mapping.md
   - docs/precondition-completeness-model.md
+  - docs/pre-task-gate-integration.md
   - docs/completion-evidence-levels.md
   - docs/coverage-model.md
   - docs/refusal-vs-error-metrics.md
@@ -36,6 +37,7 @@ documents:
   - artifacts/replay-results/2026-04-22-baseline.yaml
   - artifacts/replay-results/2026-04-22-cross-run.md
   - artifacts/replay-results/2026-04-22-cross-run.yaml
+  - artifacts/precondition-gate/2026-04-22-smoke.json
 
 ai_behavior_override:
   - AGENTS.base.md
@@ -45,7 +47,8 @@ rule_roots:
   - governance/rules
   - docs
 
-validators: []
+validators:
+  - validators/precondition_gate_validator.py
 
 precondition_effects:
   - clock_definition_present|required|restrict_codegen_and_escalate
