@@ -26,3 +26,9 @@
   - `domain_contract_loader.py`: PASS (documents resolved)
   - `external_repo_readiness.py`: `ready = True`
   - `governance_drift_checker.py`: `ok = True`, warning only on expansion-boundary
+- 2026-04-22: Added enforcement-oriented assets:
+  - `docs/behavioral-replay-oracle.md` (BR-001..BR-005 prompts + oracle)
+  - `docs/framework-surface-mapping.md` (pre-task/post-task/claim-policy mapping)
+- 2026-04-22: Re-validated after additions:
+  - `domain_contract_loader.py`: PASS
+  - `external_repo_readiness.py`: `ready = True`

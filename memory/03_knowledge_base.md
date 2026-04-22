@@ -9,3 +9,4 @@
 - Extracted Markdown text from PDF may include OCR/encoding noise (for example special characters in author names); keep source page markers for traceability.
 - Governance value comes from constraints that change AI decisions, not from tutorial coverage volume.
 - Prefer boundary taxonomy mapping (`PRECONDITION`, `SEMANTIC_RULE`, `ASSUMPTION_RISK`, `COMPLETION_POLICY`, `VERIFICATION_REQUIREMENT`) before admitting new rules.
+- `loader/readiness PASS` confirms ingestion/adoption only; behavior enforcement must be proven with replay oracle evidence.

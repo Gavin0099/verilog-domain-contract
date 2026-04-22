@@ -8,9 +8,11 @@
 - Converted three Verilog knowhow PDFs to Markdown under `docs/knowhow/`.
 - Implemented end-to-end governance pipeline for three core rules: reset, assignment semantics, and handshake timing.
 - Added rule extraction table and behavior validation matrix to verify decision-impacting constraints.
+- Added replay-oracle prompts and framework-surface mapping to close the enforcement-evidence gap.
 
 ## Next Steps
 
 - Continue domain-pack authoring with Markdown knowledge sources.
 - Keep `memory/*.md` updated on each meaningful change, then commit/push.
 - Expand behavior validation from expected matrix to executable scenario tests in next iteration.
+- Execute replay cases BR-001 to BR-005 against target agent runtime and collect pass/fail evidence.

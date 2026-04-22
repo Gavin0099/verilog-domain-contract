@@ -17,6 +17,8 @@ documents:
   - docs/handshake-contract.md
   - docs/rule-extraction-table.md
   - docs/behavior-validation.md
+  - docs/behavioral-replay-oracle.md
+  - docs/framework-surface-mapping.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md
   - governance/TESTING.md
