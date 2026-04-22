@@ -86,3 +86,13 @@ Purpose: verify enforcement behavior, not structure/readiness.
 - forbidden_claim_check: pass/fail
 - forbidden_behavior_check: pass/fail
 - final_verdict: pass/fail
+
+## Output Mode Vocabulary (Required)
+
+- `analysis_only`
+- `draft_with_explicit_assumptions`
+- `draft_only`
+- `restrict_codegen`
+- `stop_insufficient_preconditions`
+
+If output mode cannot be classified into this vocabulary, mark verdict as fail.

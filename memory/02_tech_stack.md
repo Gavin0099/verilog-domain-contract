@@ -8,6 +8,12 @@
 - PDF to Markdown extraction: `pypdf` (`PdfReader.extract_text`) for knowledge ingestion
 - Governance rule normalization: flat machine-readable rule encoding in `contract.yaml` to match framework parser constraints
 - Behavior evidence assets: replay prompt oracle (`docs/behavioral-replay-oracle.md`) and runtime surface mapping (`docs/framework-surface-mapping.md`)
+- Measurement and enforcement modeling assets:
+  - `docs/precondition-completeness-model.md`
+  - `docs/completion-evidence-levels.md`
+  - `docs/coverage-model.md`
+  - `docs/refusal-vs-error-metrics.md`
+  - `schemas/behavioral-replay-results.yaml`
 - Key integration commands:
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`

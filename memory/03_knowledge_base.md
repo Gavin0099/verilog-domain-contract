@@ -10,3 +10,4 @@
 - Governance value comes from constraints that change AI decisions, not from tutorial coverage volume.
 - Prefer boundary taxonomy mapping (`PRECONDITION`, `SEMANTIC_RULE`, `ASSUMPTION_RISK`, `COMPLETION_POLICY`, `VERIFICATION_REQUIREMENT`) before admitting new rules.
 - `loader/readiness PASS` confirms ingestion/adoption only; behavior enforcement must be proven with replay oracle evidence.
+- Refusal-driven error reduction can mask productivity loss; track `refusal_rate` together with `error_rate_given_codegen`.

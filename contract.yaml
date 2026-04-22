@@ -19,11 +19,16 @@ documents:
   - docs/behavior-validation.md
   - docs/behavioral-replay-oracle.md
   - docs/framework-surface-mapping.md
+  - docs/precondition-completeness-model.md
+  - docs/completion-evidence-levels.md
+  - docs/coverage-model.md
+  - docs/refusal-vs-error-metrics.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md
   - governance/TESTING.md
   - governance/ARCHITECTURE.md
   - schemas/review-checklist.yaml
+  - schemas/behavioral-replay-results.yaml
 
 ai_behavior_override:
   - AGENTS.base.md
@@ -47,6 +52,14 @@ precondition_effects:
   - scope_is_synthesizable_or_tb_defined|required|analysis_only
   - verification_expectation_present|required|draft_only_no_completion_claim
   - cdc_strategy_present_when_multi_clock_implied|conditional|stop_insufficient_preconditions
+
+precondition_completeness_model:
+  - clock_definition|required|missing:restrict_codegen_and_escalate
+  - reset_definition|required|missing:restrict_codegen_and_escalate
+  - interface_spec|required|missing:analysis_only
+  - assignment_intent_partition|required_for_implementation_claim|missing:draft_only_and_escalate
+  - timing_expectation|conditional_for_timing_tasks|missing:draft_with_explicit_assumptions
+  - verification_expectation|required_for_completion_claim|missing:block_completion_claim
 
 must_not_assume:
   - single_clock_domain
@@ -83,3 +96,21 @@ completion_claim_disallow_without_evidence:
   - implementation_complete_without_reset_definition
   - implementation_complete_without_assignment_semantic_clarity
   - implementation_complete_without_handshake_timing_definition
+
+completion_evidence_levels:
+  - L0|syntax_valid|compile_or_parse_only|not_equivalent:functional_correctness
+  - L1|sim_passed|simulation_scope_disclosed|required_disclosure:covered_and_uncovered_scenarios
+  - L2|waveform_verified|signal_window_criteria_disclosed
+  - L3|assertion_checked|assertion_scope_and_outcome_disclosed
+
+claim_evidence_requirements:
+  - analysis_provided|no_minimum_evidence
+  - draft_rtl_provided|L0_optional|assumption_disclosure_required_if_preconditions_missing
+  - candidate_implementation_provided|L0_recommended|L1_preferred
+  - verified_implementation|min_levels:L2+L3|critical_behavior_scope_required
+
+measurement_metrics:
+  - refusal_rate|(downgrade_cases+stop_cases)/total_cases
+  - error_rate_given_codegen|error_cases_when_codegen/full_codegen_cases
+  - claim_violation_rate|claim_violation_cases/total_cases
+  - required_report_schema|schemas/behavioral-replay-results.yaml

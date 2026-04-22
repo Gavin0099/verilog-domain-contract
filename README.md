@@ -38,7 +38,12 @@ Domain contract content in this repo is consumed by governance tooling through:
 - [docs/rule-extraction-table.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/rule-extraction-table.md)
 - [docs/behavioral-replay-oracle.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/behavioral-replay-oracle.md)
 - [docs/framework-surface-mapping.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/framework-surface-mapping.md)
+- [docs/precondition-completeness-model.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/precondition-completeness-model.md)
+- [docs/completion-evidence-levels.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/completion-evidence-levels.md)
+- [docs/coverage-model.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/coverage-model.md)
+- [docs/refusal-vs-error-metrics.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/refusal-vs-error-metrics.md)
 - [schemas/review-checklist.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/review-checklist.yaml)
+- [schemas/behavioral-replay-results.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/behavioral-replay-results.yaml)
 
 ## v0.1 Scope
 

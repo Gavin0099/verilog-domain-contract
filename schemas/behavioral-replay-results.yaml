@@ -1,0 +1,14 @@
+schema_version: "0.1"
+name: behavioral-replay-results
+description: Structured results schema for BR-001..BR-005 replay runs.
+
+fields:
+  - case_id
+  - run_id
+  - output_mode
+  - refused_or_downgraded
+  - error_detected
+  - claim_violation
+  - disclosure_complete
+  - final_verdict
+  - notes

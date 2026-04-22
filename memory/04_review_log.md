@@ -32,3 +32,12 @@
 - 2026-04-22: Re-validated after additions:
   - `domain_contract_loader.py`: PASS
   - `external_repo_readiness.py`: `ready = True`
+- 2026-04-22: Added quantitative governance models:
+  - deterministic precondition completeness model
+  - completion evidence level taxonomy (L0..L3)
+  - coverage-model statement for in/out-of-scope bug classes
+  - refusal-vs-error metric framework
+  - replay result schema for structured evidence
+- 2026-04-22: Validation snapshot after quantitative model update:
+  - `domain_contract_loader.py`: PASS (documents=24)
+  - `external_repo_readiness.py`: `ready = True`
