@@ -45,16 +45,20 @@ Domain contract content in this repo is consumed by governance tooling through:
 - [docs/refusal-vs-error-metrics.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/refusal-vs-error-metrics.md)
 - [docs/mode-volatility-note.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/mode-volatility-note.md)
 - [docs/mode-calibration-note.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/mode-calibration-note.md)
+- [docs/epistemic-decision-policy.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/epistemic-decision-policy.md)
 - [docs/contract-format-evolution-note.md](/e:/BackUp/Git_EE/verilog-domain-contract/docs/contract-format-evolution-note.md)
 - [schemas/review-checklist.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/review-checklist.yaml)
 - [schemas/behavioral-replay-results.yaml](/e:/BackUp/Git_EE/verilog-domain-contract/schemas/behavioral-replay-results.yaml)
 - [artifacts/replay-results/2026-04-22-baseline.md](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/replay-results/2026-04-22-baseline.md)
 - [artifacts/replay-results/2026-04-22-cross-run.md](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/replay-results/2026-04-22-cross-run.md)
 - [artifacts/precondition-gate/2026-04-22-smoke.json](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/precondition-gate/2026-04-22-smoke.json)
+- [artifacts/decision-semantics/epistemic_cases_v1.json](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/decision-semantics/epistemic_cases_v1.json)
+- [artifacts/decision-semantics/2026-04-23-epistemic-smoke.json](/e:/BackUp/Git_EE/verilog-domain-contract/artifacts/decision-semantics/2026-04-23-epistemic-smoke.json)
 
 Pre-task gate smoke command:
 
 - `python scripts/precondition_gate_smoke.py`
+- `python scripts/epistemic_scoring_smoke.py`
 
 ## v0.1 Scope
 

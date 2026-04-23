@@ -26,6 +26,7 @@ documents:
   - docs/refusal-vs-error-metrics.md
   - docs/mode-volatility-note.md
   - docs/mode-calibration-note.md
+  - docs/epistemic-decision-policy.md
   - docs/contract-format-evolution-note.md
   - docs/verification-minimums.md
   - docs/completion-claim-policy.md
@@ -38,6 +39,8 @@ documents:
   - artifacts/replay-results/2026-04-22-cross-run.md
   - artifacts/replay-results/2026-04-22-cross-run.yaml
   - artifacts/precondition-gate/2026-04-22-smoke.json
+  - artifacts/decision-semantics/epistemic_cases_v1.json
+  - artifacts/decision-semantics/2026-04-23-epistemic-smoke.json
 
 ai_behavior_override:
   - AGENTS.base.md

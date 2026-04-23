@@ -1,0 +1,40 @@
+{
+  "suite": "epistemic_cases_v1",
+  "total_cases": 4,
+  "failed_cases": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "id": "ES-001",
+      "expected_action": "need_more_info",
+      "observed_action": "need_more_info",
+      "pass": true,
+      "epistemic_risk": "high",
+      "reason": "unknown_premise_high_epistemic_risk"
+    },
+    {
+      "id": "ES-002",
+      "expected_action": "reframe",
+      "observed_action": "reframe",
+      "pass": true,
+      "epistemic_risk": "high",
+      "reason": "unsupported_premise_blocks_proceed"
+    },
+    {
+      "id": "ES-003",
+      "expected_action": "proceed_with_assumption",
+      "observed_action": "proceed_with_assumption",
+      "pass": true,
+      "epistemic_risk": "medium",
+      "reason": "bounded_trial_justified"
+    },
+    {
+      "id": "ES-004",
+      "expected_action": "proceed_with_assumption",
+      "observed_action": "proceed_with_assumption",
+      "pass": true,
+      "epistemic_risk": "low",
+      "reason": "supported_premise_with_sufficient_evidence"
+    }
+  ]
+}

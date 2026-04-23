@@ -76,3 +76,13 @@
   - PG-002 missing interface protocol -> `allow_analysis_only`
   - PG-003 sufficiently defined task -> `allow_draft_with_assumptions`
   - all smoke cases pass
+- 2026-04-23: Added epistemic decision semantics slice:
+  - `docs/epistemic-decision-policy.md`
+  - `artifacts/decision-semantics/epistemic_cases_v1.json`
+  - `scripts/epistemic_scoring_smoke.py`
+  - `artifacts/decision-semantics/2026-04-23-epistemic-smoke.json`
+- 2026-04-23: Epistemic smoke result:
+  - total_cases=4
+  - failed_cases=0
+  - pass_rate=1.0
+  - includes low-risk wrong-premise case forcing `need_more_info`

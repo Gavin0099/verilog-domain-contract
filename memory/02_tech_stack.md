@@ -21,6 +21,11 @@
   - `validators/precondition_gate_validator.py`
   - `scripts/precondition_gate_smoke.py`
   - `artifacts/precondition-gate/2026-04-22-smoke.json`
+- Epistemic semantics calibration components:
+  - `docs/epistemic-decision-policy.md`
+  - `scripts/epistemic_scoring_smoke.py`
+  - `artifacts/decision-semantics/epistemic_cases_v1.json`
+  - `artifacts/decision-semantics/2026-04-23-epistemic-smoke.json`
 - Key integration commands:
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`

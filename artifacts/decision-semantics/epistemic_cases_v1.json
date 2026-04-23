@@ -1,0 +1,49 @@
+{
+  "suite": "epistemic_cases_v1",
+  "cases": [
+    {
+      "id": "ES-001",
+      "name": "lowrisk_wrong_premise_reversible",
+      "execution_risk": "low",
+      "scope_local_reversible": true,
+      "premise_status": "unknown",
+      "evidence_quality": "weak",
+      "bounded_trial_justification": false,
+      "bounded_trial_cost": 0.35,
+      "expected_action": "need_more_info"
+    },
+    {
+      "id": "ES-002",
+      "name": "highrisk_unsupported_premise",
+      "execution_risk": "high",
+      "scope_local_reversible": false,
+      "premise_status": "unsupported",
+      "evidence_quality": "weak",
+      "bounded_trial_justification": false,
+      "bounded_trial_cost": 0.60,
+      "expected_action": "reframe"
+    },
+    {
+      "id": "ES-003",
+      "name": "lowrisk_unknown_with_justified_trial",
+      "execution_risk": "low",
+      "scope_local_reversible": true,
+      "premise_status": "unknown",
+      "evidence_quality": "moderate",
+      "bounded_trial_justification": true,
+      "bounded_trial_cost": 0.10,
+      "expected_action": "proceed_with_assumption"
+    },
+    {
+      "id": "ES-004",
+      "name": "lowrisk_supported_and_evidenced",
+      "execution_risk": "low",
+      "scope_local_reversible": true,
+      "premise_status": "supported",
+      "evidence_quality": "strong",
+      "bounded_trial_justification": true,
+      "bounded_trial_cost": 0.05,
+      "expected_action": "proceed_with_assumption"
+    }
+  ]
+}

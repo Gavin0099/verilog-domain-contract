@@ -22,6 +22,11 @@
   - `scripts/precondition_gate_smoke.py`
   - `docs/pre-task-gate-integration.md`
   - `artifacts/precondition-gate/2026-04-22-smoke.json`
+- Added epistemic decision calibration slice:
+  - `docs/epistemic-decision-policy.md`
+  - `artifacts/decision-semantics/epistemic_cases_v1.json`
+  - `scripts/epistemic_scoring_smoke.py`
+  - `artifacts/decision-semantics/2026-04-23-epistemic-smoke.json`
 
 ## Next Steps
 
@@ -36,3 +41,4 @@
 - Use calibration labels in replay artifacts to compute over-refusal rate and guide strictness tuning.
 - Monitor workflow runs after this patch to confirm checkout and drift gate behavior.
 - Feed precondition-gate output into runtime pre-task payload path as machine-readable decision input.
+- Integrate epistemic-risk scoring into pre-task decision inputs after baseline smoke validation.
