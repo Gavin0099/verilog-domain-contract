@@ -1,1 +1,2 @@
 - [2026-04-30] Enforced hard rule: preconditions=false => scenario_result=not_executed, observed=null.
+- [2026-04-30] Expansion aggregate stays bounded_support; no narrative escalation.

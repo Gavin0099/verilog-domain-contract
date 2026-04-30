@@ -43,3 +43,4 @@
 - Feed precondition-gate output into runtime pre-task payload path as machine-readable decision input.
 - Integrate epistemic-risk scoring into pre-task decision inputs after baseline smoke validation.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
+- [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
