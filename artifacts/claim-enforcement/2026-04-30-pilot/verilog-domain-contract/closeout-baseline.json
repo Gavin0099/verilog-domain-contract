@@ -1,0 +1,15 @@
+{
+    "repo":  "verilog-domain-contract",
+    "scenario":  "baseline",
+    "preconditions_met":  true,
+    "scenario_result":  "pass",
+    "precondition_status":  "ok",
+    "expected":  {
+                     "claim_level":  "bounded_support",
+                     "semantic_drift_risk":  false
+                 },
+    "observed":  {
+                     "claim_level":  "bounded_support",
+                     "semantic_drift_risk":  false
+                 }
+}

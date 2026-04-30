@@ -1,0 +1,1 @@
+- [2026-04-30] Added CLAIM_BOUNDARY + CLAIM_ENFORCEMENT_MINIMAL_SPEC; reran pilot artifacts.

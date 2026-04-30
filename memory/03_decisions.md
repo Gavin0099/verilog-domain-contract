@@ -1,0 +1,1 @@
+- [2026-04-30] Enforced hard rule: preconditions=false => scenario_result=not_executed, observed=null.

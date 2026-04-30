@@ -1,0 +1,16 @@
+{
+    "repo":  "verilog-domain-contract",
+    "scenario":  "drift_injection_same_evidence",
+    "preconditions_met":  true,
+    "scenario_result":  "pass",
+    "precondition_status":  "ok",
+    "injected_wording":  "proven / production-ready",
+    "expected":  {
+                     "claim_level":  "stronger_than_allowed",
+                     "semantic_drift_risk":  true
+                 },
+    "observed":  {
+                     "claim_level":  "stronger_than_allowed",
+                     "semantic_drift_risk":  true
+                 }
+}

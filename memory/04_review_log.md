@@ -86,3 +86,4 @@
   - failed_cases=0
   - pass_rate=1.0
   - includes low-risk wrong-premise case forcing `need_more_info`
+- [2026-04-30] Pilot repos now pass A/B/C after precondition documents were added.

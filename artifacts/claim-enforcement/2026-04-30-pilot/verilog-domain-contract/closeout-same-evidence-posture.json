@@ -1,0 +1,15 @@
+{
+    "repo":  "verilog-domain-contract",
+    "scenario":  "same_evidence_posture_escalation",
+    "preconditions_met":  true,
+    "scenario_result":  "pass",
+    "precondition_status":  "ok",
+    "same_evidence_as_previous":  true,
+    "attempted_posture":  "stronger_than_previous",
+    "expected":  {
+                     "semantic_drift_risk":  true
+                 },
+    "observed":  {
+                     "semantic_drift_risk":  true
+                 }
+}
