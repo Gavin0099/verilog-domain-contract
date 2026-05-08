@@ -1,6 +1,6 @@
 run_id: "run-023"
 task_id: "round-5-6-summary-documents"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true

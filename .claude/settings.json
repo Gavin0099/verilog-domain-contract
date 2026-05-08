@@ -33,7 +33,8 @@
       "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-024/scorecard.yaml:*)",
       "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-026/run-record.yaml:*)",
       "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-026/scorecard.yaml:*)",
-      "Bash(__NEW_LINE_8045be0682582e54__ echo '# diff.patch — run-026:*)"
+      "Bash(__NEW_LINE_8045be0682582e54__ echo '# diff.patch — run-026:*)",
+      "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/session-index.ndjson:*)"
     ]
   },
   "hooks": {

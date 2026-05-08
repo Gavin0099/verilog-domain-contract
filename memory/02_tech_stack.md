@@ -32,10 +32,10 @@
   - `python additional/ai-governance-framework/governance_tools/external_repo_readiness.py --repo . --framework-root additional/ai-governance-framework --format human`
 - Governance-test protocol infrastructure (added 2026-05-08):
   - `artifacts/governance-test/runs/run-NNN/` — run-record.yaml + scorecard.yaml + diff.patch per run
-  - `artifacts/governance-test/run-ledger.ndjson` — flat run registry (21 entries, runs 001–021)
-  - `artifacts/governance-test/reviewer-dashboard.md` — aggregate reviewer view (20 runs, all accept)
-  - `artifacts/governance-test/round-001-summary.md` … `round-004-summary.md` — per-round summaries
-  - `artifacts/session-index.ndjson` — session-level index (6 entries)
+  - `artifacts/governance-test/run-ledger.ndjson` — flat run registry (26 entries, runs 001–026)
+  - `artifacts/governance-test/reviewer-dashboard.md` — aggregate reviewer view (25 runs, all accept)
+  - `artifacts/governance-test/round-001-summary.md` … `round-006-summary.md` — per-round summaries
+  - `artifacts/session-index.ndjson` — session-level index (7 entries, rounds 1–7)
   - `governance/gate_policy.yaml` — gate policy with `hook_coverage_tier` field
 - Advisory hook infrastructure (added Run 018, 2026-05-08):
   - `scripts/check_advisory.py` — non-blocking Stop hook; calls check_documents(), writes to `artifacts/runtime/advisory/<ts>.json`; always exits 0
@@ -45,6 +45,13 @@
   - Gate: if implementation_intent AND assignment keywords found → check state_update_intent_defined + comb_or_seq_partition_defined
   - Smoke cases PG-004 (missing) + PG-005 (defined) in `scripts/precondition_gate_smoke.py`
 - Two distinct rule systems (classified Run 020):
-  - System 1: Verilog Domain Contract Rules — contract.yaml governance_rules (4 rules); enforced by precondition_gate_validator.py; subject to contract-sync-check
+  - System 1: Verilog Domain Contract Rules — contract.yaml governance_rules (5 rules); enforced by precondition_gate_validator.py; subject to contract-sync-check
   - System 2: General AI Behavioral Rules — governance/rules/ (19 rules: CMN/REF/KDRV/GLHUB/AVL/CPP/CSH/PY/SWT); cross-domain; NOT subject to contract-sync-check
-- Rule index: `governance/rules/RULE_INDEX.md` — two-system classification table
+- Rule index: `governance/rules/RULE_INDEX.md` — two-system classification table (v1.1)
+- Validator Rule 5 (CDC_STRATEGY_REQUIRED, added Run 022):
+  - RE_CDC_INTENT, RE_CDC_STRATEGY regex patterns
+  - Gate: if implementation_intent AND CDC keywords found → check cdc_strategy_present_when_multi_clock_implied + cdc_synchronizer_scheme_defined; missing → restrict_codegen
+  - Smoke cases PG-006 (missing → restrict_codegen) + PG-007 (defined) in `scripts/precondition_gate_smoke.py`
+- Smoke test coverage (as of Run 025): PG-001~009; 9 cases; all 5 rules have explicit positive+negative coverage
+- Precondition-gate smoke artifact: `artifacts/precondition-gate/2026-05-08-smoke.json` (v3, supersedes 2026-04-22-smoke.json)
+- Leaf docs for all 5 Verilog domain rules: clock-reset-contract.md, assignment-semantics.md, handshake-contract.md, fsm-contract.md, cdc-contract.md

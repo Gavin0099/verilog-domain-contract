@@ -1,0 +1,11 @@
+{
+  "advisory_type": "check_documents",
+  "timestamp": "20260508T091846Z",
+  "repo_root": "E:\\BackUp\\Git_EE\\verilog-domain-contract",
+  "status": "PASS",
+  "ok": true,
+  "contract_doc_count": 53,
+  "governed_file_count": 53,
+  "broken_refs": [],
+  "missing_entries": []
+}

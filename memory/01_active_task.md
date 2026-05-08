@@ -50,10 +50,26 @@
 - [2026-05-08] Run 019: ASSIGNMENT_SEMANTICS_REQUIRED full validator sync — 2 precondition_effects entries added, Rule 4 + 3 regex patterns in validator, PG-004/005 smoke cases added (5/5 PASS).
 - [2026-05-08] Run 020: governance/rules/ classified as cross-domain general rule pack (D-020-01); RULE_INDEX.md rewritten with two-system classification.
 - [2026-05-08] Run 021: reviewer-dashboard sync to 20 runs; all decisions accept.
+- [2026-05-08] Run 022: CDC_STRATEGY_REQUIRED full governance sync — docs/cdc-contract.md new; validator Rule 5 + RE_CDC_INTENT + RE_CDC_STRATEGY; PG-006/007 smoke; 7/7 PASS; contract.yaml fully updated.
+- [2026-05-08] Run 023: round-005-summary.md + round-006-summary.md created.
+- [2026-05-08] Run 024: artifacts/precondition-gate/2026-05-08-smoke.json created (PG-001~007, rule labels, v3 updated in Run 025).
+- [2026-05-08] Run 025: FSM explicit smoke PG-008/009 added; smoke 9/9 PASS.
+- [2026-05-08] Run 026: reviewer-dashboard sync to 25 runs; round-006-summary completed.
+- [2026-05-08] run-001~021 scorecards: status → accepted; session-index Round 7 entry added.
 
-## Open Governance Gaps
+## Governance Gaps Status
 
-- CDC rule: `cdc_strategy_present_when_multi_clock_implied` in precondition_effects has no leaf doc, no governance_rule entry, no validator coverage.
-- FSM explicit smoke case PG-006 not yet added.
-- Round 5–6 summary documents pending.
-- `artifacts/precondition-gate/2026-04-22-smoke.json` does not yet include PG-004/005 results.
+**All gaps closed as of Run 026. No open governance gaps remain.**
+
+Previous gap list (all fixed):
+- CDC rule → Fixed Run 022 (leaf doc, governance_rules, validator Rule 5, smoke PG-006/007)
+- FSM explicit smoke → Fixed Run 025 (PG-008/009)
+- Round 5–6 summaries → Fixed Run 023
+- smoke artifact stale → Fixed Run 024 (2026-05-08-smoke.json, v3 in Run 025)
+
+## Long-Term Backlog (not blocked, no urgency)
+
+- Execute replay cases BR-001~BR-005 against target agent runtime; record outcomes with schemas/behavioral-replay-results.yaml
+- Cross-model replay and mixed-completeness prompts (full-codegen paths)
+- Feed precondition-gate output into runtime pre-task payload path as machine-readable decision input
+- Integrate epistemic-risk scoring into pre-task decision inputs

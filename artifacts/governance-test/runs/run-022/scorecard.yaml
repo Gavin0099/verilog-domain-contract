@@ -1,6 +1,6 @@
 run_id: "run-022"
 task_id: "cdc-governance-rule-full-sync"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true

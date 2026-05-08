@@ -1,6 +1,6 @@
 run_id: "run-026"
 task_id: "dashboard-sync-run026"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
