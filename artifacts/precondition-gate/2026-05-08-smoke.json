@@ -1,7 +1,7 @@
 {
-  "run_set": "precondition-gate-smoke-v2",
+  "run_set": "precondition-gate-smoke-v3",
   "date": "2026-05-08",
-  "note": "Updated artifact reflecting validator state after Runs 019 (ASSIGNMENT_SEMANTICS Rule 4) and Run 022 (CDC Rule 5). Supersedes 2026-04-22-smoke.json for regression purposes. Original baseline retained for historical comparison.",
+  "note": "Updated artifact reflecting validator state after Runs 019 (Rule 4 ASSIGNMENT_SEMANTICS), 022 (Rule 5 CDC), and 025 (PG-008/009 FSM explicit cases). Supersedes 2026-04-22-smoke.json. All 5 rules now have explicit positive+negative smoke coverage.",
   "cases": [
     {
       "id": "PG-001",
@@ -77,6 +77,30 @@
       "pass": true,
       "missing_preconditions": [],
       "added": "Run 022"
+    },
+    {
+      "id": "PG-008",
+      "rule": "FSM_CONTRACT_REQUIRED",
+      "description": "FSM trigger (FSM keyword), all preconditions missing",
+      "expected_mode": "allow_draft_with_assumptions",
+      "observed_mode": "allow_draft_with_assumptions",
+      "pass": true,
+      "missing_preconditions": [
+        "fsm_decomposition_style_declared",
+        "fsm_illegal_state_handling_defined",
+        "fsm_state_model_defined"
+      ],
+      "added": "Run 025"
+    },
+    {
+      "id": "PG-009",
+      "rule": "FSM_CONTRACT_REQUIRED",
+      "description": "FSM fully defined: 4 states, three-process decomp, catch-all illegal state",
+      "expected_mode": "allow_draft_with_assumptions",
+      "observed_mode": "allow_draft_with_assumptions",
+      "pass": true,
+      "missing_preconditions": [],
+      "added": "Run 025"
     }
   ],
   "failed": 0,

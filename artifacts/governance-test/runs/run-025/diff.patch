@@ -1,0 +1,16 @@
+# diff.patch — run-025
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: scripts/precondition_gate_smoke.py +PG-008+PG-009
+
+--- a/scripts/precondition_gate_smoke.py
++++ b/scripts/precondition_gate_smoke.py
+@@ CASES list @@
++    {"id": "PG-008", "task": "...Verilog FSM module. No preconditions about states, transitions, or fault handling...", "expected_mode": "allow_draft_with_assumptions"},
++    {"id": "PG-009", "task": "...state machine with 4 states. FSM decomposition style: three-process...Illegal state handling: catch-all default state.", "expected_mode": "allow_draft_with_assumptions"},
+
+summary:
+  files_modified: 1
+  files_created: 0
+  added_lines: 14
+  removed_lines: 0
+  smoke_result: "9/9 PASS (PG-001~009, PG-008+009 new)"

@@ -1,0 +1,72 @@
+run_id: "run-025"
+session_context: "session-current-20260508-round7"
+task_id: "fsm-explicit-smoke-cases"
+task_description: >
+  Add PG-008 (FSM trigger + all preconditions missing) and PG-009 (FSM trigger + all defined)
+  as explicit FSM smoke cases for Rule 3 (FSM_CONTRACT_REQUIRED). Previously no smoke case
+  explicitly tested the FSM gate trigger path. Closes coverage gap noted in 01_active_task.md.
+  Smoke 9/9 PASS.
+
+primary_targets:
+  - scripts/precondition_gate_smoke.py
+
+declared_at: "2026-05-08T14:00:00Z"
+closed_at: "2026-05-08T14:30:00Z"
+
+change_scope_metadata:
+  added_line_count: 14
+  removed_line_count: 0
+  accepted_change_count: 1
+  files_modified: 1
+  files_created: 0
+  evidence_traceability: 1.0
+
+gaps_fixed:
+  - id: "G-025-01"
+    description: "No explicit smoke case triggering FSM_CONTRACT_REQUIRED Rule 3 gate; PG-003 only tests a fully-defined task with no FSM keywords"
+    run_detected: "01_active_task.md open gaps"
+    fixed: true
+
+smoke_results:
+  - id: "PG-001"
+    result: "PASS (restrict_codegen)"
+    regression: true
+  - id: "PG-002"
+    result: "PASS (allow_analysis_only)"
+    regression: true
+  - id: "PG-003"
+    result: "PASS (allow_draft_with_assumptions)"
+    regression: true
+  - id: "PG-004"
+    result: "PASS (allow_draft_with_assumptions, missing: state_update_intent_defined, comb_or_seq_partition_defined)"
+    regression: true
+  - id: "PG-005"
+    result: "PASS (allow_draft_with_assumptions, no missing preconditions)"
+    regression: true
+  - id: "PG-006"
+    result: "PASS (restrict_codegen, missing: cdc_strategy_present_when_multi_clock_implied, cdc_synchronizer_scheme_defined)"
+    regression: true
+  - id: "PG-007"
+    result: "PASS (allow_draft_with_assumptions, no missing preconditions)"
+    regression: true
+  - id: "PG-008"
+    description: "FSM trigger (FSM keyword) + all preconditions missing"
+    result: "PASS (allow_draft_with_assumptions, missing: fsm_decomposition_style_declared, fsm_illegal_state_handling_defined, fsm_state_model_defined)"
+    new: true
+  - id: "PG-009"
+    description: "FSM trigger + state model (4 states) + decomp (three-process) + illegal state (catch-all) all defined"
+    result: "PASS (allow_draft_with_assumptions, no missing preconditions)"
+    new: true
+
+known_limitations:
+  - id: "LIM-025-01"
+    description: >
+      RE_FSM_STATE_MODEL uses positive keyword matching without negation handling.
+      Task text mentioning state model terms in a negated context (e.g. 'state model not specified')
+      would falsely report fsm_state_model_defined=True. PG-008 task is written to avoid
+      all state model keywords to sidestep this. Same class as LIM-019-01, LIM-022-02.
+    severity: "advisory"
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

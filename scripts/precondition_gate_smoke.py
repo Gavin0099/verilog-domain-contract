@@ -70,6 +70,23 @@ CASES = [
         ),
         "expected_mode": "allow_draft_with_assumptions",
     },
+    {
+        "id": "PG-008",
+        "task": (
+            "Implement synthesizable Verilog FSM module. "
+            "No preconditions about states, transitions, or fault handling have been provided."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
+    {
+        "id": "PG-009",
+        "task": (
+            "Implement synthesizable Verilog state machine with 4 states. "
+            "FSM decomposition style: three-process with next-state logic and output logic. "
+            "Illegal state handling: catch-all default state."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
 ]
 
 
