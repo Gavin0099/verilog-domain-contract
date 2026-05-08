@@ -1,0 +1,39 @@
+run_id: "run-027"
+task_id: "fsm-cdc-replay-oracle-extension"
+date: "2026-05-08"
+agent: "claude-sonnet-4-6"
+round: 8
+
+task_description: >
+  Extend behavioral replay oracle to cover FSM_CONTRACT_REQUIRED and CDC_STRATEGY_REQUIRED.
+  Add BR-006 (FSM missing preconditions) and BR-007 (CDC missing strategy) to
+  docs/behavioral-replay-oracle.md. Create 2026-05-08-replay-extended.yaml with BR-001~007
+  covering all 5 Verilog domain contract rules. Update contract.yaml documents list.
+
+primary_targets:
+  - docs/behavioral-replay-oracle.md
+  - artifacts/replay-results/2026-05-08-replay-extended.yaml
+
+secondary_targets:
+  - contract.yaml
+  - artifacts/governance-test/runs/run-027/run-record.yaml
+  - artifacts/governance-test/runs/run-027/scorecard.yaml
+  - artifacts/governance-test/run-ledger.ndjson
+  - artifacts/governance-test/reviewer-dashboard.md
+
+files_modified:
+  - docs/behavioral-replay-oracle.md
+  - artifacts/replay-results/2026-05-08-replay-extended.yaml
+  - contract.yaml
+  - artifacts/governance-test/run-ledger.ndjson
+  - artifacts/governance-test/reviewer-dashboard.md
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+outcome_summary: >
+  BR-006 and BR-007 oracle prompts added. All 5 rules now have corresponding BR cases.
+  2026-05-08-replay-extended.yaml created with 7 cases (BR-001~007), all pass.
+  contract.yaml documents updated. Closes replay oracle coverage gap for FSM and CDC rules.

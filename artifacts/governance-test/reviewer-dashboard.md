@@ -1,8 +1,8 @@
 # Governance Test Reviewer Dashboard
 
-**Generated**: 2026-05-08 (updated Run 026)
-**Total runs**: 25 (run-001 ~ run-025)
-**Reviewer decisions**: 25 / 25 accepted
+**Generated**: 2026-05-08 (updated Run 027)
+**Total runs**: 27 (run-001 ~ run-027)
+**Reviewer decisions**: 27 / 27 accepted
 
 This document summarises every run for human review. For each run, the reviewer should:
 1. Read the `round_note` in the scorecard
@@ -41,6 +41,8 @@ This document summarises every run for human review. For each run, the reviewer 
 | run-023 | Round 5-6 summary documents (meta) | 6 | false | 0 | 0 | high | accept |
 | run-024 | Precondition-gate smoke artifact v2 | 6 | false | 0 | 0 | high | accept |
 | run-025 | FSM explicit smoke cases PG-008/009 | 6 | false | 0 | 0 | high | accept |
+| run-026 | Dashboard sync to 25 runs (meta) | 7 | false | 0 | 0 | high | accept |
+| run-027 | FSM+CDC replay oracle extension BR-006/007 | 8 | false | 0 | 0 | high | accept |
 
 ---
 
@@ -171,6 +173,16 @@ This document summarises every run for human review. For each run, the reviewer 
 **Key change**: scripts/precondition_gate_smoke.py: PG-008 (FSM missing all) + PG-009 (FSM defined); smoke 9/9 PASS; 2026-05-08-smoke.json updated to v3.
 **Reviewer check**: Does PG-008 correctly trigger Rule 3 with all 3 FSM preconditions missing? Does LIM-025-01 (semantic negation) match the class of LIM-010-01 and LIM-019-01?
 **Files**: [run-record](runs/run-025/run-record.yaml) | [scorecard](runs/run-025/scorecard.yaml) | [diff](runs/run-025/diff.patch)
+
+### run-026 — Dashboard Sync to 25 Runs
+**Key change**: reviewer-dashboard.md synced 20→25 runs; run-021~025 rows + review notes added; round numbers corrected for run-019/020 (5, not 6).
+**Reviewer check**: Are round numbers for all 25 runs consistent with the ledger? Are all 25 reviewer decisions accept?
+**Files**: [run-record](runs/run-026/run-record.yaml) | [scorecard](runs/run-026/scorecard.yaml) | [diff](runs/run-026/diff.patch)
+
+### run-027 — FSM+CDC Replay Oracle Extension (BR-006 and BR-007)
+**Key change**: docs/behavioral-replay-oracle.md: +BR-006 (FSM_CONTRACT_REQUIRED missing) +BR-007 (CDC_STRATEGY_REQUIRED missing); 2026-05-08-replay-extended.yaml created (BR-001~007, 7/7 pass); contract.yaml documents updated.
+**Reviewer check**: Do BR-006/007 oracle criteria align with PG-008/PG-006 smoke cases? Are forbidden_claims consistent with completion_claim_disallow entries in contract.yaml?
+**Files**: [run-record](runs/run-027/run-record.yaml) | [scorecard](runs/run-027/scorecard.yaml) | [diff](runs/run-027/diff.patch)
 
 ---
 

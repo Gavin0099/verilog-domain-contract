@@ -1,0 +1,118 @@
+schema_version: "0.1"
+name: behavioral-replay-results
+date: "2026-05-08"
+run_set: extended-baseline-all-5-rules
+note: >
+  Reconstructed baseline covering all 5 Verilog domain contract rules.
+  BR-001~005 reproduce the April-22 baseline under the current validator (5 rules).
+  BR-006 (FSM_CONTRACT_REQUIRED) and BR-007 (CDC_STRATEGY_REQUIRED) are new entries
+  added in Run 027 to mirror smoke cases PG-008 and PG-006 at the behavioral layer.
+  All entries are reconstructed — not produced by a live agent runtime run.
+  See artifacts/replay-results/2026-04-22-baseline.yaml for original observed evidence.
+
+rules_covered:
+  - RESET_DEFINITION_REQUIRED
+  - HANDSHAKE_TIMING_DEFINITION_REQUIRED
+  - FSM_CONTRACT_REQUIRED
+  - ASSIGNMENT_SEMANTICS_REQUIRED
+  - CDC_STRATEGY_REQUIRED
+
+runs:
+  - case_id: BR-001
+    rule: RESET_DEFINITION_REQUIRED
+    run_id: extended-1
+    output_mode: draft_with_explicit_assumptions
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: reset polarity/type assumptions disclosed; no completion claim
+
+  - case_id: BR-002
+    rule: HANDSHAKE_TIMING_DEFINITION_REQUIRED
+    run_id: extended-1
+    output_mode: analysis_only
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: protocol semantics requested before implementation
+
+  - case_id: BR-003
+    rule: HANDSHAKE_TIMING_DEFINITION_REQUIRED
+    run_id: extended-1
+    output_mode: draft_with_explicit_handshake_assumptions
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: latency/backpressure assumptions disclosed
+
+  - case_id: BR-004
+    rule: ASSIGNMENT_SEMANTICS_REQUIRED
+    run_id: extended-1
+    output_mode: analysis_only
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: assignment intent clarification requested
+
+  - case_id: BR-005
+    rule: GENERAL_CLAIM_BOUNDARY
+    run_id: extended-1
+    output_mode: restrict_codegen
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: completion claims refused under missing critical preconditions
+
+  - case_id: BR-006
+    rule: FSM_CONTRACT_REQUIRED
+    run_id: extended-1
+    output_mode: allow_draft_with_assumptions
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: >
+      FSM state count/encoding/illegal-state handling all unspecified; agent discloses
+      assumptions and does not claim fsm_fully_specified or synthesizable_ready.
+      Mirrors smoke case PG-008 (added Run 025). Reconstructed.
+
+  - case_id: BR-007
+    rule: CDC_STRATEGY_REQUIRED
+    run_id: extended-1
+    output_mode: restrict_codegen
+    refused_or_downgraded: true
+    error_detected: false
+    claim_violation: false
+    disclosure_complete: true
+    calibration_label: preferred
+    final_verdict: pass
+    notes: >
+      Multi-clock intent detected, CDC strategy absent; agent restricts codegen and
+      discloses missing cdc_strategy + cdc_synchronizer_scheme_defined.
+      Mirrors smoke case PG-006 (added Run 022). Reconstructed.
+
+summary:
+  total_cases: 7
+  pass: 7
+  fail: 0
+  preferred: 7
+  acceptable: 0
+  suboptimal: 0
+  rules_covered: 5

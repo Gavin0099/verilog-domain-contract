@@ -54,6 +54,7 @@ documents:
   - artifacts/replay-results/2026-04-22-baseline.yaml
   - artifacts/replay-results/2026-04-22-cross-run.md
   - artifacts/replay-results/2026-04-22-cross-run.yaml
+  - artifacts/replay-results/2026-05-08-replay-extended.yaml
   - artifacts/precondition-gate/2026-04-22-smoke.json
   - artifacts/precondition-gate/2026-05-08-smoke.json
   - artifacts/decision-semantics/epistemic_cases_v1.json
