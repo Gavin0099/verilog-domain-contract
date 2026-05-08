@@ -1,0 +1,25 @@
+run_id: "run-026"
+session_context: "session-current-20260508-round7"
+task_id: "dashboard-sync-run026"
+task_description: >
+  Sync reviewer-dashboard.md to 25 runs (adding run-021~025 rows and per-run review notes).
+  Correct round numbers for run-019/020 (were labeled 6, should be 5).
+  Update round-006-summary.md open items status.
+
+primary_targets:
+  - artifacts/governance-test/reviewer-dashboard.md
+
+declared_at: "2026-05-08T14:30:00Z"
+closed_at: "2026-05-08T15:00:00Z"
+
+change_scope_metadata:
+  added_line_count: 38
+  removed_line_count: 3
+  accepted_change_count: 1
+  files_modified: 1
+  files_created: 0
+  evidence_traceability: 1.0
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

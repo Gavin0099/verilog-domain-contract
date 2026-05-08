@@ -1,8 +1,8 @@
 # Governance Test Reviewer Dashboard
 
-**Generated**: 2026-05-08 (updated Run 021)
-**Total runs**: 20 (run-001 ~ run-020)
-**Reviewer decisions**: 20 / 20 accepted
+**Generated**: 2026-05-08 (updated Run 026)
+**Total runs**: 25 (run-001 ~ run-025)
+**Reviewer decisions**: 25 / 25 accepted
 
 This document summarises every run for human review. For each run, the reviewer should:
 1. Read the `round_note` in the scorecard
@@ -34,8 +34,13 @@ This document summarises every run for human review. For each run, the reviewer 
 | run-016 | Round 4 cross-verify (meta) | 4 | false | 0 | 0 | high | accept |
 | run-017 | Dashboard sync (meta) | 5 | false | 0 | 0 | high | accept |
 | run-018 | check_advisory hook integration | 5 | false | 0 | 0 | high | accept |
-| run-019 | ASSIGNMENT_SEMANTICS validator sync | 6 | false | 0 | 0 | high | accept |
-| run-020 | governance/rules architecture classification | 6 | false | 0 | 0 | high | accept |
+| run-019 | ASSIGNMENT_SEMANTICS validator sync | 5 | false | 0 | 0 | high | accept |
+| run-020 | governance/rules architecture classification | 5 | false | 0 | 0 | high | accept |
+| run-021 | Dashboard sync to 20 runs (meta) | 5 | false | 0 | 0 | high | accept |
+| run-022 | CDC_STRATEGY_REQUIRED full governance sync | 6 | false | 0 | 0 | high | accept |
+| run-023 | Round 5-6 summary documents (meta) | 6 | false | 0 | 0 | high | accept |
+| run-024 | Precondition-gate smoke artifact v2 | 6 | false | 0 | 0 | high | accept |
+| run-025 | FSM explicit smoke cases PG-008/009 | 6 | false | 0 | 0 | high | accept |
 
 ---
 
@@ -141,6 +146,31 @@ This document summarises every run for human review. For each run, the reviewer 
 **Key change**: RULE_INDEX.md rewritten with two-system classification; contract-sync-check.md D-020-01 + scope note.
 **Reviewer check**: Is the two-system classification (Verilog domain vs general behavioral) correctly described? Does the scope note in contract-sync-check.md prevent future confusion?
 **Files**: [run-record](runs/run-020/run-record.yaml) | [scorecard](runs/run-020/scorecard.yaml) | [diff](runs/run-020/diff.patch)
+
+### run-021 — Dashboard Sync to 20 Runs (meta run)
+**Key change**: reviewer-dashboard.md updated to 20 runs; run-017~020 rows + review notes added.
+**Reviewer check**: Are run-021 row assignments and round numbers correct?
+**Files**: [run-record](runs/run-021/run-record.yaml) | [scorecard](runs/run-021/scorecard.yaml) | [diff](runs/run-021/diff.patch)
+
+### run-022 — CDC_STRATEGY_REQUIRED Full Governance Sync
+**Key change**: docs/cdc-contract.md new; contract.yaml +CDC governance_rules + must_not_assume + precondition_effects + rule_sources + completion_claim_disallow; validator Rule 5 + RE_CDC_INTENT + RE_CDC_STRATEGY; smoke PG-006/007 new; sync-check gaps G-022-01~05; RULE_INDEX.md +CDC row.
+**Reviewer check**: Is the CDC gate severity (restrict_codegen for missing strategy) proportionate? Is LIM-022-02 (semantic negation) acceptable?
+**Files**: [run-record](runs/run-022/run-record.yaml) | [scorecard](runs/run-022/scorecard.yaml) | [diff](runs/run-022/diff.patch)
+
+### run-023 — Round 5-6 Summary Documents (meta run)
+**Key change**: round-005-summary.md (Runs 017-021 complete) + round-006-summary.md (Runs 022-025 in-progress frame) created.
+**Reviewer check**: Are the cumulative state counts in round-005-summary.md accurate (21 runs, 0 hard failures)?
+**Files**: [run-record](runs/run-023/run-record.yaml) | [scorecard](runs/run-023/scorecard.yaml) | [diff](runs/run-023/diff.patch)
+
+### run-024 — Precondition-Gate Smoke Artifact v2
+**Key change**: artifacts/precondition-gate/2026-05-08-smoke.json created with PG-001~007; contract.yaml documents updated.
+**Reviewer check**: Does 2026-05-08-smoke.json correctly supersede 2026-04-22-smoke.json? Are rule labels accurate?
+**Files**: [run-record](runs/run-024/run-record.yaml) | [scorecard](runs/run-024/scorecard.yaml) | [diff](runs/run-024/diff.patch)
+
+### run-025 — FSM Explicit Smoke Cases PG-008 and PG-009
+**Key change**: scripts/precondition_gate_smoke.py: PG-008 (FSM missing all) + PG-009 (FSM defined); smoke 9/9 PASS; 2026-05-08-smoke.json updated to v3.
+**Reviewer check**: Does PG-008 correctly trigger Rule 3 with all 3 FSM preconditions missing? Does LIM-025-01 (semantic negation) match the class of LIM-010-01 and LIM-019-01?
+**Files**: [run-record](runs/run-025/run-record.yaml) | [scorecard](runs/run-025/scorecard.yaml) | [diff](runs/run-025/diff.patch)
 
 ---
 

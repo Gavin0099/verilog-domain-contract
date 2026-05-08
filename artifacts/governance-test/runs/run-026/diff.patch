@@ -1,0 +1,18 @@
+# diff.patch — run-026
+# changes: reviewer-dashboard.md updated to 25 runs, +run-021~025 rows and review notes
+
+--- a/artifacts/governance-test/reviewer-dashboard.md
++++ b/artifacts/governance-test/reviewer-dashboard.md
+@@ header @@
+-**Total runs**: 20 (run-001 ~ run-020)
++**Total runs**: 25 (run-001 ~ run-025)
+
+@@ Quick Status Table @@
++| run-021..025 rows with round numbers and accept decisions |
+
+@@ Per-Run Review Notes @@
++### run-021 through run-025 review note sections
+
+summary:
+  files_modified: 1
+  files_created: 0
