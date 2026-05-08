@@ -25,7 +25,10 @@
       "Bash(dp=\"N\")",
       "Bash(echo \"$d | rr:$rr sc:$sc diff:$dp\")",
       "Bash(\"e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-016/run-record.yaml\":*)",
-      "Bash(git checkout scripts/precondition_gate_smoke.py)"
+      "Bash(git checkout scripts/precondition_gate_smoke.py)",
+      "Bash(\"e:/BackUp/Git_EE/verilog-domain-contract/governance/rules/RULE_INDEX.md\":*)",
+      "Bash(git -C e:/BackUp/Git_EE/verilog-domain-contract status --short)",
+      "Bash(git -C e:/BackUp/Git_EE/verilog-domain-contract log --oneline -25)"
     ]
   },
   "hooks": {

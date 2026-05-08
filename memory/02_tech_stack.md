@@ -30,3 +30,21 @@
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/external_repo_readiness.py --repo . --framework-root additional/ai-governance-framework --format human`
+- Governance-test protocol infrastructure (added 2026-05-08):
+  - `artifacts/governance-test/runs/run-NNN/` — run-record.yaml + scorecard.yaml + diff.patch per run
+  - `artifacts/governance-test/run-ledger.ndjson` — flat run registry (21 entries, runs 001–021)
+  - `artifacts/governance-test/reviewer-dashboard.md` — aggregate reviewer view (20 runs, all accept)
+  - `artifacts/governance-test/round-001-summary.md` … `round-004-summary.md` — per-round summaries
+  - `artifacts/session-index.ndjson` — session-level index (6 entries)
+  - `governance/gate_policy.yaml` — gate policy with `hook_coverage_tier` field
+- Advisory hook infrastructure (added Run 018, 2026-05-08):
+  - `scripts/check_advisory.py` — non-blocking Stop hook; calls check_documents(), writes to `artifacts/runtime/advisory/<ts>.json`; always exits 0
+  - `.claude/settings.json` — Stop hook registered: `python scripts/check_advisory.py`
+- Validator Rule 4 (ASSIGNMENT_SEMANTICS_REQUIRED, added Run 019):
+  - RE_ASSIGNMENT_INTENT, RE_STATE_UPDATE_INTENT, RE_COMB_SEQ_PARTITION regex patterns
+  - Gate: if implementation_intent AND assignment keywords found → check state_update_intent_defined + comb_or_seq_partition_defined
+  - Smoke cases PG-004 (missing) + PG-005 (defined) in `scripts/precondition_gate_smoke.py`
+- Two distinct rule systems (classified Run 020):
+  - System 1: Verilog Domain Contract Rules — contract.yaml governance_rules (4 rules); enforced by precondition_gate_validator.py; subject to contract-sync-check
+  - System 2: General AI Behavioral Rules — governance/rules/ (19 rules: CMN/REF/KDRV/GLHUB/AVL/CPP/CSH/PY/SWT); cross-domain; NOT subject to contract-sync-check
+- Rule index: `governance/rules/RULE_INDEX.md` — two-system classification table

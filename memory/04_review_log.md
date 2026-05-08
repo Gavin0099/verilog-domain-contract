@@ -88,3 +88,11 @@
   - includes low-risk wrong-premise case forcing `need_more_info`
 - [2026-04-30] Pilot repos now pass A/B/C after precondition documents were added.
 - [2026-04-30] Expansion executed; SpecAuthority remote unresolved for pull/push verification.
+- [2026-05-08] Governance-test protocol established. Artifact structure: `artifacts/governance-test/runs/run-NNN/{run-record.yaml,scorecard.yaml,diff.patch}`. Supporting: run-ledger.ndjson (flat registry), reviewer-dashboard.md (aggregate), round-NNN-summary.md (per-round), session-index.ndjson (session-level).
+- [2026-05-08] Runs 001–016 (Rounds 1–4) committed as `7ea83ea`. All 16 scorecards filled reviewer_decision=accept in `8ffe031`.
+- [2026-05-08] Run 017 (commit `a5f49b7`): reviewer-dashboard synced from 14 stale to 16 runs; round-004-summary cumulative pending_count corrected.
+- [2026-05-08] Run 018 (commit `e33b5d8`): `scripts/check_advisory.py` created (Stop hook, non-blocking advisory); `.claude/settings.json` registered Stop hook; `gate_policy.yaml` hook_coverage_tier upgraded C → B. Smoke pass.
+- [2026-05-08] Run 019 (commit `9dd32b3`): ASSIGNMENT_SEMANTICS_REQUIRED full validator sync — gap G-019-01 (missing precondition_effects tokens) + G-019-02 (no validator coverage) both fixed. contract.yaml +2 entries (state_update_intent_defined, comb_or_seq_partition_defined). Validator: Rule 4 gate + 3 regex patterns (RE_ASSIGNMENT_INTENT, RE_STATE_UPDATE_INTENT, RE_COMB_SEQ_PARTITION). Smoke PG-004 + PG-005 added; 5/5 PASS. Known limitation LIM-019-01: narrow keyword trigger.
+- [2026-05-08] Run 020 (commit `3bb3fd7`): governance/rules/ two-system architecture classified as D-020-01. RULE_INDEX.md rewritten with two-system classification header. contract-sync-check.md scope note added. Two systems: (1) Verilog domain contract rules in contract.yaml (4 rules, validator-enforced); (2) General AI behavioral rules in governance/rules/ (19 rules, cross-domain, NOT subject to sync-check).
+- [2026-05-08] Run 021 (commit `af74ddc`): reviewer-dashboard synced to 20 runs; run-017~020 rows + review notes added; all decisions accept.
+- [2026-05-08] Post-run state: git clean except `.claude/settings.json` modified (Stop hook) + `artifacts/runtime/` untracked (advisory output dir). Both expected. Pushed to remote after memory update.

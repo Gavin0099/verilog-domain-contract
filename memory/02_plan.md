@@ -1,1 +1,4 @@
 - [2026-04-30] Added CLAIM_BOUNDARY + CLAIM_ENFORCEMENT_MINIMAL_SPEC; reran pilot artifacts.
+- [2026-05-08] Governance-test protocol established: each run produces run-record.yaml + scorecard.yaml + diff.patch under `artifacts/governance-test/runs/run-NNN/`. Runs 001–021 completed. Ledger at `artifacts/governance-test/run-ledger.ndjson`. Dashboard at `artifacts/governance-test/reviewer-dashboard.md`.
+- [2026-05-08] Validator sync plan: for each governance_rule in contract.yaml, ensure precondition_effects tokens exist, validator gate logic exists, smoke case exists. Completed for RESET (Run 010 equivalent, pre-existing), ASSIGNMENT_SEMANTICS (Run 019), HANDSHAKE (pre-existing), FSM (Run 010). CDC remains open.
+- [2026-05-08] Hook integration plan: Stop hook (`check_advisory.py`) registered in `.claude/settings.json`; non-blocking advisory; `hook_coverage_tier: B` in gate_policy.yaml.
