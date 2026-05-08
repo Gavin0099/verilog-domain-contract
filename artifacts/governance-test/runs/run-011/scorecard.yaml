@@ -1,6 +1,6 @@
-run_id: "run-011"
+﻿run_id: "run-011"
 task_id: "contract-sync-check"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -35,3 +35,4 @@ disposition:
     G-011-01: FSM_CONTRACT_REQUIRED rule_sources now has 2 entries (same count as other rules).
     docs/contract-sync-check.md created with 7-item sync process to prevent future
     carry-forward drift. Known gaps history table covers all gaps from Runs 005-011.
+

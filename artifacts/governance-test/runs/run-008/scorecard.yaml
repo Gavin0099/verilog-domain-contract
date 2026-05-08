@@ -1,6 +1,6 @@
-run_id: "run-008"
+﻿run_id: "run-008"
 task_id: "C-replay"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -37,3 +37,4 @@ disposition:
     G-008-03: traceability-examples.md now has guidance on using failure_state_review for partial/blocked entries.
     No NC-* inconsistencies found in the existing PASS example (TC-001).
     negative-claim-list.md required no changes.
+

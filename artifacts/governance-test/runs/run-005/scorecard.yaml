@@ -1,6 +1,6 @@
-run_id: "run-005"
+﻿run_id: "run-005"
 task_id: "A-rerun"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -35,3 +35,4 @@ disposition:
     C-004: HANDSHAKE allowed_if_missing sub-case annotation added to contract.yaml governance_rules.
     C-005: 5 new docs from Run 002-004 registered in contract.yaml documents list.
     Both are carry-forward gaps from Run 001 that were not caught until cross-verification.
+

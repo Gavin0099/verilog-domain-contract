@@ -1,6 +1,6 @@
-run_id: "run-021"
+﻿run_id: "run-021"
 task_id: "dashboard-sync-run021"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -33,4 +33,5 @@ disposition:
   reviewer_decision: accept
   round_note: >
     reviewer-dashboard.md updated to 20 runs; run-017~020 rows + per-run notes added.
-    Meta run — no contract or validator changes.
+    Meta run ??no contract or validator changes.
+

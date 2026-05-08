@@ -1,6 +1,6 @@
-run_id: "run-009"
+﻿run_id: "run-009"
 task_id: "validator-smoke"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: false  # observation-only run
@@ -38,7 +38,8 @@ failure_classification:
 disposition:
   reviewer_decision: accept
   round_note: >
-    S-009-A/B/C all pass — validator correctly gates reset and handshake missing cases.
+    S-009-A/B/C all pass ??validator correctly gates reset and handshake missing cases.
     S-009-D reveals V-009-01: FSM_CONTRACT_REQUIRED not yet implemented in validator.
     FSM task with missing preconditions returns ok=True (should be ok=False).
-    Advisory gap — validator extension is a separate work item.
+    Advisory gap ??validator extension is a separate work item.
+

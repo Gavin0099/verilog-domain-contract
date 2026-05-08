@@ -1,6 +1,6 @@
-run_id: "run-015"
+﻿run_id: "run-015"
 task_id: "reviewer-dashboard"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -36,3 +36,4 @@ disposition:
     Per-run review notes with specific check questions for each run.
     Instructions for filling reviewer_decision (accept/accept_with_note/reject).
     run-002 medium-confidence flag highlighted for reviewer attention.
+

@@ -1,6 +1,6 @@
-run_id: "run-010"
+﻿run_id: "run-010"
 task_id: "validator-fsm-extension"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -43,4 +43,5 @@ disposition:
     Regex fix required during development: RE_FSM_STATE_MODEL trailing \b
     incompatible with colon-terminated pattern; RE_FSM_ILLEGAL needed 'illegal states?'
     to match plural form.
-    Known limitation LIM-010-01: semantic negation ('No FSM') not parsed — advisory only.
+    Known limitation LIM-010-01: semantic negation ('No FSM') not parsed ??advisory only.
+

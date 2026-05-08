@@ -1,6 +1,6 @@
-run_id: "run-018"
+﻿run_id: "run-018"
 task_id: "check-advisory-hook-integration"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -34,5 +34,6 @@ disposition:
   round_note: >
     check_advisory.py created and smoke-tested (PASS 51/51).
     Stop hook registered in .claude/settings.json.
-    gate_policy.yaml hook_coverage_tier upgraded C → B.
+    gate_policy.yaml hook_coverage_tier upgraded C ??B.
     advisory output goes to artifacts/runtime/advisory/ (non-blocking, exit 0 always).
+

@@ -1,6 +1,6 @@
-run_id: "run-006"
+﻿run_id: "run-006"
 task_id: "FSM-governance-backfill"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -36,4 +36,5 @@ disposition:
     All four sections updated: precondition_effects (+3), must_not_assume (+2),
     governance_rules (+1 FSM_CONTRACT_REQUIRED), completion_claim_disallow_without_evidence (+1).
     Root cause: fsm-contract.md enforcement sections added in Run 001 were never
-    carried forward to contract.yaml — same carry-forward pattern as C-004 (HANDSHAKE).
+    carried forward to contract.yaml ??same carry-forward pattern as C-004 (HANDSHAKE).
+

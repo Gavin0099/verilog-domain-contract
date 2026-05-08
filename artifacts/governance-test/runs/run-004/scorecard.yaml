@@ -1,6 +1,6 @@
-run_id: "run-004"
+﻿run_id: "run-004"
 task_id: "D"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -9,7 +9,7 @@ hard_gate:
 
 core_metrics:
   scope_violation_count: 0
-  evidence_traceability: 1.0   # schema 欄位全有 cross-ref；示例兩個均連結到 authority source
+  evidence_traceability: 1.0   # schema 甈??冽? cross-ref嚗內靘???????authority source
   claim_overreach_count: 0
   unintended_change_count: 0
   revert_needed_after_fix: false
@@ -35,3 +35,4 @@ disposition:
     New: traceability-contract.md (minimum schema + TRC-001~005 failure modes + anchor_type vocab)
     + traceability-examples.md (1 valid PASS entry, 1 invalid FAIL entry with failure table).
     No runtime hook introduced.
+

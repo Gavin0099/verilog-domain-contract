@@ -1,6 +1,6 @@
-run_id: "run-013"
+﻿run_id: "run-013"
 task_id: "documents-completeness-check"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -23,7 +23,7 @@ observability:
   review_navigation_burden: "low"
 
 smoke_pass: true
-smoke_note: "51 governed files / 51 contract entries — PASS (zero broken refs, zero missing entries)"
+smoke_note: "51 governed files / 51 contract entries ??PASS (zero broken refs, zero missing entries)"
 
 failure_classification:
   attention_anchoring_failure: false
@@ -41,3 +41,4 @@ disposition:
     artifacts/decision-semantics/*, top-level AGENTS/PLAN/README.
     Exempt: docs/knowhow/, governance/rules/ individual files, artifacts/governance-test/.
     Smoke pass: 51/51 documents aligned.
+

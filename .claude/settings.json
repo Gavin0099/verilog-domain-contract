@@ -28,7 +28,12 @@
       "Bash(git checkout scripts/precondition_gate_smoke.py)",
       "Bash(\"e:/BackUp/Git_EE/verilog-domain-contract/governance/rules/RULE_INDEX.md\":*)",
       "Bash(git -C e:/BackUp/Git_EE/verilog-domain-contract status --short)",
-      "Bash(git -C e:/BackUp/Git_EE/verilog-domain-contract log --oneline -25)"
+      "Bash(git -C e:/BackUp/Git_EE/verilog-domain-contract log --oneline -25)",
+      "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-024/run-record.yaml:*)",
+      "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-024/scorecard.yaml:*)",
+      "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-026/run-record.yaml:*)",
+      "Bash(e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-026/scorecard.yaml:*)",
+      "Bash(__NEW_LINE_8045be0682582e54__ echo '# diff.patch — run-026:*)"
     ]
   },
   "hooks": {

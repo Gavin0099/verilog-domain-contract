@@ -1,6 +1,6 @@
-run_id: "run-014"
+﻿run_id: "run-014"
 task_id: "sync-check-claim-docs"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -37,3 +37,4 @@ disposition:
     G-014-01: vocabulary ambiguity between two claim_level systems documented
     via vocabulary note table in contract-sync-check.md.
     Supporting Docs table updated with explicit purpose descriptions for both files.
+

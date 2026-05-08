@@ -1,6 +1,6 @@
-run_id: "run-007"
+﻿run_id: "run-007"
 task_id: "gate-policy-add"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -36,3 +36,4 @@ disposition:
     Key decisions: fail_mode:audit (no automated test runner), skip_test_result_check:true
     (documentation repo), hook_coverage_tier:C (manual sessions).
     Schema source: ai-governance-framework/governance/gate_policy.yaml v1.
+

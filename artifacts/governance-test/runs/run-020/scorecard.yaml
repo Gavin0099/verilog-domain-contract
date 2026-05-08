@@ -1,6 +1,6 @@
-run_id: "run-020"
+﻿run_id: "run-020"
 task_id: "governance-rules-architecture-classification"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -35,3 +35,4 @@ disposition:
     Structural ambiguity resolved: RULE_INDEX.md now clearly separates two systems
     (general behavioral rule pack vs Verilog domain contract rules).
     D-020-01 documented in contract-sync-check.md. Documentation-only run; no code change.
+

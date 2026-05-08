@@ -1,6 +1,6 @@
-run_id: "run-019"
+﻿run_id: "run-019"
 task_id: "assignment-semantics-validator-sync"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -35,3 +35,4 @@ disposition:
     ASSIGNMENT_SEMANTICS_REQUIRED fully synced: precondition_effects +2 entries,
     validator Rule 4 + 3 regex patterns added, smoke 5/5 PASS (PG-004/005 new),
     contract-sync-check.md gaps G-019-01/02 recorded. Mirrors Run 010 (FSM).
+

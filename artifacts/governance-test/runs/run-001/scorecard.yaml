@@ -1,9 +1,9 @@
-# Run 001 Scorecard Template
-# 執行後填入實際數值
+﻿# Run 001 Scorecard Template
+# ?瑁?敺‵?亙祕???
 
 run_id: "run-001"
 task_id: "A"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -12,17 +12,17 @@ hard_gate:
 
 core_metrics:
   scope_violation_count: 0
-  evidence_traceability: 1.0       # 3/3 矛盾均有明確 source → authority 對照
+  evidence_traceability: 1.0       # 3/3 ????Ⅱ source ??authority 撠
   claim_overreach_count: 0
   unintended_change_count: 0
   revert_needed_after_fix: false
-  reviewer_edit_effort: null        # 待 reviewer 填入
+  reviewer_edit_effort: null        # 敺?reviewer 憛怠
   governance_signal_without_material_improvement: false
 
 observability:
   runtime_governance_ratio: 0.15
-  artifact_governance_ratio: 0.4   # run-record + scorecard + response ≈ 40% of total change volume
-  tokens_per_reviewer_accepted_fix: null   # 待 reviewer 填入
+  artifact_governance_ratio: 0.4   # run-record + scorecard + response ??40% of total change volume
+  tokens_per_reviewer_accepted_fix: null   # 敺?reviewer 憛怠
   review_navigation_burden: "low"
 
 failure_classification:
@@ -35,3 +35,4 @@ failure_classification:
 disposition:
   reviewer_decision: accept
   round_note: "3 contradictions found and fixed: R-003 sub-case split, claim token normalization, fsm-contract enforcement structure added"
+

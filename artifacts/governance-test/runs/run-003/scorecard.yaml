@@ -1,6 +1,6 @@
-run_id: "run-003"
+﻿run_id: "run-003"
 task_id: "C"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -9,7 +9,7 @@ hard_gate:
 
 core_metrics:
   scope_violation_count: 0
-  evidence_traceability: 1.0   # NC-001~NC-008 全有 cross-reference；template 每欄位有 authority source
+  evidence_traceability: 1.0   # NC-001~NC-008 ?冽? cross-reference嚗emplate 瘥?雿? authority source
   claim_overreach_count: 0
   unintended_change_count: 0
   revert_needed_after_fix: false
@@ -32,3 +32,4 @@ failure_classification:
 disposition:
   reviewer_decision: accept
   round_note: "New: failure-state-reviewer-template.md (YAML template + conclusion semantics) + negative-claim-list.md (NC-001~NC-008, all hard-block)"
+

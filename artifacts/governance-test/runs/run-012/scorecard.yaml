@@ -1,6 +1,6 @@
-run_id: "run-012"
+﻿run_id: "run-012"
 task_id: "round3-cross-verify"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -35,4 +35,5 @@ disposition:
     G-012-01: CLAIM_BOUNDARY.md + CLAIM_ENFORCEMENT_MINIMAL_SPEC.md added to documents.
     G-012-02: 7 governance/*.md files added to documents (consistent with TESTING.md/ARCHITECTURE.md pattern).
     Cross-verify script used: python glob + yaml parse against contract.yaml documents list.
-    docs/knowhow/ excluded from check (intentionally unlisted — source reference material).
+    docs/knowhow/ excluded from check (intentionally unlisted ??source reference material).
+

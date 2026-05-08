@@ -1,7 +1,7 @@
-run_id: "run-002"
+﻿run_id: "run-002"
 task_id: "B"
-status: "awaiting_reviewer"
-scorecard_note: "Created in audit 2026-05-08 — was missing from original run"
+status: "accepted"
+scorecard_note: "Created in audit 2026-05-08 ??was missing from original run"
 
 hard_gate:
   first_modification_in_primary_targets: true  # governance/rules/common/core.md
@@ -37,4 +37,5 @@ disposition:
     error_path_coverage.md: normalized from section-header format to inline format.
     New: governance/rules/RULE_INDEX.md (20-entry normalized table).
     diff.patch confirmed: +57 lines in rule files, -4 lines (old headers), +45 lines RULE_INDEX.md.
-    data_quality: original run-record had placeholder zeros — corrected in audit 2026-05-08.
+    data_quality: original run-record had placeholder zeros ??corrected in audit 2026-05-08.
+

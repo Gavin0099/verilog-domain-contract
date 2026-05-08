@@ -1,6 +1,6 @@
-run_id: "run-017"
+﻿run_id: "run-017"
 task_id: "dashboard-sync"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -33,4 +33,5 @@ disposition:
   reviewer_decision: accept
   round_note: >
     Dashboard updated to 16 runs / all accepted; round-004-summary cumulative state corrected.
-    Meta run — no contract or validator content changes.
+    Meta run ??no contract or validator content changes.
+

@@ -1,6 +1,6 @@
-run_id: "run-016"
+﻿run_id: "run-016"
 task_id: "round4-cross-verify"
-status: "awaiting_reviewer"
+status: "accepted"
 
 hard_gate:
   first_modification_in_primary_targets: true
@@ -26,3 +26,4 @@ disposition:
     run-ledger.ndjson: 15 entries (run-001~015).
     session-index.ndjson: 4 entries covering all sessions.
     Round 4 complete. Pending: human reviewer decision pass (15 scorecards).
+
