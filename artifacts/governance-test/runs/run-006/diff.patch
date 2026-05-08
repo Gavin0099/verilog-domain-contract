@@ -1,0 +1,32 @@
+--- a/contract.yaml
++++ b/contract.yaml
+@@ -67,6 +67,9 @@ precondition_effects:
+   - backpressure_behavior_defined|required|draft_with_explicit_assumptions
+   - latency_expectation_defined|required|draft_with_explicit_assumptions
+   - assignment_intent_partition_defined|required|draft_only_and_escalate
++  - fsm_state_model_defined|required|draft_only_and_escalate
++  - fsm_decomposition_style_declared|required_for_implementation_claim|draft_with_explicit_assumptions
++  - fsm_illegal_state_handling_defined|required_for_implementation_claim|draft_with_explicit_assumptions
+   - scope_is_synthesizable_or_tb_defined|required|analysis_only
+   - verification_expectation_present|required|draft_only_no_completion_claim
+   - cdc_strategy_present_when_multi_clock_implied|conditional|stop_insufficient_preconditions
+@@ -92,6 +95,8 @@ must_not_assume:
+   - handshake_protocol_semantics
+   - fixed_latency_or_always_ready_behavior
+   - fsm_style_or_output_model
++  - fsm_state_encoding
++  - fsm_illegal_state_auto_recovery
+   - compile_or_lint_success_equals_completion
+
+ governance_rules:
+@@ -99,6 +104,7 @@ governance_rules:
+   - RESET_DEFINITION_REQUIRED|...
+   - ASSIGNMENT_SEMANTICS_REQUIRED|...
+   - HANDSHAKE_TIMING_DEFINITION_REQUIRED|...
++  - FSM_CONTRACT_REQUIRED|SEMANTIC_RULE+ASSUMPTION_RISK|required:fsm_state_model_defined,fsm_decomposition_style_declared,fsm_illegal_state_handling_defined|missing_effect:draft_only,escalate|allowed_if_missing:analysis_only,draft_with_explicit_assumptions|forbidden:implicit_state_encoding,implicit_fsm_style,implicit_illegal_state_recovery|forbidden_claim:implementation_complete,behaviorally_verified|required_disclosure:assumed_state_model,assumed_decomposition_style,assumed_illegal_state_policy
+
+ @@ -118,6 +125,7 @@ completion_claim_disallow_without_evidence:
+   - implementation_complete_without_reset_definition
+   - implementation_complete_without_assignment_semantic_clarity
+   - implementation_complete_without_handshake_timing_definition
++  - implementation_complete_without_fsm_state_model_disclosure

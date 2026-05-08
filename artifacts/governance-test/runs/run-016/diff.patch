@@ -1,0 +1,21 @@
+# diff.patch — run-016
+# format: reconstructed-from-run-evidence (ndjson append — no git commit boundary)
+# changes: run-ledger.ndjson +4 lines appended; session-index.ndjson +1 line appended
+
+--- a/artifacts/governance-test/run-ledger.ndjson
++++ b/artifacts/governance-test/run-ledger.ndjson
+@@ append after line 15 @@
++{"run_id":"run-013","session_context":"session-current-20260508-round4","new_session_confirmed":false,"task_id":"documents-completeness-check","closeout_evidence":"run-record.yaml+scorecard.yaml+diff.patch(git-new-file-diff)","confidence":"high"}
++{"run_id":"run-014","session_context":"session-current-20260508-round4","new_session_confirmed":false,"task_id":"sync-check-claim-docs","closeout_evidence":"run-record.yaml+scorecard.yaml+diff.patch","confidence":"high"}
++{"run_id":"run-015","session_context":"session-current-20260508-round4","new_session_confirmed":false,"task_id":"reviewer-dashboard","closeout_evidence":"run-record.yaml+scorecard.yaml+diff.patch","confidence":"high"}
++{"run_id":"run-016","session_context":"session-current-20260508-round4","new_session_confirmed":false,"task_id":"round4-cross-verify","closeout_evidence":"run-record.yaml+scorecard.yaml+diff.patch(summary-format)","confidence":"high","meta_run":true,"meta_note":"cross-verify run; primary changes are run-ledger.ndjson and session-index.ndjson ledger entries only — no contract or doc content changes"}
+
+--- a/artifacts/session-index.ndjson
++++ b/artifacts/session-index.ndjson
+@@ append after line 3 @@
++{"session_id": "session-current-20260508-round4", "closed_at": "2026-05-08T08:00:00Z", "closeout_status": "reconstructed", "task_intent": "governance-test Round 4 — Runs 013-015 + audit remediation + run-minimum-spec.md + reviewer-dashboard.md", "has_open_risks": false, "runs": ["run-013","run-014","run-015"], "work_summary": "check_documents.py added (51/51 PASS); sync-check extended to CLAIM docs; reviewer-dashboard created for 15 runs; run-ledger and session-index updated", "open_risks": []}
+
+summary:
+  files_modified: 2
+  added_lines: 5 (4 in run-ledger + 1 in session-index)
+  removed_lines: 0

@@ -1,0 +1,39 @@
+run_id: "run-006"
+task_id: "FSM-governance-backfill"
+status: "awaiting_reviewer"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: 0.05
+  artifact_governance_ratio: 0.10
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+disposition:
+  reviewer_decision: null
+  round_note: >
+    G-006-01~04: FSM contract rules back-propagated to contract.yaml.
+    All four sections updated: precondition_effects (+3), must_not_assume (+2),
+    governance_rules (+1 FSM_CONTRACT_REQUIRED), completion_claim_disallow_without_evidence (+1).
+    Root cause: fsm-contract.md enforcement sections added in Run 001 were never
+    carried forward to contract.yaml — same carry-forward pattern as C-004 (HANDSHAKE).

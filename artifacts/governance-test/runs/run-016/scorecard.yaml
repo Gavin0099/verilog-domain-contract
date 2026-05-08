@@ -1,0 +1,28 @@
+run_id: "run-016"
+task_id: "round4-cross-verify"
+status: "awaiting_reviewer"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+cross_verify_pass: true
+
+disposition:
+  reviewer_decision: null
+  round_note: >
+    All 15 runs: run-record.yaml + scorecard.yaml + diff.patch confirmed present.
+    check_documents.py: PASS 51/51.
+    run-ledger.ndjson: 15 entries (run-001~015).
+    session-index.ndjson: 4 entries covering all sessions.
+    Round 4 complete. Pending: human reviewer decision pass (15 scorecards).

@@ -1,0 +1,87 @@
+diff --git a/docs/completion-claim-policy.md b/docs/completion-claim-policy.md
+index 7df5433..4b60f5c 100644
+--- a/docs/completion-claim-policy.md
++++ b/docs/completion-claim-policy.md
+@@ -2,15 +2,16 @@
+ 
+ ## Allowed Claim Levels
+ 
+-- analysis provided
+-- draft RTL provided
+-- candidate implementation provided
++- `analysis_provided`
++- `draft_rtl_provided`
++- `candidate_implementation_provided`
+ 
+ ## Restricted Claim
+ 
+-- verified implementation
++- `verified_implementation`
+ 
+-`verified implementation` is disallowed unless evidence explicitly covers required behavior and stated verification scope.
++`verified_implementation` is disallowed unless evidence explicitly covers required behavior and stated verification scope.
++Evidence requirements per claim level are defined in `docs/completion-evidence-levels.md`.
+ 
+ ## Mandatory Output Fields
+ 
+diff --git a/docs/fsm-contract.md b/docs/fsm-contract.md
+index 2459220..daa009b 100644
+--- a/docs/fsm-contract.md
++++ b/docs/fsm-contract.md
+@@ -12,11 +12,32 @@
+ - output model
+ - automatic illegal-state recovery behavior
+ 
+-## Output Constraint
++## Constraint on AI Behavior
+ 
+-If FSM style details are missing, output may provide:
++If FSM style details (state model, decomposition style, illegal state policy) are missing or unspecified:
+ 
+-- analysis of options, or
+-- draft with explicit assumptions
++- enforcement effect: `draft_only`, `escalate`
++- allowed output: `analysis_only`, `draft_with_explicit_assumptions`
+ 
+-It must not claim verified implementation completeness.
++If FSM task scope is ambiguous (synthesizable vs testbench-only unclear):
++
++- enforcement effect: `draft_only`
++- allowed output: `analysis_only`, or `draft_with_explicit_assumptions` with scope disclosure
++
++## Forbidden Behavior
++
++- silent state encoding selection without disclosure
++- implicit assumption of single always-block FSM style
++- implicit assumption of no illegal-state handling requirement
++
++## Forbidden Claim
++
++- `implementation_complete` without explicit state model and decomposition style disclosure
++- `behaviorally_verified` without simulation or assertion evidence
++
++## Completion Policy
++
++Without explicit state model intent and illegal state handling definition, AI must not claim:
++
++- `implementation_complete`
++- `behaviorally_verified`
+diff --git a/docs/rule-extraction-table.md b/docs/rule-extraction-table.md
+index 7906971..48c6c5d 100644
+--- a/docs/rule-extraction-table.md
++++ b/docs/rule-extraction-table.md
+@@ -49,8 +49,12 @@ This table captures only constraints that can change AI agent behavior.
+ - rule: Interface acceptance and timing behavior must be explicitly defined (protocol semantics, backpressure behavior, and latency expectation) before implementation claims.
+ - why_risk: AI may assume always-ready or fixed-latency behavior that breaks integration semantics.
+ - preconditions_required: `interface_protocol_semantics_defined`, `backpressure_behavior_defined`, `latency_expectation_defined`
+-- missing_precondition_effect: `analysis_only` (if protocol missing), `draft_only` (if timing missing), `escalate`
+-- allowed_output_if_missing: `analysis_only`, `draft_with_explicit_handshake_assumptions`
++- missing_precondition_effect:
++  - if `interface_protocol_semantics_defined` missing: `analysis_only`, `escalate`
++  - if protocol defined but `backpressure_behavior_defined` or `latency_expectation_defined` missing: `draft_only`, `escalate`
++- allowed_output_if_missing:
++  - if `interface_protocol_semantics_defined` missing: `analysis_only` only — `draft_with_explicit_handshake_assumptions` is not allowed in this sub-case
++  - if protocol defined but timing/backpressure missing: `analysis_only`, `draft_with_explicit_handshake_assumptions`
+ - forbidden_behavior: `implicit_always_ready_sink`, `implicit_one_cycle_acceptance`, `silent_fixed_latency_assumption`
+ - forbidden_claim: `implementation_complete`, `interface_timing_verified`
+ - required_disclosure_if_draft: `assumed_protocol_semantics`, `assumed_backpressure_model`, `assumed_latency_model`

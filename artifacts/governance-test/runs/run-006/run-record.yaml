@@ -1,0 +1,74 @@
+run_id: "run-006"
+date_utc: "2026-05-08T05:00:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "FSM-governance-backfill"
+task_description: "FSM governance_rules補齊 — contract.yaml FSM precondition_effects、must_not_assume、governance_rules、completion_claim_disallow_without_evidence 全部補齊"
+spec_version: "v1.2"
+new_session_confirmed: true
+
+targets:
+  primary_targets:
+    - contract.yaml
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - scripts/
+    - validators/
+    - docs/
+    - governance/rules/
+    - artifacts/replay-results/
+  first_modification_in_target: "contract.yaml"
+
+change_scope_metadata:
+  modified_file_count: 1
+  added_line_count: 7
+  removed_line_count: 0
+  doc_vs_code_ratio: "1:0"
+  accepted_change_count: 4
+
+gap_list:
+  - id: "G-006-01"
+    section: precondition_effects
+    description: "No FSM precondition entries — fsm-contract.md enforcement was added in Run 001 but never back-propagated to contract.yaml precondition_effects"
+    fix: "Added fsm_state_model_defined|required|draft_only_and_escalate, fsm_decomposition_style_declared|required_for_implementation_claim|draft_with_explicit_assumptions, fsm_illegal_state_handling_defined|required_for_implementation_claim|draft_with_explicit_assumptions"
+  - id: "G-006-02"
+    section: must_not_assume
+    description: "fsm_state_encoding and fsm_illegal_state_auto_recovery absent despite being core FSM contract constraints"
+    fix: "Added both entries after fsm_style_or_output_model"
+  - id: "G-006-03"
+    section: governance_rules
+    description: "No FSM_CONTRACT_REQUIRED entry — RESET, ASSIGNMENT, HANDSHAKE all had entries; FSM missing"
+    fix: "Added FSM_CONTRACT_REQUIRED with full required/missing_effect/allowed_if_missing/forbidden/forbidden_claim/required_disclosure structure"
+  - id: "G-006-04"
+    section: completion_claim_disallow_without_evidence
+    description: "No FSM completion disallow entry — pattern broken from RESET/ASSIGNMENT/HANDSHAKE peers"
+    fix: "Added implementation_complete_without_fsm_state_model_disclosure"
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.05
+  artifact_governance_ratio: 0.10
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  diff_path: "artifacts/governance-test/runs/run-006/diff.patch"
+  scorecard_path: "artifacts/governance-test/runs/run-006/scorecard.yaml"

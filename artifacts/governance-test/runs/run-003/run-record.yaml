@@ -1,0 +1,60 @@
+run_id: "run-003"
+date_utc: "2026-05-08T03:50:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "C"
+task_description: "Failure-State Boundary — partial pass/fail reviewer template + negative claim list"
+spec_version: "v1.2"
+new_session_confirmed: true
+
+targets:
+  primary_targets:
+    - docs/failure-state-reviewer-template.md
+    - docs/negative-claim-list.md
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - scripts/
+    - validators/
+    - governance/rules/
+    - artifacts/replay-results/
+    - artifacts/precondition-gate/
+    - artifacts/decision-semantics/
+  first_modification_in_target: "docs/failure-state-reviewer-template.md"
+
+change_scope_metadata:
+  modified_file_count: 2
+  added_line_count: 168
+  removed_line_count: 0
+  doc_vs_code_ratio: "2:0"
+  accepted_change_count: 2
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0   # 每個 NC 條目均有 cross-reference 到 authority docs
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.10
+  artifact_governance_ratio: 0.2
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  raw_prompt_path: ""
+  raw_response_path: ""
+  diff_path: "artifacts/governance-test/runs/run-003/diff.patch"
+  scorecard_path: "artifacts/governance-test/runs/run-003/scorecard.yaml"

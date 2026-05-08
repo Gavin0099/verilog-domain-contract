@@ -1,0 +1,75 @@
+run_id: "run-001"
+date_utc: "2026-05-08T03:36:23Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "A"
+task_description: "Domain Contract Consistency — 修正 contract 文檔內互相矛盾的 rule/assumption"
+spec_version: "v1.2"
+new_session_confirmed: true
+
+targets:
+  primary_targets:
+    - docs/rule-extraction-table.md
+    - docs/precondition-completeness-model.md
+    - docs/completion-claim-policy.md
+    - docs/clock-reset-contract.md
+    - docs/assignment-semantics.md
+    - docs/handshake-contract.md
+    - docs/fsm-contract.md
+    - docs/behavior-validation.md
+    - docs/verification-minimums.md
+    - contract.yaml
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - scripts/
+    - validators/
+    - governance/rules/
+    - artifacts/replay-results/
+    - artifacts/precondition-gate/
+    - artifacts/decision-semantics/
+  first_modification_in_target: "docs/rule-extraction-table.md"
+
+change_scope_metadata:
+  modified_file_count: 3
+  added_line_count: 38
+  removed_line_count: 12
+  doc_vs_code_ratio: "3:0"
+  accepted_change_count: 3
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0   # 所有 3 個矛盾均有明確來源文件 mapping
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: 0
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.15   # 估計：分析 overhead / 總 tokens
+  artifact_governance_ratio: 0.4   # run record + scorecard / total change lines
+  tokens_per_reviewer_accepted_fix: 0   # 待 reviewer 填入
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""   # merge|minor_edit|rework — 待 reviewer 填入
+  one_line_note: ""
+
+artifacts:
+  raw_prompt_path: "artifacts/governance-test/runs/run-001/raw-prompt.md"
+  raw_response_path: "artifacts/governance-test/runs/run-001/raw-response.md"
+  diff_path: "artifacts/governance-test/runs/run-001/diff.patch"
+  scorecard_path: "artifacts/governance-test/runs/run-001/scorecard.yaml"
+
+# Task A 交付驗收標準
+acceptance_criteria:
+  - "每條矛盾必須有 evidence mapping（指出來源文件 + 行號）"
+  - "不得新增 rule 類別，只修正現有規則的一致性"
+  - "修改後 contract 文件需可過 _integration_check.py"
+  - "forbidden_claim 與 allowed_output_if_missing 不得互相矛盾"

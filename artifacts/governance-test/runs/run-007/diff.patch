@@ -1,0 +1,14 @@
+# diff.patch — run-007
+# reconstructed-from-run-evidence: new file created in session before commit
+# method: new-file-summary (full content in actual file)
+
+new file: governance/gate_policy.yaml
+  +++ b/governance/gate_policy.yaml
+  lines: 44 (new file)
+  content: Repo-local gate policy — fail_mode:audit, skip_test_result_check:true,
+           hook_coverage_tier:C, window_size:10, artifact_stale_seconds:86400
+
+summary:
+  files_created: 1
+  added_lines: 44
+  removed_lines: 0

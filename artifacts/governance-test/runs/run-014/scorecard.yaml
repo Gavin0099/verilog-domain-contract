@@ -1,0 +1,39 @@
+run_id: "run-014"
+task_id: "sync-check-claim-docs"
+status: "awaiting_reviewer"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.12
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+disposition:
+  reviewer_decision: null
+  round_note: >
+    CLAIM_BOUNDARY.md + CLAIM_ENFORCEMENT_MINIMAL_SPEC.md analyzed.
+    Neither requires a governance_rules entry (support infrastructure, not contract domains).
+    G-014-01: vocabulary ambiguity between two claim_level systems documented
+    via vocabulary note table in contract-sync-check.md.
+    Supporting Docs table updated with explicit purpose descriptions for both files.

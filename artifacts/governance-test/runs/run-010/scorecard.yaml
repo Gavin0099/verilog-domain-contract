@@ -1,0 +1,46 @@
+run_id: "run-010"
+task_id: "validator-fsm-extension"
+status: "awaiting_reviewer"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.12
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+smoke_summary:
+  total_cases: 3
+  passed: 3
+  failed: 0
+  known_limitations: 1  # LIM-010-01: semantic negation not parsed
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+disposition:
+  reviewer_decision: null
+  round_note: >
+    V-009-01 coverage gap resolved. FSM_CONTRACT_REQUIRED now implemented in validator.
+    3 new regex patterns + Rule 3 logic + rule_ids update.
+    Regex fix required during development: RE_FSM_STATE_MODEL trailing \b
+    incompatible with colon-terminated pattern; RE_FSM_ILLEGAL needed 'illegal states?'
+    to match plural form.
+    Known limitation LIM-010-01: semantic negation ('No FSM') not parsed — advisory only.

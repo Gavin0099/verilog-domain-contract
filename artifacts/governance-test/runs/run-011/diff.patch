@@ -1,0 +1,25 @@
+# diff.patch — run-011
+# reconstructed-from-run-evidence: new file + contract.yaml rule_sources addition
+
+new file: docs/contract-sync-check.md
+  +++ b/docs/contract-sync-check.md
+  lines: 72 (new file)
+  content: governance_rules ↔ leaf doc sync-check table + 7-item process + gaps history
+
+--- a/contract.yaml
++++ b/contract.yaml
+@@ documents list @@
+   - docs/traceability-examples.md
++  - docs/contract-sync-check.md
+   - governance/rules/RULE_INDEX.md
+
+@@ rule_sources @@
+   - HANDSHAKE_TIMING_DEFINITION_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:27|anchor:SYSTEM_INTERFACE_TIMING_DEPENDENCY
++  - FSM_CONTRACT_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:135|anchor:FSM_STATE_MODEL_AND_ENCODING
++  - FSM_CONTRACT_REQUIRED|docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md|page:165-166|anchor:FSM_TRAFFIC_CONTROLLER_STATE_ENCODING
+
+summary:
+  files_created: 1 (docs/contract-sync-check.md)
+  files_modified: 1 (contract.yaml)
+  added_lines: 75
+  removed_lines: 0

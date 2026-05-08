@@ -1,0 +1,63 @@
+--- /tmp/validator_orig.py	2026-05-08 14:03:32.058639700 +0800
++++ e:/BackUp/Git_EE/verilog-domain-contract/validators/precondition_gate_validator.py	2026-05-08 13:40:15.004383800 +0800
+@@ -57,6 +57,26 @@
+ RE_PROTOCOL = re.compile(r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics)\b", re.IGNORECASE)
+ RE_BACKPRESSURE = re.compile(r"\b(backpressure|stall|downstream not ready|ready deassert)\b", re.IGNORECASE)
+ RE_LATENCY = re.compile(r"\b(latency|cycle|one-cycle|two-cycle|throughput)\b", re.IGNORECASE)
++RE_FSM_INTENT = re.compile(
++    r"\b(fsm|state machine|state diagram|state transition|next state|state register|state logic)\b",
++    re.IGNORECASE,
++)
++RE_FSM_STATE_MODEL = re.compile(
++    # "states?:" ends in non-word char so no trailing \b; other alternatives use \b via alternation
++    r"(?:\bstate model\b|\bstate encoding\b|\bstate set\b|\bnumber of states\b"
++    r"|\b[0-9]+\s*states?\b|\bstate list\b|\bstates?\s*:)",
++    re.IGNORECASE,
++)
++RE_FSM_DECOMP = re.compile(
++    r"\b(mealy|moore|one[- ]hot|binary encoded|gray code|two[- ]process|three[- ]process|"
++    r"next[- ]state logic|output logic|fsm style|decomposition style)\b",
++    re.IGNORECASE,
++)
++RE_FSM_ILLEGAL = re.compile(
++    r"\b(illegal states?|default state|catch[- ]all|undefined state|safe state|"
++    r"illegal state handling|recovery state|error state recovery)\b",
++    re.IGNORECASE,
++)
+ 
+ 
+ def _has(regex: re.Pattern[str], text: str) -> bool:
+@@ -123,6 +143,24 @@
+                 if recommended_mode not in {"restrict_codegen", "allow_analysis_only"}:
+                     recommended_mode = "allow_draft_with_assumptions"
+ 
++    # Rule 3: FSM contract gate (pre-task).
++    if implementation_intent and _has(RE_FSM_INTENT, text):
++        fsm_state_model_defined = _has(RE_FSM_STATE_MODEL, text)
++        fsm_decomp_declared = _has(RE_FSM_DECOMP, text)
++        fsm_illegal_defined = _has(RE_FSM_ILLEGAL, text)
++        if not fsm_state_model_defined:
++            missing_preconditions.append("fsm_state_model_defined")
++            rule_refs.append("FSM_CONTRACT_REQUIRED")
++            # state model missing is required (not just required_for_impl_claim)
++            if recommended_mode not in {"restrict_codegen", "allow_analysis_only"}:
++                recommended_mode = "allow_draft_with_assumptions"
++        if not fsm_decomp_declared:
++            missing_preconditions.append("fsm_decomposition_style_declared")
++            rule_refs.append("FSM_CONTRACT_REQUIRED")
++        if not fsm_illegal_defined:
++            missing_preconditions.append("fsm_illegal_state_handling_defined")
++            rule_refs.append("FSM_CONTRACT_REQUIRED")
++
+     ok = len(missing_preconditions) == 0
+     if ok:
+         forbidden_claims = []
+@@ -139,7 +177,7 @@
+ class PreconditionGateValidator(DomainValidator):
+     @property
+     def rule_ids(self) -> list[str]:
+-        return ["RESET_DEFINITION_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED"]
++        return ["RESET_DEFINITION_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED"]
+ 
+     def validate(self, payload: dict) -> ValidatorResult:
+         checks = payload.get("checks") or {}

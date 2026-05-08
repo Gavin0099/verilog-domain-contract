@@ -1,10 +1,8 @@
 # Error Path Coverage
 
-## Rule ID
-`REF-ERROR-001`
-
-## Enforcement
-`hard-stop`
+- **rule_id**: `REF-ERROR-001`
+- **severity**: `hard-stop`
+- **rationale**: Ensures error path traceability is preserved and made explicit across refactor changes.
 
 ## Requirement
 refactor task 必須在變更前後都把 error-path behavior 顯性化：

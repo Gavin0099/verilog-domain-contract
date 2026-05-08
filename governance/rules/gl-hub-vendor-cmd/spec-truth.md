@@ -1,5 +1,10 @@
 # GL Hub Vendor Command Spec Truth
 
+- **rule_id**: `GLHUB-001`
+- **severity**: `hard-stop`
+- **rationale**: Requires spec truth verification before any GL Hub vendor command action.
+
+
 只要 task 涉及 GL Hub vendor command 的發送或實作，就必須先對照 spec truth layer，再決定這個動作是否有效。
 
 - 發送 GL Hub vendor command 前，必須先確認所有必要前提都成立（chip、command issue mode、state、timing、data structure）。

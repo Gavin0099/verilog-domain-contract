@@ -1,0 +1,61 @@
+run_id: "run-016"
+date_utc: "2026-05-08T08:00:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "round4-cross-verify"
+task_description: "Round 4 cross-verify — 15 runs 三件套完整性確認；session-index + run-ledger 對齊；documents check PASS"
+spec_version: "v1.2"
+new_session_confirmed: false
+
+targets:
+  primary_targets:
+    - artifacts/governance-test/run-ledger.ndjson
+    - artifacts/session-index.ndjson
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - validators/
+    - governance/rules/
+  first_modification_in_target: "artifacts/governance-test/run-ledger.ndjson"
+
+change_scope_metadata:
+  modified_file_count: 2
+  added_line_count: 4
+  removed_line_count: 0
+  doc_vs_code_ratio: "2:0"
+  accepted_change_count: 2
+
+cross_verify_results:
+  all_15_runs_three_file_complete: true
+  check_documents_pass: true
+  check_documents_result: "51/51 governed files aligned"
+  run_ledger_entries: 15
+  session_index_entries: 4
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.03
+  artifact_governance_ratio: 0.05
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  scorecard_path: "artifacts/governance-test/runs/run-016/scorecard.yaml"
+  diff_path: "artifacts/governance-test/runs/run-016/diff.patch"

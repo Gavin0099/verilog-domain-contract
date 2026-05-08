@@ -1,5 +1,10 @@
 # Kernel Driver Memory Boundary
 
+- **rule_id**: `KDRV-003`
+- **severity**: `hard-stop`
+- **rationale**: Treats all external memory as hostile input requiring explicit validation.
+
+
 kernel-driver 變更必須把 user input、DMA buffer、與 mapped memory 視為 hostile boundary，而不是普通 C / C++ data。
 
 - 在 dereference 或 copy 前，先驗證所有 buffer length、structure size、與 pointer 假設。

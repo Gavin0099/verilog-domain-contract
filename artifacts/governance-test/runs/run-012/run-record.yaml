@@ -1,0 +1,61 @@
+run_id: "run-012"
+date_utc: "2026-05-08T06:40:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "round3-cross-verify"
+task_description: "Round 3 cross-verification — contract.yaml documents list completeness check against all actual files"
+spec_version: "v1.2"
+new_session_confirmed: false
+
+targets:
+  primary_targets:
+    - contract.yaml
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - validators/
+    - governance/rules/
+    - artifacts/replay-results/
+  first_modification_in_target: "contract.yaml"
+
+change_scope_metadata:
+  modified_file_count: 1
+  added_line_count: 10
+  removed_line_count: 0
+  doc_vs_code_ratio: "1:0"
+  accepted_change_count: 1
+
+gaps_found:
+  - id: "G-012-01"
+    description: "docs/CLAIM_BOUNDARY.md and docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md not in contract.yaml documents list"
+    fix: "Added both"
+  - id: "G-012-02"
+    description: "7 governance/*.md files not in documents list (AGENT.md, AUTHORITY.md, HUMAN-OVERSIGHT.md, NATIVE-INTEROP.md, REVIEW_CRITERIA.md, RULE_REGISTRY.md, SYSTEM_PROMPT.md) despite TESTING.md and ARCHITECTURE.md already being present"
+    fix: "Added all 7"
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.05
+  artifact_governance_ratio: 0.08
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  scorecard_path: "artifacts/governance-test/runs/run-012/scorecard.yaml"

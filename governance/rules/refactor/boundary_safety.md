@@ -1,5 +1,10 @@
 # Refactor Boundary Safety Rule Pack
 
+- **rule_id**: `REF-002`
+- **severity**: `advisory`
+- **rationale**: Prevents boundary crossings hidden inside refactor scope.
+
+
 - refactor 不得在沒有明確 architecture approval 的情況下，引入新的 boundary crossing。
 - 不要把 logic 跨 `Domain / Application / Adapter / Infrastructure` 邊界搬動，卻仍標記成 refactor。
 - interface 或 dependency change 除非有 ADR 或明確 approval，否則必須保持既有 ownership、lifecycle、與 responsibility boundary。

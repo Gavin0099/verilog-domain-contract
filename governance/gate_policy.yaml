@@ -1,0 +1,44 @@
+# gate_policy.yaml — verilog-rtl-domain-contract-pack
+#
+# Repo-local override of the ai-governance-framework gate policy.
+# This file is the authoritative source for gating behaviour in this repo.
+# session_end_hook must NOT hardcode any of these decisions.
+#
+# Repo characteristics:
+#   - Domain contract documentation pack (no Python test suite)
+#   - No *.v / *.sv production files
+#   - Session management is manual (human-driven, not IDE auto-hook)
+#   - Governance test runs tracked under artifacts/governance-test/runs/
+
+version: "1"
+
+# strict: absent artifact = error, malformed = error, stale = warning+gate
+# permissive: absent / malformed / stale all skip silently
+# audit: any artifact state recorded as warning; gate never triggered
+#
+# Using 'audit' because this repo does not produce a canonical test-result
+# artifact through an automated test runner.  Governance evidence is captured
+# in run-record.yaml / scorecard.yaml artifacts under artifacts/governance-test/.
+fail_mode: audit
+
+blocking_actions:
+  - production_fix_required
+
+unknown_treatment:
+  mode: block_if_count_exceeds
+  threshold: 3
+
+artifact_stale_seconds: 86400   # 24 h
+
+canonical_audit_trend:
+  window_size: 10
+  signal_threshold_ratio: 0.5
+
+# This repo is a pure documentation / contract-definition pack.
+# No automated Python test suite exists.  Suppresses test_result_artifact_absent
+# from canonical_path_audit signals.
+skip_test_result_check: true
+
+# Tier C: manual only — no IDE stop-hook triggers in this repo.
+# Sessions are human-reviewed via governance-test run artifacts.
+hook_coverage_tier: C

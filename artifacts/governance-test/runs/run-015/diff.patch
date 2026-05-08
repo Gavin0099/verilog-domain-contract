@@ -1,0 +1,7 @@
+# diff.patch — run-015
+# new file: artifacts/governance-test/reviewer-dashboard.md
+# (exempt from documents list — artifacts/governance-test/ is exempt path)
+
+new file: artifacts/governance-test/reviewer-dashboard.md
+  lines: 108
+  content: Quick status table (14 runs) + per-run review notes + reviewer decision instructions

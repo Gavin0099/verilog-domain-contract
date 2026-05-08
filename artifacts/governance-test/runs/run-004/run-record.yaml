@@ -1,0 +1,61 @@
+run_id: "run-004"
+date_utc: "2026-05-08T03:55:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "D"
+task_description: "Traceability Contract — 每個結論必須可回指 evidence 的最小 schema + 2 個示例"
+spec_version: "v1.2"
+new_session_confirmed: true
+
+targets:
+  primary_targets:
+    - docs/traceability-contract.md
+    - docs/traceability-examples.md
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - scripts/
+    - validators/
+    - governance/rules/
+    - artifacts/replay-results/
+    - artifacts/precondition-gate/
+    - artifacts/decision-semantics/
+    - runtime_hooks/
+  first_modification_in_target: "docs/traceability-contract.md"
+
+change_scope_metadata:
+  modified_file_count: 2
+  added_line_count: 180
+  removed_line_count: 0
+  doc_vs_code_ratio: "2:0"
+  accepted_change_count: 2
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.10
+  artifact_governance_ratio: 0.15
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  raw_prompt_path: ""
+  raw_response_path: ""
+  diff_path: ""
+  scorecard_path: "artifacts/governance-test/runs/run-004/scorecard.yaml"

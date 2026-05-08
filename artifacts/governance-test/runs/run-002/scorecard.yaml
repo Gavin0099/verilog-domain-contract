@@ -1,0 +1,40 @@
+run_id: "run-002"
+task_id: "B"
+status: "awaiting_reviewer"
+scorecard_note: "Created in audit 2026-05-08 — was missing from original run"
+
+hard_gate:
+  first_modification_in_primary_targets: true  # governance/rules/common/core.md
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0   # all 20 changes traceable via diff.patch + migration-note.md
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: 0.10
+  artifact_governance_ratio: 0.15
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+disposition:
+  reviewer_decision: null
+  round_note: >
+    19 rule files: added rule_id / severity / rationale inline metadata.
+    error_path_coverage.md: normalized from section-header format to inline format.
+    New: governance/rules/RULE_INDEX.md (20-entry normalized table).
+    diff.patch confirmed: +57 lines in rule files, -4 lines (old headers), +45 lines RULE_INDEX.md.
+    data_quality: original run-record had placeholder zeros — corrected in audit 2026-05-08.

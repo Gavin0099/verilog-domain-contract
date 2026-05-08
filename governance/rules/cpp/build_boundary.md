@@ -1,5 +1,10 @@
 # C++ Build Boundary Rule Pack
 
+- **rule_id**: `CPP-001`
+- **severity**: `advisory`
+- **rationale**: Prevents hidden coupling introduced via include path boundary violations.
+
+
 - `AdditionalIncludeDirectories` 應只包含目前 project 自己的 tree，以及明確核准的 shared layer。
 - 即使 build 能過，也不要把 peer project 的 private source directory 加進 include search path。
 - cross-project private header access 應視為 boundary violation，不是便利性。

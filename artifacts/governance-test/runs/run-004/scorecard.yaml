@@ -1,0 +1,37 @@
+run_id: "run-004"
+task_id: "D"
+status: "awaiting_reviewer"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0   # schema 欄位全有 cross-ref；示例兩個均連結到 authority source
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: 0.10
+  artifact_governance_ratio: 0.15
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+disposition:
+  reviewer_decision: null
+  round_note: >
+    New: traceability-contract.md (minimum schema + TRC-001~005 failure modes + anchor_type vocab)
+    + traceability-examples.md (1 valid PASS entry, 1 invalid FAIL entry with failure table).
+    No runtime hook introduced.

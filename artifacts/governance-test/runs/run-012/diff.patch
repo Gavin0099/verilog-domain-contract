@@ -1,0 +1,25 @@
+# diff.patch — run-012
+# reconstructed-from-run-evidence: contract.yaml documents list completeness fix
+
+--- a/contract.yaml
++++ b/contract.yaml
+@@ documents list @@
+   - docs/traceability-examples.md
+   - docs/contract-sync-check.md
++  - docs/CLAIM_BOUNDARY.md
++  - docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md
+   - governance/rules/RULE_INDEX.md
++  - governance/AGENT.md
++  - governance/AUTHORITY.md
++  - governance/HUMAN-OVERSIGHT.md
++  - governance/NATIVE-INTEROP.md
++  - governance/REVIEW_CRITERIA.md
++  - governance/RULE_REGISTRY.md
++  - governance/SYSTEM_PROMPT.md
+   - governance/TESTING.md
+   - governance/ARCHITECTURE.md
+
+summary:
+  files_modified: 1 (contract.yaml)
+  added_lines: 9
+  removed_lines: 0

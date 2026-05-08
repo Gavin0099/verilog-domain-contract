@@ -49,8 +49,12 @@ This table captures only constraints that can change AI agent behavior.
 - rule: Interface acceptance and timing behavior must be explicitly defined (protocol semantics, backpressure behavior, and latency expectation) before implementation claims.
 - why_risk: AI may assume always-ready or fixed-latency behavior that breaks integration semantics.
 - preconditions_required: `interface_protocol_semantics_defined`, `backpressure_behavior_defined`, `latency_expectation_defined`
-- missing_precondition_effect: `analysis_only` (if protocol missing), `draft_only` (if timing missing), `escalate`
-- allowed_output_if_missing: `analysis_only`, `draft_with_explicit_handshake_assumptions`
+- missing_precondition_effect:
+  - if `interface_protocol_semantics_defined` missing: `analysis_only`, `escalate`
+  - if protocol defined but `backpressure_behavior_defined` or `latency_expectation_defined` missing: `draft_only`, `escalate`
+- allowed_output_if_missing:
+  - if `interface_protocol_semantics_defined` missing: `analysis_only` only — `draft_with_explicit_handshake_assumptions` is not allowed in this sub-case
+  - if protocol defined but timing/backpressure missing: `analysis_only`, `draft_with_explicit_handshake_assumptions`
 - forbidden_behavior: `implicit_always_ready_sink`, `implicit_one_cycle_acceptance`, `silent_fixed_latency_assumption`
 - forbidden_claim: `implementation_complete`, `interface_timing_verified`
 - required_disclosure_if_draft: `assumed_protocol_semantics`, `assumed_backpressure_model`, `assumed_latency_model`

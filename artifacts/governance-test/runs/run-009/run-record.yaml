@@ -1,0 +1,89 @@
+run_id: "run-009"
+date_utc: "2026-05-08T05:45:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "validator-smoke"
+task_description: "validators/precondition_gate_validator.py smoke test against updated contract.yaml"
+spec_version: "v1.2"
+new_session_confirmed: false  # continuation within same session
+
+targets:
+  primary_targets: []          # observation-only run; no file modifications
+  out_of_scope_targets: []
+  first_modification_in_target: null
+
+change_scope_metadata:
+  modified_file_count: 0
+  added_line_count: 0
+  removed_line_count: 0
+  doc_vs_code_ratio: "0:0"
+  accepted_change_count: 0
+
+smoke_cases:
+  - id: "S-009-A"
+    input: "Analyze the module structure."
+    expected_ok: true
+    actual_ok: true
+    actual_mode: allow_draft_with_assumptions
+    result: PASS
+  - id: "S-009-B"
+    input: "Implement a synthesizable RTL module with reset logic. The reset polarity and type are not specified."
+    expected_ok: false
+    expected_rule: RESET_DEFINITION_REQUIRED
+    actual_ok: false
+    actual_mode: restrict_codegen
+    actual_missing: [reset_polarity_defined, reset_type_defined]
+    result: PASS
+  - id: "S-009-C"
+    input: "Implement synthesizable RTL for a pipeline interface module. The interface semantics are not defined."
+    expected_ok: false
+    expected_rule: HANDSHAKE_TIMING_DEFINITION_REQUIRED
+    actual_ok: false
+    actual_mode: allow_analysis_only
+    actual_missing: [interface_protocol_semantics_defined]
+    result: PASS
+  - id: "S-009-D"
+    input: "Implement a synthesizable RTL FSM module. Active-low synchronous reset. State model and illegal state handling not defined."
+    expected_ok: false  # FSM_CONTRACT_REQUIRED should fire
+    expected_rule: FSM_CONTRACT_REQUIRED
+    actual_ok: true     # COVERAGE GAP — validator does not implement FSM_CONTRACT_REQUIRED
+    actual_mode: allow_draft_with_assumptions
+    result: FAIL_COVERAGE_GAP
+
+coverage_gaps:
+  - id: "V-009-01"
+    rule: FSM_CONTRACT_REQUIRED
+    description: >
+      FSM_CONTRACT_REQUIRED was added to contract.yaml governance_rules in Run 006,
+      but validators/precondition_gate_validator.py has not been updated to implement it.
+      FSM tasks with missing state model / illegal state handling pass the validator
+      without any precondition gate enforcement.
+    severity: advisory
+    forward_action: "Add FSM precondition gate logic to validator (out of scope for Run 009 — validator/ is out-of-scope target)"
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.05
+  artifact_governance_ratio: 0.10
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  scorecard_path: "artifacts/governance-test/runs/run-009/scorecard.yaml"

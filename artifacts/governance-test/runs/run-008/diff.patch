@@ -1,0 +1,35 @@
+# diff.patch — run-008
+# reconstructed-from-run-evidence: modifications made in session before commit
+
+--- a/docs/traceability-examples.md
++++ b/docs/traceability-examples.md
+@@ TC-BAD-001 failure table @@
+ | NC-003 pattern in text | — | "RTL is correct" is confidence language without evidence anchor |
++| NC-006 pattern in text | — | "ready for integration" expands scope to integration environment without evidence |
+ | NC-008 pattern in text | — | `verified_implementation` claimed without evidence upgrade |
+
+@@ after Required correction paragraph @@
++---
++
++## Note on partial / blocked conclusions
++
++When a traceability entry represents a partial or blocked review conclusion,
++use the `failure_state_review` structure from `docs/failure-state-reviewer-template.md`
++in addition to the `traceability_entry` schema.  The two schemas are complementary:
++`traceability_entry` anchors each conclusion to its evidence;
++`failure_state_review` provides the full case-by-case pass/fail/unchecked breakdown
++required before a bounded conclusion can be issued.
+
+--- a/docs/failure-state-reviewer-template.md
++++ b/docs/failure-state-reviewer-template.md
+@@ Evidence Requirements section @@
+ Evidence levels (L0–L3) are defined in `docs/completion-evidence-levels.md`.
+ Minimum evidence per claim level is defined in `docs/completion-claim-policy.md`.
++Traceability schema (linking conclusions to evidence anchors) is defined in `docs/traceability-contract.md`.
++Each bounded conclusion from this template should correspond to a `traceability_entry`
++with matching `conclusion_id`, `claim_level`, and `evidence_anchors`.
+
+summary:
+  files_modified: 2
+  added_lines: 14
+  removed_lines: 0

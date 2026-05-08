@@ -1,0 +1,73 @@
+run_id: "run-011"
+date_utc: "2026-05-08T06:20:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "contract-sync-check"
+task_description: "建立 contract-sync-check.md — governance_rules ↔ leaf doc enforcement section 對齊文件 + FSM_CONTRACT_REQUIRED rule_sources 補齊"
+spec_version: "v1.2"
+new_session_confirmed: false
+
+targets:
+  primary_targets:
+    - docs/contract-sync-check.md
+    - contract.yaml
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - validators/
+    - governance/rules/
+    - artifacts/replay-results/
+  first_modification_in_target: "docs/contract-sync-check.md"
+
+change_scope_metadata:
+  modified_file_count: 2
+  added_line_count: 72
+  removed_line_count: 0
+  doc_vs_code_ratio: "2:0"
+  accepted_change_count: 3
+
+changes:
+  - id: "CH-011-01"
+    file: docs/contract-sync-check.md
+    type: new_file
+    description: "Cross-check table: 4 governance_rules ↔ 4 leaf docs. Sync check process (7 items). Known gaps history. Supporting docs list. Drift prevention policy."
+  - id: "CH-011-02"
+    file: contract.yaml
+    type: rule_sources_add
+    description: "Added 2 FSM_CONTRACT_REQUIRED rule_sources entries: digital_system_design page 135 (FSM section 6.3) and Verilog_HDL_A_guide pages 165-166 (FSM traffic controller)"
+  - id: "CH-011-03"
+    file: contract.yaml
+    type: documents_add
+    description: "Added docs/contract-sync-check.md to documents list"
+
+gap_resolved:
+  - id: "G-011-01"
+    description: "FSM_CONTRACT_REQUIRED had no rule_sources entries — all other 3 rules had 2 sources each"
+    fix: "Added 2 authority source entries"
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.12
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  scorecard_path: "artifacts/governance-test/runs/run-011/scorecard.yaml"

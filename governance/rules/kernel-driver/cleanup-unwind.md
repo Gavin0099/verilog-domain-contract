@@ -1,5 +1,10 @@
 # Kernel Driver Cleanup And Unwind
 
+- **rule_id**: `KDRV-002`
+- **severity**: `hard-stop`
+- **rationale**: Requires symmetric unwind behavior in all failure and unload paths.
+
+
 kernel-driver code 必須在 partial initialization、failure path、unload、remove、與 cancel flow 中維持對稱的 unwind 行為。
 
 - 若 initialization 只成功到一半，failure path 必須釋放所有已取得的 resource。

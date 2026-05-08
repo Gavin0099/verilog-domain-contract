@@ -1,0 +1,287 @@
+diff --git a/governance/rules/avalonia/ui_thread.md b/governance/rules/avalonia/ui_thread.md
+index e8a4c6e..13cf332 100644
+--- a/governance/rules/avalonia/ui_thread.md
++++ b/governance/rules/avalonia/ui_thread.md
+@@ -1,5 +1,10 @@
+ # Avalonia UI Thread
+ 
++- **rule_id**: `AVL-001`
++- **severity**: `advisory`
++- **rationale**: Enforces UI thread affinity for control mutations and property change side effects.
++
++
+ - UI control mutation 與 `PropertyChanged` side effect 必須在 `Dispatcher.UIThread` 或等價的安全邊界上執行。
+ - ViewModel 不應把跨 thread 的 UI 修補邏輯藏成 convenience shortcut。
+ - 若某條流程依賴 UI-thread affinity，測試應把這個依賴顯性化。
+diff --git a/governance/rules/avalonia/viewmodel_boundary.md b/governance/rules/avalonia/viewmodel_boundary.md
+index de94f44..c35661b 100644
+--- a/governance/rules/avalonia/viewmodel_boundary.md
++++ b/governance/rules/avalonia/viewmodel_boundary.md
+@@ -1,5 +1,10 @@
+ # Avalonia ViewModel Boundary
+ 
++- **rule_id**: `AVL-002`
++- **severity**: `advisory`
++- **rationale**: Prevents ViewModel from becoming an unbounded I/O or platform logic integration layer.
++
++
+ - ViewModel 的職責是協調 presentation state；它不應變成無邊界的 I/O 或 platform logic integration layer。
+ - native call、filesystem access、與 process launch 行為應放在 service 或 adapter 後面。
+ - headless testability 是 governance concern：UI behavior 應能在不靠完整人工互動的情況下被觀測。
+diff --git a/governance/rules/common/core.md b/governance/rules/common/core.md
+index 5e58ed7..74d3eb8 100644
+--- a/governance/rules/common/core.md
++++ b/governance/rules/common/core.md
+@@ -1,5 +1,9 @@
+ # Common Rule Pack
+ 
++- **rule_id**: `CMN-001`
++- **severity**: `advisory`
++- **rationale**: Establishes baseline task scope and escalation discipline across all domains.
++
+ - 在實作前先遵守當前 `PLAN` scope。
+ - 只要 architecture 或 safety red line 不清楚，就立刻 escalate。
+ - 優先做最小、可回滾、且足以滿足任務的變更。
+diff --git a/governance/rules/cpp/build_boundary.md b/governance/rules/cpp/build_boundary.md
+index 114efbc..9309abb 100644
+--- a/governance/rules/cpp/build_boundary.md
++++ b/governance/rules/cpp/build_boundary.md
+@@ -1,5 +1,10 @@
+ # C++ Build Boundary Rule Pack
+ 
++- **rule_id**: `CPP-001`
++- **severity**: `advisory`
++- **rationale**: Prevents hidden coupling introduced via include path boundary violations.
++
++
+ - `AdditionalIncludeDirectories` 應只包含目前 project 自己的 tree，以及明確核准的 shared layer。
+ - 即使 build 能過，也不要把 peer project 的 private source directory 加進 include search path。
+ - cross-project private header access 應視為 boundary violation，不是便利性。
+diff --git a/governance/rules/csharp/native_boundary.md b/governance/rules/csharp/native_boundary.md
+index bedd160..6afa065 100644
+--- a/governance/rules/csharp/native_boundary.md
++++ b/governance/rules/csharp/native_boundary.md
+@@ -1,5 +1,10 @@
+ # C# Native Boundary
+ 
++- **rule_id**: `CSH-001`
++- **severity**: `advisory`
++- **rationale**: Isolates native interop behind explicit adapter boundaries to keep domain logic clean.
++
++
+ - native interop 必須留在明確的 adapter 或 boundary interface 後面。
+ - `DllImport` 與 native handle management 不得滲入 domain logic。
+ - resource ownership、dispose、與 error translation 必須明確且可 review。
+diff --git a/governance/rules/csharp/threading.md b/governance/rules/csharp/threading.md
+index b823c4e..65432b8 100644
+--- a/governance/rules/csharp/threading.md
++++ b/governance/rules/csharp/threading.md
+@@ -1,5 +1,10 @@
+ # C# Threading Safety
+ 
++- **rule_id**: `CSH-002`
++- **severity**: `advisory`
++- **rationale**: Prevents cross-thread UI mutation without a declared synchronization strategy.
++
++
+ - UI state change 必須發生在正確的 UI thread 或 dispatcher boundary。
+ - 除了明確的 event-handler boundary 之外，不要把 `async void` 當成可接受預設。
+ - 沒有同步策略的 cross-thread mutation，是 governance violation，不是 style issue。
+diff --git a/governance/rules/gl-hub-vendor-cmd/spec-truth.md b/governance/rules/gl-hub-vendor-cmd/spec-truth.md
+index 1f0d82d..2809cc6 100644
+--- a/governance/rules/gl-hub-vendor-cmd/spec-truth.md
++++ b/governance/rules/gl-hub-vendor-cmd/spec-truth.md
+@@ -1,5 +1,10 @@
+ # GL Hub Vendor Command Spec Truth
+ 
++- **rule_id**: `GLHUB-001`
++- **severity**: `hard-stop`
++- **rationale**: Requires spec truth verification before any GL Hub vendor command action.
++
++
+ 只要 task 涉及 GL Hub vendor command 的發送或實作，就必須先對照 spec truth layer，再決定這個動作是否有效。
+ 
+ - 發送 GL Hub vendor command 前，必須先確認所有必要前提都成立（chip、command issue mode、state、timing、data structure）。
+diff --git a/governance/rules/kernel-driver/cleanup-unwind.md b/governance/rules/kernel-driver/cleanup-unwind.md
+index 27a7834..192bd75 100644
+--- a/governance/rules/kernel-driver/cleanup-unwind.md
++++ b/governance/rules/kernel-driver/cleanup-unwind.md
+@@ -1,5 +1,10 @@
+ # Kernel Driver Cleanup And Unwind
+ 
++- **rule_id**: `KDRV-002`
++- **severity**: `hard-stop`
++- **rationale**: Requires symmetric unwind behavior in all failure and unload paths.
++
++
+ kernel-driver code 必須在 partial initialization、failure path、unload、remove、與 cancel flow 中維持對稱的 unwind 行為。
+ 
+ - 若 initialization 只成功到一半，failure path 必須釋放所有已取得的 resource。
+diff --git a/governance/rules/kernel-driver/irql.md b/governance/rules/kernel-driver/irql.md
+index bb41f7b..a75131d 100644
+--- a/governance/rules/kernel-driver/irql.md
++++ b/governance/rules/kernel-driver/irql.md
+@@ -1,5 +1,10 @@
+ # Kernel Driver IRQL Boundary
+ 
++- **rule_id**: `KDRV-001`
++- **severity**: `hard-stop`
++- **rationale**: Prevents IRQL-unsafe operations that can cause system crashes in kernel context.
++
++
+ kernel-driver 變更必須宣告並保住所有被修改 dispatch、callback、與 cleanup path 的 callable IRQL 假設。
+ 
+ - 在可能高於 `PASSIVE_LEVEL` 的 context 中，不得執行 pageable、blocking、或 wait-based operation。
+diff --git a/governance/rules/kernel-driver/memory-boundary.md b/governance/rules/kernel-driver/memory-boundary.md
+index 37df7ce..52b6007 100644
+--- a/governance/rules/kernel-driver/memory-boundary.md
++++ b/governance/rules/kernel-driver/memory-boundary.md
+@@ -1,5 +1,10 @@
+ # Kernel Driver Memory Boundary
+ 
++- **rule_id**: `KDRV-003`
++- **severity**: `hard-stop`
++- **rationale**: Treats all external memory as hostile input requiring explicit validation.
++
++
+ kernel-driver 變更必須把 user input、DMA buffer、與 mapped memory 視為 hostile boundary，而不是普通 C / C++ data。
+ 
+ - 在 dereference 或 copy 前，先驗證所有 buffer length、structure size、與 pointer 假設。
+diff --git a/governance/rules/python/coding.md b/governance/rules/python/coding.md
+index 5a58e21..46258dc 100644
+--- a/governance/rules/python/coding.md
++++ b/governance/rules/python/coding.md
+@@ -1,5 +1,10 @@
+ # Python Rule Pack
+ 
++- **rule_id**: `PY-001`
++- **severity**: `informational`
++- **rationale**: Baseline Python style, testability, and dependency discipline.
++
++
+ - 保持實作簡潔、可測試。
+ - 除非 repo 本來就依賴其他方案，否則優先使用 standard library。
+ - 除非 `PLAN` 明確授權，否則不要改變既有 CLI behavior。
+diff --git a/governance/rules/refactor/behavior_lock.md b/governance/rules/refactor/behavior_lock.md
+index 2c2cc07..72d2853 100644
+--- a/governance/rules/refactor/behavior_lock.md
++++ b/governance/rules/refactor/behavior_lock.md
+@@ -1,5 +1,10 @@
+ # Refactor Behavior Lock Rule Pack
+ 
++- **rule_id**: `REF-001`
++- **severity**: `advisory`
++- **rationale**: Guards observable behavior from silent change under refactor framing.
++
++
+ - 只有在可觀測行為保持不變時，才可視為純 refactor。
+ - 測試必須鎖住 expected behavior，而不只是 implementation detail。
+ - refactor 後的綠燈測試，只有在包含 regression、boundary、與 failure-path coverage 時，才算有效 evidence。
+diff --git a/governance/rules/refactor/boundary_safety.md b/governance/rules/refactor/boundary_safety.md
+index 600dc8b..069e367 100644
+--- a/governance/rules/refactor/boundary_safety.md
++++ b/governance/rules/refactor/boundary_safety.md
+@@ -1,5 +1,10 @@
+ # Refactor Boundary Safety Rule Pack
+ 
++- **rule_id**: `REF-002`
++- **severity**: `advisory`
++- **rationale**: Prevents boundary crossings hidden inside refactor scope.
++
++
+ - refactor 不得在沒有明確 architecture approval 的情況下，引入新的 boundary crossing。
+ - 不要把 logic 跨 `Domain / Application / Adapter / Infrastructure` 邊界搬動，卻仍標記成 refactor。
+ - interface 或 dependency change 除非有 ADR 或明確 approval，否則必須保持既有 ownership、lifecycle、與 responsibility boundary。
+diff --git a/governance/rules/refactor/error_path_coverage.md b/governance/rules/refactor/error_path_coverage.md
+index 7123534..6c9ac4a 100644
+--- a/governance/rules/refactor/error_path_coverage.md
++++ b/governance/rules/refactor/error_path_coverage.md
+@@ -1,10 +1,8 @@
+ # Error Path Coverage
+ 
+-## Rule ID
+-`REF-ERROR-001`
+-
+-## Enforcement
+-`hard-stop`
++- **rule_id**: `REF-ERROR-001`
++- **severity**: `hard-stop`
++- **rationale**: Ensures error path traceability is preserved and made explicit across refactor changes.
+ 
+ ## Requirement
+ refactor task 必須在變更前後都把 error-path behavior 顯性化：
+diff --git a/governance/rules/refactor/interface_stability.md b/governance/rules/refactor/interface_stability.md
+index 39f250d..4a91822 100644
+--- a/governance/rules/refactor/interface_stability.md
++++ b/governance/rules/refactor/interface_stability.md
+@@ -1,5 +1,10 @@
+ # Refactor Interface Stability Rule Pack
+ 
++- **rule_id**: `REF-003`
++- **severity**: `advisory`
++- **rationale**: Protects external contract stability when internal structure changes.
++
++
+ - refactor work 必須保持 external contract 穩定，除非 task 已被明確改判為 behavior 或 interface change。
+ - public method signature、callback semantic、error surface、與 observable ordering 必須保持穩定，或有明確的 compatibility evidence 支撐。
+ - 若 compatibility 依賴 adapter、contract、或 characterization test，這些 test 就屬於 required refactor evidence，而不是可選文件。
+diff --git a/governance/rules/refactor/no_partial_cleanup.md b/governance/rules/refactor/no_partial_cleanup.md
+index a3032a6..d0c8a8d 100644
+--- a/governance/rules/refactor/no_partial_cleanup.md
++++ b/governance/rules/refactor/no_partial_cleanup.md
+@@ -1,5 +1,10 @@
+ # Refactor No Partial Cleanup Rule Pack
+ 
++- **rule_id**: `REF-004`
++- **severity**: `hard-stop`
++- **rationale**: Prevents resource leaks caused by partial cleanup in failure paths.
++
++
+ - refactor work 不得在 exception 或中途失敗路徑中留下 partial side effect 或 half-cleaned resource。
+ - 當 refactor 牽涉 resource ownership 或 multi-step operation 時，必須對 cleanup、rollback、dispose、release、或 revert behavior 提供 evidence。
+ - 如果 refactor 保住了 happy path，卻削弱 failure cleanup，就不能視為安全。
+diff --git a/governance/rules/refactor/required_regression_tests.md b/governance/rules/refactor/required_regression_tests.md
+index 17f0379..52b79a7 100644
+--- a/governance/rules/refactor/required_regression_tests.md
++++ b/governance/rules/refactor/required_regression_tests.md
+@@ -1,5 +1,10 @@
+ # Refactor Required Regression Tests Rule Pack
+ 
++- **rule_id**: `REF-005`
++- **severity**: `advisory`
++- **rationale**: Requires verifiable regression evidence, not just a passing test summary.
++
++
+ - refactor work 必須提供 regression evidence，不能只丟一份 passing test summary。
+ - 可接受的訊號包括：regression test、characterization test、behavior-lock test、或能保住可觀測行為的 contract test。
+ - 若沒有可辨識、明確指向 regression 的 evidence，只說「tests passed」不足以支撐高信心 refactor approval。
+diff --git a/governance/rules/swift/concurrency.md b/governance/rules/swift/concurrency.md
+index 7707329..53e1963 100644
+--- a/governance/rules/swift/concurrency.md
++++ b/governance/rules/swift/concurrency.md
+@@ -1,5 +1,10 @@
+ # Swift Concurrency Boundary
+ 
++- **rule_id**: `SWT-001`
++- **severity**: `advisory`
++- **rationale**: Enforces actor/thread boundary for Swift UI state and cancellation correctness.
++
++
+ - 會影響 UI 的 state 必須尊重正確的 actor 或 main-thread boundary。
+ - 不要把 callback-style side effect 與 structured concurrency 混在一起，導致 ownership 或 cancellation 變得模糊。
+ - task cancellation 與 error propagation 必須在 boundary 上保持明確。
+diff --git a/governance/rules/swift/native_interop.md b/governance/rules/swift/native_interop.md
+index 443b785..b5f3444 100644
+--- a/governance/rules/swift/native_interop.md
++++ b/governance/rules/swift/native_interop.md
+@@ -1,5 +1,10 @@
+ # Swift Native Interop
+ 
++- **rule_id**: `SWT-002`
++- **severity**: `advisory`
++- **rationale**: Isolates native platform API behind explicit boundaries to prevent domain logic pollution.
++
++
+ - 當 Objective-C bridging 或 native platform API 會影響 domain logic 時，它們必須被放在明確邊界後面。
+ - `unsafe pointer` 或 unmanaged resource handling 必須說清 ownership 與 cleanup rule。
+ - platform capability check 不應靜默滲入較高層的 business rule。

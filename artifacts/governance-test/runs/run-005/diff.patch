@@ -1,0 +1,25 @@
+diff --git a/contract.yaml b/contract.yaml
+index 8423cfc..28c32c3 100644
+--- a/contract.yaml
++++ b/contract.yaml
+@@ -30,6 +30,11 @@ documents:
+   - docs/contract-format-evolution-note.md
+   - docs/verification-minimums.md
+   - docs/completion-claim-policy.md
++  - docs/failure-state-reviewer-template.md
++  - docs/negative-claim-list.md
++  - docs/traceability-contract.md
++  - docs/traceability-examples.md
++  - governance/rules/RULE_INDEX.md
+   - governance/TESTING.md
+   - governance/ARCHITECTURE.md
+   - schemas/review-checklist.yaml
+@@ -89,7 +94,7 @@ must_not_assume:
+ governance_rules:
+   - RESET_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK|required:reset_polarity_defined,reset_type_defined|missing_effect:restrict_codegen,escalate|allowed_if_missing:analysis_only,draft_with_explicit_assumptions|forbidden:implicit_reset_assumption,silent_default_reset|forbidden_claim:implementation_complete,synthesizable_ready|required_disclosure:assumed_reset_polarity,assumed_reset_type
+   - ASSIGNMENT_SEMANTICS_REQUIRED|SEMANTIC_RULE+ASSUMPTION_RISK|required:state_update_intent_defined,comb_or_seq_partition_defined|missing_effect:draft_only,escalate|allowed_if_missing:analysis_only,draft_with_explicit_semantic_assumptions|forbidden:mixed_blocking_nonblocking_on_state,latch_prone_incomplete_comb_logic|forbidden_claim:implementation_complete,behaviorally_verified|required_disclosure:state_update_model,comb_logic_model
+-  - HANDSHAKE_TIMING_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK+VERIFICATION_REQUIREMENT|required:interface_protocol_semantics_defined,backpressure_behavior_defined,latency_expectation_defined|missing_effect:analysis_only_or_draft_only_with_escalation|allowed_if_missing:analysis_only,draft_with_explicit_handshake_assumptions|forbidden:implicit_always_ready_sink,implicit_one_cycle_acceptance,silent_fixed_latency_assumption|forbidden_claim:implementation_complete,interface_timing_verified|required_disclosure:assumed_protocol_semantics,assumed_backpressure_model,assumed_latency_model
++  - HANDSHAKE_TIMING_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK+VERIFICATION_REQUIREMENT|required:interface_protocol_semantics_defined,backpressure_behavior_defined,latency_expectation_defined|missing_effect:analysis_only_and_escalate(protocol_missing),draft_only_and_escalate(timing_missing)|allowed_if_missing:analysis_only(protocol_missing_only),analysis_only_or_draft_with_explicit_handshake_assumptions(timing_missing_only)|forbidden:implicit_always_ready_sink,implicit_one_cycle_acceptance,silent_fixed_latency_assumption|forbidden_claim:implementation_complete,interface_timing_verified|required_disclosure:assumed_protocol_semantics,assumed_backpressure_model,assumed_latency_model
+ 
+ rule_sources:
+   - RESET_DEFINITION_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:101-102|anchor:RESET_ASYNC_SYNC_DIFF

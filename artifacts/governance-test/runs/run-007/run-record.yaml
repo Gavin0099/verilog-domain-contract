@@ -1,0 +1,67 @@
+run_id: "run-007"
+date_utc: "2026-05-08T05:15:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "gate-policy-add"
+task_description: "Add governance/gate_policy.yaml — resolves repo_local_policy_missing advisory from session_end_hook"
+spec_version: "v1.2"
+new_session_confirmed: false  # continuation within same session as run-006
+
+targets:
+  primary_targets:
+    - governance/gate_policy.yaml
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - scripts/
+    - validators/
+    - docs/
+    - governance/rules/
+    - artifacts/replay-results/
+    - contract.yaml
+  first_modification_in_target: "governance/gate_policy.yaml"
+
+change_scope_metadata:
+  modified_file_count: 1
+  added_line_count: 40
+  removed_line_count: 0
+  doc_vs_code_ratio: "1:0"
+  accepted_change_count: 1
+
+gap_resolved:
+  - advisory: "repo_local_policy_missing"
+    source: "session_end_hook canonical_path_audit"
+    resolution: "Created governance/gate_policy.yaml with fail_mode:audit, skip_test_result_check:true, hook_coverage_tier:C"
+    rationale: >
+      This repo is a pure documentation/contract pack with no automated test suite.
+      fail_mode:audit prevents false gate blocks on absent test-result artifacts.
+      skip_test_result_check:true suppresses test_result_artifact_absent signals.
+      hook_coverage_tier:C reflects manual-only session management.
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.05
+  artifact_governance_ratio: 0.10
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  diff_path: ""
+  scorecard_path: "artifacts/governance-test/runs/run-007/scorecard.yaml"

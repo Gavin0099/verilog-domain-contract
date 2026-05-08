@@ -1,0 +1,56 @@
+run_id: "run-005"
+date_utc: "2026-05-08T04:05:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "A-rerun"
+task_description: "Task A cross-verification — contract.yaml consistency check after Run 001-004"
+spec_version: "v1.2"
+new_session_confirmed: true
+
+targets:
+  primary_targets:
+    - contract.yaml
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - scripts/
+    - validators/
+    - docs/
+    - governance/rules/
+    - artifacts/replay-results/
+  first_modification_in_target: "contract.yaml"
+
+change_scope_metadata:
+  modified_file_count: 1
+  added_line_count: 7
+  removed_line_count: 1
+  doc_vs_code_ratio: "1:0"
+  accepted_change_count: 2
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.3
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  diff_path: "artifacts/governance-test/runs/run-005/diff.patch"
+  scorecard_path: "artifacts/governance-test/runs/run-005/scorecard.yaml"

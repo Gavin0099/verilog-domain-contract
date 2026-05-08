@@ -1,0 +1,93 @@
+run_id: "run-010"
+date_utc: "2026-05-08T06:00:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "validator-fsm-extension"
+task_description: "Extend validators/precondition_gate_validator.py with FSM_CONTRACT_REQUIRED gate logic — resolves coverage gap V-009-01"
+spec_version: "v1.2"
+new_session_confirmed: false
+
+targets:
+  primary_targets:
+    - validators/precondition_gate_validator.py
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - docs/
+    - governance/rules/
+    - contract.yaml
+    - artifacts/replay-results/
+  first_modification_in_target: "validators/precondition_gate_validator.py"
+
+change_scope_metadata:
+  modified_file_count: 1
+  added_line_count: 30
+  removed_line_count: 4
+  doc_vs_code_ratio: "0:1"
+  accepted_change_count: 3
+
+changes:
+  - id: "CH-010-01"
+    type: "regex_add"
+    description: "Added RE_FSM_INTENT, RE_FSM_STATE_MODEL, RE_FSM_DECOMP, RE_FSM_ILLEGAL regex patterns"
+  - id: "CH-010-02"
+    type: "logic_add"
+    description: "Added Rule 3 FSM precondition gate in evaluate_precondition_gate(); checks 3 FSM preconditions; maps to allow_draft_with_assumptions when state model missing"
+  - id: "CH-010-03"
+    type: "metadata_update"
+    description: "Added FSM_CONTRACT_REQUIRED to PreconditionGateValidator.rule_ids"
+
+smoke_results:
+  - id: "S-010-A"
+    input: "Implement a synthesizable RTL FSM module. Active-low synchronous reset."
+    expected_ok: false
+    actual_ok: false
+    actual_missing: [fsm_decomposition_style_declared, fsm_illegal_state_handling_defined, fsm_state_model_defined]
+    result: PASS
+  - id: "S-010-B"
+    input: "Implement synthesizable RTL state machine. Active-low synchronous reset. States: IDLE, FETCH, DECODE, EXECUTE. Moore style. Illegal states go to IDLE."
+    expected_ok: true
+    actual_ok: true
+    result: PASS
+  - id: "S-010-C"
+    input: "Analyze the clock domain structure of this design."
+    expected_ok: true
+    actual_ok: true
+    result: PASS
+
+known_limitations:
+  - id: "LIM-010-01"
+    description: >
+      Semantic negation not parsed — text containing 'No FSM' still triggers FSM intent
+      because the regex matches 'FSM' regardless of surrounding negation context.
+      This is a v0.1 scope limitation shared by existing reset/handshake detection.
+      Not fixed in this run — would require NLP-level context parsing beyond the
+      regex-based architecture.
+    severity: advisory
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.12
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  scorecard_path: "artifacts/governance-test/runs/run-010/scorecard.yaml"

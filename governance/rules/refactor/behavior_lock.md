@@ -1,5 +1,10 @@
 # Refactor Behavior Lock Rule Pack
 
+- **rule_id**: `REF-001`
+- **severity**: `advisory`
+- **rationale**: Guards observable behavior from silent change under refactor framing.
+
+
 - 只有在可觀測行為保持不變時，才可視為純 refactor。
 - 測試必須鎖住 expected behavior，而不只是 implementation detail。
 - refactor 後的綠燈測試，只有在包含 regression、boundary、與 failure-path coverage 時，才算有效 evidence。

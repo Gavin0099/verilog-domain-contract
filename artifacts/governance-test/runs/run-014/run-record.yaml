@@ -1,0 +1,70 @@
+run_id: "run-014"
+date_utc: "2026-05-08T07:20:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "sync-check-claim-docs"
+task_description: "分析 CLAIM_BOUNDARY.md + CLAIM_ENFORCEMENT_MINIMAL_SPEC.md 與 contract-sync-check.md 7-item 對齊；補充 Supporting Docs 說明與詞彙歧義標注"
+spec_version: "v1.2"
+new_session_confirmed: false
+
+targets:
+  primary_targets:
+    - docs/contract-sync-check.md
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - validators/
+    - governance/rules/
+    - contract.yaml
+  first_modification_in_target: "docs/contract-sync-check.md"
+
+change_scope_metadata:
+  modified_file_count: 1
+  added_line_count: 18
+  removed_line_count: 2
+  doc_vs_code_ratio: "1:0"
+  accepted_change_count: 2
+
+analysis_result:
+  CLAIM_BOUNDARY_md:
+    governance_rule_needed: false
+    reason: "Support infrastructure — defines claim posture assessment vocabulary, not a contract domain"
+    vocabulary_note: "Uses bounded_support / stronger_than_allowed — distinct from contract.yaml completion_claim_allow tokens"
+  CLAIM_ENFORCEMENT_MINIMAL_SPEC_md:
+    governance_rule_needed: false
+    reason: "Test scenario specification, equivalent role to behavioral-replay-oracle.md"
+
+gap_found:
+  - id: "G-014-01"
+    type: vocabulary_ambiguity
+    description: "Two distinct claim_level vocabularies (contract.yaml vs CLAIM_BOUNDARY.md) could be confused without explicit documentation"
+    severity: advisory
+    fix: "Added vocabulary note table to contract-sync-check.md Supporting Docs section"
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.12
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  diff_path: "artifacts/governance-test/runs/run-014/diff.patch"
+  scorecard_path: "artifacts/governance-test/runs/run-014/scorecard.yaml"

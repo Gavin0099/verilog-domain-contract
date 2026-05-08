@@ -1,5 +1,10 @@
 # Kernel Driver IRQL Boundary
 
+- **rule_id**: `KDRV-001`
+- **severity**: `hard-stop`
+- **rationale**: Prevents IRQL-unsafe operations that can cause system crashes in kernel context.
+
+
 kernel-driver 變更必須宣告並保住所有被修改 dispatch、callback、與 cleanup path 的 callable IRQL 假設。
 
 - 在可能高於 `PASSIVE_LEVEL` 的 context 中，不得執行 pageable、blocking、或 wait-based operation。

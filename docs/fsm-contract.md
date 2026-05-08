@@ -12,11 +12,32 @@
 - output model
 - automatic illegal-state recovery behavior
 
-## Output Constraint
+## Constraint on AI Behavior
 
-If FSM style details are missing, output may provide:
+If FSM style details (state model, decomposition style, illegal state policy) are missing or unspecified:
 
-- analysis of options, or
-- draft with explicit assumptions
+- enforcement effect: `draft_only`, `escalate`
+- allowed output: `analysis_only`, `draft_with_explicit_assumptions`
 
-It must not claim verified implementation completeness.
+If FSM task scope is ambiguous (synthesizable vs testbench-only unclear):
+
+- enforcement effect: `draft_only`
+- allowed output: `analysis_only`, or `draft_with_explicit_assumptions` with scope disclosure
+
+## Forbidden Behavior
+
+- silent state encoding selection without disclosure
+- implicit assumption of single always-block FSM style
+- implicit assumption of no illegal-state handling requirement
+
+## Forbidden Claim
+
+- `implementation_complete` without explicit state model and decomposition style disclosure
+- `behaviorally_verified` without simulation or assertion evidence
+
+## Completion Policy
+
+Without explicit state model intent and illegal state handling definition, AI must not claim:
+
+- `implementation_complete`
+- `behaviorally_verified`

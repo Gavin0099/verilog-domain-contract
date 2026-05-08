@@ -1,0 +1,71 @@
+run_id: "run-008"
+date_utc: "2026-05-08T05:30:00Z"
+agent: "claude"
+repo: "verilog-domain-contract"
+task_id: "C-replay"
+task_description: "Task C replay — cross-verify traceability examples against NC-* list and failure-state reviewer template"
+spec_version: "v1.2"
+new_session_confirmed: false  # continuation within same session
+
+targets:
+  primary_targets:
+    - docs/traceability-examples.md
+    - docs/negative-claim-list.md
+    - docs/failure-state-reviewer-template.md
+  out_of_scope_targets:
+    - "**/*.v"
+    - "**/*.sv"
+    - contract.yaml
+    - scripts/
+    - validators/
+    - governance/rules/
+  first_modification_in_target: "docs/traceability-examples.md"
+
+change_scope_metadata:
+  modified_file_count: 2
+  added_line_count: 14
+  removed_line_count: 0
+  doc_vs_code_ratio: "2:0"
+  accepted_change_count: 3
+
+gap_list:
+  - id: "G-008-01"
+    file: "docs/traceability-examples.md"
+    description: "TC-BAD-001 failure table omitted NC-006 — 'ready for integration' is an implicit scope expansion to integration environment"
+    fix: "Added NC-006 row to TC-BAD-001 failure table"
+  - id: "G-008-02"
+    file: "docs/failure-state-reviewer-template.md"
+    description: "Evidence Requirements section had no cross-reference to traceability-contract.md; reviewer completing failure-state review should also produce a traceability_entry"
+    fix: "Added cross-reference to traceability-contract.md and note about matching conclusion_id/claim_level/evidence_anchors"
+  - id: "G-008-03"
+    file: "docs/traceability-examples.md"
+    description: "No guidance on when to use failure-state-reviewer-template alongside traceability_entry (partial/blocked cases)"
+    fix: "Added 'Note on partial / blocked conclusions' section directing reviewers to failure-state-reviewer-template.md"
+
+metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability_only:
+  runtime_governance_ratio: 0.08
+  artifact_governance_ratio: 0.15
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_flags:
+  hard_failure: false
+  attention_anchoring_failure: false
+  governance_drag: false
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
+
+artifacts:
+  diff_path: ""
+  scorecard_path: "artifacts/governance-test/runs/run-008/scorecard.yaml"

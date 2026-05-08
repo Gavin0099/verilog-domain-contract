@@ -1,0 +1,4 @@
+# diff.patch — run-009
+# N/A: observation-only run — no file modifications
+# All changes: none
+# Evidence: smoke test outputs captured in run-record.yaml smoke_cases section

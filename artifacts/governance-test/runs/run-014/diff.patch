@@ -1,0 +1,27 @@
+# diff.patch — run-014
+# reconstructed-from-run-evidence: docs/contract-sync-check.md modified
+
+--- a/docs/contract-sync-check.md
++++ b/docs/contract-sync-check.md
+@@ Supporting Docs table @@
+-| docs/CLAIM_BOUNDARY.md | Claim boundary definitions — supports completion claim policy |
++| docs/CLAIM_BOUNDARY.md | Claim posture boundary rules — defines `claim_level` assessment vocabulary (`bounded_support`, `stronger_than_allowed`); supports `completion_claim_allow` / `completion_claim_disallow_without_evidence` in contract.yaml. **Not a governance_rule domain.** |
++| docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md | Claim enforcement test scenarios (baseline closeout, drift injection, posture escalation). Equivalent to behavioral-replay-oracle role for claim enforcement. **Not a governance_rule domain.** |
+
+@@ after Supporting Docs table @@
++### Vocabulary Note: two distinct `claim_level` systems
++
++| System | Tokens | Location |
++|--------|--------|----------|
++| contract.yaml completion claim | `analysis_provided`, `draft_rtl_provided`, `candidate_implementation_provided`, `verified_implementation` | `completion_claim_allow` / `claim_evidence_requirements` |
++| CLAIM_BOUNDARY posture assessment | `bounded_support`, `stronger_than_allowed` | `docs/CLAIM_BOUNDARY.md` |
++
++These are **different vocabularies for different purposes**. ...
+
+@@ Known Gaps History @@
++| G-014-01 | Run 014 | CLAIM_BOUNDARY vocabulary | `claim_level` token vocabulary ambiguity | Documented Run 014 |
+
+summary:
+  files_modified: 1 (docs/contract-sync-check.md)
+  added_lines: 18
+  removed_lines: 2

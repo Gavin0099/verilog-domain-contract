@@ -2,15 +2,16 @@
 
 ## Allowed Claim Levels
 
-- analysis provided
-- draft RTL provided
-- candidate implementation provided
+- `analysis_provided`
+- `draft_rtl_provided`
+- `candidate_implementation_provided`
 
 ## Restricted Claim
 
-- verified implementation
+- `verified_implementation`
 
-`verified implementation` is disallowed unless evidence explicitly covers required behavior and stated verification scope.
+`verified_implementation` is disallowed unless evidence explicitly covers required behavior and stated verification scope.
+Evidence requirements per claim level are defined in `docs/completion-evidence-levels.md`.
 
 ## Mandatory Output Fields
 

@@ -1,0 +1,20 @@
+# diff.patch — run-004
+# reconstructed-from-run-evidence: new files created in session before commit
+# method: new-file-summary (full content in actual files)
+
+new file: docs/traceability-contract.md
+  +++ b/docs/traceability-contract.md
+  lines: 103 (new file)
+  content: Traceability Contract v0.1 — minimum schema (conclusion_id, claim_level,
+           evidence_anchors, scope_note, negative_space, prohibited_claims);
+           TRC-001~005 failure modes; anchor_type vocabulary
+
+new file: docs/traceability-examples.md
+  +++ b/docs/traceability-examples.md
+  lines: 91 (new file, later modified in run-008)
+  content: TC-001 PASS example + TC-BAD-001 FAIL example with TRC/NC failure table
+
+summary:
+  files_created: 2
+  added_lines: 194
+  removed_lines: 0
