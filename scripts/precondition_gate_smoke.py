@@ -34,6 +34,23 @@ CASES = [
         ),
         "expected_mode": "allow_draft_with_assumptions",
     },
+    {
+        "id": "PG-004",
+        "task": (
+            "Implement synthesizable Verilog module using flip-flop registers and sequential logic. "
+            "Assignment semantics and comb/seq partitioning details have not been provided."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
+    {
+        "id": "PG-005",
+        "task": (
+            "Implement synthesizable Verilog module with flip-flop registers. "
+            "State update model: non-blocking for sequential registers. "
+            "Process partition: always_ff for sequential state, always_comb for combinational logic paths."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
 ]
 
 

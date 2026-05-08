@@ -77,6 +77,8 @@ precondition_effects:
   - backpressure_behavior_defined|required|draft_with_explicit_assumptions
   - latency_expectation_defined|required|draft_with_explicit_assumptions
   - assignment_intent_partition_defined|required|draft_only_and_escalate
+  - state_update_intent_defined|required_for_implementation_claim|draft_only_and_escalate
+  - comb_or_seq_partition_defined|required_for_implementation_claim|draft_only_and_escalate
   - fsm_state_model_defined|required|draft_only_and_escalate
   - fsm_decomposition_style_declared|required_for_implementation_claim|draft_with_explicit_assumptions
   - fsm_illegal_state_handling_defined|required_for_implementation_claim|draft_with_explicit_assumptions

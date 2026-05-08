@@ -1,0 +1,70 @@
+run_id: "run-019"
+session_context: "session-current-20260508-round6"
+task_id: "assignment-semantics-validator-sync"
+task_description: >
+  ASSIGNMENT_SEMANTICS_REQUIRED full sync: add missing precondition_effects to contract.yaml,
+  add Rule 4 gate logic + 3 regex patterns to precondition_gate_validator.py,
+  add PG-004/PG-005 smoke cases. Mirrors Run 010 (FSM_CONTRACT_REQUIRED).
+
+primary_targets:
+  - contract.yaml
+  - validators/precondition_gate_validator.py
+  - scripts/precondition_gate_smoke.py
+  - docs/contract-sync-check.md
+
+declared_at: "2026-05-08T10:00:00Z"
+closed_at: "2026-05-08T11:00:00Z"
+
+change_scope_metadata:
+  added_line_count: 48
+  removed_line_count: 0
+  accepted_change_count: 4
+  files_modified: 4
+  files_created: 0
+  evidence_traceability: 1.0
+
+gaps_fixed:
+  - id: "G-019-01"
+    description: "contract.yaml precondition_effects missing state_update_intent_defined and comb_or_seq_partition_defined"
+    run_detected: "Run 019 (Explore agent)"
+    fixed: true
+  - id: "G-019-02"
+    description: "validator coverage absent for ASSIGNMENT_SEMANTICS_REQUIRED"
+    run_detected: "Run 019 (Explore agent)"
+    fixed: true
+
+smoke_results:
+  - id: "PG-001"
+    result: "PASS (restrict_codegen)"
+    regression: true
+  - id: "PG-002"
+    result: "PASS (allow_analysis_only)"
+    regression: true
+  - id: "PG-003"
+    result: "PASS (allow_draft_with_assumptions)"
+    regression: true
+  - id: "PG-004"
+    description: "ASSIGNMENT_SEMANTICS missing — assignment intent + no state_update/partition defined"
+    result: "PASS (allow_draft_with_assumptions, missing: state_update_intent_defined, comb_or_seq_partition_defined)"
+    new: true
+  - id: "PG-005"
+    description: "ASSIGNMENT_SEMANTICS defined — non-blocking for seq + always_comb for comb"
+    result: "PASS (allow_draft_with_assumptions, no missing preconditions)"
+    new: true
+
+known_limitations:
+  - id: "LIM-019-01"
+    description: >
+      RE_ASSIGNMENT_INTENT is narrower than RE_FSM_INTENT — only fires on explicit keywords
+      (always_ff/comb, sequential logic, flip-flop, assignment semantics). Tasks that describe
+      sequential behavior without these keywords (e.g. 'write a counter') do not trigger Rule 4.
+      Same class as LIM-010-01 (FSM semantic negation).
+    severity: "advisory"
+
+observability_only:
+  runtime_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

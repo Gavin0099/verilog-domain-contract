@@ -57,6 +57,28 @@ RE_TYPE_UNSPEC = re.compile(r"\b(reset\s+)?type\b.{0,40}\b(not specified|unspeci
 RE_PROTOCOL = re.compile(r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics)\b", re.IGNORECASE)
 RE_BACKPRESSURE = re.compile(r"\b(backpressure|stall|downstream not ready|ready deassert)\b", re.IGNORECASE)
 RE_LATENCY = re.compile(r"\b(latency|cycle|one-cycle|two-cycle|throughput)\b", re.IGNORECASE)
+RE_ASSIGNMENT_INTENT = re.compile(
+    r"\b(always_ff|always_comb|always_latch|"
+    r"blocking\s+assignment|non-?blocking\s+assignment|"
+    r"sequential\s+logic|combinational\s+logic|"
+    r"flip[- ]flop|latch[- ]prone|assignment\s+semantics)\b",
+    re.IGNORECASE,
+)
+RE_STATE_UPDATE_INTENT = re.compile(
+    r"\b(non[- ]blocking\s+for\s+(?:state|seq|sequential|register)|"
+    r"state\s+update\s+(?:model|rule|semantics)|"
+    r"sequential\s+update\s+(?:model|semantics|rule)|"
+    r"register\s+update\s+(?:model|rule)|"
+    r"always_ff\s+for|clocked\s+(?:update|assignment)\s+(?:model|rule))\b",
+    re.IGNORECASE,
+)
+RE_COMB_SEQ_PARTITION = re.compile(
+    r"\b(always_comb\s+for|blocking\s+for\s+comb(?:inational)?|"
+    r"comb(?:inational)?\s+vs\.?\s+seq(?:uential)?|"
+    r"process\s+partition|logic\s+partition|assignment\s+partition|"
+    r"partition\s+(?:style|model|scheme))\b",
+    re.IGNORECASE,
+)
 RE_FSM_INTENT = re.compile(
     r"\b(fsm|state machine|state diagram|state transition|next state|state register|state logic)\b",
     re.IGNORECASE,
@@ -161,6 +183,19 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
             missing_preconditions.append("fsm_illegal_state_handling_defined")
             rule_refs.append("FSM_CONTRACT_REQUIRED")
 
+    # Rule 4: assignment semantics gate (pre-task).
+    if implementation_intent and _has(RE_ASSIGNMENT_INTENT, text):
+        state_update_intent_defined = _has(RE_STATE_UPDATE_INTENT, text)
+        comb_seq_partition_defined = _has(RE_COMB_SEQ_PARTITION, text)
+        if not state_update_intent_defined:
+            missing_preconditions.append("state_update_intent_defined")
+            rule_refs.append("ASSIGNMENT_SEMANTICS_REQUIRED")
+            if recommended_mode not in {"restrict_codegen", "allow_analysis_only"}:
+                recommended_mode = "allow_draft_with_assumptions"
+        if not comb_seq_partition_defined:
+            missing_preconditions.append("comb_or_seq_partition_defined")
+            rule_refs.append("ASSIGNMENT_SEMANTICS_REQUIRED")
+
     ok = len(missing_preconditions) == 0
     if ok:
         forbidden_claims = []
@@ -177,7 +212,7 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
 class PreconditionGateValidator(DomainValidator):
     @property
     def rule_ids(self) -> list[str]:
-        return ["RESET_DEFINITION_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED"]
+        return ["RESET_DEFINITION_REQUIRED", "ASSIGNMENT_SEMANTICS_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED"]
 
     def validate(self, payload: dict) -> ValidatorResult:
         checks = payload.get("checks") or {}

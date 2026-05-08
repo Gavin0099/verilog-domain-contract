@@ -24,7 +24,8 @@
       "Bash([ ! -f \"$dir/diff.patch\" ])",
       "Bash(dp=\"N\")",
       "Bash(echo \"$d | rr:$rr sc:$sc diff:$dp\")",
-      "Bash(\"e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-016/run-record.yaml\":*)"
+      "Bash(\"e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-016/run-record.yaml\":*)",
+      "Bash(git checkout scripts/precondition_gate_smoke.py)"
     ]
   },
   "hooks": {

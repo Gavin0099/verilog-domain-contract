@@ -51,6 +51,8 @@ When a leaf doc gains a new enforcement section (or has one modified):
 | V-009-01 | Run 009 | FSM_CONTRACT_REQUIRED | validator coverage | Fixed Run 010 |
 | G-011-01 | Run 011 | FSM_CONTRACT_REQUIRED | `rule_sources` | Fixed Run 011 |
 | G-014-01 | Run 014 | CLAIM_BOUNDARY vocabulary | `claim_level` token vocabulary ambiguity between CLAIM_BOUNDARY.md and contract.yaml | Documented Run 014 (no code change needed) |
+| G-019-01 | Run 019 | ASSIGNMENT_SEMANTICS_REQUIRED | `precondition_effects` missing `state_update_intent_defined`, `comb_or_seq_partition_defined` | Fixed Run 019 |
+| G-019-02 | Run 019 | ASSIGNMENT_SEMANTICS_REQUIRED | validator coverage absent (rule_ids missing, no gate logic) | Fixed Run 019 |
 
 ---
 
