@@ -1,0 +1,25 @@
+# diff.patch — run-023
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: round-005-summary.md new; round-006-summary.md new
+
+--- /dev/null
++++ b/artifacts/governance-test/round-005-summary.md
+@@ new file @@
++# Governance Test Round 5 Summary
++Runs covered: Run 017 – Run 021
++...
++(full summary — see round-005-summary.md)
+
+--- /dev/null
++++ b/artifacts/governance-test/round-006-summary.md
+@@ new file @@
++# Governance Test Round 6 Summary
++Runs covered: Run 022 – Run 025 (in progress)
++...
++(full summary — see round-006-summary.md)
+
+summary:
+  files_modified: 0
+  files_created: 2
+  added_lines: 110
+  removed_lines: 0
