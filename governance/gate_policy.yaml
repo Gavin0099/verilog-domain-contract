@@ -39,6 +39,8 @@ canonical_audit_trend:
 # from canonical_path_audit signals.
 skip_test_result_check: true
 
-# Tier C: manual only — no IDE stop-hook triggers in this repo.
-# Sessions are human-reviewed via governance-test run artifacts.
-hook_coverage_tier: C
+# Tier B: advisory signals automated at session end via Stop hook.
+# scripts/check_advisory.py runs check_documents() and writes to
+# artifacts/runtime/advisory/ — non-blocking, always exits 0.
+# Hard gates and session closeout remain manual (human-reviewed).
+hook_coverage_tier: B

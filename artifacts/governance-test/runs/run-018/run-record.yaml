@@ -1,0 +1,40 @@
+run_id: "run-018"
+session_context: "session-current-20260508-round5"
+task_id: "check-advisory-hook-integration"
+task_description: >
+  Integrate check_documents.py into session_end_hook advisory signals.
+  Create scripts/check_advisory.py (non-blocking advisory wrapper).
+  Register as Stop hook in .claude/settings.json.
+  Upgrade gate_policy.yaml hook_coverage_tier C → B.
+
+primary_targets:
+  - scripts/check_advisory.py
+  - .claude/settings.json
+  - governance/gate_policy.yaml
+
+declared_at: "2026-05-08T09:30:00Z"
+closed_at: "2026-05-08T10:00:00Z"
+
+change_scope_metadata:
+  added_line_count: 68
+  removed_line_count: 3
+  accepted_change_count: 3
+  files_modified: 2
+  files_created: 1
+  evidence_traceability: 1.0
+
+gaps_found: []
+
+smoke_results:
+  - id: "S-018-A"
+    description: "check_advisory.py standalone run against current repo"
+    result: "PASS — docs:51 broken:0 missing:0"
+    artifact: "artifacts/runtime/advisory/check_documents_20260508T070637Z.json"
+
+observability_only:
+  runtime_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

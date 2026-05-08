@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//e/BackUp/Git_EE/verilog-domain-contract/**)",
+      "Bash(grep -l \"Constraint on AI Behavior\\\\|enforcement\\\\|forbidden_claim\\\\|forbidden:\" \"e:/BackUp/Git_EE/verilog-domain-contract/docs/\"*.md)",
+      "Bash(for d in run-001 run-002 run-003 run-004 run-005 run-006 run-007 run-008 run-009 run-010 run-011 run-012)",
+      "Bash(dir=\"e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/$d\")",
+      "Bash(rr=\"$dir/run-record.yaml\")",
+      "Bash(sc=\"$dir/scorecard.yaml\")",
+      "Bash(dp=\"$dir/diff.patch\")",
+      "Bash(echo -n \"$d | run-record:\")",
+      "Bash([ -f \"$rr\" ])",
+      "Bash([ -f \"$sc\" ])",
+      "Bash([ -f \"$dp\" ])",
+      "Bash(echo -n \"$d | rr:\")",
+      "Bash(for d in run-001 run-002 run-003 run-004 run-005 run-006 run-007 run-008 run-009 run-010 run-011 run-012 run-013 run-014 run-015)",
+      "Bash(rr=\"Y\")",
+      "Bash(sc=\"Y\")",
+      "Bash(dp=\"Y\")",
+      "Bash([ ! -f \"$dir/run-record.yaml\" ])",
+      "Bash(rr=\"N\")",
+      "Bash([ ! -f \"$dir/scorecard.yaml\" ])",
+      "Bash(sc=\"N\")",
+      "Bash([ ! -f \"$dir/diff.patch\" ])",
+      "Bash(dp=\"N\")",
+      "Bash(echo \"$d | rr:$rr sc:$sc diff:$dp\")",
+      "Bash(\"e:/BackUp/Git_EE/verilog-domain-contract/artifacts/governance-test/runs/run-016/run-record.yaml\":*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python scripts/check_advisory.py"
+          }
+        ]
+      }
+    ]
+  }
+}

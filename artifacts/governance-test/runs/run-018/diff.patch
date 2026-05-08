@@ -1,0 +1,42 @@
+# diff.patch — run-018
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: new scripts/check_advisory.py; .claude/settings.json +hooks; gate_policy.yaml tier update
+
+new file: scripts/check_advisory.py
+  lines: 58
+  content: advisory wrapper — calls check_documents(), writes artifacts/runtime/advisory/<timestamp>.json, always exits 0
+
+--- a/.claude/settings.json
++++ b/.claude/settings.json
+@@ append after "permissions" block @@
++  "hooks": {
++    "Stop": [
++      {
++        "matcher": "",
++        "hooks": [
++          {
++            "type": "command",
++            "command": "python scripts/check_advisory.py"
++          }
++        ]
++      }
++    ]
++  }
+
+--- a/governance/gate_policy.yaml
++++ b/governance/gate_policy.yaml
+@@ hook_coverage_tier @@
+-# Tier C: manual only — no IDE stop-hook triggers in this repo.
+-# Sessions are human-reviewed via governance-test run artifacts.
+-hook_coverage_tier: C
++# Tier B: advisory signals automated at session end via Stop hook.
++# scripts/check_advisory.py runs check_documents() and writes to
++# artifacts/runtime/advisory/ — non-blocking, always exits 0.
++# Hard gates and session closeout remain manual (human-reviewed).
++hook_coverage_tier: B
+
+summary:
+  files_modified: 2
+  files_created: 1
+  added_lines: 68
+  removed_lines: 3
