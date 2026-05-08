@@ -1,0 +1,39 @@
+run_id: "run-022"
+task_id: "cdc-governance-rule-full-sync"
+status: "awaiting_reviewer"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: null
+  artifact_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+disposition:
+  reviewer_decision: accept
+  round_note: >
+    CDC_STRATEGY_REQUIRED fully synced: leaf doc created, governance_rules + must_not_assume +
+    completion_claim_disallow + precondition_effects + rule_sources all updated, validator Rule 5
+    + 2 regex patterns added, smoke 7/7 PASS (PG-006/007 new). Closes 5 gaps G-022-01 through
+    G-022-05. Mirrors Run 019 (ASSIGNMENT_SEMANTICS) and Run 010 (FSM).
+    Known limitation LIM-022-01: keyword-only CDC intent detection.

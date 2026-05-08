@@ -1,7 +1,7 @@
 # Rule Pack Index
 
 Normalized rule table. Each entry maps to a rule file under `governance/rules/`.
-Format version: v1.0 (normalized 2026-05-08, classified 2026-05-08 Run 020)
+Format version: v1.1 (normalized 2026-05-08, classified 2026-05-08 Run 020, CDC added Run 022)
 
 ---
 
@@ -20,6 +20,7 @@ Defined in `contract.yaml` → `governance_rules`. Enforced by
 | `ASSIGNMENT_SEMANTICS_REQUIRED` | `docs/assignment-semantics.md` | Rule 4 |
 | `HANDSHAKE_TIMING_DEFINITION_REQUIRED` | `docs/handshake-contract.md` | Rule 2 |
 | `FSM_CONTRACT_REQUIRED` | `docs/fsm-contract.md` | Rule 3 |
+| `CDC_STRATEGY_REQUIRED` | `docs/cdc-contract.md` | Rule 5 |
 
 These rules are **RTL/Verilog-specific semantic constraints**. They govern what
 preconditions an AI must have before attempting implementation claims.

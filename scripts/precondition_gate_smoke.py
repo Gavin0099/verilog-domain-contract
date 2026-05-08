@@ -51,6 +51,25 @@ CASES = [
         ),
         "expected_mode": "allow_draft_with_assumptions",
     },
+    {
+        "id": "PG-006",
+        "task": (
+            "Implement synthesizable Verilog module with multi-clock design "
+            "where signals cross between clock domains. "
+            "No handoff approach or crossing boundary plan has been specified."
+        ),
+        "expected_mode": "restrict_codegen",
+    },
+    {
+        "id": "PG-007",
+        "task": (
+            "Implement synthesizable Verilog module with clock domain crossing. "
+            "CDC strategy: two-flop synchronizer for all crossing signals. "
+            "Clock domain boundary map: clk_a domain drives data_out, clk_b domain samples data_in. "
+            "Metastability mitigation: synchronizer chain on all crossing signals."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
 ]
 
 

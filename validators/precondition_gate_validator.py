@@ -79,6 +79,19 @@ RE_COMB_SEQ_PARTITION = re.compile(
     r"partition\s+(?:style|model|scheme))\b",
     re.IGNORECASE,
 )
+RE_CDC_INTENT = re.compile(
+    r"\b(cdc|clock\s+domain\s+cross(?:ing)?|multi[- ]clock|multiple\s+clock\s+domains?|"
+    r"two\s+clock\s+domains?|clock\s+boundary|cross[- ]domain|metastabilit(?:y|ies)|"
+    r"asynchronous\s+clock|different\s+clock\s+(?:domain|source))\b",
+    re.IGNORECASE,
+)
+RE_CDC_STRATEGY = re.compile(
+    r"\b(two[- ]flop\s+synchronizer|synchronizer\s+chain|fifo[- ](?:based\s+)?crossing|"
+    r"cdc\s+strategy|clock\s+domain\s+boundary\s+(?:map|plan|strategy)|"
+    r"gray[- ]code\s+(?:fifo|crossing)|synchronization\s+(?:scheme|strategy|method)|"
+    r"metastability\s+(?:mitigation|protection|handling)|synchronizer\s+(?:flop|stage|cell))\b",
+    re.IGNORECASE,
+)
 RE_FSM_INTENT = re.compile(
     r"\b(fsm|state machine|state diagram|state transition|next state|state register|state logic)\b",
     re.IGNORECASE,
@@ -183,6 +196,16 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
             missing_preconditions.append("fsm_illegal_state_handling_defined")
             rule_refs.append("FSM_CONTRACT_REQUIRED")
 
+    # Rule 5: CDC strategy gate (pre-task, conditional on multi-clock intent).
+    if implementation_intent and _has(RE_CDC_INTENT, text):
+        cdc_strategy_defined = _has(RE_CDC_STRATEGY, text)
+        if not cdc_strategy_defined:
+            missing_preconditions.append("cdc_strategy_present_when_multi_clock_implied")
+            missing_preconditions.append("cdc_synchronizer_scheme_defined")
+            rule_refs.append("CDC_STRATEGY_REQUIRED")
+            # CDC missing is severe: stop_insufficient_preconditions -> restrict_codegen.
+            recommended_mode = "restrict_codegen"
+
     # Rule 4: assignment semantics gate (pre-task).
     if implementation_intent and _has(RE_ASSIGNMENT_INTENT, text):
         state_update_intent_defined = _has(RE_STATE_UPDATE_INTENT, text)
@@ -212,7 +235,7 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
 class PreconditionGateValidator(DomainValidator):
     @property
     def rule_ids(self) -> list[str]:
-        return ["RESET_DEFINITION_REQUIRED", "ASSIGNMENT_SEMANTICS_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED"]
+        return ["RESET_DEFINITION_REQUIRED", "ASSIGNMENT_SEMANTICS_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED", "CDC_STRATEGY_REQUIRED"]
 
     def validate(self, payload: dict) -> ValidatorResult:
         checks = payload.get("checks") or {}

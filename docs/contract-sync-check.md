@@ -15,6 +15,7 @@ but contract.yaml is not updated, or vice versa).
 | ASSIGNMENT_SEMANTICS_REQUIRED | docs/assignment-semantics.md | `## Constraint on AI Behavior`, `## Forbidden Behavior` | `governance_rules` ✓ | 2 sources ✓ |
 | HANDSHAKE_TIMING_DEFINITION_REQUIRED | docs/handshake-contract.md | `## Constraint on AI Behavior`, `## Forbidden Behavior` | `governance_rules` ✓ | 2 sources ✓ |
 | FSM_CONTRACT_REQUIRED | docs/fsm-contract.md | `## Constraint on AI Behavior`, `## Forbidden Behavior`, `## Forbidden Claim` | `governance_rules` ✓ | 2 sources ✓ (added Run 011) |
+| CDC_STRATEGY_REQUIRED | docs/cdc-contract.md | `## Constraint on AI Behavior`, `## Forbidden Behavior`, `## Completion Policy` | `governance_rules` ✓ | 2 sources ✓ (added Run 022) |
 
 ---
 
@@ -54,6 +55,11 @@ When a leaf doc gains a new enforcement section (or has one modified):
 | G-019-01 | Run 019 | ASSIGNMENT_SEMANTICS_REQUIRED | `precondition_effects` missing `state_update_intent_defined`, `comb_or_seq_partition_defined` | Fixed Run 019 |
 | G-019-02 | Run 019 | ASSIGNMENT_SEMANTICS_REQUIRED | validator coverage absent (rule_ids missing, no gate logic) | Fixed Run 019 |
 | D-020-01 | Run 020 | governance/rules/ structure | 19 general behavioral rules in governance/rules/ are NOT Verilog domain rules — no contract.yaml entry required; classified as cross-domain general rule pack | Documented Run 020 (architectural decision; no code change) |
+| G-022-01 | Run 022 | CDC_STRATEGY_REQUIRED | leaf doc `docs/cdc-contract.md` absent | Fixed Run 022 |
+| G-022-02 | Run 022 | CDC_STRATEGY_REQUIRED | `governance_rules` entry absent | Fixed Run 022 |
+| G-022-03 | Run 022 | CDC_STRATEGY_REQUIRED | `must_not_assume` missing CDC entries | Fixed Run 022 |
+| G-022-04 | Run 022 | CDC_STRATEGY_REQUIRED | `completion_claim_disallow_without_evidence` missing CDC entry | Fixed Run 022 |
+| G-022-05 | Run 022 | CDC_STRATEGY_REQUIRED | validator Rule 5 + regex absent (PG-006/007 added) | Fixed Run 022 |
 
 ---
 
@@ -96,6 +102,6 @@ This document should be updated whenever a new governance_rule is added or a lea
 enforcement section is created.
 
 **Note on governance/rules/ scope**: The 7-item sync-check process above applies only to
-`contract.yaml` `governance_rules` (the 4 Verilog domain rules). The 19 general behavioral
+`contract.yaml` `governance_rules` (the 5 Verilog domain rules: RESET, ASSIGNMENT, HANDSHAKE, FSM, CDC). The 19 general behavioral
 rules in `governance/rules/` are a cross-domain rule pack and are **out of scope** for this
 sync-check. See `governance/rules/RULE_INDEX.md` § "Two Distinct Rule Systems" for details.

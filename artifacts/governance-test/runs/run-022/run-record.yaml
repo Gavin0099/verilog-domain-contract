@@ -1,0 +1,95 @@
+run_id: "run-022"
+session_context: "session-current-20260508-round7"
+task_id: "cdc-governance-rule-full-sync"
+task_description: >
+  CDC_STRATEGY_REQUIRED full sync: create docs/cdc-contract.md leaf doc, add governance_rules
+  entry + must_not_assume + completion_claim_disallow + precondition_effects + rule_sources to
+  contract.yaml, add Rule 5 + RE_CDC_INTENT + RE_CDC_STRATEGY to validator, add PG-006/PG-007
+  smoke cases. Mirrors Run 019 (ASSIGNMENT_SEMANTICS) and Run 010 (FSM). Closes all 5 gaps
+  G-022-01 through G-022-05. Smoke 7/7 PASS.
+
+primary_targets:
+  - docs/cdc-contract.md
+  - contract.yaml
+  - validators/precondition_gate_validator.py
+  - scripts/precondition_gate_smoke.py
+  - docs/contract-sync-check.md
+  - governance/rules/RULE_INDEX.md
+
+declared_at: "2026-05-08T12:00:00Z"
+closed_at: "2026-05-08T13:00:00Z"
+
+change_scope_metadata:
+  added_line_count: 72
+  removed_line_count: 2
+  accepted_change_count: 6
+  files_modified: 5
+  files_created: 1
+  evidence_traceability: 1.0
+
+gaps_fixed:
+  - id: "G-022-01"
+    description: "docs/cdc-contract.md leaf doc absent"
+    run_detected: "Run 022"
+    fixed: true
+  - id: "G-022-02"
+    description: "contract.yaml governance_rules missing CDC_STRATEGY_REQUIRED entry"
+    run_detected: "Run 022"
+    fixed: true
+  - id: "G-022-03"
+    description: "contract.yaml must_not_assume missing cdc_synchronizer_strategy_not_required and metastability_free_crossing_without_synchronizer"
+    run_detected: "Run 022"
+    fixed: true
+  - id: "G-022-04"
+    description: "contract.yaml completion_claim_disallow_without_evidence missing implementation_complete_without_cdc_strategy_definition"
+    run_detected: "Run 022"
+    fixed: true
+  - id: "G-022-05"
+    description: "validator Rule 5 + RE_CDC_INTENT + RE_CDC_STRATEGY absent; rule_ids missing CDC_STRATEGY_REQUIRED; no smoke cases"
+    run_detected: "Run 022"
+    fixed: true
+
+smoke_results:
+  - id: "PG-001"
+    result: "PASS (restrict_codegen)"
+    regression: true
+  - id: "PG-002"
+    result: "PASS (allow_analysis_only)"
+    regression: true
+  - id: "PG-003"
+    result: "PASS (allow_draft_with_assumptions)"
+    regression: true
+  - id: "PG-004"
+    result: "PASS (allow_draft_with_assumptions, missing: state_update_intent_defined, comb_or_seq_partition_defined)"
+    regression: true
+  - id: "PG-005"
+    result: "PASS (allow_draft_with_assumptions, no missing preconditions)"
+    regression: true
+  - id: "PG-006"
+    description: "CDC missing — multi-clock intent + no synchronizer scheme defined"
+    result: "PASS (restrict_codegen, missing: cdc_strategy_present_when_multi_clock_implied, cdc_synchronizer_scheme_defined)"
+    new: true
+  - id: "PG-007"
+    description: "CDC defined — two-flop synchronizer + synchronizer chain + boundary map"
+    result: "PASS (allow_draft_with_assumptions, no missing preconditions)"
+    new: true
+
+known_limitations:
+  - id: "LIM-022-01"
+    description: >
+      RE_CDC_INTENT fires on explicit CDC/multi-clock keywords only. Tasks that imply
+      multi-clock behavior without these keywords (e.g. 'interface between a 100MHz module
+      and a 200MHz module') do not trigger Rule 5. Same class as LIM-010-01 (FSM) and LIM-019-01
+      (ASSIGNMENT_SEMANTICS).
+    severity: "advisory"
+  - id: "LIM-022-02"
+    description: >
+      Semantic negation not handled: task text containing CDC strategy keywords in a negated
+      context (e.g. 'CDC strategy has not been provided') can cause false-negative triggering
+      of RE_CDC_STRATEGY. Smoke case texts are written to avoid this class of input.
+      Same class as general validator semantic-negation limitation.
+    severity: "advisory"
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

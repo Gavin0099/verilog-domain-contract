@@ -1,0 +1,92 @@
+# diff.patch — run-022
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: docs/cdc-contract.md new; contract.yaml +CDC entries; validator +Rule5+2regex+rule_ids;
+#          precondition_gate_smoke.py +PG-006+PG-007; contract-sync-check.md +mapping+gaps;
+#          governance/rules/RULE_INDEX.md +CDC row
+
+--- /dev/null
++++ b/docs/cdc-contract.md
+@@ new file @@
++# CDC Strategy Contract
++## CDC Strategy Requirement
++...
++(full leaf doc — see docs/cdc-contract.md)
+
+--- a/contract.yaml
++++ b/contract.yaml
+@@ documents @@
++  - docs/cdc-contract.md
+
+@@ precondition_effects @@
++  - cdc_synchronizer_scheme_defined|conditional_for_implementation_claim|stop_insufficient_preconditions
+
+@@ must_not_assume @@
++  - cdc_synchronizer_strategy_not_required
++  - metastability_free_crossing_without_synchronizer
+
+@@ governance_rules @@
++  - CDC_STRATEGY_REQUIRED|PRECONDITION+ASSUMPTION_RISK|required:cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined|...
+
+@@ rule_sources @@
++  - CDC_STRATEGY_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:27|anchor:MULTI_CLOCK_DOMAIN_INTERFACE_DEPENDENCY
++  - CDC_STRATEGY_REQUIRED|docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md|page:32|anchor:CLOCK_DOMAIN_SYNCHRONIZATION_REQUIREMENT
+
+@@ completion_claim_disallow_without_evidence @@
++  - implementation_complete_without_cdc_strategy_definition
+
+--- a/validators/precondition_gate_validator.py
++++ b/validators/precondition_gate_validator.py
+@@ regex patterns (before RE_FSM_INTENT) @@
++RE_CDC_INTENT = re.compile(
++    r"\b(cdc|clock\s+domain\s+cross(?:ing)?|multi[- ]clock|multiple\s+clock\s+domains?|"
++    r"two\s+clock\s+domains?|clock\s+boundary|cross[- ]domain|metastabilit(?:y|ies)|"
++    r"asynchronous\s+clock|different\s+clock\s+(?:domain|source))\b",
++    re.IGNORECASE,
++)
++RE_CDC_STRATEGY = re.compile(
++    r"\b(two[- ]flop\s+synchronizer|synchronizer\s+chain|fifo[- ](?:based\s+)?crossing|"
++    r"cdc\s+strategy|clock\s+domain\s+boundary\s+(?:map|plan|strategy)|"
++    r"gray[- ]code\s+(?:fifo|crossing)|synchronization\s+(?:scheme|strategy|method)|"
++    r"metastability\s+(?:mitigation|protection|handling)|synchronizer\s+(?:flop|stage|cell))\b",
++    re.IGNORECASE,
++)
+
+@@ Rule 5 gate logic (before Rule 4) @@
++    # Rule 5: CDC strategy gate (pre-task, conditional on multi-clock intent).
++    if implementation_intent and _has(RE_CDC_INTENT, text):
++        cdc_strategy_defined = _has(RE_CDC_STRATEGY, text)
++        if not cdc_strategy_defined:
++            missing_preconditions.append("cdc_strategy_present_when_multi_clock_implied")
++            missing_preconditions.append("cdc_synchronizer_scheme_defined")
++            rule_refs.append("CDC_STRATEGY_REQUIRED")
++            recommended_mode = "restrict_codegen"
+
+@@ rule_ids @@
+-    return ["RESET_DEFINITION_REQUIRED", "ASSIGNMENT_SEMANTICS_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED"]
++    return ["RESET_DEFINITION_REQUIRED", "ASSIGNMENT_SEMANTICS_REQUIRED", "HANDSHAKE_TIMING_DEFINITION_REQUIRED", "FSM_CONTRACT_REQUIRED", "CDC_STRATEGY_REQUIRED"]
+
+--- a/scripts/precondition_gate_smoke.py
++++ b/scripts/precondition_gate_smoke.py
+@@ CASES list @@
++    {"id": "PG-006", "task": "...multi-clock design where signals cross between clock domains. No handoff approach...", "expected_mode": "restrict_codegen"},
++    {"id": "PG-007", "task": "...clock domain crossing. CDC strategy: two-flop synchronizer...synchronizer chain...", "expected_mode": "allow_draft_with_assumptions"},
+
+--- a/docs/contract-sync-check.md
++++ b/docs/contract-sync-check.md
+@@ Mapping Table @@
++| CDC_STRATEGY_REQUIRED | docs/cdc-contract.md | ... | governance_rules ✓ | 2 sources ✓ (added Run 022) |
+
+@@ Known Gaps History @@
++| G-022-01..05 | Run 022 | CDC_STRATEGY_REQUIRED | all 5 sync-check items | Fixed Run 022 |
+
+--- a/governance/rules/RULE_INDEX.md
++++ b/governance/rules/RULE_INDEX.md
+@@ Verilog Domain Contract Rules table @@
++| `CDC_STRATEGY_REQUIRED` | `docs/cdc-contract.md` | Rule 5 |
+
+summary:
+  files_modified: 5
+  files_created: 1
+  added_lines: 72
+  removed_lines: 2
+  smoke_result: "7/7 PASS (PG-001~007, PG-006+007 new)"

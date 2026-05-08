@@ -14,6 +14,7 @@ documents:
   - docs/clock-reset-contract.md
   - docs/assignment-semantics.md
   - docs/fsm-contract.md
+  - docs/cdc-contract.md
   - docs/handshake-contract.md
   - docs/rule-extraction-table.md
   - docs/behavior-validation.md
@@ -85,6 +86,7 @@ precondition_effects:
   - scope_is_synthesizable_or_tb_defined|required|analysis_only
   - verification_expectation_present|required|draft_only_no_completion_claim
   - cdc_strategy_present_when_multi_clock_implied|conditional|stop_insufficient_preconditions
+  - cdc_synchronizer_scheme_defined|conditional_for_implementation_claim|stop_insufficient_preconditions
 
 precondition_completeness_model:
   - clock_definition|required|missing:restrict_codegen_and_escalate
@@ -107,12 +109,15 @@ must_not_assume:
   - fsm_state_encoding
   - fsm_illegal_state_auto_recovery
   - compile_or_lint_success_equals_completion
+  - cdc_synchronizer_strategy_not_required
+  - metastability_free_crossing_without_synchronizer
 
 governance_rules:
   - RESET_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK|required:reset_polarity_defined,reset_type_defined|missing_effect:restrict_codegen,escalate|allowed_if_missing:analysis_only,draft_with_explicit_assumptions|forbidden:implicit_reset_assumption,silent_default_reset|forbidden_claim:implementation_complete,synthesizable_ready|required_disclosure:assumed_reset_polarity,assumed_reset_type
   - ASSIGNMENT_SEMANTICS_REQUIRED|SEMANTIC_RULE+ASSUMPTION_RISK|required:state_update_intent_defined,comb_or_seq_partition_defined|missing_effect:draft_only,escalate|allowed_if_missing:analysis_only,draft_with_explicit_semantic_assumptions|forbidden:mixed_blocking_nonblocking_on_state,latch_prone_incomplete_comb_logic|forbidden_claim:implementation_complete,behaviorally_verified|required_disclosure:state_update_model,comb_logic_model
   - HANDSHAKE_TIMING_DEFINITION_REQUIRED|PRECONDITION+ASSUMPTION_RISK+VERIFICATION_REQUIREMENT|required:interface_protocol_semantics_defined,backpressure_behavior_defined,latency_expectation_defined|missing_effect:analysis_only_and_escalate(protocol_missing),draft_only_and_escalate(timing_missing)|allowed_if_missing:analysis_only(protocol_missing_only),analysis_only_or_draft_with_explicit_handshake_assumptions(timing_missing_only)|forbidden:implicit_always_ready_sink,implicit_one_cycle_acceptance,silent_fixed_latency_assumption|forbidden_claim:implementation_complete,interface_timing_verified|required_disclosure:assumed_protocol_semantics,assumed_backpressure_model,assumed_latency_model
   - FSM_CONTRACT_REQUIRED|SEMANTIC_RULE+ASSUMPTION_RISK|required:fsm_state_model_defined,fsm_decomposition_style_declared,fsm_illegal_state_handling_defined|missing_effect:draft_only,escalate|allowed_if_missing:analysis_only,draft_with_explicit_assumptions|forbidden:implicit_state_encoding,implicit_fsm_style,implicit_illegal_state_recovery|forbidden_claim:implementation_complete,behaviorally_verified|required_disclosure:assumed_state_model,assumed_decomposition_style,assumed_illegal_state_policy
+  - CDC_STRATEGY_REQUIRED|PRECONDITION+ASSUMPTION_RISK|required:cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined|missing_effect:stop_insufficient_preconditions,escalate|allowed_if_missing:analysis_only,draft_with_explicit_cdc_assumptions|forbidden:implicit_single_clock_domain_assumption,silent_cdc_boundary_crossing,derived_clock_treated_as_safe|forbidden_claim:implementation_complete,verified_implementation|required_disclosure:assumed_cdc_strategy,clock_domain_boundary_map,synchronizer_scheme
 
 rule_sources:
   - RESET_DEFINITION_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:101-102|anchor:RESET_ASYNC_SYNC_DIFF
@@ -123,6 +128,8 @@ rule_sources:
   - HANDSHAKE_TIMING_DEFINITION_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:27|anchor:SYSTEM_INTERFACE_TIMING_DEPENDENCY
   - FSM_CONTRACT_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:135|anchor:FSM_STATE_MODEL_AND_ENCODING
   - FSM_CONTRACT_REQUIRED|docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md|page:165-166|anchor:FSM_TRAFFIC_CONTROLLER_STATE_ENCODING
+  - CDC_STRATEGY_REQUIRED|docs/knowhow/digital_system_design_with_system_verilog.md|page:27|anchor:MULTI_CLOCK_DOMAIN_INTERFACE_DEPENDENCY
+  - CDC_STRATEGY_REQUIRED|docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md|page:32|anchor:CLOCK_DOMAIN_SYNCHRONIZATION_REQUIREMENT
 
 completion_claim_allow:
   - analysis_provided
@@ -135,6 +142,7 @@ completion_claim_disallow_without_evidence:
   - implementation_complete_without_assignment_semantic_clarity
   - implementation_complete_without_handshake_timing_definition
   - implementation_complete_without_fsm_state_model_disclosure
+  - implementation_complete_without_cdc_strategy_definition
 
 completion_evidence_levels:
   - L0|syntax_valid|compile_or_parse_only|not_equivalent:functional_correctness
