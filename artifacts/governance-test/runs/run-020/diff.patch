@@ -1,0 +1,46 @@
+# diff.patch — run-020
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: RULE_INDEX.md rewritten with two-system classification;
+#          contract-sync-check.md +D-020-01 + scope note
+
+--- a/governance/rules/RULE_INDEX.md
++++ b/governance/rules/RULE_INDEX.md
+@@ header @@
+-# Rule Pack Index
+-Normalized rule table. Each entry maps to a rule file under `governance/rules/`.
+-Format version: v1.0 (normalized 2026-05-08)
++# Rule Pack Index
++Format version: v1.0 (normalized 2026-05-08, classified 2026-05-08 Run 020)
+
+@@ new section added before Rule Table @@
++## Two Distinct Rule Systems in This Repo
++
++### 1. Verilog Domain Contract Rules (contract.yaml)
++   4 rules (RESET, ASSIGNMENT, HANDSHAKE, FSM) — enforced by precondition_gate_validator.py
++   sync-check process applies to this system only
++
++### 2. General AI Behavioral Rules (governance/rules/)
++   19 rules — cross-domain, inherited from ai-governance-framework general rule pack
++   NOT in contract.yaml governance_rules; NOT subject to contract sync-check
++   Enforcement: AGENTS.md / behavioral guidance level
+
+@@ section renamed @@
+-## Rule Table
++## General AI Behavioral Rules (Cross-Domain)
+ (table content unchanged — 19 rules)
+
+--- a/docs/contract-sync-check.md
++++ b/docs/contract-sync-check.md
+@@ Known Gaps History @@
++| D-020-01 | Run 020 | governance/rules/ structure | 19 general behavioral rules classified as cross-domain rule pack; no contract.yaml entry required | Documented Run 020 (architectural decision) |
+
+@@ Drift Prevention Policy — append @@
++**Note on governance/rules/ scope**: The 7-item sync-check process applies only to
++contract.yaml governance_rules (4 Verilog domain rules). The 19 general behavioral
++rules in governance/rules/ are a cross-domain rule pack and are out of scope for
++this sync-check. See governance/rules/RULE_INDEX.md § "Two Distinct Rule Systems".
+
+summary:
+  files_modified: 2
+  added_lines: 35
+  removed_lines: 8

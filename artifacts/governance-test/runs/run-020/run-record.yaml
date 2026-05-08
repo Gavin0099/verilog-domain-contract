@@ -1,0 +1,41 @@
+run_id: "run-020"
+session_context: "session-current-20260508-round6"
+task_id: "governance-rules-architecture-classification"
+task_description: >
+  Resolve structural ambiguity: governance/rules/ contains 19 general behavioral rules
+  (cross-domain) with no connection to contract.yaml governance_rules (4 Verilog rules).
+  Decision: classify both systems explicitly. Update RULE_INDEX.md with two-system
+  classification. Update contract-sync-check.md with architectural decision D-020-01
+  and scope note in Drift Prevention Policy.
+
+primary_targets:
+  - governance/rules/RULE_INDEX.md
+  - docs/contract-sync-check.md
+
+declared_at: "2026-05-08T11:00:00Z"
+closed_at: "2026-05-08T11:30:00Z"
+
+change_scope_metadata:
+  added_line_count: 35
+  removed_line_count: 8
+  accepted_change_count: 2
+  files_modified: 2
+  files_created: 0
+  evidence_traceability: 1.0
+
+architectural_decision:
+  id: "D-020-01"
+  decision: >
+    governance/rules/ (19 rules) = cross-domain general behavioral rule pack.
+    contract.yaml governance_rules (4 rules) = Verilog domain semantic constraints.
+    These are independent systems with different enforcement mechanisms.
+    No contract.yaml entries required for governance/rules/ files.
+    sync-check process scope limited to contract.yaml governance_rules only.
+
+observability_only:
+  runtime_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

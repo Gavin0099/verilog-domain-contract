@@ -1,9 +1,44 @@
 # Rule Pack Index
 
 Normalized rule table. Each entry maps to a rule file under `governance/rules/`.
-Format version: v1.0 (normalized 2026-05-08)
+Format version: v1.0 (normalized 2026-05-08, classified 2026-05-08 Run 020)
 
-## Severity vocabulary
+---
+
+## Two Distinct Rule Systems in This Repo
+
+This repo contains **two independent rule systems** with different scopes and enforcement mechanisms:
+
+### 1. Verilog Domain Contract Rules (contract.yaml)
+
+Defined in `contract.yaml` → `governance_rules`. Enforced by
+`validators/precondition_gate_validator.py`. Documented in `docs/` leaf docs.
+
+| Rule ID | Leaf Doc | Validator Rule |
+|---------|----------|---------------|
+| `RESET_DEFINITION_REQUIRED` | `docs/clock-reset-contract.md` | Rule 1 |
+| `ASSIGNMENT_SEMANTICS_REQUIRED` | `docs/assignment-semantics.md` | Rule 4 |
+| `HANDSHAKE_TIMING_DEFINITION_REQUIRED` | `docs/handshake-contract.md` | Rule 2 |
+| `FSM_CONTRACT_REQUIRED` | `docs/fsm-contract.md` | Rule 3 |
+
+These rules are **RTL/Verilog-specific semantic constraints**. They govern what
+preconditions an AI must have before attempting implementation claims.
+The sync-check process (`docs/contract-sync-check.md`) applies to this system only.
+
+### 2. General AI Behavioral Rules (governance/rules/)
+
+Defined in `governance/rules/` subdirectories. Listed in the table below.
+These are **cross-domain behavioral constraints** applicable to any AI task in this
+workspace — not Verilog-specific. They were inherited from the ai-governance-framework
+general rule pack and normalized in Run 002.
+
+These rules do **not** appear in `contract.yaml` `governance_rules` and are **not**
+subject to the contract sync-check process. They are enforced at the AGENTS.md /
+behavioral guidance level, not via the precondition_gate_validator.
+
+---
+
+## Severity Vocabulary
 
 | Severity | Meaning |
 |----------|---------|
@@ -11,7 +46,9 @@ Format version: v1.0 (normalized 2026-05-08)
 | `advisory` | Strong behavioral constraint; violation requires explicit rationale |
 | `informational` | Style / process guidance; no blocking effect |
 
-## Rule Table
+---
+
+## General AI Behavioral Rules (Cross-Domain)
 
 | rule_id | severity | pack | file | rationale |
 |---------|----------|------|------|-----------|
@@ -35,7 +72,7 @@ Format version: v1.0 (normalized 2026-05-08)
 | `SWT-001` | `advisory` | swift | `swift/concurrency.md` | Enforces actor/thread boundary for Swift UI state |
 | `SWT-002` | `advisory` | swift | `swift/native_interop.md` | Isolates native platform API behind explicit boundaries |
 
-## Coverage summary
+## Coverage Summary
 
 | severity | count |
 |----------|-------|

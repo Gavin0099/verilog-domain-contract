@@ -53,6 +53,7 @@ When a leaf doc gains a new enforcement section (or has one modified):
 | G-014-01 | Run 014 | CLAIM_BOUNDARY vocabulary | `claim_level` token vocabulary ambiguity between CLAIM_BOUNDARY.md and contract.yaml | Documented Run 014 (no code change needed) |
 | G-019-01 | Run 019 | ASSIGNMENT_SEMANTICS_REQUIRED | `precondition_effects` missing `state_update_intent_defined`, `comb_or_seq_partition_defined` | Fixed Run 019 |
 | G-019-02 | Run 019 | ASSIGNMENT_SEMANTICS_REQUIRED | validator coverage absent (rule_ids missing, no gate logic) | Fixed Run 019 |
+| D-020-01 | Run 020 | governance/rules/ structure | 19 general behavioral rules in governance/rules/ are NOT Verilog domain rules — no contract.yaml entry required; classified as cross-domain general rule pack | Documented Run 020 (architectural decision; no code change) |
 
 ---
 
@@ -93,3 +94,8 @@ can be filed as `governance_signal_without_material_improvement: false`.
 
 This document should be updated whenever a new governance_rule is added or a leaf doc
 enforcement section is created.
+
+**Note on governance/rules/ scope**: The 7-item sync-check process above applies only to
+`contract.yaml` `governance_rules` (the 4 Verilog domain rules). The 19 general behavioral
+rules in `governance/rules/` are a cross-domain rule pack and are **out of scope** for this
+sync-check. See `governance/rules/RULE_INDEX.md` § "Two Distinct Rule Systems" for details.
