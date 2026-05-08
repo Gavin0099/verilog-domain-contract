@@ -1,0 +1,28 @@
+run_id: "run-021"
+session_context: "session-current-20260508-round6"
+task_id: "dashboard-sync-run021"
+task_description: >
+  Update reviewer-dashboard.md to 20 runs (add run-017~020 rows + per-run review notes).
+  Update run-ledger and session-index for run-021.
+
+primary_targets:
+  - artifacts/governance-test/reviewer-dashboard.md
+
+declared_at: "2026-05-08T11:30:00Z"
+closed_at: "2026-05-08T12:00:00Z"
+
+change_scope_metadata:
+  added_line_count: 28
+  removed_line_count: 3
+  accepted_change_count: 1
+  files_modified: 1
+  files_created: 0
+  evidence_traceability: 1.0
+
+observability_only:
+  runtime_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

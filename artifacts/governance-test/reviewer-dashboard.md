@@ -1,8 +1,8 @@
 # Governance Test Reviewer Dashboard
 
-**Generated**: 2026-05-08 (updated Run 017)
-**Total runs**: 16 (run-001 ~ run-016)
-**Reviewer decisions**: 16 / 16 accepted
+**Generated**: 2026-05-08 (updated Run 021)
+**Total runs**: 20 (run-001 ~ run-020)
+**Reviewer decisions**: 20 / 20 accepted
 
 This document summarises every run for human review. For each run, the reviewer should:
 1. Read the `round_note` in the scorecard
@@ -32,6 +32,10 @@ This document summarises every run for human review. For each run, the reviewer 
 | run-014 | Sync-check CLAIM docs | 4 | false | 0 | 0 | high | accept |
 | run-015 | Reviewer dashboard (initial) | 4 | false | 0 | 0 | high | accept |
 | run-016 | Round 4 cross-verify (meta) | 4 | false | 0 | 0 | high | accept |
+| run-017 | Dashboard sync (meta) | 5 | false | 0 | 0 | high | accept |
+| run-018 | check_advisory hook integration | 5 | false | 0 | 0 | high | accept |
+| run-019 | ASSIGNMENT_SEMANTICS validator sync | 6 | false | 0 | 0 | high | accept |
+| run-020 | governance/rules architecture classification | 6 | false | 0 | 0 | high | accept |
 
 ---
 
@@ -117,6 +121,26 @@ This document summarises every run for human review. For each run, the reviewer 
 **Key change**: run-ledger.ndjson +4 entries (run-013~016); session-index.ndjson +1 entry (session-current-20260508-round4, reconstructed).
 **Reviewer check**: Are the 4 ledger entries consistent with the actual run artifacts? Is session-current-20260508-round4 correctly marked `reconstructed`?
 **Files**: [run-record](runs/run-016/run-record.yaml) | [scorecard](runs/run-016/scorecard.yaml) | [diff](runs/run-016/diff.patch)
+
+### run-017 — Dashboard Sync (meta run)
+**Key change**: reviewer-dashboard.md updated to 16 runs / all accept; round-004-summary.md cumulative state corrected.
+**Reviewer check**: Is the updated run count (16) accurate? Are all reviewer decisions correctly reflected?
+**Files**: [run-record](runs/run-017/run-record.yaml) | [scorecard](runs/run-017/scorecard.yaml) | [diff](runs/run-017/diff.patch)
+
+### run-018 — check_advisory Hook Integration
+**Key change**: scripts/check_advisory.py (non-blocking advisory wrapper); Stop hook registered in .claude/settings.json; gate_policy.yaml tier C→B.
+**Reviewer check**: Does check_advisory.py correctly call check_documents() and write to artifacts/runtime/advisory/? Is exit 0 always appropriate?
+**Files**: [run-record](runs/run-018/run-record.yaml) | [scorecard](runs/run-018/scorecard.yaml) | [diff](runs/run-018/diff.patch)
+
+### run-019 — ASSIGNMENT_SEMANTICS_REQUIRED Validator Sync
+**Key change**: contract.yaml +2 precondition_effects; precondition_gate_validator.py Rule 4 + 3 regex patterns; smoke PG-004/005 new; contract-sync-check.md G-019-01/02.
+**Reviewer check**: Do PG-004/PG-005 correctly test the ASSIGNMENT_SEMANTICS gate? Is LIM-019-01 (narrow intent detection) acceptable?
+**Files**: [run-record](runs/run-019/run-record.yaml) | [scorecard](runs/run-019/scorecard.yaml) | [diff](runs/run-019/diff.patch)
+
+### run-020 — governance/rules Architecture Classification
+**Key change**: RULE_INDEX.md rewritten with two-system classification; contract-sync-check.md D-020-01 + scope note.
+**Reviewer check**: Is the two-system classification (Verilog domain vs general behavioral) correctly described? Does the scope note in contract-sync-check.md prevent future confusion?
+**Files**: [run-record](runs/run-020/run-record.yaml) | [scorecard](runs/run-020/scorecard.yaml) | [diff](runs/run-020/diff.patch)
 
 ---
 

@@ -1,0 +1,30 @@
+# diff.patch — run-021
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: reviewer-dashboard.md: header + quick-status table + per-run notes updated
+
+--- a/artifacts/governance-test/reviewer-dashboard.md
++++ b/artifacts/governance-test/reviewer-dashboard.md
+@@ header @@
+-**Generated**: 2026-05-08 (updated Run 017)
+-**Total runs**: 16 (run-001 ~ run-016)
+-**Reviewer decisions**: 16 / 16 accepted
++**Generated**: 2026-05-08 (updated Run 021)
++**Total runs**: 20 (run-001 ~ run-020)
++**Reviewer decisions**: 20 / 20 accepted
+
+@@ Quick Status Table — added 4 rows @@
++| run-017 | Dashboard sync (meta) | 5 | false | 0 | 0 | high | accept |
++| run-018 | check_advisory hook integration | 5 | false | 0 | 0 | high | accept |
++| run-019 | ASSIGNMENT_SEMANTICS validator sync | 6 | false | 0 | 0 | high | accept |
++| run-020 | governance/rules architecture classification | 6 | false | 0 | 0 | high | accept |
+
+@@ Per-Run Review Notes — added 4 sections @@
++### run-017 — Dashboard Sync (meta run)
++### run-018 — check_advisory Hook Integration
++### run-019 — ASSIGNMENT_SEMANTICS_REQUIRED Validator Sync
++### run-020 — governance/rules Architecture Classification
+
+summary:
+  files_modified: 1
+  added_lines: 28
+  removed_lines: 3
