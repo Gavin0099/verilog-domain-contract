@@ -31,7 +31,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     19 rule files: added rule_id / severity / rationale inline metadata.
     error_path_coverage.md: normalized from section-header format to inline format.

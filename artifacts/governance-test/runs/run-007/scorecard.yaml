@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     Created governance/gate_policy.yaml.  Resolves repo_local_policy_missing advisory.
     Key decisions: fail_mode:audit (no automated test runner), skip_test_result_check:true

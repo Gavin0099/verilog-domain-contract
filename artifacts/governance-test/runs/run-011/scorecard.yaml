@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     G-011-01: FSM_CONTRACT_REQUIRED rule_sources now has 2 entries (same count as other rules).
     docs/contract-sync-check.md created with 7-item sync process to prevent future

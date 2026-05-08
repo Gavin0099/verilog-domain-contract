@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     G-012-01: CLAIM_BOUNDARY.md + CLAIM_ENFORCEMENT_MINIMAL_SPEC.md added to documents.
     G-012-02: 7 governance/*.md files added to documents (consistent with TESTING.md/ARCHITECTURE.md pattern).

@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     CLAIM_BOUNDARY.md + CLAIM_ENFORCEMENT_MINIMAL_SPEC.md analyzed.
     Neither requires a governance_rules entry (support infrastructure, not contract domains).

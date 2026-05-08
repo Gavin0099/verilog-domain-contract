@@ -19,7 +19,7 @@ core_metrics:
 cross_verify_pass: true
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     All 15 runs: run-record.yaml + scorecard.yaml + diff.patch confirmed present.
     check_documents.py: PASS 51/51.

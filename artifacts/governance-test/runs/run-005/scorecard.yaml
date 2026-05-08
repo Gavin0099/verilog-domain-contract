@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     C-004: HANDSHAKE allowed_if_missing sub-case annotation added to contract.yaml governance_rules.
     C-005: 5 new docs from Run 002-004 registered in contract.yaml documents list.

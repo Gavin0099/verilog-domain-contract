@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     G-006-01~04: FSM contract rules back-propagated to contract.yaml.
     All four sections updated: precondition_effects (+3), must_not_assume (+2),

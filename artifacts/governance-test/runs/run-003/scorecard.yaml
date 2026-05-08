@@ -30,5 +30,5 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: "New: failure-state-reviewer-template.md (YAML template + conclusion semantics) + negative-claim-list.md (NC-001~NC-008, all hard-block)"

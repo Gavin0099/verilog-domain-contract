@@ -33,5 +33,5 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null   # 待 reviewer 填入: merge | minor_edit | rework
+  reviewer_decision: accept
   round_note: "3 contradictions found and fixed: R-003 sub-case split, claim token normalization, fsm-contract enforcement structure added"

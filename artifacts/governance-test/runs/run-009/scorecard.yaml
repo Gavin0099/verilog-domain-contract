@@ -36,7 +36,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     S-009-A/B/C all pass — validator correctly gates reset and handshake missing cases.
     S-009-D reveals V-009-01: FSM_CONTRACT_REQUIRED not yet implemented in validator.

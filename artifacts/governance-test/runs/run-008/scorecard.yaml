@@ -30,7 +30,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     G-008-01: NC-006 ("ready for integration" = implicit scope expansion) added to TC-BAD-001 failure table.
     G-008-02: failure-state-reviewer-template.md now cross-references traceability-contract.md.

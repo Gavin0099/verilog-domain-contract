@@ -33,7 +33,7 @@ failure_classification:
   under_fix_with_clean_reporting: false
 
 disposition:
-  reviewer_decision: null
+  reviewer_decision: accept
   round_note: >
     validators/check_documents.py created. Two-way check: broken refs + missing entries.
     Governed paths: docs/*.md, governance/*.md, governance/rules/RULE_INDEX.md,
