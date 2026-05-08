@@ -1,0 +1,47 @@
+# diff.patch — run-017
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: reviewer-dashboard.md updated; round-004-summary.md updated
+
+--- a/artifacts/governance-test/reviewer-dashboard.md
++++ b/artifacts/governance-test/reviewer-dashboard.md
+@@ header @@
+-**Total runs**: 14 (run-001 ~ run-014)
+-**Pending reviewer decisions**: 14
++**Generated**: 2026-05-08 (updated Run 017)
++**Total runs**: 16 (run-001 ~ run-016)
++**Reviewer decisions**: 16 / 16 accepted
+
+@@ Quick Status Table — all rows updated @@
+-| run-001 | ... | **pending** |
++| run-001 | ... | accept |
+ (repeated for run-002 ~ run-014)
++| run-015 | Reviewer dashboard (initial) | 4 | false | 0 | 0 | high | accept |
++| run-016 | Round 4 cross-verify (meta) | 4 | false | 0 | 0 | high | accept |
+
+@@ Per-Run Review Notes — added two sections @@
++### run-015 — Reviewer Dashboard (initial)
++### run-016 — Round 4 Cross-verify (meta run)
+
+--- a/artifacts/governance-test/round-004-summary.md
++++ b/artifacts/governance-test/round-004-summary.md
+@@ Cumulative State @@
+-## Cumulative State (Run 001–015)
++## Cumulative State (Run 001–016)
+-| Total runs | 15 |
++| Total runs | 16 |
+-| High-confidence runs | 14 |
++| High-confidence runs | 15 |
+-| Pending reviewer decisions | 15 |
++| Reviewer decisions accepted | 16 / 16 (completed 2026-05-08) |
+
+@@ Next Steps @@
+-| P0 (human) | ... | (no status column) |
++| P0 (human) | Reviewer decision pass | **Done** |
++| P1 | Commit artifacts | **Done** |
++| P2 | Run 017: dashboard sync | **Done** (this run) |
++| P3 | Run 018: session_end_hook integration | Pending |
+
+summary:
+  files_modified: 2
+  added_lines: 22
+  removed_lines: 11

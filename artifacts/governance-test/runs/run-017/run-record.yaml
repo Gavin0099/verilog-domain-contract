@@ -1,0 +1,32 @@
+run_id: "run-017"
+session_context: "session-current-20260508-round5"
+task_id: "dashboard-sync"
+task_description: >
+  Update reviewer-dashboard.md to reflect 16 runs + all accepted decisions.
+  Fix round-004-summary.md cumulative state (pending:15 → accepted:16/16).
+  Create run-017 artifacts and update run-ledger + session-index.
+
+primary_targets:
+  - artifacts/governance-test/reviewer-dashboard.md
+  - artifacts/governance-test/round-004-summary.md
+
+declared_at: "2026-05-08T09:00:00Z"
+closed_at: "2026-05-08T09:30:00Z"
+
+change_scope_metadata:
+  added_line_count: 22
+  removed_line_count: 11
+  accepted_change_count: 4
+  files_modified: 2
+  files_created: 3
+  evidence_traceability: 1.0
+
+gaps_found: []
+
+observability_only:
+  runtime_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+
+reviewer:
+  disposition: ""
+  one_line_note: ""

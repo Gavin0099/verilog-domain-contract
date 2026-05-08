@@ -39,18 +39,18 @@
 
 ---
 
-## Cumulative State (Run 001–015)
+## Cumulative State (Run 001–016)
 
 | Category | Count |
 |----------|-------|
-| Total runs | 15 |
-| High-confidence runs | 14 |
+| Total runs | 16 |
+| High-confidence runs | 15 |
 | Medium-confidence runs | 1 (run-002, data corrected) |
 | Hard failures | 0 |
 | Scope violations | 0 |
 | Claim overreach | 0 |
 | Open governance gaps | 0 |
-| Pending reviewer decisions | 15 |
+| Reviewer decisions accepted | 16 / 16 (completed 2026-05-08) |
 
 ### Automated checks now in place
 
@@ -65,9 +65,9 @@
 
 ## Next Steps
 
-| Priority | Action |
-|----------|--------|
-| P0 (human) | Reviewer decision pass — fill `reviewer_decision` in 15 scorecards using reviewer-dashboard.md |
-| P1 | Commit all governance-test artifacts to git (currently all uncommitted) |
-| P2 | Run 016: extend check_documents.py to detect documents listed in contract.yaml but missing from governed paths (inverse check for stale entries) |
-| P3 | Run 017: integrate check_documents.py into session_end_hook advisory signals |
+| Priority | Action | Status |
+|----------|--------|--------|
+| P0 (human) | Reviewer decision pass — fill `reviewer_decision` in 16 scorecards | **Done** (all accept, 2026-05-08) |
+| P1 | Commit all governance-test artifacts to git | **Done** (commit 7ea83ea + 8ffe031) |
+| P2 | Run 017: dashboard sync + round summary corrections | **Done** (this run) |
+| P3 | Run 018: integrate check_documents.py into session_end_hook advisory signals | Pending |

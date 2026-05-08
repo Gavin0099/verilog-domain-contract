@@ -1,8 +1,8 @@
 # Governance Test Reviewer Dashboard
 
-**Generated**: 2026-05-08
-**Total runs**: 14 (run-001 ~ run-014)
-**Pending reviewer decisions**: 14
+**Generated**: 2026-05-08 (updated Run 017)
+**Total runs**: 16 (run-001 ~ run-016)
+**Reviewer decisions**: 16 / 16 accepted
 
 This document summarises every run for human review. For each run, the reviewer should:
 1. Read the `round_note` in the scorecard
@@ -16,20 +16,22 @@ This document summarises every run for human review. For each run, the reviewer 
 
 | Run | Task | Round | Hard Fail | Scope Viol | Claim Viol | Artifact Confidence | Reviewer Decision |
 |-----|------|-------|-----------|------------|------------|--------------------|--------------------|
-| run-001 | Contract consistency (A) | 1 | false | 0 | 0 | high | **pending** |
-| run-002 | Rule normalization (B) | 1 | false | 0 | 0 | **medium** (data corrected) | **pending** |
-| run-003 | Failure-state boundary (C) | 1 | false | 0 | 0 | high | **pending** |
-| run-004 | Traceability contract (D) | 1 | false | 0 | 0 | high | **pending** |
-| run-005 | Cross-verify A-rerun | 1 | false | 0 | 0 | high | **pending** |
-| run-006 | FSM governance backfill | 2 | false | 0 | 0 | high | **pending** |
-| run-007 | gate_policy.yaml add | 2 | false | 0 | 0 | high | **pending** |
-| run-008 | Traceability cross-verify (C replay) | 2 | false | 0 | 0 | high | **pending** |
-| run-009 | Validator smoke (obs-only) | 2 | false | 0 | 0 | high | **pending** |
-| run-010 | Validator FSM extension | 3 | false | 0 | 0 | high | **pending** |
-| run-011 | Contract sync-check doc | 3 | false | 0 | 0 | high | **pending** |
-| run-012 | Round 3 cross-verify | 3 | false | 0 | 0 | high | **pending** |
-| run-013 | Documents completeness script | 4 | false | 0 | 0 | high | **pending** |
-| run-014 | Sync-check CLAIM docs | 4 | false | 0 | 0 | high | **pending** |
+| run-001 | Contract consistency (A) | 1 | false | 0 | 0 | high | accept |
+| run-002 | Rule normalization (B) | 1 | false | 0 | 0 | **medium** (data corrected) | accept |
+| run-003 | Failure-state boundary (C) | 1 | false | 0 | 0 | high | accept |
+| run-004 | Traceability contract (D) | 1 | false | 0 | 0 | high | accept |
+| run-005 | Cross-verify A-rerun | 1 | false | 0 | 0 | high | accept |
+| run-006 | FSM governance backfill | 2 | false | 0 | 0 | high | accept |
+| run-007 | gate_policy.yaml add | 2 | false | 0 | 0 | high | accept |
+| run-008 | Traceability cross-verify (C replay) | 2 | false | 0 | 0 | high | accept |
+| run-009 | Validator smoke (obs-only) | 2 | false | 0 | 0 | high | accept |
+| run-010 | Validator FSM extension | 3 | false | 0 | 0 | high | accept |
+| run-011 | Contract sync-check doc | 3 | false | 0 | 0 | high | accept |
+| run-012 | Round 3 cross-verify | 3 | false | 0 | 0 | high | accept |
+| run-013 | Documents completeness script | 4 | false | 0 | 0 | high | accept |
+| run-014 | Sync-check CLAIM docs | 4 | false | 0 | 0 | high | accept |
+| run-015 | Reviewer dashboard (initial) | 4 | false | 0 | 0 | high | accept |
+| run-016 | Round 4 cross-verify (meta) | 4 | false | 0 | 0 | high | accept |
 
 ---
 
@@ -105,6 +107,16 @@ This document summarises every run for human review. For each run, the reviewer 
 **Key change**: docs/contract-sync-check.md: CLAIM_BOUNDARY + CLAIM_ENFORCEMENT added to Supporting Docs; vocabulary note table added.
 **Reviewer check**: Is the vocabulary distinction between the two claim_level systems correctly characterised?
 **Files**: [run-record](runs/run-014/run-record.yaml) | [scorecard](runs/run-014/scorecard.yaml) | [diff](runs/run-014/diff.patch)
+
+### run-015 — Reviewer Dashboard (initial)
+**Key change**: New artifacts/governance-test/reviewer-dashboard.md; 15-run review guide with per-run check questions and decision instructions.
+**Reviewer check**: Do the per-run check questions target the right concerns for each run? Is the decision instruction section clear?
+**Files**: [run-record](runs/run-015/run-record.yaml) | [scorecard](runs/run-015/scorecard.yaml) | [diff](runs/run-015/diff.patch)
+
+### run-016 — Round 4 Cross-verify (meta run)
+**Key change**: run-ledger.ndjson +4 entries (run-013~016); session-index.ndjson +1 entry (session-current-20260508-round4, reconstructed).
+**Reviewer check**: Are the 4 ledger entries consistent with the actual run artifacts? Is session-current-20260508-round4 correctly marked `reconstructed`?
+**Files**: [run-record](runs/run-016/run-record.yaml) | [scorecard](runs/run-016/scorecard.yaml) | [diff](runs/run-016/diff.patch)
 
 ---
 
