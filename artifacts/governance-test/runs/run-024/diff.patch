@@ -1,0 +1,26 @@
+# diff.patch — run-024
+# format: reconstructed-from-run-evidence (same session — no git commit boundary)
+# changes: artifacts/precondition-gate/2026-05-08-smoke.json new; contract.yaml +1 document
+
+--- /dev/null
++++ b/artifacts/precondition-gate/2026-05-08-smoke.json
+@@ new file @@
++{
++  "run_set": "precondition-gate-smoke-v2",
++  "date": "2026-05-08",
++  "note": "Updated artifact...",
++  "cases": [PG-001 through PG-007, all pass],
++  "failed": 0,
++  "validator_rules_active": [Rule 1..5]
++}
+
+--- a/contract.yaml
++++ b/contract.yaml
+@@ documents @@
++  - artifacts/precondition-gate/2026-05-08-smoke.json
+
+summary:
+  files_modified: 1
+  files_created: 1
+  added_lines: 58
+  removed_lines: 0

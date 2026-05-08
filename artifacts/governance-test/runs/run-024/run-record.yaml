@@ -1,0 +1,34 @@
+run_id: "run-024"
+session_context: "session-current-20260508-round7"
+task_id: "precondition-gate-smoke-artifact-update"
+task_description: >
+  Create artifacts/precondition-gate/2026-05-08-smoke.json as updated smoke artifact
+  reflecting validator state after Runs 019 (Rule 4 ASSIGNMENT_SEMANTICS) and 022 (Rule 5 CDC).
+  Adds PG-004/005/006/007 results with rule labels and added-in-run annotations.
+  Add new artifact to contract.yaml documents list.
+  Supersedes 2026-04-22-smoke.json (PG-001~003 only) for regression purposes.
+
+primary_targets:
+  - artifacts/precondition-gate/2026-05-08-smoke.json
+  - contract.yaml
+
+declared_at: "2026-05-08T13:30:00Z"
+closed_at: "2026-05-08T14:00:00Z"
+
+change_scope_metadata:
+  added_line_count: 58
+  removed_line_count: 0
+  accepted_change_count: 2
+  files_modified: 1
+  files_created: 1
+  evidence_traceability: 1.0
+
+gaps_fixed:
+  - id: "G-024-01"
+    description: "artifacts/precondition-gate/2026-04-22-smoke.json only covers PG-001~003; PG-004/005 (added Run 019) and PG-006/007 (added Run 022) not reflected in any persisted smoke artifact"
+    run_detected: "01_active_task.md open gaps"
+    fixed: true
+
+reviewer:
+  disposition: ""
+  one_line_note: ""
