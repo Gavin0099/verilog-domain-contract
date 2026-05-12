@@ -73,3 +73,5 @@ Previous gap list (all fixed):
 - Cross-model replay and mixed-completeness prompts (full-codegen paths)
 - Feed precondition-gate output into runtime pre-task payload path as machine-readable decision input
 - Integrate epistemic-risk scoring into pre-task decision inputs
+
+- [2026-05-12] Added SpyGlass observability guardrails: optional `tool_evidence_completeness` remains informational only; missing-field fallback=`unknown`; Gate C pass/fail unchanged. Added boundary/comparability/audit docs under docs/status/.

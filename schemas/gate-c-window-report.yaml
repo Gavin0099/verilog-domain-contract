@@ -1,0 +1,105 @@
+schema_version: "0.1"
+schema_name: gate-c-window-report
+description: >
+  Schema for Gate C (Outcome Value) window-level rollup report.
+  One file per lane per observation window.
+  See docs/status/gate-c-measurement-plan.md for field definitions.
+
+required_fields:
+  - window_id
+  - lane
+  - run_range
+  - review_effort
+  - quality_rework
+  - integration_stability
+  - gate_c_result
+
+field_definitions:
+  window_id:
+    type: string
+    format: "gate-c-{lane}-{YYYY-MM-DD}"
+    example: "gate-c-claude-2026-05-11"
+
+  lane:
+    type: enum
+    values: [copilot, claude, chatgpt]
+
+  run_range:
+    type: object
+    fields:
+      start_run: string
+      end_run: string
+      total_runs: integer
+
+  review_effort:
+    type: object
+    fields:
+      avg_review_minutes:
+        type: number
+        nullable: true
+        note: "null if timestamps not yet captured"
+      median_review_minutes:
+        type: number
+        nullable: true
+      p90_review_minutes:
+        type: number
+        nullable: true
+      per_run_log_ref:
+        type: string
+        note: "path to gate-c-review-effort-log.md"
+      tool_evidence_completeness:
+        type: enum
+        nullable: true
+        values: [complete, partial, absent, unknown]
+        note: "Optional extension metric; informational by default in Phase 2"
+
+  quality_rework:
+    type: object
+    fields:
+      reopen_count:
+        type: integer
+        minimum: 0
+      revert_count:
+        type: integer
+        minimum: 0
+      total_changes:
+        type: integer
+        minimum: 0
+      reopen_revert_rate:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        formula: "(reopen_count + revert_count) / total_changes"
+
+  integration_stability:
+    type: object
+    fields:
+      post_merge_incident_count:
+        type: integer
+        minimum: 0
+      integration_block_count:
+        type: integer
+        minimum: 0
+      integration_stability_status:
+        type: enum
+        values: [stable, minor_fluctuation, unstable]
+      stability_note:
+        type: string
+        nullable: true
+
+  gate_c_result:
+    type: enum
+    values: [pass, provisional-pass, pause]
+    decision_rules:
+      pass: "All three metric categories have sufficient data and meet thresholds"
+      provisional-pass: "Structural/quality metrics pass but reviewer_minutes or stability data incomplete"
+      pause: "Any threshold breach detected (see gate-c-measurement-plan.md §5)"
+
+drift_thresholds:
+  reviewer_burden_drift: ">20% avg_review_minutes increase window-over-window without quality gain"
+  reopen_revert_drift: "reopen_revert_rate increases for 2 consecutive windows"
+  stability_drift: "integration_stability_status=unstable in any lane"
+
+extension_notes:
+  - "tool_evidence_completeness is optional and must not override core downgrade/stop semantics."
+  - "Absence of tool evidence is informational unless policy is explicitly revised."

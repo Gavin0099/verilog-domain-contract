@@ -1,0 +1,88 @@
+schema_version: "0.1"
+schema_name: spyglass-evidence-profile
+description: >
+  Optional extension profile for ingesting SpyGlass-derived evidence into
+  Gate C / Phase 2 evaluation without changing core contract semantics.
+
+scope:
+  mode: extension_only
+  non_goals:
+    - "Does not upgrade implementation claims by itself"
+    - "Does not relax missing-precondition downgrade/stop behavior"
+    - "Does not replace core contract or must-not-assume boundaries"
+
+required_fields:
+  - run_id
+  - lane
+  - tool_name
+  - report_ref
+  - findings
+
+field_definitions:
+  run_id:
+    type: string
+    example: "run-052"
+  lane:
+    type: enum
+    values: [copilot, claude, chatgpt]
+  tool_name:
+    type: enum
+    values: [spyglass]
+  tool_version:
+    type: string
+    nullable: true
+    example: "X-2025.06"
+  report_ref:
+    type: string
+    note: "Path or immutable artifact reference to source report"
+  findings:
+    type: array
+    min_items: 1
+    item_fields:
+      rule_id:
+        type: string
+      severity:
+        type: enum
+        values: [fatal, error, warning, info]
+      category:
+        type: enum
+        values:
+          - cdc_unsync_crossing
+          - cdc_convergence
+          - reset_sync
+          - clock_integrity
+          - reset_integrity
+          - glitch
+          - unconstrained_io
+          - unconstrained_clock_reset
+      object:
+        type: string
+        nullable: true
+      domain_pair:
+        type: string
+        nullable: true
+        example: "clk_a->clk_b"
+      constrained_state:
+        type: enum
+        values: [constrained, partially_constrained, unconstrained, unknown]
+      waiver_state:
+        type: enum
+        values: [none, waived_with_rationale, waived_without_rationale]
+      note:
+        type: string
+        nullable: true
+
+derived_metrics:
+  tool_evidence_completeness:
+    type: enum
+    values: [complete, partial, absent, unknown]
+    decision_hint:
+      complete: "No unconstrained critical preconditions; waiver hygiene acceptable"
+      partial: "Some constraints/coverage present but gaps remain"
+      absent: "No usable SpyGlass evidence found for the run/window"
+      unknown: "Evidence exists but cannot be reliably interpreted"
+
+policy_guards:
+  - "Missing clock/reset/CDC preconditions still require downgrade/stop"
+  - "Tool clean alone cannot justify implementation_complete"
+  - "Vendor-specific findings must be labeled as extension evidence"

@@ -102,3 +102,10 @@
 - [2026-05-08] Run 026 (commit `ce9cc67`): reviewer-dashboard synced to 25 runs; run-021~025 rows + review notes; round numbers corrected for run-019/020; round-006-summary completed.
 - [2026-05-08] run-001~021 scorecards status → accepted (commit `80125c5`); session-index Round 7 entry added; .gitignore +artifacts/runtime/.
 - [2026-05-08] check_documents.py: PASS 53/53 (cdc-contract.md + 2026-05-08-smoke.json counted). All 5 Verilog domain contract rules fully synced.
+
+- [2026-05-12] SpyGlass extension safety hardening completed:
+  - `scripts/gate_c_ingest_check.py`: optional tool evidence stats only; missing field fallback to `unknown`; no impact on Gate C decision logic.
+  - `docs/status/gate-c-review-log.ndjson`: per-lane sample field added (claude=complete, chatgpt=partial, copilot=absent) with missing-field rows preserved for fallback test.
+  - `docs/status/gate-c-window-report-2026-05-11-spyglass-extension.md`: added distribution and explicit boundary statement.
+  - Added governance docs: extension interpretation boundary, cross-lane comparability warning, reviewer dependence audit.
+  - Validation: `python scripts/gate_c_ingest_check.py` PASS; Gate C result remains `pass`.

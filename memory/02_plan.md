@@ -2,3 +2,5 @@
 - [2026-05-08] Governance-test protocol established: each run produces run-record.yaml + scorecard.yaml + diff.patch under `artifacts/governance-test/runs/run-NNN/`. Runs 001–021 completed. Ledger at `artifacts/governance-test/run-ledger.ndjson`. Dashboard at `artifacts/governance-test/reviewer-dashboard.md`.
 - [2026-05-08] Validator sync plan: for each governance_rule in contract.yaml, ensure precondition_effects tokens exist, validator gate logic exists, smoke case exists. ALL COMPLETE: RESET (pre-existing), HANDSHAKE (pre-existing), FSM (Run 010/025), ASSIGNMENT_SEMANTICS (Run 019), CDC (Run 022). Smoke 9/9 PASS as of Run 025.
 - [2026-05-08] Hook integration plan: Stop hook (`check_advisory.py`) registered in `.claude/settings.json`; non-blocking advisory; `hook_coverage_tier: B` in gate_policy.yaml.
+
+- [2026-05-12] Plan added: lock extension interpretation boundary first, then run reviewer-dependence audit each Gate C window before expanding SpyGlass extension scope.

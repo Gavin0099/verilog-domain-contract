@@ -4,3 +4,5 @@
 - [2026-05-08] Governance-test scorecard reviewer_decision vocabulary: `accept | accept_with_note | reject`. (Previous run-001 scorecard comment used old vocabulary `merge | minor_edit | rework` — that comment was a leftover; correct standard is accept/accept_with_note/reject.)
 - [2026-05-08] check_advisory.py hook is always non-blocking (exits 0) — advisory signal only. Gate must not block session on non-critical signals. Matches `hook_coverage_tier: B` semantics.
 - [2026-05-08] ASSIGNMENT_SEMANTICS_REQUIRED Rule 4 trigger: fires only when both implementation_intent AND explicit assignment-keyword tokens are present. Tasks describing sequential logic without keywords (e.g. "write a counter") do NOT trigger Rule 4 — same class as FSM semantic negation limitation (LIM-010-01).
+
+- [2026-05-12] D-052-01: `tool_evidence_completeness` is observability-only (non-authority). It must not participate in Gate C pass/fail and must not be used as quality/correctness proxy or claim-upgrade signal. Missing field fallback is fixed to `unknown`.
