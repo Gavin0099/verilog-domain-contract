@@ -7,3 +7,4 @@
 - [2026-05-12] Next-step executed: created SpyGlass extension manifest before any further rule expansion.
 - [2026-05-12] Implemented minimal manifest-usage validator with non-gating advisory behavior; no Gate C coupling added.
 - [2026-05-12] Negative test executed to prove misuse visibility without creating a new gate authority.
+- [2026-05-12] Expansion plan constrained: no full import before all six expansion criteria are met.
