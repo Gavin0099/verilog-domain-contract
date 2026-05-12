@@ -6,3 +6,4 @@
 - [2026-05-08] ASSIGNMENT_SEMANTICS_REQUIRED Rule 4 trigger: fires only when both implementation_intent AND explicit assignment-keyword tokens are present. Tasks describing sequential logic without keywords (e.g. "write a counter") do NOT trigger Rule 4 — same class as FSM semantic negation limitation (LIM-010-01).
 
 - [2026-05-12] D-052-01: `tool_evidence_completeness` is observability-only (non-authority). It must not participate in Gate C pass/fail and must not be used as quality/correctness proxy or claim-upgrade signal. Missing field fallback is fixed to `unknown`.
+- [2026-05-12] D-052-02: raw SpyGlass references must be consumed through manifest-defined rule families and allowed-use boundaries; direct authority inference from raw docs is disallowed.

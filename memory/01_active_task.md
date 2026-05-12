@@ -75,3 +75,4 @@ Previous gap list (all fixed):
 - Integrate epistemic-risk scoring into pre-task decision inputs
 
 - [2026-05-12] Added SpyGlass observability guardrails: optional `tool_evidence_completeness` remains informational only; missing-field fallback=`unknown`; Gate C pass/fail unchanged. Added boundary/comparability/audit docs under docs/status/.
+- [2026-05-12] Added bounded-use manifest: `docs/status/spyglass-extension-manifest-2026-05-12.yaml` (raw/reference -> rule family -> contract field -> allowed/disallowed use).

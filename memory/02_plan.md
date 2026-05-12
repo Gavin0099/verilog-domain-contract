@@ -4,3 +4,4 @@
 - [2026-05-08] Hook integration plan: Stop hook (`check_advisory.py`) registered in `.claude/settings.json`; non-blocking advisory; `hook_coverage_tier: B` in gate_policy.yaml.
 
 - [2026-05-12] Plan added: lock extension interpretation boundary first, then run reviewer-dependence audit each Gate C window before expanding SpyGlass extension scope.
+- [2026-05-12] Next-step executed: created SpyGlass extension manifest before any further rule expansion.

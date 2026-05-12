@@ -109,3 +109,4 @@
   - `docs/status/gate-c-window-report-2026-05-11-spyglass-extension.md`: added distribution and explicit boundary statement.
   - Added governance docs: extension interpretation boundary, cross-lane comparability warning, reviewer dependence audit.
   - Validation: `python scripts/gate_c_ingest_check.py` PASS; Gate C result remains `pass`.
+- [2026-05-12] Added `docs/status/spyglass-extension-manifest-2026-05-12.yaml` to constrain raw-reference usage: explicit mapping from source docs to rule families, governance fields, allowed use, and disallowed use.

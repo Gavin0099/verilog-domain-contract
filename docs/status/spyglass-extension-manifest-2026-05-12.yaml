@@ -1,0 +1,83 @@
+﻿schema_version: "0.1"
+name: spyglass-extension-manifest
+updated_at: "2026-05-12"
+intent: >
+  Define explicit bounded use of SpyGlass raw/reference materials.
+  This manifest is observability-oriented and non-authoritative for core gating.
+
+sources:
+  - id: spyglass_builtin_ref
+    type: raw_reference_markdown
+    path: SpyGlass_BuiltInRules_Reference.md
+    origin_pdf: SpyGlass_BuiltInRules_Reference.pdf
+    version_hint: "X-2025.06"
+  - id: spyglass_clockreset_ref
+    type: raw_reference_markdown
+    path: SpyGlass_ClockResetRules_Reference.md
+    origin_pdf: SpyGlass_ClockResetRules_Reference.pdf
+    version_hint: "X-2025.06"
+
+rule_families:
+  - id: rf_unconstrained_io_clock_reset
+    extracted_from: [spyglass_clockreset_ref]
+    signals:
+      - Clock_info18
+      - Reset_info09a
+      - Reset_info09b
+    governance_contract_fields:
+      - clock_definition_present
+      - reset_definition_complete
+      - cdc_strategy_present_when_multi_clock_implied
+    allowed_use:
+      - "Evidence coverage visibility"
+      - "Precondition-gap explanation support"
+    disallowed_use:
+      - "Authority signal for pass/fail gating"
+      - "Direct implementation completeness upgrade"
+
+  - id: rf_clock_domain_relationship
+    extracted_from: [spyglass_clockreset_ref]
+    signals:
+      - Clockmatrix01
+      - Derived_clocks_info
+    governance_contract_fields:
+      - cdc_strategy_present_when_multi_clock_implied
+      - cdc_synchronizer_scheme_defined
+    allowed_use:
+      - "Domain-boundary disclosure support"
+      - "Crossing-context traceability"
+    disallowed_use:
+      - "Assume derived clock safety by default"
+      - "Override missing-precondition downgrade/stop"
+
+  - id: rf_message_severity_context
+    extracted_from: [spyglass_builtin_ref]
+    signals:
+      - Syntax/Language/Synthesis message classes
+      - Severity labeling context
+    governance_contract_fields:
+      - verification_expectation_present
+      - claim_evidence_requirements
+    allowed_use:
+      - "Reviewer triage context"
+      - "Negative-evidence explanation"
+    disallowed_use:
+      - "Quality ranking proxy"
+      - "Cross-lane model capability ranking"
+
+observability_metric_binding:
+  metric: tool_evidence_completeness
+  values: [complete, partial, absent, unknown]
+  fallback_on_missing_field: unknown
+  policy:
+    - "informational_only"
+    - "excluded_from_gate_c_pass_fail"
+
+global_boundaries:
+  - "Core governance semantics closed; extension observability open."
+  - "Missing precondition handling remains downgrade/stop."
+  - "Tool evidence completeness improves reviewer visibility, but does not by itself upgrade implementation completeness or override missing-precondition downgrade/stop semantics."
+
+cross_lane_warning:
+  - "Completeness distribution is not a direct model-quality comparator."
+  - "Interpretation must account for model x harness x reviewer pressure x workflow shape."
