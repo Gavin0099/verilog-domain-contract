@@ -6,3 +6,4 @@
 - [2026-05-12] Plan added: lock extension interpretation boundary first, then run reviewer-dependence audit each Gate C window before expanding SpyGlass extension scope.
 - [2026-05-12] Next-step executed: created SpyGlass extension manifest before any further rule expansion.
 - [2026-05-12] Implemented minimal manifest-usage validator with non-gating advisory behavior; no Gate C coupling added.
+- [2026-05-12] Negative test executed to prove misuse visibility without creating a new gate authority.

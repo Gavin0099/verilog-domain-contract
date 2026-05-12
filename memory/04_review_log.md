@@ -111,3 +111,4 @@
   - Validation: `python scripts/gate_c_ingest_check.py` PASS; Gate C result remains `pass`.
 - [2026-05-12] Added `docs/status/spyglass-extension-manifest-2026-05-12.yaml` to constrain raw-reference usage: explicit mapping from source docs to rule families, governance fields, allowed use, and disallowed use.
 - [2026-05-12] Added `scripts/validate_spyglass_manifest_usage.py` and validated outputs: advisory_only=true, does_not_affect_gate_c=true, result=PASS, exit_behavior=always_zero.
+- [2026-05-12] Negative test added: `docs/status/spyglass-misuse-negative-sample-2026-05-12.md` triggers WARN in `validate_spyglass_manifest_usage.py`; default target set remains PASS; all exits remain 0.

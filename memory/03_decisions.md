@@ -8,3 +8,4 @@
 - [2026-05-12] D-052-01: `tool_evidence_completeness` is observability-only (non-authority). It must not participate in Gate C pass/fail and must not be used as quality/correctness proxy or claim-upgrade signal. Missing field fallback is fixed to `unknown`.
 - [2026-05-12] D-052-02: raw SpyGlass references must be consumed through manifest-defined rule families and allowed-use boundaries; direct authority inference from raw docs is disallowed.
 - [2026-05-12] D-052-03: boundary-misuse validator is permitted only as advisory signal (PASS/WARN, exit 0), and cannot be used as a quality or gating authority.
+- [2026-05-12] D-052-04: misuse detection success criteria fixed as WARN + advisory_only + does_not_affect_gate_c + exit=0.

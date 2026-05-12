@@ -43,11 +43,15 @@ NEGATION_HINTS = (
 )
 
 POSITIVE_MISUSE_PATTERNS = [
-    re.compile(r"\b(use|treat|consider)\b.{0,60}\bauthority signal\b", re.IGNORECASE),
-    re.compile(r"\b(use|treat|consider)\b.{0,60}\bquality ranking\b", re.IGNORECASE),
-    re.compile(r"\b(use|treat|consider)\b.{0,80}\bmodel capability ranking\b", re.IGNORECASE),
-    re.compile(r"\b(can|should|may)\b.{0,80}\bupgrade implementation completeness\b", re.IGNORECASE),
-    re.compile(r"\b(included in|affects|drives)\b.{0,80}\bgate\s*c\s*pass\s*/\s*fail\b", re.IGNORECASE),
+    ("authority_signal", re.compile(r"\b(use|treat|consider)\b.{0,60}\bauthority signal\b", re.IGNORECASE)),
+    ("quality_ranking", re.compile(r"\b(use|treat|consider)\b.{0,60}\bquality ranking\b", re.IGNORECASE)),
+    ("model_capability_ranking", re.compile(r"\b(use|treat|consider)\b.{0,80}\bmodel capability ranking\b", re.IGNORECASE)),
+    ("upgrade_implementation_completeness", re.compile(r"\b(can|should|may)\b.{0,80}\bupgrade implementation completeness\b", re.IGNORECASE)),
+    ("gate_c_pass_fail_coupling", re.compile(r"\b(included in|affects|drives)\b.{0,80}\bgate\s*c\s*pass\s*/\s*fail\b", re.IGNORECASE)),
+    ("quality_proxy_from_completeness", re.compile(
+        r"\btool_evidence_completeness\b.{0,120}\b(better|higher|stronger)\b.{0,80}\bimplementation quality\b",
+        re.IGNORECASE,
+    )),
 ]
 
 
@@ -63,10 +67,9 @@ def scan_file(path: Path) -> list[tuple[str, int, str]]:
         if any(hint in low for hint in NEGATION_HINTS):
             continue
 
-        for rule_id, pattern in RULES:
+        for rule_id, pattern in POSITIVE_MISUSE_PATTERNS:
             if pattern.search(line):
-                if any(p.search(line) for p in POSITIVE_MISUSE_PATTERNS):
-                    hits.append((rule_id, lineno, line.strip()))
+                hits.append((rule_id, lineno, line.strip()))
     return hits
 
 
