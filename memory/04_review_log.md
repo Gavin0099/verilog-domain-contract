@@ -113,3 +113,4 @@
 - [2026-05-12] Added `scripts/validate_spyglass_manifest_usage.py` and validated outputs: advisory_only=true, does_not_affect_gate_c=true, result=PASS, exit_behavior=always_zero.
 - [2026-05-12] Negative test added: `docs/status/spyglass-misuse-negative-sample-2026-05-12.md` triggers WARN in `validate_spyglass_manifest_usage.py`; default target set remains PASS; all exits remain 0.
 - [2026-05-12] Added expansion-gate record: `docs/status/spyglass-expansion-criteria-2026-05-12.md`; confirms conditions required before broad SpyGlass integration.
+- [2026-06-04] Added untime_hooks/core/session_start.py, untime_hooks/core/pre_task_check.py, untime_hooks/core/post_task_check.py (no-op) and reran governance_drift_checker; all checks PASS (ok=True, severity=ok).

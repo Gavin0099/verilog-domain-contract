@@ -2,6 +2,8 @@
 
 ## Current Status
 
+- [2026-06-04] Added `runtime_hooks/core/session_start.py`, `runtime_hooks/core/pre_task_check.py`, `runtime_hooks/core/post_task_check.py` as minimal no-op hooks to satisfy expansion-boundary.
+- [2026-06-04] Re-ran `governance_drift_checker` after hooks + refresh; all checks now pass (`ok=True`, `severity=ok`).
 - Imported `ai-governance-framework` as submodule at `additional/ai-governance-framework`.
 - Adopted governance baseline and created Verilog/RTL domain contract v0.1 skeleton.
 - Readiness check is `ready = True`; drift check is `ok = True` with warning-level expansion-boundary notice.

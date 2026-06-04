@@ -27,3 +27,4 @@
 - `hook_coverage_tier` in gate_policy.yaml: A=fully automated pre+post; B=advisory automated at session stop; C=manual advisory only; D=no advisory. Run 018 upgraded C → B.
 - round-NNN-summary.md `pending_count` tracks runs still open in that round; dashboard tracks cumulative state separately.
 - Note: `03_knowledge_base.md` note "Pre-task gating should focus on input completeness (reset/interface); assignment semantic ambiguity is usually better handled in post-generation review" is outdated — Run 019 added Rule 4 pre-task gating for ASSIGNMENT_SEMANTICS_REQUIRED. Pre-task gating now covers reset + interface + assignment semantics.
+- untime_hooks/core/session_start.py, untime_hooks/core/pre_task_check.py, and untime_hooks/core/post_task_check.py must exist for expansion_boundary compliance when governance_drift_checker runs in this repo.

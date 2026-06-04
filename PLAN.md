@@ -1,8 +1,8 @@
 # PLAN.md
 <!-- governance-baseline: overridable -->
 <!-- baseline_version: 1.0.0 -->
-> **最後更新**: 2026-04-22
-> **Owner**: verilog-domain-contract maintainers
+> **最後更新**: 2026-06-04
+> **Owner**: GavinWu
 > **Freshness**: Sprint (7d)
 
 ## Title

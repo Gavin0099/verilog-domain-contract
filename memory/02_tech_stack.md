@@ -30,6 +30,10 @@
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/external_repo_readiness.py --repo . --framework-root additional/ai-governance-framework --format human`
+- Runtime extension entry points added (2026-06-04):
+  - `runtime_hooks/core/session_start.py` (no-op)
+  - `runtime_hooks/core/pre_task_check.py` (no-op)
+  - `runtime_hooks/core/post_task_check.py` (no-op)
 - Governance-test protocol infrastructure (added 2026-05-08):
   - `artifacts/governance-test/runs/run-NNN/` — run-record.yaml + scorecard.yaml + diff.patch per run
   - `artifacts/governance-test/run-ledger.ndjson` — flat run registry (26 entries, runs 001–026)
