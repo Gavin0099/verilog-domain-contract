@@ -85,11 +85,29 @@ RE_CDC_INTENT = re.compile(
     r"asynchronous\s+clock|different\s+clock\s+(?:domain|source))\b",
     re.IGNORECASE,
 )
-RE_CDC_STRATEGY = re.compile(
+RE_CDC_STRATEGY_PRESENT = re.compile(
+    r"\b(cdc\s+strategy|crossing\s+(?:plan|strategy|method)|handoff\s+approach|"
+    r"clock\s+domain\s+boundary\s+(?:plan|strategy)|synchronization\s+(?:strategy|method))\b",
+    re.IGNORECASE,
+)
+RE_CDC_SYNCHRONIZER_SCHEME = re.compile(
     r"\b(two[- ]flop\s+synchronizer|synchronizer\s+chain|fifo[- ](?:based\s+)?crossing|"
-    r"cdc\s+strategy|clock\s+domain\s+boundary\s+(?:map|plan|strategy)|"
-    r"gray[- ]code\s+(?:fifo|crossing)|synchronization\s+(?:scheme|strategy|method)|"
-    r"metastability\s+(?:mitigation|protection|handling)|synchronizer\s+(?:flop|stage|cell))\b",
+    r"gray[- ]code\s+(?:fifo|crossing)|asynchronous\s+fifo|"
+    r"metastability\s+(?:mitigation|protection|handling)|"
+    r"synchronizer\s+(?:scheme|flop|stage|cell))\b",
+    re.IGNORECASE,
+)
+RE_CDC_BOUNDARY_MAP = re.compile(
+    r"\b(clock\s+domain\s+boundary\s+map|boundary\s+map|"
+    r"from\s+\w+\s+domain\s+to\s+\w+\s+domain|"
+    r"\w+\s+domain\s+drives\s+\w+.*\w+\s+domain\s+samples\s+\w+)\b",
+    re.IGNORECASE,
+)
+RE_CDC_UNSPEC = re.compile(
+    r"\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
+    r"\b(no|without)\b.{0,40}\b(cdc\s+strategy|crossing\s+(?:plan|strategy|method)|"
+    r"handoff\s+approach|boundary\s+map|synchroniz(?:er|ation)\s+(?:scheme|strategy|method)|"
+    r"two[- ]flop\s+synchronizer|fifo[- ](?:based\s+)?crossing|gray[- ]code\s+(?:fifo|crossing))\b",
     re.IGNORECASE,
 )
 RE_FSM_INTENT = re.compile(
@@ -140,6 +158,7 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
     interface_intent = _has(RE_INTERFACE_INTENT, text)
 
     recommended_mode = "allow_draft_with_assumptions"
+    blocking_effect = ""
 
     # Rule 1: reset definition gate (pre-task).
     if implementation_intent and _has(RE_RESET_MENTION, text):
@@ -198,13 +217,18 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
 
     # Rule 5: CDC strategy gate (pre-task, conditional on multi-clock intent).
     if implementation_intent and _has(RE_CDC_INTENT, text):
-        cdc_strategy_defined = _has(RE_CDC_STRATEGY, text)
+        cdc_strategy_statement_defined = _defined_with_negation(RE_CDC_STRATEGY_PRESENT, RE_CDC_UNSPEC, text)
+        cdc_boundary_map_defined = _defined_with_negation(RE_CDC_BOUNDARY_MAP, RE_CDC_UNSPEC, text)
+        cdc_synchronizer_scheme_defined = _defined_with_negation(RE_CDC_SYNCHRONIZER_SCHEME, RE_CDC_UNSPEC, text)
+        cdc_strategy_defined = cdc_strategy_statement_defined and cdc_boundary_map_defined
         if not cdc_strategy_defined:
             missing_preconditions.append("cdc_strategy_present_when_multi_clock_implied")
+        if not cdc_synchronizer_scheme_defined:
             missing_preconditions.append("cdc_synchronizer_scheme_defined")
+        if not cdc_strategy_defined or not cdc_synchronizer_scheme_defined:
             rule_refs.append("CDC_STRATEGY_REQUIRED")
-            # CDC missing is severe: stop_insufficient_preconditions -> restrict_codegen.
             recommended_mode = "restrict_codegen"
+            blocking_effect = "stop_insufficient_preconditions"
 
     # Rule 4: assignment semantics gate (pre-task).
     if implementation_intent and _has(RE_ASSIGNMENT_INTENT, text):
@@ -227,6 +251,7 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
         "ok": ok,
         "missing_preconditions": sorted(set(missing_preconditions)),
         "recommended_mode": recommended_mode,
+        "blocking_effect": blocking_effect,
         "forbidden_claims": forbidden_claims,
         "rule_refs": sorted(set(rule_refs)),
     }
@@ -270,6 +295,8 @@ def _main() -> int:
         print("[precondition_gate]")
         print(f"ok={result['ok']}")
         print(f"recommended_mode={result['recommended_mode']}")
+        if result["blocking_effect"]:
+            print(f"blocking_effect={result['blocking_effect']}")
         print(f"missing_preconditions={','.join(result['missing_preconditions']) or '(none)'}")
         print(f"rule_refs={','.join(result['rule_refs']) or '(none)'}")
         if result["forbidden_claims"]:

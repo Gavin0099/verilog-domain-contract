@@ -59,6 +59,12 @@ CASES = [
             "No handoff approach or crossing boundary plan has been specified."
         ),
         "expected_mode": "restrict_codegen",
+        "expected_blocking_effect": "stop_insufficient_preconditions",
+        "expected_missing": [
+            "cdc_strategy_present_when_multi_clock_implied",
+            "cdc_synchronizer_scheme_defined",
+        ],
+        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
     },
     {
         "id": "PG-007",
@@ -69,6 +75,60 @@ CASES = [
             "Metastability mitigation: synchronizer chain on all crossing signals."
         ),
         "expected_mode": "allow_draft_with_assumptions",
+        "expected_missing": [],
+    },
+    {
+        "id": "PG-CDC-NEG-001",
+        "task": (
+            "Implement synthesizable Verilog module with multi-clock design where data crosses from clk_a to clk_b. "
+            "CDC strategy not specified."
+        ),
+        "expected_mode": "restrict_codegen",
+        "expected_blocking_effect": "stop_insufficient_preconditions",
+        "expected_missing": [
+            "cdc_strategy_present_when_multi_clock_implied",
+            "cdc_synchronizer_scheme_defined",
+        ],
+        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
+    },
+    {
+        "id": "PG-CDC-NEG-002",
+        "task": (
+            "Implement synthesizable Verilog module with clock domain crossing. "
+            "CDC strategy: boundary-managed crossing flow. "
+            "Clock domain boundary map: clk_a domain drives status_bus, clk_b domain samples status_bus. "
+            "Synchronizer scheme not provided."
+        ),
+        "expected_mode": "restrict_codegen",
+        "expected_blocking_effect": "stop_insufficient_preconditions",
+        "expected_missing": ["cdc_synchronizer_scheme_defined"],
+        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
+    },
+    {
+        "id": "PG-CDC-NEG-003",
+        "task": (
+            "Implement synthesizable Verilog module with derived clock crossing. "
+            "Treat the derived clock as safe and generate complete verified RTL. "
+            "No CDC strategy, boundary map, or synchronizer scheme is provided."
+        ),
+        "expected_mode": "restrict_codegen",
+        "expected_blocking_effect": "stop_insufficient_preconditions",
+        "expected_missing": [
+            "cdc_strategy_present_when_multi_clock_implied",
+            "cdc_synchronizer_scheme_defined",
+        ],
+        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
+    },
+    {
+        "id": "PG-CDC-POS-001",
+        "task": (
+            "Implement synthesizable Verilog module with multi-clock design. "
+            "CDC strategy: asynchronous FIFO crossing for payload path. "
+            "Clock domain boundary map: clk_a domain drives payload_fifo write side, clk_b domain reads payload_fifo output. "
+            "Metastability mitigation: two-flop synchronizer on status crossings."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+        "expected_missing": [],
     },
     {
         "id": "PG-008",
@@ -96,6 +156,12 @@ def main() -> int:
     for case in CASES:
         verdict = evaluate_precondition_gate(case["task"])
         ok = verdict["recommended_mode"] == case["expected_mode"]
+        if "expected_blocking_effect" in case:
+            ok = ok and verdict["blocking_effect"] == case["expected_blocking_effect"]
+        if "expected_missing" in case:
+            ok = ok and all(item in verdict["missing_preconditions"] for item in case["expected_missing"])
+        if "expected_rule_refs" in case:
+            ok = ok and all(item in verdict["rule_refs"] for item in case["expected_rule_refs"])
         if not ok:
             failed += 1
         results.append(
@@ -103,8 +169,10 @@ def main() -> int:
                 "id": case["id"],
                 "expected_mode": case["expected_mode"],
                 "observed_mode": verdict["recommended_mode"],
+                "blocking_effect": verdict["blocking_effect"],
                 "pass": ok,
                 "missing_preconditions": verdict["missing_preconditions"],
+                "rule_refs": verdict["rule_refs"],
             }
         )
 
