@@ -1,0 +1,8 @@
+# reconstructed-from-run-evidence
+# primary change: docs/status/gate-c-review-log.ndjson
+# primary change: docs/status/gate-c-rework-log.ndjson
+# primary change: docs/status/gate-c-stability-log.ndjson
+--- a/docs/status/gate-c-review-log.ndjson
++++ b/docs/status/gate-c-review-log.ndjson
+@@ -... +... @@
++... (chatgpt-phase2-ndjson-batch changes; see primary target file for full content)

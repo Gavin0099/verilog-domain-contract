@@ -1,0 +1,49 @@
+run_id: "run-030"
+task_id: "precondition-completeness-model-sync"
+date: "2026-05-11"
+agent: "claude-sonnet-4-6"
+round: 9
+
+task_description: >
+  Extend docs/precondition-completeness-model.md to cover FSM_CONTRACT_REQUIRED and
+  CDC_STRATEGY_REQUIRED. Add fsm_state_model and cdc_strategy_when_multi_clock to
+  Decision Inputs section. Add conditionally-required rules for both. Add corresponding
+  entries to the Deterministic Action Matrix. Document gap G-030-01 in contract-sync-check.md.
+  Round A Section 5.1 comparable task 3 of 3 (Claude lane).
+
+primary_targets:
+  - docs/precondition-completeness-model.md
+  - docs/contract-sync-check.md
+
+secondary_targets:
+  - artifacts/governance-test/runs/run-030/run-record.yaml
+  - artifacts/governance-test/runs/run-030/scorecard.yaml
+  - artifacts/governance-test/run-ledger.ndjson
+
+files_modified:
+  - docs/precondition-completeness-model.md
+  - docs/contract-sync-check.md
+  - artifacts/governance-test/run-ledger.ndjson
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+change_scope_metadata:
+  added_line_count: 9
+  removed_line_count: 0
+  accepted_change_count: 2
+
+metrics:
+  evidence_traceability: 1.0
+  scope_violation_count: 0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+
+outcome_summary: >
+  Precondition completeness model extended to include FSM and CDC inputs.
+  Decision Inputs, Completeness Rules, and Deterministic Action Matrix all updated.
+  The Stop Conditions section already had the CDC multi-clock entry; no change needed there.
+  Gap G-030-01 documented in contract-sync-check.md Known Gaps History.
+  Round A Section 5.1, Run 3 of 3 complete (Claude lane). Section 5.1 DONE.

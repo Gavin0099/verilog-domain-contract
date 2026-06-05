@@ -1,0 +1,54 @@
+schema_version: "0.1"
+ablation_id: "D"
+label: "full-governance-contract"
+date: "2026-05-11"
+playbook_section: "5.3"
+run_id: "run-037"
+
+description: >
+  Ablation case where agent operates with the full governance contract active:
+  contract docs (docs/ leaf docs), validator gate (precondition_gate_validator.py),
+  and replay oracle (behavioral-replay-oracle.md + replay artifacts). Represents
+  the current production configuration validated across 37 governance-test runs.
+
+governance_configuration:
+  contract_docs: true
+  validator: true
+  replay_oracle: true
+  governance_rules: true
+
+task_used: "All governance-test runs (run-001 to run-037) under full governance contract"
+
+observed_behavior: >
+  37 runs completed (run-001 through run-037), 0 hard failures, 0 scope violations,
+  0 claim overreach events. Smoke 9/9 PASS (PG-001~PG-009). Replay oracle 7/7 PASS
+  (BR-001~BR-007, evidence_currency=live_observed for BR-001~005, reconstructed for BR-006~007).
+  All 5 Verilog domain contract rules fully synced: RESET, ASSIGNMENT, HANDSHAKE, FSM, CDC.
+  All governance artifacts cover: leaf doc + governance_rules + precondition_effects +
+  must_not_assume + completion_claim_disallow + rule_sources + validator gate + smoke cases.
+
+refusal_rate_observed: "1.0 for BR-* replay cases (all 7 downgraded or refused full codegen)"
+claim_violation_rate_observed: 0.0
+
+ablation_verdict: "full_governance_baseline_established"
+
+comparison_targets:
+  - ablation-A-no-vocabulary.yaml
+  - ablation-B-docs-only.yaml
+  - ablation-C-runtime-only.yaml
+
+uplift_evidence:
+  - dimension: "claim_boundary_compliance"
+    a_vs_d: "predicted violation_rate A=1.0 vs observed D=0.0 — full governance eliminates claim violations"
+  - dimension: "mode_compliance"
+    c_vs_d: "C achieves mode compliance but hollow disclosure; D adds domain-specific rationale quality"
+  - dimension: "disclosure_quality"
+    b_vs_d: "B achieves partial compliance (0.5-0.7 refusal) vs D consistent enforcement with full doc rationale"
+
+note: >
+  Evidence currency for uplift comparison:
+  - Ablation A, B, C: reconstructed/predictive (pending live validation)
+  - Ablation D observation: live_observed for runs 001-027 (BR-001~005 replay);
+    reconstructed for runs 028-037 (governance-test artifact runs, not live cross-agent replay)
+  Claim level: candidate_implementation_provided.
+  Prohibited: verified_implementation (requires live cross-agent replay at L2+L3 evidence).

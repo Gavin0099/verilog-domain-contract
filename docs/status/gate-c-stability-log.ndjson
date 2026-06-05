@@ -1,0 +1,52 @@
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-028","integration_stability":"stable","stability_note":"accepted; 0 post-merge incidents; schemas/review-checklist.yaml FSM+CDC sections added cleanly"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-029","integration_stability":"stable","stability_note":"accepted; rendering artifact fix applied; no integration regressions"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-030","integration_stability":"stable","stability_note":"accepted; precondition model extension; no contract.yaml conflicts introduced"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-031","integration_stability":"stable","stability_note":"accepted; authority policy addition; no existing rule overrides"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-032","integration_stability":"stable","stability_note":"accepted; evidence currency classification added; no data loss"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-033","integration_stability":"stable","stability_note":"accepted; lifecycle policy added; backward-compatible extension"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-034","integration_stability":"stable","stability_note":"accepted; ablation artifact created; no existing file modified adversely"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-035","integration_stability":"stable","stability_note":"accepted; BV-FSM-001/BV-CDC-001 added; behavior-validation.md extends cleanly"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-036","integration_stability":"stable","stability_note":"accepted; ablation context section added; pre-task-gate-integration.md backward-compatible"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-037","integration_stability":"stable","stability_note":"accepted; meta-run; docs/status/ created; cumulative-summary stale paths fixed"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-038","integration_stability":"stable","stability_note":"accepted; Gate C infrastructure files only; no governance contract changes"}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-039","integration_stability":"stable","stability_note":"accepted; window report only; no governance contract changes"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-06","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat; no instability signal recorded"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-07","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-08","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-09","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-10","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-11","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-12","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-13","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-14","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-15","integration_stability":"stable","stability_note":"source: playbook §8.4 integration_stability_trend=flat"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-041", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-042", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-043", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-044", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-045", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-046", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-047", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-048", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-049", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-0410", "integration_stability": "stable", "stability_note": "Phase 2 run - accepted, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-016", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-017", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-018", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-019", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-020", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-021", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-022", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-023", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-024", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-025", "integration_stability": "stable", "stability_note": "Phase 2 - ChatGPT equiv, no incidents"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-001", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-002", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-003", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-004", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-005", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-006", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-007", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-008", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-009", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-0010", "integration_stability": "stable", "stability_note": "proxy - estimated stable; doc-only mode"}

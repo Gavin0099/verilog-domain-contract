@@ -1,0 +1,56 @@
+run_id: "run-040"
+task_id: "gate-c-three-lane-ingest"
+status: "accepted"
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+core_metrics:
+  scope_violation_count: 0
+  evidence_traceability: 1.0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+  revert_needed_after_fix: false
+  reviewer_edit_effort: null
+  governance_signal_without_material_improvement: false
+
+observability:
+  runtime_governance_ratio: null
+  artifact_governance_ratio: null
+  tokens_per_reviewer_accepted_fix: null
+  review_navigation_burden: "low"
+
+failure_classification:
+  attention_anchoring_failure: false
+  governance_drag: false
+  traceability_theater: false
+  semantic_over_constraint: false
+  under_fix_with_clean_reporting: false
+
+gate_c_self_reference:
+  review_start_utc: null
+  review_end_utc: null
+  review_minutes: null
+  note: "retroactive — timestamps not captured for Phase 1 runs"
+
+gate_c_window_result:
+  window_id: "gate-c-window-2026-05-11"
+  gate_c_result: "provisional-pass"
+  reopen_revert_rate: 0.0
+  integration_stability_status: "stable"
+  review_effort_available: false
+  copilot_lane_data: false
+  blocked_by:
+    - "review_minutes=null for all 22 rows (Phase 1 timestamps not yet active)"
+    - "copilot lane: 0 rows ingested (no Copilot data available)"
+
+disposition:
+  reviewer_decision: accept
+  round_note: >
+    Gate C Three-Lane Ingest executed. Three NDJSON log files created with correct schema.
+    Validator implemented and confirms provisional-pass: Claude and ChatGPT lanes pass
+    rework (rate=0.0) and stability (stable) categories; review_minutes remains null and
+    Copilot lane has no data. Honest instrumentation state documented with clear upgrade path.
+    Round 11, Run 1 of 1 complete.

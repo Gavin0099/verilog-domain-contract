@@ -1,0 +1,28 @@
+# reconstructed-from-run-evidence
+# primary change 1: docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md - fix rendering artifact + add cross-refs + non-claim
+# primary change 2: docs/CLAIM_BOUNDARY.md - add cross-references section
+--- a/docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md
++++ b/docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md
+@@ -18,4 +18,16 @@
+ ## Hard Rule
+-- If preconditions=false, scenario result must be
+-ot_executed and observed must be
+-ull.
++- If preconditions=false, scenario result must be `not_executed` and observed must be `null`.
++
++## Cross-References
++- `docs/CLAIM_BOUNDARY.md`: claim posture vocabulary (`bounded_support`, `stronger_than_allowed`, `semantic_drift_risk`)
++- `docs/negative-claim-list.md`: NC-008 particularly relevant to claim escalation patterns tested in Scenario 3
++- `docs/completion-claim-policy.md`: completion claim enforcement policy; defines the evidence requirements that bound Scenario 1 baseline
++
++## Non-Claim
++This spec defines enforcement test scenarios, not enforcement proof. Passing all three scenarios
++at bounded_support does not imply cross-session or cross-model deterministic enforcement.
+--- a/docs/CLAIM_BOUNDARY.md
++++ b/docs/CLAIM_BOUNDARY.md
+@@ -18,3 +18,9 @@
+ - Same evidence posture escalation -> semantic_drift_risk=true.
++
++## Cross-References
++- `docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md`: test scenarios for verifying claim enforcement behavior
++- `docs/completion-claim-policy.md`: evidence requirements for each claim level (`analysis_provided`, `draft_rtl_provided`, `candidate_implementation_provided`, `verified_implementation`)

@@ -1,0 +1,48 @@
+run_id: "run-028"
+task_id: "fsm-cdc-checklist-extension"
+date: "2026-05-11"
+agent: "claude-sonnet-4-6"
+round: 9
+
+task_description: >
+  Extend schemas/review-checklist.yaml to cover FSM_CONTRACT_REQUIRED and
+  CDC_STRATEGY_REQUIRED. Add fsm_contract and cdc_strategy sections with
+  severity-classified items mirroring the existing reset/assignment/handshake
+  pattern. Document gap G-028-01 in contract-sync-check.md Known Gaps History.
+  Round A Section 5.1 comparable task 1 of 3 (Claude lane).
+
+primary_targets:
+  - schemas/review-checklist.yaml
+  - docs/contract-sync-check.md
+
+secondary_targets:
+  - artifacts/governance-test/runs/run-028/run-record.yaml
+  - artifacts/governance-test/runs/run-028/scorecard.yaml
+  - artifacts/governance-test/run-ledger.ndjson
+
+files_modified:
+  - schemas/review-checklist.yaml
+  - docs/contract-sync-check.md
+  - artifacts/governance-test/run-ledger.ndjson
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+change_scope_metadata:
+  added_line_count: 26
+  removed_line_count: 0
+  accepted_change_count: 2
+
+metrics:
+  evidence_traceability: 1.0
+  scope_violation_count: 0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+
+outcome_summary: >
+  FSM and CDC checklist sections added to schemas/review-checklist.yaml.
+  schemas/review-checklist.yaml now covers all 5 Verilog domain contract rules.
+  Gap G-028-01 documented in contract-sync-check.md Known Gaps History.
+  Round A Section 5.1, Run 1 of 3 complete (Claude lane).

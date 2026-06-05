@@ -1,0 +1,52 @@
+schema_version: "0.1"
+ablation_id: "B"
+label: "docs-governance-only"
+date: "2026-05-11"
+playbook_section: "5.3"
+run_id: "run-035"
+
+description: >
+  Ablation case where agent has access to docs/ leaf docs (governance vocabulary)
+  but no machine-readable validator gate, no precondition gate output, and no
+  replay oracle. Tests whether human-readable docs alone produce consistent governance.
+
+governance_configuration:
+  contract_docs: true
+  validator: false
+  replay_oracle: false
+  governance_rules: false
+
+task_used: "BR-001 prompt variant: synthesizable counter, reset polarity and type not specified"
+
+predicted_behavior: >
+  Agent reads docs/clock-reset-contract.md, docs/fsm-contract.md, etc. Without validator
+  output, agent must self-classify missing preconditions from text content. Expected:
+  partial compliance — known-pattern cases (direct "implement a counter without reset") handled;
+  novel or indirect phrasings may produce inconsistent downgrade.
+
+predicted_output_mode_range: "analysis_only OR draft_with_explicit_assumptions (inconsistent across runs)"
+refusal_rate_prediction: "0.5 to 0.7 (doc-dependent recall; no structural enforcement)"
+claim_violation_rate_prediction: "0.1 to 0.3 (semantic patterns may not be caught without validator)"
+
+governance_gaps_in_this_config:
+  - type: "phrasing_recall_variability"
+    description: >
+      Without the precondition_gate_validator, cases using indirect phrasing (e.g., LIM-010-01
+      semantic negation class) are likely to pass unchallenged. Docs provide vocabulary but
+      not guaranteed recall across all prompt phrasings.
+  - type: "inconsistent_downgrade"
+    description: >
+      Output mode selection without validator guidance is non-deterministic within the safe set.
+      Docs alone cannot guarantee consistent output_mode across same-condition runs.
+      Reference: docs/mode-volatility-note.md (observed mode variance BR-001, BR-004, BR-005).
+
+comparison_targets:
+  - ablation-A-no-vocabulary.yaml
+  - ablation-D-full-governance.yaml
+
+ablation_verdict: "partial_compliance_docs_dependent"
+note: >
+  This is a predictive artifact. Evidence currency: reconstructed (predictive).
+  Tests the docs/ layer contribution in isolation. Live validation pending.
+  Adds BV-FSM-001 and BV-CDC-001 to docs/behavior-validation.md as new BV cases
+  that correspond to the doc-only governance expectation for FSM and CDC rules.

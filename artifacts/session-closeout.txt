@@ -1,0 +1,7 @@
+﻿TASK_INTENT: Test and verify adoption of latest AI governance.
+WORK_COMPLETED: Latest AI governance onboarding test executed and adoption verified as successful.
+FILES_TOUCHED: artifacts/session-closeout.txt
+CHECKS_RUN: python -m governance_tools.manage_agent_closeout --project-root <repo> install --agent all; python -m governance_tools.manage_agent_closeout --project-root <repo> verify --agent all; python -m governance_tools.session_closeout_entry --project-root <repo>
+OPEN_RISKS: NONE
+NOT_DONE: NONE
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

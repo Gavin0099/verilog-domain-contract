@@ -1,0 +1,39 @@
+# reconstructed-from-run-evidence
+# Meta-run: 8 files created/modified
+#
+# primary change 1: artifacts/ablation/ablation-D-full-governance.yaml (new, 55 lines)
+# primary change 2: docs/status/claude-lane-session-index.md (new, 35 lines)
+# primary change 3: docs/status/claude-lane-run-ledger.md (new, 50 lines)
+#
+# secondary changes:
+# - artifacts/governance-test/round-007-summary.md (new, 90 lines)
+# - artifacts/governance-test/round-a-review-claude-lane.md (new, 100 lines — §8.5+8.6)
+# - artifacts/governance-test/cumulative-summary.md (update: 37 runs, stale paths fixed, Round 7 row)
+# - artifacts/session-index.ndjson (append: session-round9-claude-lane-20260511)
+# - artifacts/governance-test/run-ledger.ndjson (verify: all 10 entries present)
+#
+--- /dev/null
++++ b/artifacts/ablation/ablation-D-full-governance.yaml
+@@ -0,0 +1,55 @@
++schema_version: "0.1"
++ablation_id: "D"
++label: "full-governance-contract"
++observed_behavior: "37 runs, 0 failures, 0 violations, 9/9 smoke, 7/7 oracle"
++ablation_verdict: "full_governance_baseline_established"
++...
+--- /dev/null
++++ b/docs/status/claude-lane-session-index.md
++++ b/docs/status/claude-lane-run-ledger.md
++++ b/artifacts/governance-test/round-007-summary.md
++++ b/artifacts/governance-test/round-a-review-claude-lane.md
+--- a/artifacts/governance-test/cumulative-summary.md
++++ b/artifacts/governance-test/cumulative-summary.md
+@@ total_runs: 26 -> 37
+@@ stale_path: docs/reset-contract.md -> docs/clock-reset-contract.md
+@@ stale_path: docs/assignment-semantics-contract.md -> docs/assignment-semantics.md
+@@ round_table: +Round 7 row
+@@ session_index: reconstructed 7->8, total 9->10
+--- a/artifacts/session-index.ndjson
++++ b/artifacts/session-index.ndjson
+@@ -0,0 +1,1 @@
++{"session_id":"session-round9-claude-lane-20260511",...}

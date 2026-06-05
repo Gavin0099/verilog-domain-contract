@@ -1,0 +1,62 @@
+run_id: "run-040"
+task_id: "gate-c-three-lane-ingest"
+date: "2026-05-11"
+agent: "claude-sonnet-4-6"
+round: 11
+
+task_description: >
+  Execute Gate C Three-Lane Ingest Checklist (2026-05-11).
+  Create three NDJSON log files (gate-c-review-log.ndjson, gate-c-rework-log.ndjson,
+  gate-c-stability-log.ndjson) with data for Claude (12 rows, run-028..run-039) and
+  ChatGPT (10 rows, chatgpt-run-06..run-15) lanes; Copilot lane has 0 rows (no data).
+  Create scripts/gate_c_ingest_check.py validator and run it.
+  Produce docs/status/gate-c-ingest-checklist-2026-05-11.md sign-off.
+  Result: provisional-pass (FAIL on review_minutes=null; FAIL on copilot=0 rows).
+
+primary_targets:
+  - docs/status/gate-c-review-log.ndjson
+  - docs/status/gate-c-rework-log.ndjson
+  - docs/status/gate-c-stability-log.ndjson
+  - docs/status/gate-c-ingest-checklist-2026-05-11.md
+
+secondary_targets:
+  - scripts/gate_c_ingest_check.py
+  - artifacts/governance-test/runs/run-040/run-record.yaml
+  - artifacts/governance-test/runs/run-040/scorecard.yaml
+  - artifacts/governance-test/run-ledger.ndjson
+
+files_modified:
+  - docs/status/gate-c-review-log.ndjson
+  - docs/status/gate-c-rework-log.ndjson
+  - docs/status/gate-c-stability-log.ndjson
+  - docs/status/gate-c-ingest-checklist-2026-05-11.md
+  - scripts/gate_c_ingest_check.py
+  - artifacts/governance-test/run-ledger.ndjson
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+change_scope_metadata:
+  added_line_count: 158
+  removed_line_count: 0
+  accepted_change_count: 5
+
+metrics:
+  evidence_traceability: 1.0
+  scope_violation_count: 0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+
+outcome_summary: >
+  Gate C Three-Lane Ingest Checklist executed.
+  Three NDJSON log files created: 22 rows each (12 claude + 10 chatgpt; 0 copilot).
+  Validator (scripts/gate_c_ingest_check.py) implemented and run.
+  Sign-off document produced: docs/status/gate-c-ingest-checklist-2026-05-11.md.
+  gate_c_result: provisional-pass.
+  FAIL reasons: review_minutes=null for all rows (Phase 1 timestamps not yet active);
+  Copilot lane has 0 entries (no data ingested).
+  PASS: Claude rework (rate=0.0) + stability (stable); ChatGPT rework (rate=0.0) + stability (stable).
+  Upgrade path: capture review timestamps from run-041 onwards; ingest Copilot lane data.
+  Round 11, Run 1 of 1 (Gate C Three-Lane Ingest).

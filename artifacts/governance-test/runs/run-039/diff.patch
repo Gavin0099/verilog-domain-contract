@@ -1,0 +1,30 @@
+# reconstructed-from-run-evidence
+# primary change: docs/status/gate-c-window-report-2026-05-11.md (new, 72 lines)
+--- /dev/null
++++ b/docs/status/gate-c-window-report-2026-05-11.md
+@@ -0,0 +1,72 @@
++# Gate C Window Report — Claude Lane
++window_id: "gate-c-claude-2026-05-11"
++lane: "claude"
++run_range: run-028..run-039, total_runs=12
++
++review_effort:
++  avg_review_minutes: null  # Phase 1 timestamps not yet captured
++  ...
++
++quality_rework:
++  reopen_count: 0
++  revert_count: 0
++  total_changes: 12
++  reopen_revert_rate: 0.0  # PASS
++
++integration_stability:
++  post_merge_incident_count: 0
++  integration_block_count: 0
++  integration_stability_status: "stable"  # PASS
++
++gate_c_result: "provisional-pass"
++gate_c_rationale: quality_rework PASS, stability PASS, review_effort INSUFFICIENT DATA
++
++drift_check: no thresholds triggered
++phase_2_transition: avg_review_minutes available after 10 timestamped runs

@@ -1,0 +1,43 @@
+# reconstructed-from-run-evidence
+# primary change 1: docs/completion-evidence-levels.md +28 lines (lifecycle policy, non-equivalence warning, 4th forbidden condition)
+# primary change 2: docs/epistemic-decision-policy.md +9 lines (stale evidence handling section)
+--- a/docs/completion-evidence-levels.md
++++ b/docs/completion-evidence-levels.md
+@@ -43,3 +43,31 @@
+ ## Forbidden Claim Conditions
+ - no evidence level stated
+ - evidence stated but scope not disclosed
+ - missing required preconditions while claiming `verified_implementation`
+
++## Evidence Lifecycle Policy
++
++Evidence anchors from a previous session or run remain valid only when:
++1. governed scope has not changed
++2. evidence artifact still resolves
++3. no governance rule has been updated changing evaluation criteria
++
++If any condition fails: stale_evidence -> downgrade claim level.
++
++## Cross-Session Non-Equivalence Warning
++
++Session boundary is an evidence lifecycle boundary unless explicitly confirmed.
++Implicit transfer is a stale_evidence risk -> treat as unknown premise.
++
++## Forbidden Claim Conditions (updated)
++...
++- using evidence from a prior session without confirming lifecycle conditions
+--- a/docs/epistemic-decision-policy.md
++++ b/docs/epistemic-decision-policy.md
+@@ -42,3 +42,12 @@
+ If `bounded_trial_cost` exceeds threshold, `need_more_info` outranks `proceed_with_assumption`.
+
++## Stale Evidence Handling
++
++When prior-session evidence used without confirming lifecycle validity:
++- evidence_quality: weak
++- epistemic_risk: high
++- forced outcome: need_more_info
++
++See docs/completion-evidence-levels.md § "Evidence Lifecycle Policy" for validity conditions.
++
+ ## Non-Claim

@@ -1,0 +1,52 @@
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-028","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-029","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-030","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-031","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-032","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-033","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-034","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-035","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-036","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-037","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-038","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-039","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-06","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-07","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-08","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-09","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-10","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-11","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-12","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-13","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-14","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-15","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0,"source":"playbook §8.3 native_closeout_ratio=1.00"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-041", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-042", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-043", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-044", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-045", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-046", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-047", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-048", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-049", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "claude", "run_id": "run-0410", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-016", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-017", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-018", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-019", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-020", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-021", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-022", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-023", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-024", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "chatgpt", "run_id": "chatgpt-run-025", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-001", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-002", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-003", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-004", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-005", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-006", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-007", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-008", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-009", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}
+{"window_id": "gate-c-window-2026-05-11", "lane": "copilot", "run_id": "copilot-run-0010", "reopen_count": 0, "revert_count": 0, "total_changes": 1, "reopen_revert_rate": 0.0, "note": "proxy"}

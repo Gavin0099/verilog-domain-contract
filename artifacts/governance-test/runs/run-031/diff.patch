@@ -1,0 +1,39 @@
+# reconstructed-from-run-evidence
+# primary change 1: governance/rules/RULE_INDEX.md +19 lines (Authority Resolution Policy section)
+# primary change 2: docs/rtl-scope-boundary.md +9 lines (Governance Authority section)
+--- a/governance/rules/RULE_INDEX.md
++++ b/governance/rules/RULE_INDEX.md
+@@ -41,6 +41,25 @@
+ ---
++
++## Authority Resolution Policy
++
++When a Verilog domain contract rule and a general behavioral rule both apply to the same task,
++they operate at different levels and do not conflict:
++
++- The **Verilog domain contract rules** (System 1) govern RTL-specific precondition gate behavior
++- The **general behavioral rules** (System 2) govern session-level behavioral discipline
++
++Resolution priority:
++1. Defer to Verilog domain contract rule for RTL precondition and completion claim decisions.
++2. Apply the general behavioral rule at the behavioral/output scope level.
++3. If apparent contradiction: Verilog domain contract rule governs RTL output; general rule governs framing.
++
++Explicit conflict not anticipated in v0.1 scope. If observed, escalate per `CMN-001`.
++
++---
++
+ ## Severity Vocabulary
+--- a/docs/rtl-scope-boundary.md
++++ b/docs/rtl-scope-boundary.md
+@@ -27,3 +27,12 @@
+ 3. constrain permitted output level
++
++## Governance Authority
++
++RTL precondition claims are governed by `contract.yaml` `governance_rules` (5 Verilog domain rules:
++RESET, ASSIGNMENT, HANDSHAKE, FSM, CDC). General behavioral discipline is governed by
++`governance/rules/` (19 cross-domain behavioral rules).
++
++These are two distinct systems. See `governance/rules/RULE_INDEX.md` § "Authority Resolution Policy"
++for the resolution policy when both systems apply to the same task.

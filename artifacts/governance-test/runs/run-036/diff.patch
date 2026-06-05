@@ -1,0 +1,27 @@
+# reconstructed-from-run-evidence
+# primary change 1: artifacts/ablation/ablation-C-runtime-only.yaml (new file, 52 lines)
+# primary change 2: docs/pre-task-gate-integration.md +13 lines (Ablation Context section)
+--- /dev/null
++++ b/artifacts/ablation/ablation-C-runtime-only.yaml
+@@ -0,0 +1,52 @@
++schema_version: "0.1"
++ablation_id: "C"
++label: "runtime-hooks-only"
++... (full content in artifact)
+--- a/docs/pre-task-gate-integration.md
++++ b/docs/pre-task-gate-integration.md
+@@ -37,3 +37,16 @@
+ This keeps enforcement incremental and avoids immediate hard-stop coupling.
++
++## Ablation Context
++
++The pre-task gate (validator) is the runtime enforcement surface tested in Ablation C
++(see artifacts/ablation/ablation-C-runtime-only.yaml).
++
++- Ablation C (runtime hooks only): mode compliance achieved; hollow disclosure risk
++- Ablation D (full governance): mode compliance + domain-specific disclosure quality
++
++Implication: pre-task gate is necessary but not sufficient. The docs/ layer provides
++domain rationale that makes disclosure meaningful.
++
+ ## Smoke Cases

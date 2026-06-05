@@ -1,0 +1,27 @@
+# reconstructed-from-run-evidence
+# primary change 1: docs/status/gate-c-measurement-plan.md (new, 100 lines — Gate C plan v0.1)
+# primary change 2: schemas/gate-c-window-report.yaml (new, 75 lines — window report schema)
+# secondary change 1: docs/status/gate-c-review-effort-log.md (new, 30 lines — per-run timestamp log)
+# secondary change 2: docs/status/gate-c-reopen-revert-log.md (new, 35 lines — reopen/revert event log)
+--- /dev/null
++++ b/docs/status/gate-c-measurement-plan.md
+@@ -0,0 +1,100 @@
++# Gate C Measurement Plan v0.1
++Date: 2026-05-11 | Scope: Copilot/Claude/ChatGPT lanes
++... (full plan content)
+--- /dev/null
++++ b/schemas/gate-c-window-report.yaml
+@@ -0,0 +1,75 @@
++schema_version: "0.1"
++schema_name: gate-c-window-report
++... (full schema content)
+--- /dev/null
++++ b/docs/status/gate-c-review-effort-log.md
+@@ -0,0 +1,30 @@
++# Gate C — Review Effort Log
++... (null entries for runs 028-038)
+--- /dev/null
++++ b/docs/status/gate-c-reopen-revert-log.md
+@@ -0,0 +1,35 @@
++# Gate C — Reopen/Revert Event Log
++... (0 events, reopen_revert_rate=0.0 for window 028-039)

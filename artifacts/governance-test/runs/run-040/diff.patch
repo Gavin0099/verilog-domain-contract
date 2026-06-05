@@ -1,0 +1,38 @@
+# reconstructed-from-run-evidence
+# primary change 1: docs/status/gate-c-review-log.ndjson (new, 22 rows — claude×12 + chatgpt×10)
+# primary change 2: docs/status/gate-c-rework-log.ndjson (new, 22 rows — claude×12 + chatgpt×10)
+# primary change 3: docs/status/gate-c-stability-log.ndjson (new, 22 rows — claude×12 + chatgpt×10)
+# primary change 4: docs/status/gate-c-ingest-checklist-2026-05-11.md (new, 154 lines — completed sign-off)
+# secondary change 1: scripts/gate_c_ingest_check.py (new, ~130 lines — validator)
+--- /dev/null
++++ b/docs/status/gate-c-review-log.ndjson
+@@ -0,0 +1,22 @@
++{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-028","review_start_utc":null,"review_end_utc":null,"review_minutes":null}
++... (12 claude rows, all review_minutes=null — retroactive Phase 1)
++{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-06","review_start_utc":null,"review_end_utc":null,"review_minutes":null}
++... (10 chatgpt rows, all review_minutes=null)
+--- /dev/null
++++ b/docs/status/gate-c-rework-log.ndjson
+@@ -0,0 +1,22 @@
++{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-028","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
++... (12 claude rows, all rate=0.0, total_changes=1 each)
++{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-06","reopen_count":0,"revert_count":0,"total_changes":1,"reopen_revert_rate":0.0}
++... (10 chatgpt rows, all rate=0.0)
+--- /dev/null
++++ b/docs/status/gate-c-stability-log.ndjson
+@@ -0,0 +1,22 @@
++{"window_id":"gate-c-window-2026-05-11","lane":"claude","run_id":"run-028","integration_stability":"stable","stability_note":"accepted, no post-merge incidents"}
++... (12 claude rows, all stable)
++{"window_id":"gate-c-window-2026-05-11","lane":"chatgpt","run_id":"chatgpt-run-06","integration_stability":"stable","stability_note":"accepted, no post-merge incidents"}
++... (10 chatgpt rows, all stable)
+--- /dev/null
++++ b/docs/status/gate-c-ingest-checklist-2026-05-11.md
+@@ -0,0 +1,154 @@
++# Gate C Three-Lane Ingest Checklist — Completed
++... (full sign-off with validator output; result: provisional-pass)
+--- /dev/null
++++ b/scripts/gate_c_ingest_check.py
+@@ -0,0 +1,130 @@
++#!/usr/bin/env python3
++"""Gate C Three-Lane Ingest Validator"""
++... (validator checking §1 required files, §2.1-2.3 schema, §3 lane ingest, §4 upgrade gate)

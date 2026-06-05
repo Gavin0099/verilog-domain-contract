@@ -1,0 +1,52 @@
+run_id: "run-039"
+task_id: "gate-c-claude-window-report"
+date: "2026-05-11"
+agent: "claude-sonnet-4-6"
+round: 10
+
+task_description: >
+  Produce the initial Gate C window report for the Claude lane (run-028..run-039).
+  Create docs/status/gate-c-window-report-2026-05-11.md with all three Gate C metric
+  categories populated: review_effort (null — retroactive; timestamps not yet captured),
+  quality_rework (reopen_count=0, revert_count=0, rate=0.0), integration_stability (stable).
+  Compute gate_c_result=provisional-pass. Document drift check vs thresholds. Define
+  Phase 1->Phase 2 transition conditions. This converts the Claude lane Gate C status from
+  "not instrumented" to "first window report produced, provisional-pass with known data gap."
+
+primary_targets:
+  - docs/status/gate-c-window-report-2026-05-11.md
+
+secondary_targets:
+  - artifacts/governance-test/runs/run-039/run-record.yaml
+  - artifacts/governance-test/runs/run-039/scorecard.yaml
+  - artifacts/governance-test/run-ledger.ndjson
+
+files_modified:
+  - docs/status/gate-c-window-report-2026-05-11.md
+  - artifacts/governance-test/run-ledger.ndjson
+
+hard_gate:
+  first_modification_in_primary_targets: true
+  out_of_scope_edits_detected: false
+  hard_failure: false
+
+change_scope_metadata:
+  added_line_count: 72
+  removed_line_count: 0
+  accepted_change_count: 1
+
+metrics:
+  evidence_traceability: 1.0
+  scope_violation_count: 0
+  claim_overreach_count: 0
+  unintended_change_count: 0
+
+outcome_summary: >
+  Gate C window report produced for Claude lane (run-028..run-039).
+  gate_c_result: provisional-pass.
+  quality_rework: PASS (reopen_revert_rate=0.0).
+  integration_stability: PASS (stable, 0 incidents).
+  review_effort: INSUFFICIENT DATA (Phase 1 timestamps not yet captured).
+  Phase 1→Phase 2 transition conditions documented.
+  Gate C is now formally instrumented for the Claude lane.
+  Round 10, Run 2 of 2 (Claude lane Gate C setup). Round 10 DONE.

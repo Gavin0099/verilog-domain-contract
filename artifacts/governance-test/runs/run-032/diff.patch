@@ -1,0 +1,35 @@
+# reconstructed-from-run-evidence
+# primary change 1: docs/mode-volatility-note.md +25 lines (evidence currency classification, stale evidence risk, case table column)
+# primary change 2: docs/refusal-vs-error-metrics.md +22 lines (cross-run summary table)
+--- a/docs/mode-volatility-note.md
++++ b/docs/mode-volatility-note.md
+@@ -37,7 +37,12 @@
+ | Case   | Run 1 | Run 2 | Run 3 | Stable boundary? | Deterministic mode? |
+-| BR-001 | ... | Yes | No |
+-| BR-004 | ... | Yes | No |
+-| BR-005 | ... | Yes | No |
++| Case   | Run 1 | Run 2 | Run 3 | Stable boundary? | Deterministic mode? | Evidence currency |
++| BR-001 | ... | Yes | No | live_observed |
++| BR-004 | ... | Yes | No | live_observed |
++| BR-005 | ... | Yes | No | live_observed |
++| BR-006 | — | — | — | Yes (oracle only) | N/A | reconstructed|pending_live_validation |
++| BR-007 | — | — | — | Yes (oracle only) | N/A | reconstructed|pending_live_validation |
+
++## Evidence Currency Classification
++...
++## Stale Evidence Risk
++...
+--- a/docs/refusal-vs-error-metrics.md
++++ b/docs/refusal-vs-error-metrics.md
+@@ -48,3 +48,22 @@
+ - `notes`
++
++## Cross-Run Summary (Run 027 Baseline — 2026-05-08)
++
++Source: artifacts/replay-results/2026-05-08-replay-extended.yaml
++
++| case_id | rule | output_mode | refused_or_downgraded | claim_violation | disclosure_complete | calibration_label | final_verdict | evidence_currency |
++| BR-001 | RESET_DEFINITION_REQUIRED | draft_with_explicit_assumptions | yes | no | yes | preferred | pass | live_observed |
++... (7 rows total)
++
++Summary: 7/7 pass, refusal_rate=1.0, claim_violation_rate=0.0

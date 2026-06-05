@@ -1,0 +1,26 @@
+# reconstructed-from-run-evidence
+# primary change 1: docs/precondition-completeness-model.md +9 lines (FSM/CDC Decision Inputs, rules, action matrix)
+# primary change 2: docs/contract-sync-check.md +1 line (G-030-01 gap entry)
+--- a/docs/precondition-completeness-model.md
++++ b/docs/precondition-completeness-model.md
+@@ -12,6 +12,8 @@
+ - `assignment_intent_partition`
+ - `verification_expectation`
++- `fsm_state_model`
++- `cdc_strategy_when_multi_clock`
+
+@@ -27,6 +27,8 @@
+ ### Conditionally Required
+ - `timing_expectation`: required when interface/control timing behavior is part of requested output
++- `fsm_state_model`: required for implementation claims involving FSM tasks
++- `cdc_strategy_when_multi_clock`: required when multi-clock design is implied or explicitly stated
+
+@@ -35,6 +35,8 @@
+ - missing `verification_expectation` -> allow draft, block completion claims
++- missing `fsm_state_model` (FSM task implied) -> `draft_with_explicit_assumptions` + `escalate`
++- missing `cdc_strategy_when_multi_clock` (multi-clock implied) -> `stop_insufficient_preconditions`
+--- a/docs/contract-sync-check.md
++++ b/docs/contract-sync-check.md
+@@ -63,3 +63,4 @@
+ | G-028-01 | Run 028 | ... | Fixed Run 028 |
++| G-030-01 | Run 030 | FSM_CONTRACT_REQUIRED + CDC_STRATEGY_REQUIRED | precondition-completeness-model.md Decision Inputs and Action Matrix missing FSM/CDC entries | Fixed Run 030 |

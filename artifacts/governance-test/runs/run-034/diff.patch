@@ -1,0 +1,22 @@
+# reconstructed-from-run-evidence
+# primary change 1: artifacts/ablation/ablation-A-no-vocabulary.yaml (new file, 50 lines)
+# primary change 2: docs/refusal-vs-error-metrics.md +15 lines (Ablation Framework section)
+--- /dev/null
++++ b/artifacts/ablation/ablation-A-no-vocabulary.yaml
+@@ -0,0 +1,50 @@
++schema_version: "0.1"
++ablation_id: "A"
++label: "no-governance-vocabulary"
++... (full content in artifact)
+--- a/docs/refusal-vs-error-metrics.md
++++ b/docs/refusal-vs-error-metrics.md
+@@ -49,3 +49,16 @@
+ - `notes`
++
++## Ablation Framework
++
++| Ablation | Config | Predicted refusal_rate | Predicted claim_violation_rate | Artifact |
++| A | No governance vocabulary | 0.0 | 1.0 | ablation-A-no-vocabulary.yaml |
++| B | Docs governance only | 0.5–0.7 | 0.1–0.3 | ablation-B-docs-only.yaml |
++| C | Runtime hooks only | 0.8 | 0.05 | ablation-C-runtime-only.yaml |
++| D | Full governance contract | observed 0.0 / 27 runs | 0.0 | ablation-D-full-governance.yaml |

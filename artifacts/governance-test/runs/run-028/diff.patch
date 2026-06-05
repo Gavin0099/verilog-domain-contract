@@ -1,0 +1,46 @@
+# reconstructed-from-run-evidence
+# primary change: schemas/review-checklist.yaml +26 lines (fsm_contract + cdc_strategy sections)
+# secondary change: docs/contract-sync-check.md +1 line (G-028-01 gap entry)
+--- a/schemas/review-checklist.yaml
++++ b/schemas/review-checklist.yaml
+@@ -48,3 +48,29 @@
+       - id: HANDSHAKE_COMPLETION_CLAIM
+         question: Is implementation claimed complete without handshake timing definition?
+         severity: critical
++
++  - id: fsm_contract
++    required: true
++    items:
++      - id: FSM_STATE_MODEL_DEFINED
++        question: Is the FSM state model (states, encoding, transitions) explicitly defined?
++        severity: high
++      - id: FSM_DECOMP_DECLARED
++        question: Is the FSM decomposition (Moore/Mealy, one-hot/binary) explicitly declared?
++        severity: high
++      - id: FSM_ILLEGAL_STATE_DEFINED
++        question: Is illegal/unreachable state handling explicitly defined?
++        severity: high
++      - id: FSM_COMPLETION_CLAIM
++        question: Is implementation claimed complete without FSM state model definition?
++        severity: critical
++
++  - id: cdc_strategy
++    required: true
++    items:
++      - id: CDC_MULTI_CLOCK_DETECTED
++        question: Is the presence of multiple clock domains explicitly identified?
++        severity: high
++      - id: CDC_STRATEGY_DEFINED
++        question: Is the CDC crossing strategy (synchronizer type, latency) explicitly defined?
++        severity: high
++      - id: CDC_SYNCHRONIZER_DEFINED
++        question: Is the synchronizer implementation (two-FF, handshake, FIFO) explicitly specified?
++        severity: high
++      - id: CDC_COMPLETION_CLAIM
++        question: Is implementation claimed complete without CDC strategy definition in a multi-clock design?
++        severity: critical
+--- a/docs/contract-sync-check.md
++++ b/docs/contract-sync-check.md
+@@ -63,3 +63,4 @@
+ | G-022-05 | Run 022 | CDC_STRATEGY_REQUIRED | validator Rule 5 + regex absent (PG-006/007 added) | Fixed Run 022 |
++| G-028-01 | Run 028 | FSM_CONTRACT_REQUIRED + CDC_STRATEGY_REQUIRED | schemas/review-checklist.yaml fsm_contract and cdc_strategy sections absent | Fixed Run 028 |

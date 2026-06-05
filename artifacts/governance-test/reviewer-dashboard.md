@@ -1,8 +1,8 @@
 # Governance Test Reviewer Dashboard
 
-**Generated**: 2026-05-08 (updated Run 027)
-**Total runs**: 27 (run-001 ~ run-027)
-**Reviewer decisions**: 27 / 27 accepted
+**Generated**: 2026-05-11 (updated Run 041)
+**Total runs**: 41 (run-001 ~ run-041)
+**Reviewer decisions**: 41 / 41 accepted
 
 This document summarises every run for human review. For each run, the reviewer should:
 1. Read the `round_note` in the scorecard
@@ -43,6 +43,20 @@ This document summarises every run for human review. For each run, the reviewer 
 | run-025 | FSM explicit smoke cases PG-008/009 | 6 | false | 0 | 0 | high | accept |
 | run-026 | Dashboard sync to 25 runs (meta) | 7 | false | 0 | 0 | high | accept |
 | run-027 | FSM+CDC replay oracle extension BR-006/007 | 8 | false | 0 | 0 | high | accept |
+| run-028 | FSM+CDC checklist extension | 9 | false | 0 | 0 | high | accept |
+| run-029 | CLAIM_BOUNDARY wording fix | 9 | false | 0 | 0 | high | accept |
+| run-030 | Precondition-completeness-model FSM/CDC sync | 9 | false | 0 | 0 | high | accept |
+| run-031 | Authority-conflict resolution policy | 9 | false | 0 | 0 | high | accept |
+| run-032 | Stale-evidence coherence note | 9 | false | 0 | 0 | high | accept |
+| run-033 | Lifecycle-ambiguity completion-evidence | 9 | false | 0 | 0 | high | accept |
+| run-034 | Ablation A: no governance vocabulary | 9 | false | 0 | 0 | high | accept |
+| run-035 | Ablation B: docs-only governance | 9 | false | 0 | 0 | high | accept |
+| run-036 | Ablation C: runtime-hooks-only | 9 | false | 0 | 0 | high | accept |
+| run-037 | Ablation D: full governance + meta | 9 | false | 0 | 0 | high | accept |
+| run-038 | Gate C infrastructure setup | 10 | false | 0 | 0 | high | accept |
+| run-039 | Gate C Claude lane first window report | 10 | false | 0 | 0 | high | accept |
+| run-040 | Gate C three-lane NDJSON ingest + validator | 11 | false | 0 | 0 | high | accept |
+| run-041 | Dashboard sync to 41 runs (meta) | 12 | false | 0 | 0 | high | accept |
 
 ---
 
@@ -183,6 +197,76 @@ This document summarises every run for human review. For each run, the reviewer 
 **Key change**: docs/behavioral-replay-oracle.md: +BR-006 (FSM_CONTRACT_REQUIRED missing) +BR-007 (CDC_STRATEGY_REQUIRED missing); 2026-05-08-replay-extended.yaml created (BR-001~007, 7/7 pass); contract.yaml documents updated.
 **Reviewer check**: Do BR-006/007 oracle criteria align with PG-008/PG-006 smoke cases? Are forbidden_claims consistent with completion_claim_disallow entries in contract.yaml?
 **Files**: [run-record](runs/run-027/run-record.yaml) | [scorecard](runs/run-027/scorecard.yaml) | [diff](runs/run-027/diff.patch)
+
+### run-028 — FSM+CDC Checklist Extension (Round A §5.1)
+**Key change**: schemas/review-checklist.yaml: +fsm_contract section (4 items) +cdc_strategy section (4 items). Gap G-028-01 documented.
+**Reviewer check**: Do FSM_COMPLETION_CLAIM and CDC_COMPLETION_CLAIM items correctly enforce the critical-severity completion claim requirement?
+**Files**: [run-record](runs/run-028/run-record.yaml) | [scorecard](runs/run-028/scorecard.yaml) | [diff](runs/run-028/diff.patch)
+
+### run-029 — CLAIM_BOUNDARY Wording Fix (Round A §5.1)
+**Key change**: docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md: fixed CRLF rendering artifact (`ot_executed`→`not_executed`, `ull`→`null`); added Non-Claim and Cross-References sections. docs/CLAIM_BOUNDARY.md: added Cross-References.
+**Reviewer check**: Are the corrected field names (`not_executed`, `null`) now consistent throughout the document? Is the file free of CRLF artifacts?
+**Files**: [run-record](runs/run-029/run-record.yaml) | [scorecard](runs/run-029/scorecard.yaml) | [diff](runs/run-029/diff.patch)
+
+### run-030 — Precondition-Completeness-Model FSM/CDC Sync (Round A §5.1)
+**Key change**: docs/precondition-completeness-model.md: +fsm_state_model +cdc_strategy_when_multi_clock to Decision Inputs, Completeness Rules, and Action Matrix.
+**Reviewer check**: Is the Action Matrix consequence for missing cdc_strategy (`stop_insufficient_preconditions`) appropriate vs FSM's softer `draft_with_explicit_assumptions`?
+**Files**: [run-record](runs/run-030/run-record.yaml) | [scorecard](runs/run-030/scorecard.yaml) | [diff](runs/run-030/diff.patch)
+
+### run-031 — Authority-Conflict Resolution Policy (Round A §5.2)
+**Key change**: governance/rules/RULE_INDEX.md: +Authority Resolution Policy section (two-system precedence + CMN-001 escalation). docs/rtl-scope-boundary.md: +Governance Authority section.
+**Reviewer check**: Is the two-system precedence (Verilog domain > general behavioral for RTL output) correctly stated? Is CMN-001 a fair escalation path?
+**Files**: [run-record](runs/run-031/run-record.yaml) | [scorecard](runs/run-031/scorecard.yaml) | [diff](runs/run-031/diff.patch)
+
+### run-032 — Stale-Evidence Coherence Note (Round A §5.2)
+**Key change**: docs/mode-volatility-note.md: +evidence_currency column to Case Table; +BR-006/BR-007 rows as `reconstructed | pending_live_validation`; +Evidence Currency Classification and Stale Evidence Risk sections.
+**Reviewer check**: Is BR-006/BR-007 correctly classified as `reconstructed` vs `live_observed`? Does the Stale Evidence Risk section correctly limit cross-session inference?
+**Files**: [run-record](runs/run-032/run-record.yaml) | [scorecard](runs/run-032/scorecard.yaml) | [diff](runs/run-032/diff.patch)
+
+### run-033 — Lifecycle-Ambiguity Completion Evidence (Round A §5.2)
+**Key change**: docs/completion-evidence-levels.md: +Evidence Lifecycle Policy (3 validity conditions) +Cross-Session Non-Equivalence Warning +fourth Forbidden Claim Condition. docs/epistemic-decision-policy.md: +Stale Evidence Handling.
+**Reviewer check**: Are the 3 validity conditions for cross-session evidence collectively sufficient and non-redundant? Is `need_more_info` the right forced outcome for stale evidence?
+**Files**: [run-record](runs/run-033/run-record.yaml) | [scorecard](runs/run-033/scorecard.yaml) | [diff](runs/run-033/diff.patch)
+
+### run-034 — Ablation A: No Governance Vocabulary (Round A §5.3)
+**Key change**: artifacts/ablation/ablation-A-no-vocabulary.yaml: predictive oracle (claim_violation_rate=1.0, governance_absent_baseline). docs/refusal-vs-error-metrics.md: +Ablation Framework table.
+**Reviewer check**: Is claim_violation_rate=1.0 the correct prediction for no-vocabulary mode? Is `governance_absent_baseline` the right verdict label?
+**Files**: [run-record](runs/run-034/run-record.yaml) | [scorecard](runs/run-034/scorecard.yaml) | [diff](runs/run-034/diff.patch)
+
+### run-035 — Ablation B: Docs-Only Governance (Round A §5.3)
+**Key change**: artifacts/ablation/ablation-B-docs-only.yaml: predictive oracle (refusal_rate=0.5-0.7, partial_compliance_docs_dependent). docs/behavior-validation.md: +BV-FSM-001 +BV-CDC-001.
+**Reviewer check**: Is refusal_rate=0.5-0.7 a defensible prediction for docs-only mode? Are BV-FSM-001/BV-CDC-001 correctly constrained to the 5 Verilog domain rules?
+**Files**: [run-record](runs/run-035/run-record.yaml) | [scorecard](runs/run-035/scorecard.yaml) | [diff](runs/run-035/diff.patch)
+
+### run-036 — Ablation C: Runtime-Hooks-Only (Round A §5.3)
+**Key change**: artifacts/ablation/ablation-C-runtime-only.yaml: predictive oracle (structural_compliance_hollow_disclosure; traceability_theater risk flagged). docs/pre-task-gate-integration.md: +Ablation Context section.
+**Reviewer check**: Is the `traceability_theater` risk correctly identified for runtime-only mode (structural pass, quality disclosure gap)?
+**Files**: [run-record](runs/run-036/run-record.yaml) | [scorecard](runs/run-036/scorecard.yaml) | [diff](runs/run-036/diff.patch)
+
+### run-037 — Ablation D: Full Governance + Meta (Round A §5.3 meta)
+**Key change**: artifacts/ablation/ablation-D-full-governance.yaml: observed baseline (0 violations, full_governance_baseline_established). docs/status/claude-lane-session-index.md + claude-lane-run-ledger.md (new files). artifacts/governance-test/round-007-summary.md + round-a-review-claude-lane.md (§8.5+8.6).
+**Reviewer check**: Does the Round A review §8.6 (Gate A/B/C decision) correctly summarise the Claude lane outcome?
+**Files**: [run-record](runs/run-037/run-record.yaml) | [scorecard](runs/run-037/scorecard.yaml) | [diff](runs/run-037/diff.patch)
+
+### run-038 — Gate C Infrastructure Setup
+**Key change**: docs/status/gate-c-measurement-plan.md (Gate C plan v0.1). schemas/gate-c-window-report.yaml (window report schema). docs/status/gate-c-review-effort-log.md + gate-c-reopen-revert-log.md (per-run logs).
+**Reviewer check**: Does the window report schema cover all three Gate C metric categories? Is the Phase 1→Phase 2 transition path clearly defined?
+**Files**: [run-record](runs/run-038/run-record.yaml) | [scorecard](runs/run-038/scorecard.yaml) | [diff](runs/run-038/diff.patch)
+
+### run-039 — Gate C Claude Lane First Window Report
+**Key change**: docs/status/gate-c-window-report-2026-05-11.md: provisional-pass. quality_rework=0.0, stability=stable, review_effort=null (Phase 1 gap acknowledged).
+**Reviewer check**: Is provisional-pass the correct result given two passing categories and one null? Is the Phase 2 upgrade path (10 runs with timestamps) clearly stated?
+**Files**: [run-record](runs/run-039/run-record.yaml) | [scorecard](runs/run-039/scorecard.yaml) | [diff](runs/run-039/diff.patch)
+
+### run-040 — Gate C Three-Lane NDJSON Ingest + Validator
+**Key change**: docs/status/gate-c-{review,rework,stability}-log.ndjson (22 rows: claude×12 + chatgpt×10; copilot×0). scripts/gate_c_ingest_check.py. docs/status/gate-c-ingest-checklist-2026-05-11.md.
+**Reviewer check**: Does the validator correctly flag Copilot 0-rows as FAIL and review_minutes=null as FAIL? Is the upgrade path documented?
+**Files**: [run-record](runs/run-040/run-record.yaml) | [scorecard](runs/run-040/scorecard.yaml) | [diff](runs/run-040/diff.patch)
+
+### run-041 — Dashboard Sync to 41 Runs (meta)
+**Key change**: reviewer-dashboard.md updated 27→41 runs; rows and review notes added for run-028~041.
+**Reviewer check**: Are all 41 runs listed with correct round assignments and all accept decisions?
+**Files**: [run-record](runs/run-041/run-record.yaml) | [scorecard](runs/run-041/scorecard.yaml) | [diff](runs/run-041/diff.patch)
 
 ---
 
