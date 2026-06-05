@@ -261,4 +261,9 @@
   - `schemas/governance-closeout-summary.yaml` for aggregate JSON structure
   - `schemas/governance-closeout-report.yaml` for markdown heading structure
 - [2026-06-05] Added `scripts/check_governance_closeout_schema.py` for direct closeout summary/report conformance checks.
+- [2026-06-05] Added `scripts/check_reviewer_checklist.py` to map replay/claim/closeout evidence into `schemas/review-checklist.yaml` and emit a machine-readable reviewer verdict.
+- [2026-06-05] Reviewer verdict artifact emitted:
+  - `artifacts/closeout/2026-06-05-reviewer-checklist-verdict.json`
+  - result: `pass`
+  - sections passed: reset / assignment / handshake / fsm / cdc / governance_closeout
 - [2026-06-05] CI workflow now runs `scripts/check_governance_closeout_schema.py` after closeout artifact generation and uploads closeout-summary/report conformance artifacts alongside the replay/claim artifacts.

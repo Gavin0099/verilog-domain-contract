@@ -1,0 +1,237 @@
+{
+  "schema_version": "0.1",
+  "name": "reviewer-checklist-verdict",
+  "checklist_schema": "schemas\\review-checklist.yaml",
+  "closeout_summary": "artifacts\\closeout\\2026-06-05-governance-closeout-summary.json",
+  "result": "pass",
+  "sections": [
+    {
+      "section_id": "reset_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "RESET_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Missing reset definition replay case was correctly downgraded and disclosed."
+        },
+        {
+          "item_id": "RESET_TYPE_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Reset type gap was surfaced by replay enforcement."
+        },
+        {
+          "item_id": "RESET_ASSUMPTION_DISCLOSED",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Replay output required explicit reset assumption disclosure."
+        },
+        {
+          "item_id": "RESET_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Completion claims remained blocked under missing reset preconditions."
+        }
+      ]
+    },
+    {
+      "section_id": "assignment_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "ASSIGNMENT_INTENT_CLEAR",
+          "result": "pass",
+          "evidence": [
+            "BR-004"
+          ],
+          "rationale": "Ambiguous assignment intent replay case was contained by governance."
+        },
+        {
+          "item_id": "ASSIGNMENT_OPERATOR_MATCH",
+          "result": "pass",
+          "evidence": [
+            "BR-004"
+          ],
+          "rationale": "Assignment semantics replay path remained bounded to explicit assumptions."
+        },
+        {
+          "item_id": "ASSIGNMENT_MIXED_STATE_PATH",
+          "result": "pass",
+          "evidence": [
+            "BR-004"
+          ],
+          "rationale": "Assignment contract replay did not permit unsafe completion posture."
+        }
+      ]
+    },
+    {
+      "section_id": "handshake_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "HANDSHAKE_PROTOCOL_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-002"
+          ],
+          "rationale": "Protocol-missing handshake replay case was downgraded to analysis-only."
+        },
+        {
+          "item_id": "HANDSHAKE_BACKPRESSURE_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-003"
+          ],
+          "rationale": "Backpressure gap replay case required explicit handshake assumptions."
+        },
+        {
+          "item_id": "HANDSHAKE_LATENCY_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-003"
+          ],
+          "rationale": "Latency gap replay case required explicit handshake assumptions."
+        },
+        {
+          "item_id": "HANDSHAKE_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-002",
+            "BR-003"
+          ],
+          "rationale": "Handshake completion claims remained bounded under missing protocol/timing detail."
+        }
+      ]
+    },
+    {
+      "section_id": "fsm_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "FSM_STATE_MODEL_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM replay case surfaced missing state model assumptions."
+        },
+        {
+          "item_id": "FSM_DECOMPOSITION_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM replay case surfaced missing decomposition style assumptions."
+        },
+        {
+          "item_id": "FSM_ILLEGAL_STATE_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM replay case surfaced missing illegal-state handling assumptions."
+        },
+        {
+          "item_id": "FSM_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM completion claims remained bounded under incomplete contract inputs."
+        }
+      ]
+    },
+    {
+      "section_id": "cdc_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "CDC_MULTI_CLOCK_DETECTED",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC replay case correctly detected multi-clock crossing intent."
+        },
+        {
+          "item_id": "CDC_STRATEGY_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC replay case blocked completion without explicit CDC strategy."
+        },
+        {
+          "item_id": "CDC_SYNCHRONIZER_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC replay case blocked completion without synchronizer scheme."
+        },
+        {
+          "item_id": "CDC_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC completion claims remained blocked under missing CDC strategy."
+        }
+      ]
+    },
+    {
+      "section_id": "governance_closeout",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "CLOSEOUT_REPLAY_SUMMARY_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary"
+          ],
+          "rationale": "Replay closeout summary is present and reports zero failures."
+        },
+        {
+          "item_id": "CLOSEOUT_CLAIM_SUMMARY_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary"
+          ],
+          "rationale": "Claim closeout summary is present and reports zero failures."
+        },
+        {
+          "item_id": "CLOSEOUT_SCHEMA_CONFORMANCE_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary",
+            "schema-conformance"
+          ],
+          "rationale": "Closeout surfaces report schema conformance cleanly."
+        },
+        {
+          "item_id": "CLOSEOUT_AGGREGATE_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary"
+          ],
+          "rationale": "Aggregate closeout summary is present and internally consistent."
+        }
+      ]
+    }
+  ]
+}
