@@ -238,3 +238,13 @@
 - [2026-06-05] Emitted conformance artifacts:
   - `artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json`
   - `artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json`
+- [2026-06-05] Progress checkpoint:
+  - repo has moved from governance-doc-only state to executable + schema-validated governance surfaces
+  - remaining gap is consolidation and reviewer consumption, not baseline rule coverage
+- [2026-06-05] Added `scripts/build_governance_closeout_summary.py` to aggregate:
+  - replay artifact summary
+  - claim-enforcement artifact summary
+  - both schema-conformance artifacts
+- [2026-06-05] Aggregate closeout artifact emitted:
+  - `artifacts/closeout/2026-06-05-governance-closeout-summary.json`
+  - summary: `schema_conformance_ok=true`, `replay_fail=0`, `claim_fail=0`, `claim_not_executed=1`

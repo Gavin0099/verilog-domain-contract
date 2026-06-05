@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1",
+  "name": "governance-closeout-summary",
+  "generated_from": {
+    "behavioral_replay_artifact": "artifacts\\replay-results\\2026-06-05-validator-replay.yaml",
+    "claim_enforcement_artifact": "artifacts\\claim-enforcement\\checker-tests\\2026-06-05-claim-enforcement-suite.json",
+    "behavioral_replay_conformance": "artifacts\\schema-conformance\\2026-06-05-validator-replay-conformance.json",
+    "claim_enforcement_conformance": "artifacts\\schema-conformance\\2026-06-05-claim-enforcement-conformance.json"
+  },
+  "surfaces": {
+    "behavioral_replay": {
+      "artifact_family": "behavioral_replay",
+      "suite_id": "validator-replay-1",
+      "execution_surface": "validator_backed_deterministic_replay",
+      "summary": {
+        "total": 7,
+        "pass": 7,
+        "fail": 0,
+        "not_executed": 0,
+        "rules_covered": 6
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
+    },
+    "claim_enforcement": {
+      "artifact_family": "claim_enforcement",
+      "suite_id": "claim-enforcement-2026-06-05",
+      "execution_surface": "validator_backed_deterministic_claim_enforcement",
+      "summary": {
+        "total": 4,
+        "pass": 3,
+        "fail": 0,
+        "not_executed": 1
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
+    }
+  },
+  "overall": {
+    "schema_conformance_ok": true,
+    "replay_fail": 0,
+    "claim_fail": 0,
+    "claim_not_executed": 1
+  }
+}

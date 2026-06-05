@@ -96,6 +96,14 @@
 - [2026-06-05] Conformance artifacts emitted:
   - `artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json`
   - `artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json`
+- [2026-06-05] Current overall progress:
+  - governance drift/readiness/quickstart path is stabilized and passing
+  - replay surface is executable, schema-aligned, and self-validating on emit
+  - claim-enforcement surface is executable, schema-aligned, and self-validating on emit
+  - machine-readable conformance artifacts now exist for both deterministic surfaces
+  - next consolidation step is reviewer-facing closeout aggregation
+- [2026-06-05] Added reviewer-facing aggregate artifact builder: `scripts/build_governance_closeout_summary.py`.
+- [2026-06-05] Emitted aggregate closeout artifact: `artifacts/closeout/2026-06-05-governance-closeout-summary.json` with `schema_conformance_ok=true`, `replay_fail=0`, `claim_fail=0`, `claim_not_executed=1`.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.
