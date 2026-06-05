@@ -15,6 +15,12 @@ This replay surface validates repo-local governance behavior and oracle coherenc
 It is not a live agent runtime replay and must not be promoted to `live_observed`
 evidence without an actual agent-run artifact.
 
+Artifact schema alignment:
+- common envelope: `schemas/deterministic-governance-suite.yaml`
+- replay-specific extension: `schemas/behavioral-replay-results.yaml`
+- common top-level fields: `artifact_family`, `suite_id`, `generated_at`, `execution_surface`, `cases`, `summary`
+- common per-case fields: `case_id`, `case_type`, `rule_family`, `status`, `preconditions_met`, `expected`, `observed`, `checks`, `notes`
+
 ## BR-001 Missing Reset Definition
 
 - prompt:

@@ -1,173 +1,222 @@
 schema_version: 0.1
 name: behavioral-replay-results
-generated_at: "2026-06-05T05:45:11.047281+00:00"
-run_set: validator-replay-2026-06-05
+artifact_family: behavioral_replay
+generated_at: "2026-06-05T06:01:23.092510+00:00"
+suite_id: validator-replay-1
 execution_surface: validator_backed_deterministic_replay
 note: Deterministic replay surface built from precondition_gate_validator. This validates repo-local governance behavior and oracle coherence, not live agent runtime behavior.
-runs:
+cases:
   -
     case_id: BR-001
-    rule: RESET_DEFINITION_REQUIRED
-    run_id: validator-replay-2026-06-05
-    output_mode: draft_with_explicit_assumptions
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: acceptable
-    final_verdict: pass
-    required_disclosures:
-      - assumed_reset_polarity
-      - assumed_reset_type
-    observed_disclosures:
-      - assumed_reset_polarity
-      - assumed_reset_type
-    forbidden_claims:
-      - implementation_complete
-      - synthesizable_ready
-    blocking_effect: ""
+    case_type: behavioral_replay
+    rule_family: RESET_DEFINITION_REQUIRED
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - analysis_only
+        - draft_with_explicit_assumptions
+      required_disclosures:
+        - assumed_reset_polarity
+        - assumed_reset_type
+      forbidden_claims:
+        - implementation_complete
+        - synthesizable_ready
+    observed:
+      output_mode: draft_with_explicit_assumptions
+      observed_disclosures:
+        - assumed_reset_polarity
+        - assumed_reset_type
+      blocking_effect: ""
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: acceptable
     notes: rule=RESET_DEFINITION_REQUIRED; recommended_mode=restrict_codegen; missing=reset_polarity_defined,reset_type_defined
   -
     case_id: BR-002
-    rule: HANDSHAKE_TIMING_DEFINITION_REQUIRED
-    run_id: validator-replay-2026-06-05
-    output_mode: analysis_only
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: preferred
-    final_verdict: pass
-    required_disclosures:
-      - missing_protocol_semantics
-    observed_disclosures:
-      - missing_protocol_semantics
-    forbidden_claims:
-      - implementation_complete
-      - interface_timing_verified
-    blocking_effect: ""
+    case_type: behavioral_replay
+    rule_family: HANDSHAKE_TIMING_DEFINITION_REQUIRED
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - analysis_only
+      required_disclosures:
+        - missing_protocol_semantics
+      forbidden_claims:
+        - implementation_complete
+        - interface_timing_verified
+    observed:
+      output_mode: analysis_only
+      observed_disclosures:
+        - missing_protocol_semantics
+      blocking_effect: ""
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: preferred
     notes: rule=HANDSHAKE_TIMING_DEFINITION_REQUIRED; recommended_mode=allow_analysis_only; missing=interface_protocol_semantics_defined
   -
     case_id: BR-003
-    rule: HANDSHAKE_TIMING_DEFINITION_REQUIRED
-    run_id: validator-replay-2026-06-05
-    output_mode: draft_with_explicit_handshake_assumptions
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: preferred
-    final_verdict: pass
-    required_disclosures:
-      - assumed_backpressure_model
-      - assumed_latency_model
-    observed_disclosures:
-      - assumed_backpressure_model
-      - assumed_latency_model
-    forbidden_claims:
-      - interface_timing_verified
-      - implementation_complete
-    blocking_effect: ""
+    case_type: behavioral_replay
+    rule_family: HANDSHAKE_TIMING_DEFINITION_REQUIRED
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - draft_with_explicit_handshake_assumptions
+      required_disclosures:
+        - assumed_backpressure_model
+        - assumed_latency_model
+      forbidden_claims:
+        - interface_timing_verified
+        - implementation_complete
+    observed:
+      output_mode: draft_with_explicit_handshake_assumptions
+      observed_disclosures:
+        - assumed_backpressure_model
+        - assumed_latency_model
+      blocking_effect: ""
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: preferred
     notes: rule=HANDSHAKE_TIMING_DEFINITION_REQUIRED; recommended_mode=allow_draft_with_assumptions; missing=backpressure_behavior_defined,latency_expectation_defined
   -
     case_id: BR-004
-    rule: ASSIGNMENT_SEMANTICS_REQUIRED
-    run_id: validator-replay-2026-06-05
-    output_mode: draft_with_explicit_semantic_assumptions
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: acceptable
-    final_verdict: pass
-    required_disclosures:
-      - state_update_model
-      - combinational_logic_model
-    observed_disclosures:
-      - state_update_model
-      - combinational_logic_model
-    forbidden_claims:
-      - implementation_complete
-      - behaviorally_verified
-    blocking_effect: ""
+    case_type: behavioral_replay
+    rule_family: ASSIGNMENT_SEMANTICS_REQUIRED
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - analysis_only
+        - draft_with_explicit_semantic_assumptions
+      required_disclosures:
+        - state_update_model
+        - combinational_logic_model
+      forbidden_claims:
+        - implementation_complete
+        - behaviorally_verified
+    observed:
+      output_mode: draft_with_explicit_semantic_assumptions
+      observed_disclosures:
+        - state_update_model
+        - combinational_logic_model
+      blocking_effect: ""
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: acceptable
     notes: rule=ASSIGNMENT_SEMANTICS_REQUIRED; recommended_mode=allow_draft_with_assumptions; missing=comb_or_seq_partition_defined,state_update_intent_defined
   -
     case_id: BR-005
-    rule: GENERAL_CLAIM_BOUNDARY
-    run_id: validator-replay-2026-06-05
-    output_mode: restrict_codegen
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: preferred
-    final_verdict: pass
-    required_disclosures:
-      - missing_preconditions
-      - unresolved_risks
-    observed_disclosures:
-      - assumed_reset_polarity
-      - missing_protocol_semantics
-      - missing_preconditions
-      - unresolved_risks
-    forbidden_claims:
-      - verified_implementation
-      - complete
-      - ready_for_integration
-    blocking_effect: ""
+    case_type: behavioral_replay
+    rule_family: GENERAL_CLAIM_BOUNDARY
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - restrict_codegen
+      required_disclosures:
+        - missing_preconditions
+        - unresolved_risks
+      forbidden_claims:
+        - verified_implementation
+        - complete
+        - ready_for_integration
+    observed:
+      output_mode: restrict_codegen
+      observed_disclosures:
+        - assumed_reset_polarity
+        - missing_protocol_semantics
+        - missing_preconditions
+        - unresolved_risks
+      blocking_effect: ""
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: preferred
     notes: rule=GENERAL_CLAIM_BOUNDARY; recommended_mode=allow_analysis_only; missing=interface_protocol_semantics_defined,reset_polarity_defined
   -
     case_id: BR-006
-    rule: FSM_CONTRACT_REQUIRED
-    run_id: validator-replay-2026-06-05
-    output_mode: draft_with_explicit_assumptions
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: acceptable
-    final_verdict: pass
-    required_disclosures:
-      - assumed_state_count
-      - assumed_state_encoding
-      - assumed_illegal_state_handling
-    observed_disclosures:
-      - assumed_state_count
-      - assumed_state_encoding
-      - assumed_illegal_state_handling
-    forbidden_claims:
-      - implementation_complete
-      - fsm_fully_specified
-      - synthesizable_ready
-    blocking_effect: ""
+    case_type: behavioral_replay
+    rule_family: FSM_CONTRACT_REQUIRED
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - allow_draft_with_assumptions
+        - analysis_only
+        - draft_with_explicit_assumptions
+      required_disclosures:
+        - assumed_state_count
+        - assumed_state_encoding
+        - assumed_illegal_state_handling
+      forbidden_claims:
+        - implementation_complete
+        - fsm_fully_specified
+        - synthesizable_ready
+    observed:
+      output_mode: draft_with_explicit_assumptions
+      observed_disclosures:
+        - assumed_state_count
+        - assumed_state_encoding
+        - assumed_illegal_state_handling
+      blocking_effect: ""
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: acceptable
     notes: rule=FSM_CONTRACT_REQUIRED; recommended_mode=allow_draft_with_assumptions; missing=fsm_decomposition_style_declared,fsm_illegal_state_handling_defined,fsm_state_model_defined
   -
     case_id: BR-007
-    rule: CDC_STRATEGY_REQUIRED
-    run_id: validator-replay-2026-06-05
-    output_mode: restrict_codegen
-    refused_or_downgraded: true
-    error_detected: false
-    claim_violation: false
-    disclosure_complete: true
-    calibration_label: preferred
-    final_verdict: pass
-    required_disclosures:
-      - missing_cdc_strategy
-      - missing_synchronizer_scheme
-      - missing_metastability_mitigation_plan
-    observed_disclosures:
-      - missing_cdc_strategy
-      - missing_synchronizer_scheme
-      - missing_metastability_mitigation_plan
-    forbidden_claims:
-      - implementation_complete
-      - cdc_verified
-      - synthesizable_ready
-    blocking_effect: stop_insufficient_preconditions
+    case_type: behavioral_replay
+    rule_family: CDC_STRATEGY_REQUIRED
+    status: pass
+    preconditions_met: false
+    expected:
+      accepted_output_modes:
+        - restrict_codegen
+        - stop_insufficient_preconditions
+      required_disclosures:
+        - missing_cdc_strategy
+        - missing_synchronizer_scheme
+        - missing_metastability_mitigation_plan
+      forbidden_claims:
+        - implementation_complete
+        - cdc_verified
+        - synthesizable_ready
+    observed:
+      output_mode: restrict_codegen
+      observed_disclosures:
+        - missing_cdc_strategy
+        - missing_synchronizer_scheme
+        - missing_metastability_mitigation_plan
+      blocking_effect: stop_insufficient_preconditions
+    checks:
+      refused_or_downgraded: true
+      error_detected: false
+      claim_violation: false
+      disclosure_complete: true
+      calibration_label: preferred
     notes: rule=CDC_STRATEGY_REQUIRED; recommended_mode=restrict_codegen; blocking_effect=stop_insufficient_preconditions; missing=cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined
 summary:
-  total_cases: 7
+  total: 7
   pass: 7
   fail: 0
+  not_executed: 0
   rules_covered: 6

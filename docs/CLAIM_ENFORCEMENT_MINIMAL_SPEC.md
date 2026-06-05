@@ -12,6 +12,11 @@ python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enfo
 This surface validates claim-boundary policy coherence and scenario outcome mapping.
 It is a deterministic repo-local enforcement runner, not a live runtime closeout trace.
 
+Artifact schema alignment:
+- common envelope: `schemas/deterministic-governance-suite.yaml`
+- shared top-level fields: `artifact_family`, `suite_id`, `generated_at`, `execution_surface`, `cases`, `summary`
+- shared per-case fields: `case_id`, `case_type`, `rule_family`, `status`, `preconditions_met`, `expected`, `observed`, `checks`, `notes`
+
 ## Scenarios
 1. Baseline closeout
 - expected: claim_level=bounded_support

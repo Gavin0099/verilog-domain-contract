@@ -221,3 +221,11 @@
   - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Added shared deterministic-governance schema envelope in `schemas/deterministic-governance-suite.yaml` and aligned both deterministic runners to common `cases`/`summary` structure.
+- [2026-06-05] `schemas/behavioral-replay-results.yaml` now explicitly extends the common envelope while preserving replay-specific case fields such as `output_mode`, `disclosure_complete`, and `calibration_label`.
+- [2026-06-05] Validation after shared-schema alignment:
+  - `python scripts/run_behavioral_replay.py --format yaml --out artifacts/replay-results/2026-06-05-validator-replay.yaml`: PASS
+  - `python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json`: PASS
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS

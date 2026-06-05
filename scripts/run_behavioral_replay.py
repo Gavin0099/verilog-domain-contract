@@ -205,19 +205,27 @@ def _build_run(case: ReplayCase, run_id: str) -> dict[str, object]:
 
     return {
         "case_id": case.case_id,
-        "rule": case.rule,
-        "run_id": run_id,
-        "output_mode": output_mode,
-        "refused_or_downgraded": refused_or_downgraded,
-        "error_detected": False,
-        "claim_violation": False,
-        "disclosure_complete": disclosure_complete,
-        "calibration_label": calibration_label,
-        "final_verdict": final_verdict,
-        "required_disclosures": list(case.required_disclosures),
-        "observed_disclosures": disclosures,
-        "forbidden_claims": list(case.forbidden_claims),
-        "blocking_effect": gate.get("blocking_effect", ""),
+        "case_type": "behavioral_replay",
+        "rule_family": case.rule,
+        "status": final_verdict,
+        "preconditions_met": len(gate["missing_preconditions"]) == 0,
+        "expected": {
+            "accepted_output_modes": list(case.accepted_output_modes),
+            "required_disclosures": list(case.required_disclosures),
+            "forbidden_claims": list(case.forbidden_claims),
+        },
+        "observed": {
+            "output_mode": output_mode,
+            "observed_disclosures": disclosures,
+            "blocking_effect": gate.get("blocking_effect", ""),
+        },
+        "checks": {
+            "refused_or_downgraded": refused_or_downgraded,
+            "error_detected": False,
+            "claim_violation": False,
+            "disclosure_complete": disclosure_complete,
+            "calibration_label": calibration_label,
+        },
         "notes": "; ".join(note_bits),
     }
 
@@ -258,24 +266,26 @@ def _scalar_to_yaml(value: object) -> str:
 
 
 def run_replay(run_set: str) -> dict[str, object]:
-    runs = [_build_run(case, run_set) for case in CASES]
-    pass_count = sum(1 for run in runs if run["final_verdict"] == "pass")
+    cases = [_build_run(case, run_set) for case in CASES]
+    pass_count = sum(1 for case in cases if case["status"] == "pass")
     return {
         "schema_version": "0.1",
         "name": "behavioral-replay-results",
+        "artifact_family": "behavioral_replay",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "run_set": run_set,
+        "suite_id": run_set,
         "execution_surface": "validator_backed_deterministic_replay",
         "note": (
             "Deterministic replay surface built from precondition_gate_validator. "
             "This validates repo-local governance behavior and oracle coherence, not live agent runtime behavior."
         ),
-        "runs": runs,
+        "cases": cases,
         "summary": {
-            "total_cases": len(runs),
+            "total": len(cases),
             "pass": pass_count,
-            "fail": len(runs) - pass_count,
-            "rules_covered": len({run["rule"] for run in runs}),
+            "fail": len(cases) - pass_count,
+            "not_executed": 0,
+            "rules_covered": len({case["rule_family"] for case in cases}),
         },
     }
 
@@ -303,15 +313,16 @@ def main() -> int:
         print("\n".join(_to_yaml(result)))
     else:
         print("[behavioral_replay]")
-        print(f"run_set={result['run_set']}")
+        print(f"suite_id={result['suite_id']}")
         print(f"execution_surface={result['execution_surface']}")
-        print(f"total_cases={result['summary']['total_cases']}")
+        print(f"total={result['summary']['total']}")
         print(f"pass={result['summary']['pass']}")
         print(f"fail={result['summary']['fail']}")
-        for run in result["runs"]:
+        print(f"not_executed={result['summary']['not_executed']}")
+        for case in result["cases"]:
             print(
-                f"{run['case_id']}: verdict={run['final_verdict']} "
-                f"mode={run['output_mode']} disclosure_complete={run['disclosure_complete']}"
+                f"{case['case_id']}: status={case['status']} "
+                f"mode={case['observed']['output_mode']} disclosure_complete={case['checks']['disclosure_complete']}"
             )
     return 0 if result["summary"]["fail"] == 0 else 1
 

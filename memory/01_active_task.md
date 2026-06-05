@@ -78,6 +78,16 @@
   - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Added common deterministic-governance artifact envelope in `schemas/deterministic-governance-suite.yaml` and aligned both executable surfaces to shared `cases` + `summary` fields.
+- [2026-06-05] Updated replay and claim-enforcement runners/artifacts to share:
+  - top-level: `artifact_family`, `suite_id`, `generated_at`, `execution_surface`, `cases`, `summary`
+  - per-case: `case_id`, `case_type`, `rule_family`, `status`, `preconditions_met`, `expected`, `observed`, `checks`, `notes`
+- [2026-06-05] Validation after shared-schema alignment:
+  - `python scripts/run_behavioral_replay.py --format yaml --out artifacts/replay-results/2026-06-05-validator-replay.yaml`: PASS
+  - `python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json`: PASS
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.
