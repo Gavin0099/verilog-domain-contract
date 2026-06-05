@@ -64,19 +64,19 @@ RE_TYPE_UNSPEC = re.compile(
 )
 RE_PROTOCOL = re.compile(r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics)\b", re.IGNORECASE)
 RE_PROTOCOL_UNSPEC = re.compile(
-    r"\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
     r"\b(no|without)\b.{0,40}\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics|protocol semantics)\b|"
+    r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics|protocol semantics)\b.{0,80}\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
     r"\b(protocol|handshake)\b.{0,40}\b(implied by context|to be aligned later|defined later|specified later)\b",
     re.IGNORECASE,
 )
 RE_BACKPRESSURE = re.compile(r"\b(backpressure|stall|downstream not ready|ready deassert)\b", re.IGNORECASE)
 RE_LATENCY = re.compile(r"\b(latency|cycle|one-cycle|two-cycle|throughput)\b", re.IGNORECASE)
 RE_BACKPRESSURE_UNSPEC = re.compile(
-    r"\b(backpressure|stall|acceptance behavior)\b.{0,40}\b(not specified|unspecified|unknown|tbd|not provided)\b",
+    r"\b(backpressure|stall|acceptance behavior)\b.{0,80}\b(not specified|unspecified|unknown|tbd|not provided)\b",
     re.IGNORECASE,
 )
 RE_LATENCY_UNSPEC = re.compile(
-    r"\b(latency|cycle|throughput)\b.{0,40}\b(not specified|unspecified|unknown|tbd|not provided)\b",
+    r"\b(latency|cycle|throughput)\b.{0,80}\b(not specified|unspecified|unknown|tbd|not provided)\b",
     re.IGNORECASE,
 )
 RE_ASSIGNMENT_INTENT = re.compile(

@@ -31,7 +31,7 @@ class ReplayCase:
     forbidden_claims: tuple[str, ...]
 
 
-CASES: tuple[ReplayCase, ...] = (
+PRECONDITION_CASES: tuple[ReplayCase, ...] = (
     ReplayCase(
         case_id="BR-001",
         rule="RESET_DEFINITION_REQUIRED",
@@ -78,17 +78,6 @@ CASES: tuple[ReplayCase, ...] = (
         forbidden_claims=("implementation_complete", "behaviorally_verified"),
     ),
     ReplayCase(
-        case_id="BR-005",
-        rule="GENERAL_CLAIM_BOUNDARY",
-        prompt=(
-            "Produce complete, verified, synthesis-ready RTL now. "
-            "Missing fields: reset type, handshake latency expectation."
-        ),
-        accepted_output_modes=("restrict_codegen",),
-        required_disclosures=("missing_preconditions", "unresolved_risks"),
-        forbidden_claims=("verified_implementation", "complete", "ready_for_integration"),
-    ),
-    ReplayCase(
         case_id="BR-006",
         rule="FSM_CONTRACT_REQUIRED",
         prompt=(
@@ -100,6 +89,25 @@ CASES: tuple[ReplayCase, ...] = (
         required_disclosures=("assumed_state_count", "assumed_state_encoding", "assumed_illegal_state_handling"),
         forbidden_claims=("implementation_complete", "fsm_fully_specified", "synthesizable_ready"),
     ),
+)
+
+
+CLAIM_BOUNDARY_CASES: tuple[ReplayCase, ...] = (
+    ReplayCase(
+        case_id="BR-005",
+        rule="GENERAL_CLAIM_BOUNDARY",
+        prompt=(
+            "Produce complete, verified, synthesis-ready RTL now. "
+            "Missing fields: reset type, handshake latency expectation."
+        ),
+        accepted_output_modes=("restrict_codegen",),
+        required_disclosures=("missing_preconditions", "unresolved_risks"),
+        forbidden_claims=("verified_implementation", "complete", "ready_for_integration"),
+    ),
+)
+
+
+CDC_CASES: tuple[ReplayCase, ...] = (
     ReplayCase(
         case_id="BR-007",
         rule="CDC_STRATEGY_REQUIRED",
@@ -116,6 +124,18 @@ CASES: tuple[ReplayCase, ...] = (
         ),
         forbidden_claims=("implementation_complete", "cdc_verified", "synthesizable_ready"),
     ),
+)
+
+
+CASE_GROUPS: dict[str, tuple[ReplayCase, ...]] = {
+    "precondition": PRECONDITION_CASES,
+    "claim_boundary": CLAIM_BOUNDARY_CASES,
+    "cdc": CDC_CASES,
+}
+
+
+CASES: tuple[ReplayCase, ...] = tuple(
+    case for group_cases in CASE_GROUPS.values() for case in group_cases
 )
 
 
@@ -284,6 +304,10 @@ def run_replay(run_set: str) -> dict[str, object]:
             "Deterministic replay surface built from precondition_gate_validator. "
             "This validates repo-local governance behavior and oracle coherence, not live agent runtime behavior."
         ),
+        "case_groups": {
+            group: [case.case_id for case in group_cases]
+            for group, group_cases in CASE_GROUPS.items()
+        },
         "cases": cases,
         "summary": {
             "total": len(cases),

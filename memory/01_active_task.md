@@ -224,3 +224,8 @@ Previous gap list (all fixed):
   - `drift`
   - `boundary`
   - `blocked`
+- [2026-06-05] Reorganized behavioral replay cases into explicit groups:
+  - `precondition`
+  - `claim_boundary`
+  - `cdc`
+- [2026-06-05] Fixed BR-003 replay disclosure gap by tightening protocol-negation matching: protocol is no longer treated as missing just because unrelated latency/backpressure text contains `not specified`.
