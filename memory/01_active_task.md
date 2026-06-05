@@ -234,3 +234,8 @@ Previous gap list (all fixed):
   - `run_claim_enforcement.py`
   - `run_behavioral_replay.py`
 - [2026-06-05] Aggregated replay and claim `coverage_summary` into governance closeout summary/report so the closeout surface now exposes coverage structure directly.
+- [2026-06-05] Added formal precondition-gate artifact emitter:
+  - `schemas/precondition-gate-results.yaml`
+  - `scripts/run_precondition_gate.py`
+  - `artifacts/precondition-gate/2026-06-05-precondition-gate-suite.json`
+  - `artifacts/schema-conformance/2026-06-05-precondition-gate-conformance.json`

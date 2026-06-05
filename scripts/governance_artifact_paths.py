@@ -19,12 +19,20 @@ def claim_artifact_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/claim-enforcement/checker-tests/{tag}-claim-enforcement-suite.json"
 
 
+def precondition_gate_artifact_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/precondition-gate/{tag}-precondition-gate-suite.json"
+
+
 def replay_conformance_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/schema-conformance/{tag}-validator-replay-conformance.json"
 
 
 def claim_conformance_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/schema-conformance/{tag}-claim-enforcement-conformance.json"
+
+
+def precondition_gate_conformance_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/schema-conformance/{tag}-precondition-gate-conformance.json"
 
 
 def closeout_summary_path(repo_root: Path, tag: str) -> Path:

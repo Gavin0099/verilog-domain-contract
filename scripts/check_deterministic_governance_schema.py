@@ -17,7 +17,12 @@ except ImportError as exc:  # pragma: no cover
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.governance_artifact_paths import claim_artifact_path, default_artifact_tag, replay_artifact_path
+from scripts.governance_artifact_paths import (
+    claim_artifact_path,
+    default_artifact_tag,
+    precondition_gate_artifact_path,
+    replay_artifact_path,
+)
 
 
 def _load_doc(path: Path) -> dict[str, object]:
@@ -149,6 +154,7 @@ def main() -> int:
         [(args.schema, args.artifact)]
         if args.schema and args.artifact
         else [
+            ("schemas/precondition-gate-results.yaml", str(precondition_gate_artifact_path(REPO_ROOT, args.artifact_tag).relative_to(REPO_ROOT))),
             ("schemas/behavioral-replay-results.yaml", str(replay_artifact_path(REPO_ROOT, args.artifact_tag).relative_to(REPO_ROOT))),
             ("schemas/claim-enforcement-results.yaml", str(claim_artifact_path(REPO_ROOT, args.artifact_tag).relative_to(REPO_ROOT))),
         ]

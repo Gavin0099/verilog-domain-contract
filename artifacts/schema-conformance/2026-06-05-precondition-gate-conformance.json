@@ -1,0 +1,6 @@
+{
+  "schema": "schemas\\precondition-gate-results.yaml",
+  "artifact": "artifacts\\precondition-gate\\2026-06-05-precondition-gate-suite.json",
+  "ok": true,
+  "errors": []
+}

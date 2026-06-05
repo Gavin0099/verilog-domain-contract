@@ -312,3 +312,4 @@
 - [2026-06-05] Fixed BR-003 replay coherence issue by narrowing `RE_PROTOCOL_UNSPEC` to protocol-local negation only; unrelated handshake timing negation no longer causes false protocol-missing classification.
 - [2026-06-05] Added machine-readable coverage summaries across executable surfaces so each output now exposes grouped case counts and membership without requiring downstream consumers to infer coverage structure from raw case lists.
 - [2026-06-05] Extended governance closeout aggregation so replay/claim `coverage_summary` data is preserved in the aggregate JSON and surfaced in the human-readable closeout report.
+- [2026-06-05] Added `schemas/precondition-gate-results.yaml` and `scripts/run_precondition_gate.py` so precondition-gate is now a formal deterministic artifact emitter with schema conformance, instead of only a smoke script.

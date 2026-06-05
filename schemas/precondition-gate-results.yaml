@@ -1,0 +1,43 @@
+schema_version: "0.1"
+name: precondition-gate-results
+description: Structured results schema for deterministic precondition-gate smoke coverage and future boundary extensions.
+extends: schemas/deterministic-governance-suite.yaml
+
+fields:
+  - schema_version
+  - name
+  - artifact_family
+  - suite_id
+  - generated_at
+  - execution_surface
+  - note
+  - coverage_summary
+  - cases
+  - summary
+
+case_fields:
+  - case_id
+  - case_type
+  - rule_family
+  - status
+  - preconditions_met
+  - expected
+  - observed
+  - checks
+  - notes
+
+observed_fields:
+  - recommended_mode
+  - blocking_effect
+
+checks_fields:
+  - mode_match
+  - blocking_effect_match
+  - missing_match
+  - rule_refs_match
+
+summary_fields:
+  - total
+  - pass
+  - fail
+  - not_executed

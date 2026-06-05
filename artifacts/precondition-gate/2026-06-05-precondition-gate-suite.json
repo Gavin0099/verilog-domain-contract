@@ -1,0 +1,580 @@
+{
+  "schema_version": "0.1",
+  "name": "precondition-gate-results",
+  "artifact_family": "precondition_gate",
+  "suite_id": "precondition-gate-2026-06-05",
+  "generated_at": "2026-06-05T10:27:03.297888+00:00",
+  "execution_surface": "validator_backed_deterministic_precondition_gate",
+  "note": "Deterministic precondition-gate surface for repo-local validator coverage. This validates gate behavior against curated coverage cases, not live runtime requests.",
+  "coverage_summary": {
+    "groups": {
+      "negation": {
+        "count": 12,
+        "case_ids": [
+          "PG-001",
+          "PG-RESET-NEG-001",
+          "PG-002",
+          "PG-HS-NEG-001",
+          "PG-004",
+          "PG-ASSIGN-NEG-001",
+          "PG-006",
+          "PG-CDC-NEG-001",
+          "PG-CDC-NEG-002",
+          "PG-CDC-NEG-003",
+          "PG-008",
+          "PG-FSM-NEG-001"
+        ]
+      },
+      "boundary": {
+        "count": 3,
+        "case_ids": [
+          "PG-RESET-BOUNDARY-001",
+          "PG-HS-BOUNDARY-001",
+          "PG-CDC-BOUNDARY-001"
+        ]
+      },
+      "positive": {
+        "count": 5,
+        "case_ids": [
+          "PG-003",
+          "PG-005",
+          "PG-007",
+          "PG-CDC-POS-001",
+          "PG-009"
+        ]
+      }
+    },
+    "total_cases": 20
+  },
+  "cases": [
+    {
+      "case_id": "PG-001",
+      "case_type": "precondition_gate",
+      "rule_family": "RESET_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=reset_polarity_defined,reset_type_defined; rule_refs=RESET_DEFINITION_REQUIRED"
+    },
+    {
+      "case_id": "PG-RESET-NEG-001",
+      "case_type": "precondition_gate",
+      "rule_family": "RESET_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=reset_polarity_defined,reset_type_defined; rule_refs=RESET_DEFINITION_REQUIRED"
+    },
+    {
+      "case_id": "PG-002",
+      "case_type": "precondition_gate",
+      "rule_family": "HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_analysis_only",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_analysis_only",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=interface_protocol_semantics_defined; rule_refs=HANDSHAKE_TIMING_DEFINITION_REQUIRED"
+    },
+    {
+      "case_id": "PG-HS-NEG-001",
+      "case_type": "precondition_gate",
+      "rule_family": "HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_analysis_only",
+        "blocking_effect": "",
+        "missing_preconditions": [
+          "interface_protocol_semantics_defined"
+        ],
+        "rule_refs": [
+          "HANDSHAKE_TIMING_DEFINITION_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "allow_analysis_only",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=interface_protocol_semantics_defined; rule_refs=HANDSHAKE_TIMING_DEFINITION_REQUIRED"
+    },
+    {
+      "case_id": "PG-004",
+      "case_type": "precondition_gate",
+      "rule_family": "ASSIGNMENT_SEMANTICS_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=comb_or_seq_partition_defined,state_update_intent_defined; rule_refs=ASSIGNMENT_SEMANTICS_REQUIRED"
+    },
+    {
+      "case_id": "PG-ASSIGN-NEG-001",
+      "case_type": "precondition_gate",
+      "rule_family": "ASSIGNMENT_SEMANTICS_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [
+          "state_update_intent_defined",
+          "comb_or_seq_partition_defined"
+        ],
+        "rule_refs": [
+          "ASSIGNMENT_SEMANTICS_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=comb_or_seq_partition_defined,state_update_intent_defined; rule_refs=ASSIGNMENT_SEMANTICS_REQUIRED"
+    },
+    {
+      "case_id": "PG-006",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions",
+        "missing_preconditions": [
+          "cdc_strategy_present_when_multi_clock_implied",
+          "cdc_synchronizer_scheme_defined"
+        ],
+        "rule_refs": [
+          "CDC_STRATEGY_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions"
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined; rule_refs=CDC_STRATEGY_REQUIRED"
+    },
+    {
+      "case_id": "PG-CDC-NEG-001",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions",
+        "missing_preconditions": [
+          "cdc_strategy_present_when_multi_clock_implied",
+          "cdc_synchronizer_scheme_defined"
+        ],
+        "rule_refs": [
+          "CDC_STRATEGY_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions"
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined; rule_refs=CDC_STRATEGY_REQUIRED"
+    },
+    {
+      "case_id": "PG-CDC-NEG-002",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions",
+        "missing_preconditions": [
+          "cdc_synchronizer_scheme_defined"
+        ],
+        "rule_refs": [
+          "CDC_STRATEGY_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions"
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined; rule_refs=CDC_STRATEGY_REQUIRED"
+    },
+    {
+      "case_id": "PG-CDC-NEG-003",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions",
+        "missing_preconditions": [
+          "cdc_strategy_present_when_multi_clock_implied",
+          "cdc_synchronizer_scheme_defined"
+        ],
+        "rule_refs": [
+          "CDC_STRATEGY_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions"
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined; rule_refs=CDC_STRATEGY_REQUIRED"
+    },
+    {
+      "case_id": "PG-008",
+      "case_type": "precondition_gate",
+      "rule_family": "FSM_CONTRACT_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=fsm_decomposition_style_declared,fsm_illegal_state_handling_defined,fsm_state_model_defined; rule_refs=FSM_CONTRACT_REQUIRED"
+    },
+    {
+      "case_id": "PG-FSM-NEG-001",
+      "case_type": "precondition_gate",
+      "rule_family": "FSM_CONTRACT_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [
+          "fsm_state_model_defined",
+          "fsm_decomposition_style_declared",
+          "fsm_illegal_state_handling_defined"
+        ],
+        "rule_refs": [
+          "FSM_CONTRACT_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=fsm_decomposition_style_declared,fsm_illegal_state_handling_defined,fsm_state_model_defined; rule_refs=FSM_CONTRACT_REQUIRED"
+    },
+    {
+      "case_id": "PG-RESET-BOUNDARY-001",
+      "case_type": "precondition_gate",
+      "rule_family": "RESET_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=reset_polarity_defined,reset_type_defined; rule_refs=RESET_DEFINITION_REQUIRED"
+    },
+    {
+      "case_id": "PG-HS-BOUNDARY-001",
+      "case_type": "precondition_gate",
+      "rule_family": "HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "allow_analysis_only",
+        "blocking_effect": "",
+        "missing_preconditions": [
+          "interface_protocol_semantics_defined"
+        ],
+        "rule_refs": [
+          "HANDSHAKE_TIMING_DEFINITION_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "allow_analysis_only",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=interface_protocol_semantics_defined; rule_refs=HANDSHAKE_TIMING_DEFINITION_REQUIRED"
+    },
+    {
+      "case_id": "PG-CDC-BOUNDARY-001",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": false,
+      "expected": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions",
+        "missing_preconditions": [
+          "cdc_strategy_present_when_multi_clock_implied",
+          "cdc_synchronizer_scheme_defined"
+        ],
+        "rule_refs": [
+          "CDC_STRATEGY_REQUIRED"
+        ]
+      },
+      "observed": {
+        "recommended_mode": "restrict_codegen",
+        "blocking_effect": "stop_insufficient_preconditions"
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=cdc_strategy_present_when_multi_clock_implied,cdc_synchronizer_scheme_defined; rule_refs=CDC_STRATEGY_REQUIRED"
+    },
+    {
+      "case_id": "PG-003",
+      "case_type": "precondition_gate",
+      "rule_family": "RESET_DEFINITION_REQUIRED+HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+      "status": "pass",
+      "preconditions_met": true,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=(none); rule_refs=(none)"
+    },
+    {
+      "case_id": "PG-005",
+      "case_type": "precondition_gate",
+      "rule_family": "ASSIGNMENT_SEMANTICS_REQUIRED",
+      "status": "pass",
+      "preconditions_met": true,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=(none); rule_refs=(none)"
+    },
+    {
+      "case_id": "PG-007",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": true,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=(none); rule_refs=(none)"
+    },
+    {
+      "case_id": "PG-CDC-POS-001",
+      "case_type": "precondition_gate",
+      "rule_family": "CDC_STRATEGY_REQUIRED",
+      "status": "pass",
+      "preconditions_met": true,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=(none); rule_refs=(none)"
+    },
+    {
+      "case_id": "PG-009",
+      "case_type": "precondition_gate",
+      "rule_family": "FSM_CONTRACT_REQUIRED",
+      "status": "pass",
+      "preconditions_met": true,
+      "expected": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": "",
+        "missing_preconditions": [],
+        "rule_refs": []
+      },
+      "observed": {
+        "recommended_mode": "allow_draft_with_assumptions",
+        "blocking_effect": ""
+      },
+      "checks": {
+        "mode_match": true,
+        "blocking_effect_match": true,
+        "missing_match": true,
+        "rule_refs_match": true
+      },
+      "notes": "missing=(none); rule_refs=(none)"
+    }
+  ],
+  "summary": {
+    "total": 20,
+    "pass": 20,
+    "fail": 0,
+    "not_executed": 0
+  }
+}
