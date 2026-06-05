@@ -89,6 +89,7 @@
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-06-05] Added `schemas/claim-enforcement-results.yaml` so claim enforcement now matches replay structure as `common envelope + domain extension`, instead of relying on the shared envelope alone.
+- [2026-06-05] Updated `scripts/run_claim_enforcement.py` to emit claim-specific schema keys directly at case level: `claim_level`, `semantic_drift_risk`, `precondition_status`, `strong_claim_attempted`, `same_evidence_as_previous`, `attempted_posture`.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

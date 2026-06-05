@@ -230,3 +230,4 @@
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-06-05] Added `schemas/claim-enforcement-results.yaml` as the claim-domain extension over `schemas/deterministic-governance-suite.yaml`, mirroring the replay-side `common envelope + domain extension` pattern.
+- [2026-06-05] Updated `scripts/run_claim_enforcement.py` output shape so claim-specific fields now appear as first-class case keys instead of being only implicit inside `expected`, `observed`, or `checks`.

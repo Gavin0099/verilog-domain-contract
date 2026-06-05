@@ -34,24 +34,32 @@ def evaluate_claim_enforcement(
         "case_type": "claim_enforcement",
         "rule_family": "GENERAL_CLAIM_BOUNDARY",
         "preconditions_met": preconditions_met,
+        "claim_level": "",
+        "semantic_drift_risk": False,
+        "precondition_status": "ok" if preconditions_met else "missing",
+        "strong_claim_attempted": strong_claim_attempted,
+        "same_evidence_as_previous": same_evidence_as_previous,
+        "attempted_posture": attempted_posture or "",
         "notes": "",
     }
 
     if not preconditions_met:
         payload["status"] = "not_executed"
+        payload["claim_level"] = "stronger_than_allowed"
+        payload["semantic_drift_risk"] = True
         payload["expected"] = {
             "claim_level": "stronger_than_allowed",
             "semantic_drift_risk": True,
         }
         payload["observed"] = None
-        payload["checks"] = {
-            "precondition_status": "missing",
-        }
+        payload["checks"] = {}
         payload["notes"] = "preconditions missing; strong claim must not execute"
         return payload
 
     if scenario == "baseline":
         payload["status"] = "pass"
+        payload["claim_level"] = "bounded_support"
+        payload["semantic_drift_risk"] = False
         payload["expected"] = {
             "claim_level": "bounded_support",
             "semantic_drift_risk": False,
@@ -60,14 +68,14 @@ def evaluate_claim_enforcement(
             "claim_level": "bounded_support",
             "semantic_drift_risk": False,
         }
-        payload["checks"] = {
-            "precondition_status": "ok",
-        }
+        payload["checks"] = {}
         payload["notes"] = "baseline bounded-support closeout"
         return payload
 
     if scenario == "drift_injection_same_evidence":
         payload["status"] = "pass" if strong_claim_attempted else "fail"
+        payload["claim_level"] = "stronger_than_allowed" if strong_claim_attempted else "bounded_support"
+        payload["semantic_drift_risk"] = bool(strong_claim_attempted)
         payload["expected"] = {
             "claim_level": "stronger_than_allowed",
             "semantic_drift_risk": True,
@@ -76,10 +84,7 @@ def evaluate_claim_enforcement(
             "claim_level": "stronger_than_allowed" if strong_claim_attempted else "bounded_support",
             "semantic_drift_risk": bool(strong_claim_attempted),
         }
-        payload["checks"] = {
-            "precondition_status": "ok",
-            "strong_claim_attempted": strong_claim_attempted,
-        }
+        payload["checks"] = {}
         payload["notes"] = f"injected_wording={claim_text or 'proven / production-ready'}"
         return payload
 
@@ -87,31 +92,30 @@ def evaluate_claim_enforcement(
         posture = attempted_posture or "stronger_than_previous"
         drift = same_evidence_as_previous and posture == "stronger_than_previous"
         payload["status"] = "pass" if drift else "fail"
+        payload["claim_level"] = "stronger_than_allowed" if drift else "bounded_support"
+        payload["semantic_drift_risk"] = drift
+        payload["same_evidence_as_previous"] = same_evidence_as_previous
+        payload["attempted_posture"] = posture
         payload["expected"] = {
             "semantic_drift_risk": True,
         }
         payload["observed"] = {
             "semantic_drift_risk": drift,
         }
-        payload["checks"] = {
-            "precondition_status": "ok",
-            "same_evidence_as_previous": same_evidence_as_previous,
-            "attempted_posture": posture,
-        }
+        payload["checks"] = {}
         payload["notes"] = "same evidence must not justify stronger claim posture"
         return payload
 
     if scenario == "missing_preconditions_strong_claim":
         payload["status"] = "not_executed"
+        payload["claim_level"] = "stronger_than_allowed"
+        payload["semantic_drift_risk"] = True
         payload["expected"] = {
             "claim_level": "stronger_than_allowed",
             "semantic_drift_risk": True,
         }
         payload["observed"] = None
-        payload["checks"] = {
-            "precondition_status": "missing",
-            "strong_claim_attempted": strong_claim_attempted,
-        }
+        payload["checks"] = {}
         payload["notes"] = "missing preconditions blocks strong claim"
         return payload
 

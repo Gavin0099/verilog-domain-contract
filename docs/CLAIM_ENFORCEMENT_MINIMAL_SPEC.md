@@ -19,6 +19,10 @@ Artifact schema alignment:
 - shared per-case fields: `case_id`, `case_type`, `rule_family`, `status`, `preconditions_met`, `expected`, `observed`, `checks`, `notes`
 - claim-specific case fields: `claim_level`, `semantic_drift_risk`, `precondition_status`, `strong_claim_attempted`, `same_evidence_as_previous`, `attempted_posture`
 
+Runner alignment:
+- `scripts/run_claim_enforcement.py` now emits the claim-specific fields as first-class per-case keys.
+- `expected` / `observed` remain for scenario comparison, not as the only place where claim-level semantics live.
+
 ## Scenarios
 1. Baseline closeout
 - expected: claim_level=bounded_support

@@ -3,7 +3,7 @@
   "name": "claim-enforcement-results",
   "artifact_family": "claim_enforcement",
   "suite_id": "claim-enforcement-2026-06-05",
-  "generated_at": "2026-06-05T06:01:23.003498+00:00",
+  "generated_at": "2026-06-05T06:07:35.573970+00:00",
   "execution_surface": "validator_backed_deterministic_claim_enforcement",
   "note": "Deterministic claim-enforcement surface for repo-local policy coherence. This validates claim-boundary behavior, not live runtime closeout behavior.",
   "cases": [
@@ -12,6 +12,12 @@
       "case_type": "claim_enforcement",
       "rule_family": "GENERAL_CLAIM_BOUNDARY",
       "preconditions_met": true,
+      "claim_level": "bounded_support",
+      "semantic_drift_risk": false,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "",
       "notes": "baseline bounded-support closeout",
       "status": "pass",
       "expected": {
@@ -22,15 +28,19 @@
         "claim_level": "bounded_support",
         "semantic_drift_risk": false
       },
-      "checks": {
-        "precondition_status": "ok"
-      }
+      "checks": {}
     },
     {
       "case_id": "drift_injection_same_evidence",
       "case_type": "claim_enforcement",
       "rule_family": "GENERAL_CLAIM_BOUNDARY",
       "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": true,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "",
       "notes": "injected_wording=This result is proven and production-ready.",
       "status": "pass",
       "expected": {
@@ -41,16 +51,19 @@
         "claim_level": "stronger_than_allowed",
         "semantic_drift_risk": true
       },
-      "checks": {
-        "precondition_status": "ok",
-        "strong_claim_attempted": true
-      }
+      "checks": {}
     },
     {
       "case_id": "same_evidence_posture_escalation",
       "case_type": "claim_enforcement",
       "rule_family": "GENERAL_CLAIM_BOUNDARY",
       "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": true,
+      "attempted_posture": "stronger_than_previous",
       "notes": "same evidence must not justify stronger claim posture",
       "status": "pass",
       "expected": {
@@ -59,17 +72,19 @@
       "observed": {
         "semantic_drift_risk": true
       },
-      "checks": {
-        "precondition_status": "ok",
-        "same_evidence_as_previous": true,
-        "attempted_posture": "stronger_than_previous"
-      }
+      "checks": {}
     },
     {
       "case_id": "missing_preconditions_strong_claim",
       "case_type": "claim_enforcement",
       "rule_family": "GENERAL_CLAIM_BOUNDARY",
       "preconditions_met": false,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "missing",
+      "strong_claim_attempted": true,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "",
       "notes": "preconditions missing; strong claim must not execute",
       "status": "not_executed",
       "expected": {
@@ -77,9 +92,7 @@
         "semantic_drift_risk": true
       },
       "observed": null,
-      "checks": {
-        "precondition_status": "missing"
-      }
+      "checks": {}
     }
   ],
   "summary": {
