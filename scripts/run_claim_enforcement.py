@@ -12,11 +12,12 @@ import sys
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.check_deterministic_governance_schema import validate_artifact
+from scripts.check_deterministic_governance_schema import validate_artifact, write_validation_result
 
 
 REPO_NAME = "verilog-domain-contract"
 CLAIM_SCHEMA_PATH = REPO_ROOT / "schemas/claim-enforcement-results.yaml"
+CLAIM_CONFORMANCE_PATH = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json"
 STRONG_CLAIM_TERMS = (
     "proven",
     "production-ready",
@@ -188,6 +189,7 @@ def main() -> int:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         schema_check = validate_artifact(CLAIM_SCHEMA_PATH, out_path.resolve())
+        write_validation_result(schema_check, CLAIM_CONFORMANCE_PATH)
         if not schema_check["ok"]:
             print("[claim_enforcement_schema_check]")
             for error in schema_check["errors"]:

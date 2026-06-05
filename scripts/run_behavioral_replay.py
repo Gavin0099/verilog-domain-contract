@@ -13,11 +13,12 @@ import sys
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.check_deterministic_governance_schema import validate_artifact
+from scripts.check_deterministic_governance_schema import validate_artifact, write_validation_result
 from validators.precondition_gate_validator import evaluate_precondition_gate
 
 
 REPLAY_SCHEMA_PATH = REPO_ROOT / "schemas/behavioral-replay-results.yaml"
+REPLAY_CONFORMANCE_PATH = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json"
 
 
 @dataclass(frozen=True)
@@ -311,6 +312,7 @@ def main() -> int:
         else:
             out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         schema_check = validate_artifact(REPLAY_SCHEMA_PATH, out_path.resolve())
+        write_validation_result(schema_check, REPLAY_CONFORMANCE_PATH)
         if not schema_check["ok"]:
             print("[behavioral_replay_schema_check]")
             for error in schema_check["errors"]:

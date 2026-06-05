@@ -234,3 +234,7 @@
 - [2026-06-05] Added `scripts/check_deterministic_governance_schema.py` for direct artifact/schema conformance checks across replay and claim-enforcement surfaces.
 - [2026-06-05] Refined `schemas/behavioral-replay-results.yaml` so replay-specific extension fields are checked where they actually live: `observed.output_mode` and `checks.{refused_or_downgraded,error_detected,claim_violation,disclosure_complete,calibration_label}`.
 - [2026-06-05] Integrated schema self-check into both artifact emitters: replay and claim runners now validate the just-written artifact immediately after `--out` write and fail the run if schema conformance breaks.
+- [2026-06-05] Added machine-readable conformance outputs for both emitters under `artifacts/schema-conformance/`, so schema-clean status is preserved as an artifact instead of only appearing on stdout/exit code.
+- [2026-06-05] Emitted conformance artifacts:
+  - `artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json`
+  - `artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json`

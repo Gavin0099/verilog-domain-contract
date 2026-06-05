@@ -130,11 +130,17 @@ def validate_artifact(schema_path: Path, artifact_path: Path) -> dict[str, objec
     }
 
 
+def write_validation_result(result: dict[str, object], out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check deterministic governance artifact/schema conformance.")
     parser.add_argument("--format", choices=["human", "json"], default="human")
     parser.add_argument("--schema")
     parser.add_argument("--artifact")
+    parser.add_argument("--out")
     args = parser.parse_args()
 
     if bool(args.schema) != bool(args.artifact):
@@ -157,6 +163,9 @@ def main() -> int:
         "fail": fail_count,
         "results": results,
     }
+
+    if args.out:
+        write_validation_result(payload, (REPO_ROOT / args.out) if not Path(args.out).is_absolute() else Path(args.out))
 
     if args.format == "json":
         print(json.dumps(payload, ensure_ascii=False, indent=2))
