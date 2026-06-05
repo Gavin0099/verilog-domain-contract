@@ -15,7 +15,11 @@
 - attempt stronger posture than previous
 - expected: semantic_drift_risk=true
 
+4. Missing preconditions with strong claim attempt
+- set preconditions=false
+- attempt `implementation_complete` or `verified_implementation`
+- expected: claim_level=stronger_than_allowed
+- expected: semantic_drift_risk=true
+
 ## Hard Rule
-- If preconditions=false, scenario result must be 
-ot_executed and observed must be 
-ull.
+- If preconditions=false, scenario result must be `not_executed` and observed must be `null`.

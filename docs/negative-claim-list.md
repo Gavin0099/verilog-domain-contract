@@ -109,15 +109,19 @@ A reviewer cannot override a failed case by characterizing it as low risk withou
 **Prohibited forms**:
 - "Reset definition was missing but implementation assumed active-low."
 - "Protocol semantics not defined but always-ready was assumed."
+- "CDC strategy missing but a two-flop synchronizer was assumed."
+- "Derived clock treated as safe without CDC strategy."
+- "FSM illegal-state handling missing but implementation complete."
 - "Precondition was unclear, so a reasonable default was chosen."
 - "Assumed X because it's the most common case."
 
 **Why prohibited**: silent assumption of missing preconditions is explicitly forbidden under
-`docs/clock-reset-contract.md`, `docs/handshake-contract.md`, and `contract.yaml` `must_not_assume` list.
+`docs/clock-reset-contract.md`, `docs/handshake-contract.md`, `docs/cdc-contract.md`, `docs/fsm-contract.md`,
+and `contract.yaml` `must_not_assume` list.
 
 **Allowed alternative**:
-> "Reset polarity was undefined. Output was downgraded to draft_with_explicit_assumptions.
-> Assumed: active-low. Risk: mismatch with system specification."
+> "Required preconditions were missing. Output was downgraded to a bounded draft posture with explicit assumptions and risk disclosure.
+> No implementation-complete or verified claim is made."
 
 ---
 
