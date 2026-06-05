@@ -24,7 +24,11 @@ case_fields:
   - observed
   - checks
   - notes
+
+observed_fields:
   - output_mode
+
+checks_fields:
   - refused_or_downgraded
   - error_detected
   - claim_violation
