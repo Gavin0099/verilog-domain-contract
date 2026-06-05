@@ -144,6 +144,11 @@
   - `scripts/build_governance_bundle_manifest.py`
   - `artifacts/closeout/2026-06-05-governance-bundle-manifest.json`
 - [2026-06-05] Updated reviewer documentation so bundle purpose and selection are explicit in `docs/framework-surface-mapping.md`; CI now emits the bundle manifest into the reviewer artifact bundle.
+- [2026-06-05] Added formal bundle-manifest schema + checker:
+  - `schemas/governance-bundle-manifest.yaml`
+  - `scripts/check_governance_bundle_manifest_schema.py`
+  - `artifacts/schema-conformance/2026-06-05-governance-bundle-manifest-conformance.json`
+- [2026-06-05] CI now validates the reviewer bundle manifest immediately after emit, so reviewer bundle indexing is schema-conformance checked like replay / claim / closeout / reviewer verdict.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

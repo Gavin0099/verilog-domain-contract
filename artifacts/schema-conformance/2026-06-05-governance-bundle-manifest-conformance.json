@@ -1,0 +1,13 @@
+{
+  "total": 1,
+  "pass": 1,
+  "fail": 0,
+  "results": [
+    {
+      "schema": "schemas\\governance-bundle-manifest.yaml",
+      "artifact": "artifacts\\closeout\\2026-06-05-governance-bundle-manifest.json",
+      "ok": true,
+      "errors": []
+    }
+  ]
+}

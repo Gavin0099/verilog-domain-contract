@@ -1,0 +1,14 @@
+schema_version: "0.1"
+name: governance-bundle-manifest
+description: Machine-readable index of reviewer-facing governance artifact bundles for one artifact tag.
+
+fields:
+  - schema_version
+  - name
+  - artifact_tag
+  - bundles
+
+bundle_fields:
+  - bundle_name
+  - purpose
+  - files
