@@ -121,3 +121,35 @@
   - `python additional/ai-governance-framework/governance_tools/quickstart_smoke.py --project-root . --plan PLAN.md --format human`
 - [2026-06-05] All checks returned PASS (`ok=True`, `severity=ok`).
 - [2026-06-05] Changes committed in commit `5f188fd` with message `chore: minimal no-op runtime hooks for governance drift compatibility`.
+- [2026-06-05] Tightened CDC validator semantics in `validators/precondition_gate_validator.py`:
+  - split CDC strategy statement, boundary map, and synchronizer scheme detection
+  - added negation handling for `not specified`, `unspecified`, `unknown`, `TBD`, `not provided`, and `missing`
+  - preserved `recommended_mode=restrict_codegen` compatibility while exposing `blocking_effect=stop_insufficient_preconditions`
+- [2026-06-05] Expanded `scripts/precondition_gate_smoke.py` with CDC cases:
+  - `PG-CDC-NEG-001` explicit `CDC strategy not specified`
+  - `PG-CDC-NEG-002` boundary map present but synchronizer missing
+  - `PG-CDC-NEG-003` derived clock treated as safe without CDC plan
+  - `PG-CDC-POS-001` explicit boundary map plus synchronizer strategy
+- [2026-06-05] Synced five-rule surfaces across:
+  - `docs/pre-task-gate-integration.md`
+  - `docs/framework-surface-mapping.md`
+  - `docs/rule-extraction-table.md`
+  - `docs/behavior-validation.md`
+  - `docs/coverage-model.md`
+  - `schemas/behavioral-replay-results.yaml`
+  - `schemas/review-checklist.yaml`
+- [2026-06-05] Hardened claim-boundary docs:
+  - `docs/completion-claim-policy.md`
+  - `docs/negative-claim-list.md`
+  - `docs/CLAIM_BOUNDARY.md`
+  - `docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md`
+- [2026-06-05] Validation snapshot after CDC/claims update:
+  - `python scripts/precondition_gate_smoke.py`: PASS (`failed=0`)
+  - targeted CDC validator JSON case: PASS; missing preconditions include `cdc_strategy_present_when_multi_clock_implied` and `cdc_synchronizer_scheme_defined`
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Commit sequence:
+  - `5af65ce` `fix: tighten CDC precondition gate`
+  - `c64eef8` `docs: sync five-rule governance surfaces`
+  - `18141b5` `docs: harden claim boundary under missing preconditions`

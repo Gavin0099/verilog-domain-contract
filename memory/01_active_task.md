@@ -47,6 +47,11 @@
 - [2026-06-05] Added minimal no-op implementations to `runtime_hooks/core/session_start.py`, `runtime_hooks/core/pre_task_check.py`, and `runtime_hooks/core/post_task_check.py` (compatible CLI + stable `ok` envelope) to satisfy `governance_drift_checker` expansion-boundary.
 - [2026-06-05] Re-ran checks in order: `governance_drift_checker --repo .`, `readiness_audit`, `quickstart_smoke`; all PASS, drift severity `ok`.
 - [2026-06-05] Committed as `5f188fd` (`chore: minimal no-op runtime hooks for governance drift compatibility`).
+- [2026-06-05] Tightened CDC precondition gate false-negative handling: explicit negation such as `CDC strategy not specified` now triggers `CDC_STRATEGY_REQUIRED`, returns `recommended_mode=restrict_codegen`, and exposes `blocking_effect=stop_insufficient_preconditions`.
+- [2026-06-05] Added CDC negative/positive smoke coverage in `scripts/precondition_gate_smoke.py`; `python scripts/precondition_gate_smoke.py` now passes with `failed=0`.
+- [2026-06-05] Synced five-rule governance surfaces across docs/schema and hardened claim-boundary docs for missing preconditions and insufficient evidence.
+- [2026-06-05] Validation after CDC/claims update: `governance_drift_checker`, `readiness_audit`, and `quickstart_smoke --contract contract.yaml` all PASS.
+- [2026-06-05] Commits created: `5af65ce` (`fix: tighten CDC precondition gate`), `c64eef8` (`docs: sync five-rule governance surfaces`), `18141b5` (`docs: harden claim boundary under missing preconditions`).
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.
