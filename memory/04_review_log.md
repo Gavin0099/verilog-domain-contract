@@ -294,3 +294,5 @@
   - assignment positive tokens are now rejected when paired with `not specified` / `not provided` style wording
   - FSM state-model / decomposition / illegal-state tokens are now rejected when paired with `not specified` / `unknown` / `not provided` style wording
 - [2026-06-05] Added smoke cases `PG-ASSIGN-NEG-001` and `PG-FSM-NEG-001` to prevent regression of assignment/FSM false-negative handling.
+- [2026-06-05] Tightened negation-aware handshake protocol detection so `valid/ready` or equivalent protocol tokens no longer count as defined when paired with `not specified` / `unknown` / `without` wording.
+- [2026-06-05] Added smoke cases `PG-RESET-NEG-001` and `PG-HS-NEG-001` to preserve reset/handshake negation coverage in the five-rule validator surface.

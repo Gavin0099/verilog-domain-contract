@@ -158,6 +158,12 @@
 - [2026-06-05] Added smoke coverage:
   - `PG-ASSIGN-NEG-001`
   - `PG-FSM-NEG-001`
+- [2026-06-05] Tightened validator coverage for reset/handshake negated wording:
+  - handshake protocol phrases such as `valid/ready protocol semantics not specified` no longer count as defined
+  - reset negation handling is now explicitly regression-covered in smoke
+- [2026-06-05] Added smoke coverage:
+  - `PG-RESET-NEG-001`
+  - `PG-HS-NEG-001`
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

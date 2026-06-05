@@ -55,6 +55,11 @@ RE_RESET_TYPE = re.compile(r"\b(sync(?:hronous)? reset|async(?:hronous)? reset|r
 RE_POLARITY_UNSPEC = re.compile(r"\b(reset\s+)?polarity\b.{0,40}\b(not specified|unspecified|unknown|tbd)\b", re.IGNORECASE)
 RE_TYPE_UNSPEC = re.compile(r"\b(reset\s+)?type\b.{0,40}\b(not specified|unspecified|unknown|tbd)\b", re.IGNORECASE)
 RE_PROTOCOL = re.compile(r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics)\b", re.IGNORECASE)
+RE_PROTOCOL_UNSPEC = re.compile(
+    r"\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
+    r"\b(no|without)\b.{0,40}\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics|protocol semantics)\b",
+    re.IGNORECASE,
+)
 RE_BACKPRESSURE = re.compile(r"\b(backpressure|stall|downstream not ready|ready deassert)\b", re.IGNORECASE)
 RE_LATENCY = re.compile(r"\b(latency|cycle|one-cycle|two-cycle|throughput)\b", re.IGNORECASE)
 RE_BACKPRESSURE_UNSPEC = re.compile(
@@ -204,7 +209,7 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
 
     # Rule 2: interface/handshake gate (pre-task).
     if implementation_intent and interface_intent:
-        protocol_defined = _has(RE_PROTOCOL, text)
+        protocol_defined = _defined_with_negation(RE_PROTOCOL, RE_PROTOCOL_UNSPEC, text)
         backpressure_defined = _defined_with_negation(RE_BACKPRESSURE, RE_BACKPRESSURE_UNSPEC, text)
         latency_defined = _defined_with_negation(RE_LATENCY, RE_LATENCY_UNSPEC, text)
         if not protocol_defined:

@@ -22,9 +22,28 @@ CASES = [
         "expected_mode": "restrict_codegen",
     },
     {
+        "id": "PG-RESET-NEG-001",
+        "task": (
+            "Implement synthesizable Verilog counter. "
+            "Reset polarity unknown and reset type TBD."
+        ),
+        "expected_mode": "restrict_codegen",
+    },
+    {
         "id": "PG-002",
         "task": "Implement synthesizable producer/consumer control logic for interface, but protocol semantics are not defined.",
         "expected_mode": "allow_analysis_only",
+    },
+    {
+        "id": "PG-HS-NEG-001",
+        "task": (
+            "Implement synthesizable valid/ready interface control logic. "
+            "Valid/ready protocol semantics not specified. "
+            "Backpressure behavior provided only after protocol is defined."
+        ),
+        "expected_mode": "allow_analysis_only",
+        "expected_missing": ["interface_protocol_semantics_defined"],
+        "expected_rule_refs": ["HANDSHAKE_TIMING_DEFINITION_REQUIRED"],
     },
     {
         "id": "PG-003",
