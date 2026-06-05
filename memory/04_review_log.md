@@ -288,3 +288,5 @@
 - [2026-06-05] Updated `docs/framework-surface-mapping.md` so reviewers can choose the correct bundle by task (replay / claim / closeout / reviewer) without unpacking the full governance artifact set.
 - [2026-06-05] Added `schemas/governance-bundle-manifest.yaml` to formalize reviewer bundle-index structure and `scripts/check_governance_bundle_manifest_schema.py` to validate the emitted manifest.
 - [2026-06-05] CI workflow now runs `scripts/check_governance_bundle_manifest_schema.py` after manifest generation and uploads `artifacts/schema-conformance/<tag>-governance-bundle-manifest-conformance.json` with the reviewer artifact bundle.
+- [2026-06-05] Added `docs/reviewer-handoff-guide.md` as a dedicated reviewer-facing document that explains bundle selection and first-read order by review task.
+- [2026-06-05] `docs/framework-surface-mapping.md` now points reviewers to the standalone handoff guide instead of forcing them to infer workflow from the mapping note alone.

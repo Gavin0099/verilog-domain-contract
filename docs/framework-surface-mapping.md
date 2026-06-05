@@ -98,6 +98,8 @@ Behavior enforcement requires replay validation using:
 
 - reviewer checklist schema:
   - `schemas/review-checklist.yaml`
+- reviewer handoff guide:
+  - `docs/reviewer-handoff-guide.md`
 - bundle selection rule:
   - reviewer should download the bundle that matches the review task instead of unpacking all governance artifacts
 - bundle purposes:
