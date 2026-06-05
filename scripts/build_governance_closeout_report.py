@@ -6,10 +6,18 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-REPORT_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-governance-closeout-report-conformance.json"
+sys.path.insert(0, str(REPO_ROOT))
+
+from scripts.governance_artifact_paths import (
+    closeout_report_conformance_path,
+    closeout_report_path,
+    closeout_summary_path,
+    default_artifact_tag,
+)
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -63,23 +71,23 @@ def _render(summary: dict[str, object]) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build human-readable governance closeout report.")
-    parser.add_argument(
-        "--summary",
-        default="artifacts/closeout/2026-06-05-governance-closeout-summary.json",
-    )
-    parser.add_argument(
-        "--out",
-        default="artifacts/closeout/2026-06-05-governance-closeout-summary.md",
-    )
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
+    parser.add_argument("--summary")
+    parser.add_argument("--out")
     args = parser.parse_args()
 
-    summary_path = REPO_ROOT / args.summary if not Path(args.summary).is_absolute() else Path(args.summary)
-    out_path = REPO_ROOT / args.out if not Path(args.out).is_absolute() else Path(args.out)
+    summary_path = Path(args.summary) if args.summary else closeout_summary_path(REPO_ROOT, args.artifact_tag)
+    out_path = Path(args.out) if args.out else closeout_report_path(REPO_ROOT, args.artifact_tag)
+    if not summary_path.is_absolute():
+        summary_path = REPO_ROOT / summary_path
+    if not out_path.is_absolute():
+        out_path = REPO_ROOT / out_path
     report = _render(_load(summary_path))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(report, encoding="utf-8")
-    REPORT_CONFORMANCE.parent.mkdir(parents=True, exist_ok=True)
-    REPORT_CONFORMANCE.write_text(
+    report_conformance = closeout_report_conformance_path(REPO_ROOT, args.artifact_tag)
+    report_conformance.parent.mkdir(parents=True, exist_ok=True)
+    report_conformance.write_text(
         json.dumps(
             {
                 "schema": "schemas/governance-closeout-report.yaml",

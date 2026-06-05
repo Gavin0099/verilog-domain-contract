@@ -14,11 +14,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.check_deterministic_governance_schema import validate_artifact, write_validation_result
+from scripts.governance_artifact_paths import default_artifact_tag, replay_artifact_path, replay_conformance_path
 from validators.precondition_gate_validator import evaluate_precondition_gate
 
 
 REPLAY_SCHEMA_PATH = REPO_ROOT / "schemas/behavioral-replay-results.yaml"
-REPLAY_CONFORMANCE_PATH = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json"
 
 
 @dataclass(frozen=True)
@@ -297,22 +297,28 @@ def run_replay(run_set: str) -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run deterministic behavioral replay for BR-* cases.")
-    parser.add_argument("--run-set", default="validator-replay-1")
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
+    parser.add_argument("--run-set")
     parser.add_argument("--format", choices=["human", "json", "yaml"], default="human")
     parser.add_argument("--out")
     args = parser.parse_args()
 
-    result = run_replay(args.run_set)
+    run_set = args.run_set or f"validator-replay-{args.artifact_tag}"
+    result = run_replay(run_set)
 
-    if args.out:
-        out_path = Path(args.out)
+    out_path = Path(args.out) if args.out else replay_artifact_path(REPO_ROOT, args.artifact_tag)
+    if not out_path.is_absolute():
+        out_path = REPO_ROOT / out_path
+    conformance_path = replay_conformance_path(REPO_ROOT, args.artifact_tag)
+
+    if out_path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         if out_path.suffix.lower() in {".yaml", ".yml"}:
             out_path.write_text("\n".join(_to_yaml(result)) + "\n", encoding="utf-8")
         else:
             out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         schema_check = validate_artifact(REPLAY_SCHEMA_PATH, out_path.resolve())
-        write_validation_result(schema_check, REPLAY_CONFORMANCE_PATH)
+        write_validation_result(schema_check, conformance_path)
         if not schema_check["ok"]:
             print("[behavioral_replay_schema_check]")
             for error in schema_check["errors"]:

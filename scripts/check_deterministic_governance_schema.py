@@ -15,11 +15,9 @@ except ImportError as exc:  # pragma: no cover
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
 
-DEFAULT_TARGETS = (
-    ("schemas/behavioral-replay-results.yaml", "artifacts/replay-results/2026-06-05-validator-replay.yaml"),
-    ("schemas/claim-enforcement-results.yaml", "artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json"),
-)
+from scripts.governance_artifact_paths import claim_artifact_path, default_artifact_tag, replay_artifact_path
 
 
 def _load_doc(path: Path) -> dict[str, object]:
@@ -137,6 +135,7 @@ def write_validation_result(result: dict[str, object], out_path: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check deterministic governance artifact/schema conformance.")
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
     parser.add_argument("--format", choices=["human", "json"], default="human")
     parser.add_argument("--schema")
     parser.add_argument("--artifact")
@@ -149,7 +148,10 @@ def main() -> int:
     targets = (
         [(args.schema, args.artifact)]
         if args.schema and args.artifact
-        else list(DEFAULT_TARGETS)
+        else [
+            ("schemas/behavioral-replay-results.yaml", str(replay_artifact_path(REPO_ROOT, args.artifact_tag).relative_to(REPO_ROOT))),
+            ("schemas/claim-enforcement-results.yaml", str(claim_artifact_path(REPO_ROOT, args.artifact_tag).relative_to(REPO_ROOT))),
+        ]
     )
 
     results = [

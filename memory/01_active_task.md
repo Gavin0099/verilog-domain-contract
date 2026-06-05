@@ -115,6 +115,20 @@
 - [2026-06-05] Added `scripts/check_governance_closeout_schema.py` to validate closeout JSON and markdown structures against dedicated closeout schemas.
 - [2026-06-05] Added executable reviewer checker: `scripts/check_reviewer_checklist.py` now reads `schemas/review-checklist.yaml` plus deterministic closeout artifacts and emits machine-readable reviewer verdict output.
 - [2026-06-05] Emitted reviewer verdict artifact: `artifacts/closeout/2026-06-05-reviewer-checklist-verdict.json` with all 6 checklist sections passing.
+- [2026-06-05] Started removing hardcoded artifact dates from deterministic governance pipeline:
+  - replay / claim / closeout / reviewer scripts now accept `--artifact-tag`
+  - CI derives `ARTIFACT_TAG="$(date -u +%F)"` and runs the full governance pipeline with that tag
+- [2026-06-05] CI closeout flow now also runs `scripts/check_reviewer_checklist.py` and can upload reviewer verdict artifacts produced under the runtime artifact tag.
+- [2026-06-05] Validation after artifact-tag parameterization and reviewer-CI integration:
+  - `run_behavioral_replay.py --artifact-tag 2026-06-05`: PASS
+  - `run_claim_enforcement.py --artifact-tag 2026-06-05`: PASS
+  - `build_governance_closeout_summary.py --artifact-tag 2026-06-05`: PASS
+  - `build_governance_closeout_report.py --artifact-tag 2026-06-05`: PASS
+  - `check_governance_closeout_schema.py --artifact-tag 2026-06-05`: PASS
+  - `check_reviewer_checklist.py --artifact-tag 2026-06-05`: PASS
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-06-05] Extended CI closeout flow so workflow now runs `scripts/check_governance_closeout_schema.py` immediately after generating closeout JSON/MD and uploads the resulting closeout conformance artifacts.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.

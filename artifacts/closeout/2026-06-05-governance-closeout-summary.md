@@ -9,7 +9,7 @@
 
 ## Behavioral Replay
 
-- `suite_id`: `validator-replay-1`
+- `suite_id`: `validator-replay-2026-06-05`
 - `execution_surface`: `validator_backed_deterministic_replay`
 - `summary.total`: `7`
 - `summary.pass`: `7`

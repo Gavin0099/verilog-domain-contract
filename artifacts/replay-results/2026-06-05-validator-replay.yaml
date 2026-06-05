@@ -1,8 +1,8 @@
 schema_version: 0.1
 name: behavioral-replay-results
 artifact_family: behavioral_replay
-generated_at: "2026-06-05T06:15:06.393501+00:00"
-suite_id: validator-replay-1
+generated_at: "2026-06-05T07:07:00.790975+00:00"
+suite_id: validator-replay-2026-06-05
 execution_surface: validator_backed_deterministic_replay
 note: Deterministic replay surface built from precondition_gate_validator. This validates repo-local governance behavior and oracle coherence, not live agent runtime behavior.
 cases:

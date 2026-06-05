@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 try:
     import yaml
@@ -14,11 +15,16 @@ except ImportError as exc:  # pragma: no cover
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
 CHECKLIST_SCHEMA = REPO_ROOT / "schemas/review-checklist.yaml"
-CLOSEOUT_SUMMARY = REPO_ROOT / "artifacts/closeout/2026-06-05-governance-closeout-summary.json"
-REPLAY_ARTIFACT = REPO_ROOT / "artifacts/replay-results/2026-06-05-validator-replay.yaml"
-CLAIM_ARTIFACT = REPO_ROOT / "artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json"
-OUTPUT_PATH = REPO_ROOT / "artifacts/closeout/2026-06-05-reviewer-checklist-verdict.json"
+
+from scripts.governance_artifact_paths import (
+    claim_artifact_path,
+    closeout_summary_path,
+    default_artifact_tag,
+    replay_artifact_path,
+    reviewer_verdict_path,
+)
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -45,11 +51,14 @@ def _result(item_id: str, passed: bool, evidence: list[str], rationale: str) -> 
     }
 
 
-def build_verdict() -> dict[str, object]:
+def build_verdict(artifact_tag: str) -> dict[str, object]:
     checklist = _load(CHECKLIST_SCHEMA)
-    closeout = _load(CLOSEOUT_SUMMARY)
-    replay = _load(REPLAY_ARTIFACT)
-    claim = _load(CLAIM_ARTIFACT)
+    closeout_summary = closeout_summary_path(REPO_ROOT, artifact_tag)
+    replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
+    claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
+    closeout = _load(closeout_summary)
+    replay = _load(replay_artifact)
+    claim = _load(claim_artifact)
 
     replay_cases = _case_map(replay["cases"])
     claim_cases = _case_map(claim["cases"])
@@ -146,7 +155,7 @@ def build_verdict() -> dict[str, object]:
         "schema_version": "0.1",
         "name": "reviewer-checklist-verdict",
         "checklist_schema": str(CHECKLIST_SCHEMA.relative_to(REPO_ROOT)),
-        "closeout_summary": str(CLOSEOUT_SUMMARY.relative_to(REPO_ROOT)),
+        "closeout_summary": str(closeout_summary.relative_to(REPO_ROOT)),
         "result": "pass" if all_pass else "fail",
         "sections": section_results,
     }
@@ -154,12 +163,15 @@ def build_verdict() -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate reviewer checklist against governance closeout artifacts.")
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
     parser.add_argument("--format", choices=["human", "json"], default="human")
-    parser.add_argument("--out", default=str(OUTPUT_PATH.relative_to(REPO_ROOT)))
+    parser.add_argument("--out")
     args = parser.parse_args()
 
-    verdict = build_verdict()
-    out_path = REPO_ROOT / args.out if not Path(args.out).is_absolute() else Path(args.out)
+    verdict = build_verdict(args.artifact_tag)
+    out_path = Path(args.out) if args.out else reviewer_verdict_path(REPO_ROOT, args.artifact_tag)
+    if not out_path.is_absolute():
+        out_path = REPO_ROOT / out_path
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(verdict, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

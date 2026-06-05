@@ -266,4 +266,13 @@
   - `artifacts/closeout/2026-06-05-reviewer-checklist-verdict.json`
   - result: `pass`
   - sections passed: reset / assignment / handshake / fsm / cdc / governance_closeout
+- [2026-06-05] Artifact naming now begins de-hardcoding:
+  - deterministic replay / claim / closeout / reviewer scripts accept `--artifact-tag`
+  - CI now uses UTC date tag at runtime instead of hardcoding `2026-06-05`
+- [2026-06-05] CI workflow now also executes `scripts/check_reviewer_checklist.py` under the runtime artifact tag and can upload reviewer verdict artifacts alongside replay/claim/closeout artifacts.
+- [2026-06-05] Validation after artifact-tag parameterization:
+  - replay / claim / closeout / reviewer scripts all PASS with `--artifact-tag 2026-06-05`
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-06-05] CI workflow now runs `scripts/check_governance_closeout_schema.py` after closeout artifact generation and uploads closeout-summary/report conformance artifacts alongside the replay/claim artifacts.

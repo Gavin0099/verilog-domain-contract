@@ -13,11 +13,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.check_deterministic_governance_schema import validate_artifact, write_validation_result
+from scripts.governance_artifact_paths import claim_artifact_path, claim_conformance_path, default_artifact_tag
 
 
 REPO_NAME = "verilog-domain-contract"
 CLAIM_SCHEMA_PATH = REPO_ROOT / "schemas/claim-enforcement-results.yaml"
-CLAIM_CONFORMANCE_PATH = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json"
 STRONG_CLAIM_TERMS = (
     "proven",
     "production-ready",
@@ -130,7 +130,7 @@ def evaluate_claim_enforcement(
     raise ValueError(f"unknown scenario: {scenario}")
 
 
-def run_default_suite() -> dict[str, object]:
+def run_default_suite(artifact_tag: str) -> dict[str, object]:
     cases = [
         evaluate_claim_enforcement(
             scenario="baseline",
@@ -159,7 +159,7 @@ def run_default_suite() -> dict[str, object]:
         "schema_version": "0.1",
         "name": "claim-enforcement-results",
         "artifact_family": "claim_enforcement",
-        "suite_id": "claim-enforcement-2026-06-05",
+        "suite_id": f"claim-enforcement-{artifact_tag}",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "execution_surface": "validator_backed_deterministic_claim_enforcement",
         "note": (
@@ -178,18 +178,23 @@ def run_default_suite() -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run deterministic claim-enforcement scenarios.")
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
     parser.add_argument("--format", choices=["human", "json"], default="human")
     parser.add_argument("--out")
     args = parser.parse_args()
 
-    result = run_default_suite()
+    result = run_default_suite(args.artifact_tag)
 
-    if args.out:
-        out_path = Path(args.out)
+    out_path = Path(args.out) if args.out else claim_artifact_path(REPO_ROOT, args.artifact_tag)
+    if not out_path.is_absolute():
+        out_path = REPO_ROOT / out_path
+    conformance_path = claim_conformance_path(REPO_ROOT, args.artifact_tag)
+
+    if out_path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         schema_check = validate_artifact(CLAIM_SCHEMA_PATH, out_path.resolve())
-        write_validation_result(schema_check, CLAIM_CONFORMANCE_PATH)
+        write_validation_result(schema_check, conformance_path)
         if not schema_check["ok"]:
             print("[claim_enforcement_schema_check]")
             for error in schema_check["errors"]:

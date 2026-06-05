@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 try:
     import yaml
@@ -14,12 +15,17 @@ except ImportError as exc:  # pragma: no cover
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
 
-REPLAY_ARTIFACT = REPO_ROOT / "artifacts/replay-results/2026-06-05-validator-replay.yaml"
-CLAIM_ARTIFACT = REPO_ROOT / "artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json"
-REPLAY_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json"
-CLAIM_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json"
-CLOSEOUT_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-governance-closeout-summary-conformance.json"
+from scripts.governance_artifact_paths import (
+    claim_artifact_path,
+    claim_conformance_path,
+    closeout_summary_conformance_path,
+    closeout_summary_path,
+    default_artifact_tag,
+    replay_artifact_path,
+    replay_conformance_path,
+)
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -29,11 +35,15 @@ def _load(path: Path) -> dict[str, object]:
     return yaml.safe_load(text)
 
 
-def build_summary() -> dict[str, object]:
-    replay = _load(REPLAY_ARTIFACT)
-    claim = _load(CLAIM_ARTIFACT)
-    replay_conformance = _load(REPLAY_CONFORMANCE)
-    claim_conformance = _load(CLAIM_CONFORMANCE)
+def build_summary(artifact_tag: str) -> dict[str, object]:
+    replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
+    claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
+    replay_conformance_artifact = replay_conformance_path(REPO_ROOT, artifact_tag)
+    claim_conformance_artifact = claim_conformance_path(REPO_ROOT, artifact_tag)
+    replay = _load(replay_artifact)
+    claim = _load(claim_artifact)
+    replay_conformance = _load(replay_conformance_artifact)
+    claim_conformance = _load(claim_conformance_artifact)
 
     replay_summary = replay["summary"]
     claim_summary = claim["summary"]
@@ -42,10 +52,10 @@ def build_summary() -> dict[str, object]:
         "schema_version": "0.1",
         "name": "governance-closeout-summary",
         "generated_from": {
-            "behavioral_replay_artifact": str(REPLAY_ARTIFACT.relative_to(REPO_ROOT)),
-            "claim_enforcement_artifact": str(CLAIM_ARTIFACT.relative_to(REPO_ROOT)),
-            "behavioral_replay_conformance": str(REPLAY_CONFORMANCE.relative_to(REPO_ROOT)),
-            "claim_enforcement_conformance": str(CLAIM_CONFORMANCE.relative_to(REPO_ROOT)),
+            "behavioral_replay_artifact": str(replay_artifact.relative_to(REPO_ROOT)),
+            "claim_enforcement_artifact": str(claim_artifact.relative_to(REPO_ROOT)),
+            "behavioral_replay_conformance": str(replay_conformance_artifact.relative_to(REPO_ROOT)),
+            "claim_enforcement_conformance": str(claim_conformance_artifact.relative_to(REPO_ROOT)),
         },
         "surfaces": {
             "behavioral_replay": {
@@ -76,20 +86,21 @@ def build_summary() -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build governance closeout summary artifact.")
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
     parser.add_argument("--format", choices=["human", "json"], default="human")
-    parser.add_argument(
-        "--out",
-        default="artifacts/closeout/2026-06-05-governance-closeout-summary.json",
-    )
+    parser.add_argument("--out")
     args = parser.parse_args()
 
-    result = build_summary()
-    out_path = REPO_ROOT / args.out if not Path(args.out).is_absolute() else Path(args.out)
+    result = build_summary(args.artifact_tag)
+    out_path = Path(args.out) if args.out else closeout_summary_path(REPO_ROOT, args.artifact_tag)
+    if not out_path.is_absolute():
+        out_path = REPO_ROOT / out_path
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     closeout_ok = result["overall"]["schema_conformance_ok"] and result["name"] == "governance-closeout-summary"
-    CLOSEOUT_CONFORMANCE.parent.mkdir(parents=True, exist_ok=True)
-    CLOSEOUT_CONFORMANCE.write_text(
+    closeout_conformance = closeout_summary_conformance_path(REPO_ROOT, args.artifact_tag)
+    closeout_conformance.parent.mkdir(parents=True, exist_ok=True)
+    closeout_conformance.write_text(
         json.dumps(
             {
                 "schema": "schemas/governance-closeout-summary.yaml",

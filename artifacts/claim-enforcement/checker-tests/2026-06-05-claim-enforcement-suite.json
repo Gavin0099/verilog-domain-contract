@@ -3,7 +3,7 @@
   "name": "claim-enforcement-results",
   "artifact_family": "claim_enforcement",
   "suite_id": "claim-enforcement-2026-06-05",
-  "generated_at": "2026-06-05T06:15:06.380425+00:00",
+  "generated_at": "2026-06-05T07:07:00.778776+00:00",
   "execution_surface": "validator_backed_deterministic_claim_enforcement",
   "note": "Deterministic claim-enforcement surface for repo-local policy coherence. This validates claim-boundary behavior, not live runtime closeout behavior.",
   "cases": [

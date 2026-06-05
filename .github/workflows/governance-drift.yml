@@ -82,22 +82,20 @@ jobs:
 
       - name: Emit deterministic governance artifacts
         run: |
-          python scripts/run_behavioral_replay.py --format yaml --out artifacts/replay-results/2026-06-05-validator-replay.yaml
-          python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
-          python scripts/build_governance_closeout_summary.py --format human
-          python scripts/build_governance_closeout_report.py
-          python scripts/check_governance_closeout_schema.py --format human
+          ARTIFACT_TAG="$(date -u +%F)"
+          python scripts/run_behavioral_replay.py --artifact-tag "$ARTIFACT_TAG" --format yaml
+          python scripts/run_claim_enforcement.py --artifact-tag "$ARTIFACT_TAG" --format json
+          python scripts/build_governance_closeout_summary.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/build_governance_closeout_report.py --artifact-tag "$ARTIFACT_TAG"
+          python scripts/check_governance_closeout_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/check_reviewer_checklist.py --artifact-tag "$ARTIFACT_TAG" --format human
 
       - name: Upload governance closeout artifacts
         uses: actions/upload-artifact@v4
         with:
           name: governance-closeout-artifacts
           path: |
-            artifacts/replay-results/2026-06-05-validator-replay.yaml
-            artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
-            artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json
-            artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json
-            artifacts/schema-conformance/2026-06-05-governance-closeout-summary-conformance.json
-            artifacts/schema-conformance/2026-06-05-governance-closeout-report-conformance.json
-            artifacts/closeout/2026-06-05-governance-closeout-summary.json
-            artifacts/closeout/2026-06-05-governance-closeout-summary.md
+            artifacts/replay-results/*
+            artifacts/claim-enforcement/checker-tests/*
+            artifacts/schema-conformance/*
+            artifacts/closeout/*

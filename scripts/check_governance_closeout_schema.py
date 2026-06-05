@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 try:
     import yaml
@@ -14,10 +15,11 @@ except ImportError as exc:  # pragma: no cover
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
 SUMMARY_SCHEMA = REPO_ROOT / "schemas/governance-closeout-summary.yaml"
 REPORT_SCHEMA = REPO_ROOT / "schemas/governance-closeout-report.yaml"
-SUMMARY_ARTIFACT = REPO_ROOT / "artifacts/closeout/2026-06-05-governance-closeout-summary.json"
-REPORT_ARTIFACT = REPO_ROOT / "artifacts/closeout/2026-06-05-governance-closeout-summary.md"
+
+from scripts.governance_artifact_paths import closeout_report_path, closeout_summary_path, default_artifact_tag
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -32,9 +34,9 @@ def _missing_fields(container: dict[str, object], required: list[str]) -> list[s
     return [field for field in required if field not in container]
 
 
-def validate_summary() -> dict[str, object]:
+def validate_summary(summary_artifact: Path) -> dict[str, object]:
     schema = _load_yaml(SUMMARY_SCHEMA)
-    payload = _load_json(SUMMARY_ARTIFACT)
+    payload = _load_json(summary_artifact)
     errors: list[str] = []
 
     missing_top = _missing_fields(payload, schema["fields"])
@@ -79,15 +81,15 @@ def validate_summary() -> dict[str, object]:
 
     return {
         "schema": str(SUMMARY_SCHEMA.relative_to(REPO_ROOT)),
-        "artifact": str(SUMMARY_ARTIFACT.relative_to(REPO_ROOT)),
+        "artifact": str(summary_artifact.relative_to(REPO_ROOT)),
         "ok": len(errors) == 0,
         "errors": errors,
     }
 
 
-def validate_report() -> dict[str, object]:
+def validate_report(report_artifact: Path) -> dict[str, object]:
     schema = _load_yaml(REPORT_SCHEMA)
-    text = REPORT_ARTIFACT.read_text(encoding="utf-8")
+    text = report_artifact.read_text(encoding="utf-8")
     errors: list[str] = []
 
     for heading in schema["required_headings"]:
@@ -96,7 +98,7 @@ def validate_report() -> dict[str, object]:
 
     return {
         "schema": str(REPORT_SCHEMA.relative_to(REPO_ROOT)),
-        "artifact": str(REPORT_ARTIFACT.relative_to(REPO_ROOT)),
+        "artifact": str(report_artifact.relative_to(REPO_ROOT)),
         "ok": len(errors) == 0,
         "errors": errors,
     }
@@ -104,10 +106,14 @@ def validate_report() -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check governance closeout summary/report schema conformance.")
+    parser.add_argument("--artifact-tag", default=default_artifact_tag())
     parser.add_argument("--format", choices=["human", "json"], default="human")
     args = parser.parse_args()
 
-    results = [validate_summary(), validate_report()]
+    results = [
+        validate_summary(closeout_summary_path(REPO_ROOT, args.artifact_tag)),
+        validate_report(closeout_report_path(REPO_ROOT, args.artifact_tag)),
+    ]
     fail = sum(1 for item in results if not item["ok"])
     payload = {"total": len(results), "pass": len(results) - fail, "fail": fail, "results": results}
 
