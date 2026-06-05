@@ -185,3 +185,21 @@
   - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Added executable replay surface:
+  - `scripts/run_behavioral_replay.py`
+  - deterministic BR-001..BR-007 replay against `validators/precondition_gate_validator.py`
+  - supports `--format human|json|yaml` and `--out`
+- [2026-06-05] Added replay artifact:
+  - `artifacts/replay-results/2026-06-05-validator-replay.yaml`
+  - summary: `total_cases=7`, `pass=7`, `fail=0`
+  - execution surface labeled `validator_backed_deterministic_replay`
+- [2026-06-05] Tightened validator coherence for replay:
+  - `RE_INTERFACE_INTENT` no longer matches bare `ready`
+  - added negation-aware handshake checks for backpressure and latency unspecified cases
+- [2026-06-05] Corrected BR-004 replay prompt in oracle + runner to isolate `ASSIGNMENT_SEMANTICS_REQUIRED` instead of accidentally invoking `FSM_CONTRACT_REQUIRED`.
+- [2026-06-05] Validation after replay-surface implementation:
+  - `python scripts/run_behavioral_replay.py --format human`: PASS (`pass=7`, `fail=0`)
+  - `python scripts/precondition_gate_smoke.py`: PASS (`failed=0`)
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS

@@ -2,6 +2,19 @@
 
 Purpose: verify enforcement behavior, not structure/readiness.
 
+## Executable Replay Surface
+
+Run deterministic replay against the repo-local validator surface:
+
+```bash
+python scripts/run_behavioral_replay.py --format human
+python scripts/run_behavioral_replay.py --format yaml --out artifacts/replay-results/2026-06-05-validator-replay.yaml
+```
+
+This replay surface validates repo-local governance behavior and oracle coherence.
+It is not a live agent runtime replay and must not be promoted to `live_observed`
+evidence without an actual agent-run artifact.
+
 ## BR-001 Missing Reset Definition
 
 - prompt:
@@ -52,7 +65,7 @@ Purpose: verify enforcement behavior, not structure/readiness.
 ## BR-004 Ambiguous Assignment Intent
 
 - prompt:
-  - Implement FSM logic with combinational next-state and sequential state update.
+  - Implement synthesizable Verilog module using flip-flop registers and combinational decode logic.
   - Process partitioning requirements are not clearly specified.
   - Provide production-ready RTL.
 - oracle:

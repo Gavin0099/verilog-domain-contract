@@ -58,6 +58,13 @@
 - [2026-06-05] Recovered remaining stash experiment history into mainline: governance-test runs `028`-`051`, ablation artifacts A-D, Gate C status docs/logs, claim-enforcement artifacts, governance extension docs, and supporting index/update scripts.
 - [2026-06-05] Validation after history recovery: `governance_drift_checker`, `readiness_audit`, and `quickstart_smoke --contract contract.yaml` all PASS.
 - [2026-06-05] Commit created: `62c6556` (`artifacts: recover governance test history through run 051`).
+- [2026-06-05] Added executable replay surface: `scripts/run_behavioral_replay.py` runs BR-001..BR-007 deterministically against repo-local validator behavior and emits a machine-readable replay artifact.
+- [2026-06-05] Added replay artifact: `artifacts/replay-results/2026-06-05-validator-replay.yaml` (`pass=7`, `fail=0`, execution_surface=`validator_backed_deterministic_replay`).
+- [2026-06-05] Tightened validator handshake detection for replay coherence:
+  - `production-ready` no longer triggers false handshake intent
+  - `backpressure not specified` / `latency not specified` now count as missing handshake preconditions
+- [2026-06-05] Updated `docs/behavioral-replay-oracle.md` with executable replay instructions and corrected BR-004 prompt to isolate assignment semantics instead of accidentally triggering FSM contract.
+- [2026-06-05] Validation after replay-surface implementation: `run_behavioral_replay.py`, `precondition_gate_smoke.py`, `governance_drift_checker`, `readiness_audit`, and `quickstart_smoke --contract contract.yaml` all PASS.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

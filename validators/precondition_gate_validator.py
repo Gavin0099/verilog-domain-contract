@@ -46,7 +46,7 @@ RE_IMPLEMENTATION_INTENT = re.compile(
     re.IGNORECASE,
 )
 RE_INTERFACE_INTENT = re.compile(
-    r"\b(interface|handshake|valid|ready|req|ack|protocol|control logic|pipeline)\b",
+    r"\b(interface|handshake|valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|protocol|control logic|pipeline)\b",
     re.IGNORECASE,
 )
 RE_RESET_MENTION = re.compile(r"\b(reset|rst|rst_n|reset_n)\b", re.IGNORECASE)
@@ -57,6 +57,14 @@ RE_TYPE_UNSPEC = re.compile(r"\b(reset\s+)?type\b.{0,40}\b(not specified|unspeci
 RE_PROTOCOL = re.compile(r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics)\b", re.IGNORECASE)
 RE_BACKPRESSURE = re.compile(r"\b(backpressure|stall|downstream not ready|ready deassert)\b", re.IGNORECASE)
 RE_LATENCY = re.compile(r"\b(latency|cycle|one-cycle|two-cycle|throughput)\b", re.IGNORECASE)
+RE_BACKPRESSURE_UNSPEC = re.compile(
+    r"\b(backpressure|stall|acceptance behavior)\b.{0,40}\b(not specified|unspecified|unknown|tbd|not provided)\b",
+    re.IGNORECASE,
+)
+RE_LATENCY_UNSPEC = re.compile(
+    r"\b(latency|cycle|throughput)\b.{0,40}\b(not specified|unspecified|unknown|tbd|not provided)\b",
+    re.IGNORECASE,
+)
 RE_ASSIGNMENT_INTENT = re.compile(
     r"\b(always_ff|always_comb|always_latch|"
     r"blocking\s+assignment|non-?blocking\s+assignment|"
@@ -179,8 +187,8 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
     # Rule 2: interface/handshake gate (pre-task).
     if implementation_intent and interface_intent:
         protocol_defined = _has(RE_PROTOCOL, text)
-        backpressure_defined = _has(RE_BACKPRESSURE, text)
-        latency_defined = _has(RE_LATENCY, text)
+        backpressure_defined = _defined_with_negation(RE_BACKPRESSURE, RE_BACKPRESSURE_UNSPEC, text)
+        latency_defined = _defined_with_negation(RE_LATENCY, RE_LATENCY_UNSPEC, text)
         if not protocol_defined:
             missing_preconditions.append("interface_protocol_semantics_defined")
             rule_refs.append("HANDSHAKE_TIMING_DEFINITION_REQUIRED")
