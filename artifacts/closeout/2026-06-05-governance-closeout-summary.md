@@ -15,6 +15,7 @@
 - `summary.pass`: `7`
 - `summary.fail`: `0`
 - `schema_conformance_ok`: `true`
+- `coverage_summary.total_cases`: `0`
 
 ## Claim Enforcement
 
@@ -25,6 +26,7 @@
 - `summary.fail`: `0`
 - `summary.not_executed`: `1`
 - `schema_conformance_ok`: `true`
+- `coverage_summary.total_cases`: `0`
 
 ## Inputs
 

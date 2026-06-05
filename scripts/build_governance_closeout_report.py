@@ -28,6 +28,15 @@ def _render(summary: dict[str, object]) -> str:
     surfaces = summary["surfaces"]
     overall = summary["overall"]
     generated_from = summary["generated_from"]
+    replay_coverage = surfaces["behavioral_replay"].get("coverage_summary", {})
+    claim_coverage = surfaces["claim_enforcement"].get("coverage_summary", {})
+
+    def render_coverage(prefix: str, coverage: dict[str, object]) -> list[str]:
+        groups = coverage.get("groups", {}) if isinstance(coverage, dict) else {}
+        lines = [f"- `{prefix}.total_cases`: `{coverage.get('total_cases', 0)}`"]
+        for group_name, group_payload in groups.items():
+            lines.append(f"- `{prefix}.groups.{group_name}.count`: `{group_payload.get('count', 0)}`")
+        return lines
 
     lines = [
         "# Governance Closeout Summary",
@@ -47,6 +56,7 @@ def _render(summary: dict[str, object]) -> str:
         f"- `summary.pass`: `{surfaces['behavioral_replay']['summary']['pass']}`",
         f"- `summary.fail`: `{surfaces['behavioral_replay']['summary']['fail']}`",
         f"- `schema_conformance_ok`: `{str(surfaces['behavioral_replay']['schema_conformance_ok']).lower()}`",
+        *render_coverage("coverage_summary", replay_coverage),
         "",
         "## Claim Enforcement",
         "",
@@ -57,6 +67,7 @@ def _render(summary: dict[str, object]) -> str:
         f"- `summary.fail`: `{surfaces['claim_enforcement']['summary']['fail']}`",
         f"- `summary.not_executed`: `{surfaces['claim_enforcement']['summary']['not_executed']}`",
         f"- `schema_conformance_ok`: `{str(surfaces['claim_enforcement']['schema_conformance_ok']).lower()}`",
+        *render_coverage("coverage_summary", claim_coverage),
         "",
         "## Inputs",
         "",

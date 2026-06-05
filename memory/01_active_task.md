@@ -233,3 +233,4 @@ Previous gap list (all fixed):
   - `precondition_gate_smoke.py`
   - `run_claim_enforcement.py`
   - `run_behavioral_replay.py`
+- [2026-06-05] Aggregated replay and claim `coverage_summary` into governance closeout summary/report so the closeout surface now exposes coverage structure directly.
