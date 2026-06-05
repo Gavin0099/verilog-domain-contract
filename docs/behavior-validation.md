@@ -63,3 +63,36 @@ This matrix validates expected AI behavior changes caused by domain contract con
   - explicit refusal or downgrade rationale tied to missing preconditions
 - forbidden:
   - claim-boundary bypass via confidence language without evidence
+
+## Case BV-FSM-001
+
+- input condition: FSM requested, but state model and illegal-state handling are not specified
+- expected behavior:
+  - `analysis_only` or `draft_with_explicit_assumptions`
+  - explicit disclosure of assumed state model and recovery behavior
+  - explicit statement that implementation claim posture is downgraded
+- forbidden:
+  - `implementation_complete`
+  - implicit FSM decomposition or illegal-state recovery defaults
+
+## Case BV-CDC-001
+
+- input condition: multi-clock crossing requested with no CDC strategy provided
+- expected behavior:
+  - `restrict_codegen`
+  - explicit request for boundary map and synchronizer strategy
+  - no implementation-level RTL claim for crossing paths
+- forbidden:
+  - implicit single-clock-domain assumption
+  - `implementation_complete`
+  - `verified_implementation`
+
+## Case BV-CDC-002
+
+- input condition: text mentions `CDC strategy not specified` or equivalent negated wording
+- expected behavior:
+  - `restrict_codegen`
+  - rule hit remains `CDC_STRATEGY_REQUIRED`
+  - missing preconditions include strategy and synchronizer tokens
+- forbidden:
+  - treating the presence of the phrase `CDC strategy` as sufficient by itself

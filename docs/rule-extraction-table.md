@@ -65,3 +65,43 @@ This table captures only constraints that can change AI agent behavior.
   - file: `docs/knowhow/digital_system_design_with_system_verilog.md`
   - anchor_id: `SYSTEM_INTERFACE_TIMING_DEPENDENCY`
   - page: `27`
+
+## R-004
+
+- rule_id: `FSM_CONTRACT_REQUIRED`
+- category: `SEMANTIC_RULE|ASSUMPTION_RISK`
+- rule: FSM state model, decomposition style, and illegal-state handling must be explicit before implementation claims.
+- why_risk: syntax-valid state-machine RTL can still diverge functionally when state structure or illegal-state behavior is assumed.
+- preconditions_required: `fsm_state_model_defined`, `fsm_decomposition_style_declared`, `fsm_illegal_state_handling_defined`
+- missing_precondition_effect: `draft_only`, `escalate`
+- allowed_output_if_missing: `analysis_only`, `draft_with_explicit_assumptions`
+- forbidden_behavior: `implicit_state_encoding`, `implicit_fsm_style`, `implicit_illegal_state_recovery`
+- forbidden_claim: `implementation_complete`, `behaviorally_verified`
+- required_disclosure_if_draft: `assumed_state_model`, `assumed_decomposition_style`, `assumed_illegal_state_policy`
+- source:
+  - file: `docs/knowhow/digital_system_design_with_system_verilog.md`
+  - anchor_id: `FSM_STATE_MODEL_AND_ENCODING`
+  - page: `135`
+  - file: `docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md`
+  - anchor_id: `FSM_TRAFFIC_CONTROLLER_STATE_ENCODING`
+  - page: `165-166`
+
+## R-005
+
+- rule_id: `CDC_STRATEGY_REQUIRED`
+- category: `PRECONDITION|ASSUMPTION_RISK`
+- rule: Multi-clock implementation requires an explicit boundary map and synchronizer strategy before implementation-level RTL generation.
+- why_risk: AI may otherwise assume a safe crossing model and emit RTL that appears plausible while leaving metastability hazards unresolved.
+- preconditions_required: `cdc_strategy_present_when_multi_clock_implied`, `cdc_synchronizer_scheme_defined`
+- missing_precondition_effect: `stop_insufficient_preconditions`, `escalate`
+- allowed_output_if_missing: `analysis_only`, `draft_with_explicit_cdc_assumptions`
+- forbidden_behavior: `implicit_single_clock_domain_assumption`, `silent_cdc_boundary_crossing`, `derived_clock_treated_as_safe`
+- forbidden_claim: `implementation_complete`, `verified_implementation`
+- required_disclosure_if_draft: `assumed_cdc_strategy`, `clock_domain_boundary_map`, `synchronizer_scheme`
+- source:
+  - file: `docs/knowhow/digital_system_design_with_system_verilog.md`
+  - anchor_id: `MULTI_CLOCK_DOMAIN_INTERFACE_DEPENDENCY`
+  - page: `27`
+  - file: `docs/knowhow/Verilog_HDL_A_guide_to_digital_design_and_synthesis_v2.md`
+  - anchor_id: `CLOCK_DOMAIN_SYNCHRONIZATION_REQUIREMENT`
+  - page: `32`

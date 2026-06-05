@@ -47,3 +47,35 @@ sections:
       - id: HANDSHAKE_COMPLETION_CLAIM
         question: Is implementation claimed complete without handshake timing definition?
         severity: critical
+
+  - id: fsm_contract
+    required: true
+    items:
+      - id: FSM_STATE_MODEL_DEFINED
+        question: Is the FSM state model or state set explicitly defined?
+        severity: high
+      - id: FSM_DECOMPOSITION_DEFINED
+        question: Is FSM decomposition style explicitly defined?
+        severity: high
+      - id: FSM_ILLEGAL_STATE_DEFINED
+        question: Is illegal-state handling explicitly defined?
+        severity: high
+      - id: FSM_COMPLETION_CLAIM
+        question: Is implementation claimed complete without explicit FSM contract details?
+        severity: critical
+
+  - id: cdc_contract
+    required: true
+    items:
+      - id: CDC_MULTI_CLOCK_DETECTED
+        question: Does the task imply multiple clock domains or domain crossings?
+        severity: high
+      - id: CDC_STRATEGY_DEFINED
+        question: Is the CDC strategy explicitly defined without negated wording such as not specified or TBD?
+        severity: critical
+      - id: CDC_SYNCHRONIZER_DEFINED
+        question: Is the synchronizer or crossing scheme explicitly defined?
+        severity: critical
+      - id: CDC_COMPLETION_CLAIM
+        question: Is implementation or verified completion claimed without CDC strategy definition?
+        severity: critical

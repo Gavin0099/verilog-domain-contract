@@ -7,6 +7,7 @@ This model states what bug classes are covered by current rules and what remains
 - reset assumption mismatch
 - assignment semantic mismatch (blocking/non-blocking misuse)
 - handshake protocol/timing assumption mismatch
+- missing CDC strategy detection and downgrade
 - premature completion claims under missing preconditions
 
 ## Estimated Coverage (Working Estimate)
@@ -25,6 +26,7 @@ This model states what bug classes are covered by current rules and what remains
 ## False-Negative Risk Notes
 
 - a response may pass current contract but still fail physical timing or CDC safety
+- the current CDC slice detects missing strategy disclosures, not full crossing correctness
 - simulation-only evidence can miss integration-level hazards
 
 ## Required Next Measurement

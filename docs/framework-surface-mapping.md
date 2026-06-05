@@ -48,6 +48,40 @@ This note maps rule intent to governance runtime surfaces.
   - block `implementation_complete`
   - block `interface_timing_verified`
 
+## FSM_CONTRACT_REQUIRED
+
+- pre-task precondition:
+  - `fsm_state_model_defined`
+  - `fsm_decomposition_style_declared`
+  - `fsm_illegal_state_handling_defined`
+- pre-task effect if missing:
+  - `draft_only`
+  - `escalate`
+- post-task checks:
+  - no implicit FSM style or illegal-state recovery behavior
+  - assumptions disclosed when draft is emitted
+- claim policy impact:
+  - block `implementation_complete`
+  - block `behaviorally_verified`
+
+## CDC_STRATEGY_REQUIRED
+
+- pre-task precondition:
+  - `cdc_strategy_present_when_multi_clock_implied`
+  - `cdc_synchronizer_scheme_defined`
+- pre-task effect if missing:
+  - `restrict_codegen`
+  - `blocking_effect=stop_insufficient_preconditions`
+  - `escalate`
+- post-task checks:
+  - no implicit single-clock-domain assumption
+  - no silent boundary crossing without declared synchronizer scheme
+  - explicit disclosure if draft is emitted under bounded CDC assumptions
+- claim policy impact:
+  - block `implementation_complete`
+  - block `verified_implementation`
+  - pre-task blocks implementation-level crossing RTL when strategy is absent
+
 ## Enforcement Gap Marker
 
 `domain_contract_loader PASS` and `external_repo_readiness ready=True` prove contract ingestion/adoption only.
