@@ -279,3 +279,8 @@
 - [2026-06-05] Added `schemas/reviewer-checklist-verdict.yaml` to formalize the machine-readable reviewer verdict structure produced by `scripts/check_reviewer_checklist.py`.
 - [2026-06-05] Added `scripts/check_reviewer_verdict_schema.py` to validate reviewer verdict artifacts and emit `artifacts/schema-conformance/<tag>-reviewer-checklist-verdict-conformance.json`.
 - [2026-06-05] CI workflow now runs `scripts/check_reviewer_verdict_schema.py` immediately after reviewer verdict generation, so reviewer output is schema-checked in the same cycle as replay / claim / closeout artifacts.
+- [2026-06-05] CI artifact publishing is now segmented for reviewer consumption:
+  - `governance-replay-artifacts`
+  - `governance-claim-artifacts`
+  - `governance-closeout-artifacts`
+  - `governance-reviewer-artifacts`

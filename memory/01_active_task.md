@@ -135,6 +135,11 @@
   - `scripts/check_reviewer_verdict_schema.py`
   - `artifacts/schema-conformance/2026-06-05-reviewer-checklist-verdict-conformance.json`
 - [2026-06-05] CI workflow now validates reviewer verdict artifacts immediately after `scripts/check_reviewer_checklist.py`, so reviewer output has the same schema-conformance step as replay / claim / closeout surfaces.
+- [2026-06-05] CI artifact upload is now split into four reviewer-facing bundles:
+  - replay: replay artifact + replay conformance
+  - claim: claim-enforcement artifact + claim conformance
+  - closeout: aggregate closeout JSON/MD + closeout conformance
+  - reviewer: reviewer verdict + reviewer verdict conformance
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.
