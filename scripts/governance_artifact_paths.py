@@ -45,3 +45,7 @@ def closeout_report_conformance_path(repo_root: Path, tag: str) -> Path:
 
 def reviewer_verdict_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/closeout/{tag}-reviewer-checklist-verdict.json"
+
+
+def reviewer_verdict_conformance_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/schema-conformance/{tag}-reviewer-checklist-verdict-conformance.json"

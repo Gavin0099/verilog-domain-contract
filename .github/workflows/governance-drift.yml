@@ -89,6 +89,7 @@ jobs:
           python scripts/build_governance_closeout_report.py --artifact-tag "$ARTIFACT_TAG"
           python scripts/check_governance_closeout_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_reviewer_checklist.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/check_reviewer_verdict_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
 
       - name: Upload governance closeout artifacts
         uses: actions/upload-artifact@v4

@@ -1,0 +1,23 @@
+schema_version: "0.1"
+name: reviewer-checklist-verdict
+description: Machine-readable reviewer verdict derived from the review checklist and governance closeout artifacts.
+
+fields:
+  - schema_version
+  - name
+  - checklist_schema
+  - closeout_summary
+  - result
+  - sections
+
+section_fields:
+  - section_id
+  - required
+  - result
+  - items
+
+item_fields:
+  - item_id
+  - result
+  - evidence
+  - rationale

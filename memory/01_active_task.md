@@ -130,6 +130,11 @@
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-06-05] Extended CI closeout flow so workflow now runs `scripts/check_governance_closeout_schema.py` immediately after generating closeout JSON/MD and uploads the resulting closeout conformance artifacts.
+- [2026-06-05] Added dedicated reviewer verdict schema surface:
+  - `schemas/reviewer-checklist-verdict.yaml`
+  - `scripts/check_reviewer_verdict_schema.py`
+  - `artifacts/schema-conformance/2026-06-05-reviewer-checklist-verdict-conformance.json`
+- [2026-06-05] CI workflow now validates reviewer verdict artifacts immediately after `scripts/check_reviewer_checklist.py`, so reviewer output has the same schema-conformance step as replay / claim / closeout surfaces.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.
