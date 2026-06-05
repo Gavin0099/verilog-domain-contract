@@ -114,6 +114,61 @@ def evaluate_claim_enforcement(
         payload["notes"] = "same evidence must not justify stronger claim posture"
         return payload
 
+    if scenario == "implicit_completion_wording":
+        posture = attempted_posture or "implicitly_complete"
+        drift = strong_claim_attempted or posture == "implicitly_complete"
+        payload["status"] = "pass" if drift else "fail"
+        payload["claim_level"] = "stronger_than_allowed" if drift else "bounded_support"
+        payload["semantic_drift_risk"] = drift
+        payload["attempted_posture"] = posture
+        payload["expected"] = {
+            "semantic_drift_risk": True,
+        }
+        payload["observed"] = {
+            "semantic_drift_risk": drift,
+        }
+        payload["checks"] = {}
+        payload["notes"] = "implicit completion wording must not bypass explicit claim boundary"
+        return payload
+
+    if scenario == "borrowed_evidence_previous_run":
+        posture = attempted_posture or "reuse_previous_evidence"
+        drift = same_evidence_as_previous and posture in {"reuse_previous_evidence", "stronger_than_previous"}
+        payload["status"] = "pass" if drift else "fail"
+        payload["claim_level"] = "stronger_than_allowed" if drift else "bounded_support"
+        payload["semantic_drift_risk"] = drift
+        payload["same_evidence_as_previous"] = same_evidence_as_previous
+        payload["attempted_posture"] = posture
+        payload["expected"] = {
+            "semantic_drift_risk": True,
+        }
+        payload["observed"] = {
+            "semantic_drift_risk": drift,
+        }
+        payload["checks"] = {}
+        payload["notes"] = "evidence borrowed from previous run must not justify stronger present-session claim"
+        return payload
+
+    if scenario == "partial_preconditions_boundary":
+        posture = attempted_posture or "bounded_but_incomplete"
+        drift = posture == "stronger_than_previous" or strong_claim_attempted
+        payload["status"] = "pass"
+        payload["claim_level"] = "bounded_support" if not drift else "stronger_than_allowed"
+        payload["semantic_drift_risk"] = drift
+        payload["precondition_status"] = "partial"
+        payload["attempted_posture"] = posture
+        payload["expected"] = {
+            "claim_level": "bounded_support",
+            "semantic_drift_risk": False,
+        }
+        payload["observed"] = {
+            "claim_level": "bounded_support" if not drift else "stronger_than_allowed",
+            "semantic_drift_risk": drift,
+        }
+        payload["checks"] = {}
+        payload["notes"] = "partial preconditions may support bounded posture only"
+        return payload
+
     if scenario == "missing_preconditions_strong_claim":
         payload["status"] = "not_executed"
         payload["claim_level"] = "stronger_than_allowed"
@@ -146,6 +201,23 @@ def run_default_suite(artifact_tag: str) -> dict[str, object]:
             preconditions_met=True,
             same_evidence_as_previous=True,
             attempted_posture="stronger_than_previous",
+        ),
+        evaluate_claim_enforcement(
+            scenario="implicit_completion_wording",
+            preconditions_met=True,
+            claim_text="This is ready for integration and should drop into production as-is.",
+            attempted_posture="implicitly_complete",
+        ),
+        evaluate_claim_enforcement(
+            scenario="borrowed_evidence_previous_run",
+            preconditions_met=True,
+            same_evidence_as_previous=True,
+            attempted_posture="reuse_previous_evidence",
+        ),
+        evaluate_claim_enforcement(
+            scenario="partial_preconditions_boundary",
+            preconditions_met=True,
+            attempted_posture="bounded_but_incomplete",
         ),
         evaluate_claim_enforcement(
             scenario="missing_preconditions_strong_claim",

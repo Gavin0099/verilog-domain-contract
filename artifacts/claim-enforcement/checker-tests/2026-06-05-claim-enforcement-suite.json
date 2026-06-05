@@ -3,7 +3,7 @@
   "name": "claim-enforcement-results",
   "artifact_family": "claim_enforcement",
   "suite_id": "claim-enforcement-2026-06-05",
-  "generated_at": "2026-06-05T07:07:00.778776+00:00",
+  "generated_at": "2026-06-05T09:15:10.955351+00:00",
   "execution_surface": "validator_backed_deterministic_claim_enforcement",
   "note": "Deterministic claim-enforcement surface for repo-local policy coherence. This validates claim-boundary behavior, not live runtime closeout behavior.",
   "cases": [
@@ -75,6 +75,71 @@
       "checks": {}
     },
     {
+      "case_id": "implicit_completion_wording",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "implicitly_complete",
+      "notes": "implicit completion wording must not bypass explicit claim boundary",
+      "status": "pass",
+      "expected": {
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "semantic_drift_risk": true
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "borrowed_evidence_previous_run",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": true,
+      "attempted_posture": "reuse_previous_evidence",
+      "notes": "evidence borrowed from previous run must not justify stronger present-session claim",
+      "status": "pass",
+      "expected": {
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "semantic_drift_risk": true
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "partial_preconditions_boundary",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "bounded_support",
+      "semantic_drift_risk": false,
+      "precondition_status": "partial",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "bounded_but_incomplete",
+      "notes": "partial preconditions may support bounded posture only",
+      "status": "pass",
+      "expected": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "observed": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "checks": {}
+    },
+    {
       "case_id": "missing_preconditions_strong_claim",
       "case_type": "claim_enforcement",
       "rule_family": "GENERAL_CLAIM_BOUNDARY",
@@ -96,8 +161,8 @@
     }
   ],
   "summary": {
-    "total": 4,
-    "pass": 3,
+    "total": 7,
+    "pass": 6,
     "fail": 0,
     "not_executed": 1
   }

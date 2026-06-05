@@ -214,3 +214,8 @@ Previous gap list (all fixed):
 - [2026-05-12] Added advisory-only validator `scripts/validate_spyglass_manifest_usage.py` for boundary misuse detection (PASS/WARN only, exit=0, does_not_affect_gate_c=true).
 - [2026-05-12] Ran advisory negative test for manifest-usage validator; misuse sentence detected as WARN while keeping advisory_only/exit=0 semantics.
 - [2026-05-12] Recorded SpyGlass expansion criteria in `docs/status/spyglass-expansion-criteria-2026-05-12.md` (30-day stability + pilot-first + version governance + traceability + non-authority + anti-drift reviewer behavior).
+- [2026-06-05] Expanded deterministic claim-enforcement boundary coverage:
+  - implicit completion wording
+  - borrowed evidence from previous run
+  - bounded posture under partial preconditions
+- [2026-06-05] Claim-enforcement suite now covers 7 scenarios instead of the earlier minimal 4-scenario slice.
