@@ -152,6 +152,12 @@
 - [2026-06-05] Added standalone reviewer handoff guide:
   - `docs/reviewer-handoff-guide.md`
 - [2026-06-05] Reviewer guidance now explicitly tells the reviewer which bundle to download first and which file to read first for replay / claim / closeout / reviewer-verdict tasks.
+- [2026-06-05] Tightened validator coverage for assignment/FSM negated wording:
+  - assignment phrases such as `state update model not specified` / `process partition not provided` no longer count as defined
+  - FSM phrases such as `state model not specified` / `decomposition style unknown` / `illegal state handling not provided` no longer count as defined
+- [2026-06-05] Added smoke coverage:
+  - `PG-ASSIGN-NEG-001`
+  - `PG-FSM-NEG-001`
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

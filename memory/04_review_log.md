@@ -290,3 +290,7 @@
 - [2026-06-05] CI workflow now runs `scripts/check_governance_bundle_manifest_schema.py` after manifest generation and uploads `artifacts/schema-conformance/<tag>-governance-bundle-manifest-conformance.json` with the reviewer artifact bundle.
 - [2026-06-05] Added `docs/reviewer-handoff-guide.md` as a dedicated reviewer-facing document that explains bundle selection and first-read order by review task.
 - [2026-06-05] `docs/framework-surface-mapping.md` now points reviewers to the standalone handoff guide instead of forcing them to infer workflow from the mapping note alone.
+- [2026-06-05] Tightened negation-aware validator behavior for assignment/FSM preconditions:
+  - assignment positive tokens are now rejected when paired with `not specified` / `not provided` style wording
+  - FSM state-model / decomposition / illegal-state tokens are now rejected when paired with `not specified` / `unknown` / `not provided` style wording
+- [2026-06-05] Added smoke cases `PG-ASSIGN-NEG-001` and `PG-FSM-NEG-001` to prevent regression of assignment/FSM false-negative handling.

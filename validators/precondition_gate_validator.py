@@ -87,6 +87,15 @@ RE_COMB_SEQ_PARTITION = re.compile(
     r"partition\s+(?:style|model|scheme))\b",
     re.IGNORECASE,
 )
+RE_ASSIGNMENT_UNSPEC = re.compile(
+    r"\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
+    r"\b(no|without)\b.{0,40}\b(state\s+update\s+(?:model|rule|semantics)|"
+    r"sequential\s+update\s+(?:model|semantics|rule)|"
+    r"register\s+update\s+(?:model|rule)|"
+    r"comb(?:inational)?\s+vs\.?\s+seq(?:uential)?|"
+    r"process\s+partition|logic\s+partition|assignment\s+partition|partition\s+(?:style|model|scheme))\b",
+    re.IGNORECASE,
+)
 RE_CDC_INTENT = re.compile(
     r"\b(cdc|clock\s+domain\s+cross(?:ing)?|multi[- ]clock|multiple\s+clock\s+domains?|"
     r"two\s+clock\s+domains?|clock\s+boundary|cross[- ]domain|metastabilit(?:y|ies)|"
@@ -136,6 +145,15 @@ RE_FSM_DECOMP = re.compile(
 RE_FSM_ILLEGAL = re.compile(
     r"\b(illegal states?|default state|catch[- ]all|undefined state|safe state|"
     r"illegal state handling|recovery state|error state recovery)\b",
+    re.IGNORECASE,
+)
+RE_FSM_UNSPEC = re.compile(
+    r"\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
+    r"\b(no|without)\b.{0,40}\b(state model|state encoding|state set|number of states|"
+    r"state list|states?|mealy|moore|one[- ]hot|binary encoded|gray code|"
+    r"two[- ]process|three[- ]process|next[- ]state logic|output logic|fsm style|"
+    r"decomposition style|illegal states?|default state|catch[- ]all|undefined state|"
+    r"safe state|illegal state handling|recovery state|error state recovery)\b",
     re.IGNORECASE,
 )
 
@@ -207,9 +225,9 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
 
     # Rule 3: FSM contract gate (pre-task).
     if implementation_intent and _has(RE_FSM_INTENT, text):
-        fsm_state_model_defined = _has(RE_FSM_STATE_MODEL, text)
-        fsm_decomp_declared = _has(RE_FSM_DECOMP, text)
-        fsm_illegal_defined = _has(RE_FSM_ILLEGAL, text)
+        fsm_state_model_defined = _defined_with_negation(RE_FSM_STATE_MODEL, RE_FSM_UNSPEC, text)
+        fsm_decomp_declared = _defined_with_negation(RE_FSM_DECOMP, RE_FSM_UNSPEC, text)
+        fsm_illegal_defined = _defined_with_negation(RE_FSM_ILLEGAL, RE_FSM_UNSPEC, text)
         if not fsm_state_model_defined:
             missing_preconditions.append("fsm_state_model_defined")
             rule_refs.append("FSM_CONTRACT_REQUIRED")
@@ -240,8 +258,8 @@ def evaluate_precondition_gate(task_text: str) -> dict[str, object]:
 
     # Rule 4: assignment semantics gate (pre-task).
     if implementation_intent and _has(RE_ASSIGNMENT_INTENT, text):
-        state_update_intent_defined = _has(RE_STATE_UPDATE_INTENT, text)
-        comb_seq_partition_defined = _has(RE_COMB_SEQ_PARTITION, text)
+        state_update_intent_defined = _defined_with_negation(RE_STATE_UPDATE_INTENT, RE_ASSIGNMENT_UNSPEC, text)
+        comb_seq_partition_defined = _defined_with_negation(RE_COMB_SEQ_PARTITION, RE_ASSIGNMENT_UNSPEC, text)
         if not state_update_intent_defined:
             missing_preconditions.append("state_update_intent_defined")
             rule_refs.append("ASSIGNMENT_SEMANTICS_REQUIRED")

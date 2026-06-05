@@ -52,6 +52,20 @@ CASES = [
         "expected_mode": "allow_draft_with_assumptions",
     },
     {
+        "id": "PG-ASSIGN-NEG-001",
+        "task": (
+            "Implement synthesizable Verilog module with flip-flop registers and sequential logic. "
+            "State update model not specified. "
+            "Process partition not provided."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+        "expected_missing": [
+            "state_update_intent_defined",
+            "comb_or_seq_partition_defined",
+        ],
+        "expected_rule_refs": ["ASSIGNMENT_SEMANTICS_REQUIRED"],
+    },
+    {
         "id": "PG-006",
         "task": (
             "Implement synthesizable Verilog module with multi-clock design "
@@ -146,6 +160,22 @@ CASES = [
             "Illegal state handling: catch-all default state."
         ),
         "expected_mode": "allow_draft_with_assumptions",
+    },
+    {
+        "id": "PG-FSM-NEG-001",
+        "task": (
+            "Implement synthesizable Verilog FSM module. "
+            "State model not specified. "
+            "FSM decomposition style unknown. "
+            "Illegal state handling not provided."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+        "expected_missing": [
+            "fsm_state_model_defined",
+            "fsm_decomposition_style_declared",
+            "fsm_illegal_state_handling_defined",
+        ],
+        "expected_rule_refs": ["FSM_CONTRACT_REQUIRED"],
     },
 ]
 
