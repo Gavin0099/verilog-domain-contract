@@ -301,3 +301,5 @@
   - `protocol implied by context` remains insufficient for handshake protocol completion
   - `derived but related clock domains` remains insufficient to bypass CDC strategy requirements
 - [2026-06-05] Expanded CDC intent matching so derived/related clock-domain wording is still treated as CDC-relevant precondition territory.
+- [2026-06-05] Reorganized precondition-gate smoke cases into `NEGATION_CASES`, `BOUNDARY_CASES`, and `POSITIVE_CASES` so five-rule coverage can grow without remaining a flat mixed list.
+- [2026-06-05] Removed duplicate smoke entries left over from the regrouping pass; grouped execution now runs each case exactly once.

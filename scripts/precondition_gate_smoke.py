@@ -15,7 +15,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from validators.precondition_gate_validator import evaluate_precondition_gate
 
 
-CASES = [
+NEGATION_CASES = [
     {
         "id": "PG-001",
         "task": "Implement synthesizable Verilog counter. Reset exists but reset polarity and reset type are not specified.",
@@ -26,14 +26,6 @@ CASES = [
         "task": (
             "Implement synthesizable Verilog counter. "
             "Reset polarity unknown and reset type TBD."
-        ),
-        "expected_mode": "restrict_codegen",
-    },
-    {
-        "id": "PG-RESET-BOUNDARY-001",
-        "task": (
-            "Implement synthesizable Verilog module. "
-            "Reset is inherited from top-level integration, but reset polarity and reset type are not restated here."
         ),
         "expected_mode": "restrict_codegen",
     },
@@ -54,37 +46,10 @@ CASES = [
         "expected_rule_refs": ["HANDSHAKE_TIMING_DEFINITION_REQUIRED"],
     },
     {
-        "id": "PG-HS-BOUNDARY-001",
-        "task": (
-            "Implement synthesizable producer/consumer pipeline control logic. "
-            "Protocol is implied by context, and detailed handshake semantics will be aligned later."
-        ),
-        "expected_mode": "allow_analysis_only",
-        "expected_missing": ["interface_protocol_semantics_defined"],
-        "expected_rule_refs": ["HANDSHAKE_TIMING_DEFINITION_REQUIRED"],
-    },
-    {
-        "id": "PG-003",
-        "task": (
-            "Implement synthesizable Verilog module with reset active-low and async reset type. "
-            "Use valid/ready protocol semantics, include backpressure behavior, and target one-cycle latency."
-        ),
-        "expected_mode": "allow_draft_with_assumptions",
-    },
-    {
         "id": "PG-004",
         "task": (
             "Implement synthesizable Verilog module using flip-flop registers and sequential logic. "
             "Assignment semantics and comb/seq partitioning details have not been provided."
-        ),
-        "expected_mode": "allow_draft_with_assumptions",
-    },
-    {
-        "id": "PG-005",
-        "task": (
-            "Implement synthesizable Verilog module with flip-flop registers. "
-            "State update model: non-blocking for sequential registers. "
-            "Process partition: always_ff for sequential state, always_comb for combinational logic paths."
         ),
         "expected_mode": "allow_draft_with_assumptions",
     },
@@ -116,17 +81,6 @@ CASES = [
             "cdc_synchronizer_scheme_defined",
         ],
         "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
-    },
-    {
-        "id": "PG-007",
-        "task": (
-            "Implement synthesizable Verilog module with clock domain crossing. "
-            "CDC strategy: two-flop synchronizer for all crossing signals. "
-            "Clock domain boundary map: clk_a domain drives data_out, clk_b domain samples data_in. "
-            "Metastability mitigation: synchronizer chain on all crossing signals."
-        ),
-        "expected_mode": "allow_draft_with_assumptions",
-        "expected_missing": [],
     },
     {
         "id": "PG-CDC-NEG-001",
@@ -171,45 +125,10 @@ CASES = [
         "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
     },
     {
-        "id": "PG-CDC-BOUNDARY-001",
-        "task": (
-            "Implement synthesizable Verilog module with derived but related clock domains. "
-            "Signals move from the parent clock region into the divided clock region, "
-            "but no CDC strategy or synchronizer scheme is restated because the clocks are related."
-        ),
-        "expected_mode": "restrict_codegen",
-        "expected_blocking_effect": "stop_insufficient_preconditions",
-        "expected_missing": [
-            "cdc_strategy_present_when_multi_clock_implied",
-            "cdc_synchronizer_scheme_defined",
-        ],
-        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
-    },
-    {
-        "id": "PG-CDC-POS-001",
-        "task": (
-            "Implement synthesizable Verilog module with multi-clock design. "
-            "CDC strategy: asynchronous FIFO crossing for payload path. "
-            "Clock domain boundary map: clk_a domain drives payload_fifo write side, clk_b domain reads payload_fifo output. "
-            "Metastability mitigation: two-flop synchronizer on status crossings."
-        ),
-        "expected_mode": "allow_draft_with_assumptions",
-        "expected_missing": [],
-    },
-    {
         "id": "PG-008",
         "task": (
             "Implement synthesizable Verilog FSM module. "
             "No preconditions about states, transitions, or fault handling have been provided."
-        ),
-        "expected_mode": "allow_draft_with_assumptions",
-    },
-    {
-        "id": "PG-009",
-        "task": (
-            "Implement synthesizable Verilog state machine with 4 states. "
-            "FSM decomposition style: three-process with next-state logic and output logic. "
-            "Illegal state handling: catch-all default state."
         ),
         "expected_mode": "allow_draft_with_assumptions",
     },
@@ -230,6 +149,95 @@ CASES = [
         "expected_rule_refs": ["FSM_CONTRACT_REQUIRED"],
     },
 ]
+
+BOUNDARY_CASES = [
+    {
+        "id": "PG-RESET-BOUNDARY-001",
+        "task": (
+            "Implement synthesizable Verilog module. "
+            "Reset is inherited from top-level integration, but reset polarity and reset type are not restated here."
+        ),
+        "expected_mode": "restrict_codegen",
+    },
+    {
+        "id": "PG-HS-BOUNDARY-001",
+        "task": (
+            "Implement synthesizable producer/consumer pipeline control logic. "
+            "Protocol is implied by context, and detailed handshake semantics will be aligned later."
+        ),
+        "expected_mode": "allow_analysis_only",
+        "expected_missing": ["interface_protocol_semantics_defined"],
+        "expected_rule_refs": ["HANDSHAKE_TIMING_DEFINITION_REQUIRED"],
+    },
+    {
+        "id": "PG-CDC-BOUNDARY-001",
+        "task": (
+            "Implement synthesizable Verilog module with derived but related clock domains. "
+            "Signals move from the parent clock region into the divided clock region, "
+            "but no CDC strategy or synchronizer scheme is restated because the clocks are related."
+        ),
+        "expected_mode": "restrict_codegen",
+        "expected_blocking_effect": "stop_insufficient_preconditions",
+        "expected_missing": [
+            "cdc_strategy_present_when_multi_clock_implied",
+            "cdc_synchronizer_scheme_defined",
+        ],
+        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
+    },
+]
+
+POSITIVE_CASES = [
+    {
+        "id": "PG-003",
+        "task": (
+            "Implement synthesizable Verilog module with reset active-low and async reset type. "
+            "Use valid/ready protocol semantics, include backpressure behavior, and target one-cycle latency."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
+    {
+        "id": "PG-005",
+        "task": (
+            "Implement synthesizable Verilog module with flip-flop registers. "
+            "State update model: non-blocking for sequential registers. "
+            "Process partition: always_ff for sequential state, always_comb for combinational logic paths."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
+    {
+        "id": "PG-007",
+        "task": (
+            "Implement synthesizable Verilog module with clock domain crossing. "
+            "CDC strategy: two-flop synchronizer for all crossing signals. "
+            "Clock domain boundary map: clk_a domain drives data_out, clk_b domain samples data_in. "
+            "Metastability mitigation: synchronizer chain on all crossing signals."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+        "expected_missing": [],
+    },
+    {
+        "id": "PG-CDC-POS-001",
+        "task": (
+            "Implement synthesizable Verilog module with multi-clock design. "
+            "CDC strategy: asynchronous FIFO crossing for payload path. "
+            "Clock domain boundary map: clk_a domain drives payload_fifo write side, clk_b domain reads payload_fifo output. "
+            "Metastability mitigation: two-flop synchronizer on status crossings."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+        "expected_missing": [],
+    },
+    {
+        "id": "PG-009",
+        "task": (
+            "Implement synthesizable Verilog state machine with 4 states. "
+            "FSM decomposition style: three-process with next-state logic and output logic. "
+            "Illegal state handling: catch-all default state."
+        ),
+        "expected_mode": "allow_draft_with_assumptions",
+    },
+]
+
+CASES = NEGATION_CASES + BOUNDARY_CASES + POSITIVE_CASES
 
 
 def main() -> int:
