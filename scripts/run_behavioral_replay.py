@@ -139,6 +139,20 @@ CASES: tuple[ReplayCase, ...] = tuple(
 )
 
 
+def _coverage_summary() -> dict[str, object]:
+    return {
+        "groups": {
+            group: {
+                "count": len(group_cases),
+                "case_ids": [case.case_id for case in group_cases],
+                "rules": sorted({case.rule for case in group_cases}),
+            }
+            for group, group_cases in CASE_GROUPS.items()
+        },
+        "total_cases": len(CASES),
+    }
+
+
 def _derive_output_mode(case_id: str, gate: dict[str, object]) -> str:
     missing = set(gate["missing_preconditions"])
     rules = set(gate["rule_refs"])
@@ -308,6 +322,7 @@ def run_replay(run_set: str) -> dict[str, object]:
             group: [case.case_id for case in group_cases]
             for group, group_cases in CASE_GROUPS.items()
         },
+        "coverage_summary": _coverage_summary(),
         "cases": cases,
         "summary": {
             "total": len(cases),

@@ -310,3 +310,4 @@
 - [2026-06-05] Reorganized deterministic claim-enforcement suite into explicit `baseline` / `drift` / `boundary` / `blocked` groups so coverage intent is visible instead of remaining a flat scenario list.
 - [2026-06-05] Reorganized deterministic behavioral replay cases into explicit `precondition` / `claim_boundary` / `cdc` groups so replay coverage intent is visible instead of remaining a flat BR-001..BR-007 list.
 - [2026-06-05] Fixed BR-003 replay coherence issue by narrowing `RE_PROTOCOL_UNSPEC` to protocol-local negation only; unrelated handshake timing negation no longer causes false protocol-missing classification.
+- [2026-06-05] Added machine-readable coverage summaries across executable surfaces so each output now exposes grouped case counts and membership without requiring downstream consumers to infer coverage structure from raw case lists.

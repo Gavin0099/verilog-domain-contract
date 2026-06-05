@@ -229,3 +229,7 @@ Previous gap list (all fixed):
   - `claim_boundary`
   - `cdc`
 - [2026-06-05] Fixed BR-003 replay disclosure gap by tightening protocol-negation matching: protocol is no longer treated as missing just because unrelated latency/backpressure text contains `not specified`.
+- [2026-06-05] Added machine-readable `coverage_summary` fields to all three executable governance surfaces:
+  - `precondition_gate_smoke.py`
+  - `run_claim_enforcement.py`
+  - `run_behavioral_replay.py`

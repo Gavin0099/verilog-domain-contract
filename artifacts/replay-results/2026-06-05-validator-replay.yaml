@@ -1,7 +1,7 @@
 schema_version: 0.1
 name: behavioral-replay-results
 artifact_family: behavioral_replay
-generated_at: "2026-06-05T09:41:04.483863+00:00"
+generated_at: "2026-06-05T09:53:55.312659+00:00"
 suite_id: validator-replay-2026-06-05
 execution_surface: validator_backed_deterministic_replay
 note: Deterministic replay surface built from precondition_gate_validator. This validates repo-local governance behavior and oracle coherence, not live agent runtime behavior.
@@ -16,6 +16,34 @@ case_groups:
     - BR-005
   cdc:
     - BR-007
+coverage_summary:
+  groups:
+    precondition:
+      count: 5
+      case_ids:
+        - BR-001
+        - BR-002
+        - BR-003
+        - BR-004
+        - BR-006
+      rules:
+        - ASSIGNMENT_SEMANTICS_REQUIRED
+        - FSM_CONTRACT_REQUIRED
+        - HANDSHAKE_TIMING_DEFINITION_REQUIRED
+        - RESET_DEFINITION_REQUIRED
+    claim_boundary:
+      count: 1
+      case_ids:
+        - BR-005
+      rules:
+        - GENERAL_CLAIM_BOUNDARY
+    cdc:
+      count: 1
+      case_ids:
+        - BR-007
+      rules:
+        - CDC_STRATEGY_REQUIRED
+  total_cases: 7
 cases:
   -
     case_id: BR-001

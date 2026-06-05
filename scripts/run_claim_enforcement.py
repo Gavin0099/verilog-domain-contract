@@ -238,6 +238,19 @@ BLOCKED_CASES = [
 ]
 
 
+def _coverage_summary(case_groups: dict[str, list[dict[str, object]]]) -> dict[str, object]:
+    return {
+        "groups": {
+            group: {
+                "count": len(group_cases),
+                "case_ids": [str(case["scenario"]) for case in group_cases],
+            }
+            for group, group_cases in case_groups.items()
+        },
+        "total_cases": sum(len(group_cases) for group_cases in case_groups.values()),
+    }
+
+
 def run_default_suite(artifact_tag: str) -> dict[str, object]:
     case_groups = {
         "baseline": BASELINE_CASES,
@@ -264,6 +277,7 @@ def run_default_suite(artifact_tag: str) -> dict[str, object]:
             "This validates claim-boundary behavior, not live runtime closeout behavior."
         ),
         "case_groups": {group: [case["scenario"] for case in group_cases] for group, group_cases in case_groups.items()},
+        "coverage_summary": _coverage_summary(case_groups),
         "cases": cases,
         "summary": {
             "total": len(cases),

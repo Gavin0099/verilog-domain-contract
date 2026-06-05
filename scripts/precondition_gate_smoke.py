@@ -240,6 +240,24 @@ POSITIVE_CASES = [
 CASES = NEGATION_CASES + BOUNDARY_CASES + POSITIVE_CASES
 
 
+def _coverage_summary() -> dict[str, object]:
+    groups = {
+        "negation": NEGATION_CASES,
+        "boundary": BOUNDARY_CASES,
+        "positive": POSITIVE_CASES,
+    }
+    return {
+        "groups": {
+            group: {
+                "count": len(cases),
+                "case_ids": [case["id"] for case in cases],
+            }
+            for group, cases in groups.items()
+        },
+        "total_cases": len(CASES),
+    }
+
+
 def main() -> int:
     results = []
     failed = 0
@@ -266,7 +284,13 @@ def main() -> int:
             }
         )
 
-    print(json.dumps({"cases": results, "failed": failed}, ensure_ascii=False, indent=2))
+    print(
+        json.dumps(
+            {"cases": results, "failed": failed, "coverage_summary": _coverage_summary()},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     return 1 if failed else 0
 
 
