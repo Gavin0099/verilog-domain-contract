@@ -10,6 +10,9 @@ on:
       - "PLAN.md"
       - "contract.yaml"
       - "governance/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "docs/**"
   pull_request:
     branches: [main]
     paths:
@@ -19,6 +22,9 @@ on:
       - "PLAN.md"
       - "contract.yaml"
       - "governance/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "docs/**"
   workflow_dispatch:
 
 jobs:
@@ -34,6 +40,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: python -m pip install pyyaml
 
       - name: Run governance drift check
         run: |
@@ -64,3 +73,28 @@ jobs:
           else:
               print("Governance drift severity=ok.")
           PY
+
+      - name: Run readiness audit
+        run: python additional/ai-governance-framework/governance_tools/readiness_audit.py --repo . --format human
+
+      - name: Run quickstart smoke
+        run: python additional/ai-governance-framework/governance_tools/quickstart_smoke.py --project-root . --plan PLAN.md --contract contract.yaml --format human
+
+      - name: Emit deterministic governance artifacts
+        run: |
+          python scripts/run_behavioral_replay.py --format yaml --out artifacts/replay-results/2026-06-05-validator-replay.yaml
+          python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
+          python scripts/build_governance_closeout_summary.py --format human
+          python scripts/build_governance_closeout_report.py
+
+      - name: Upload governance closeout artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-closeout-artifacts
+          path: |
+            artifacts/replay-results/2026-06-05-validator-replay.yaml
+            artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
+            artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json
+            artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json
+            artifacts/closeout/2026-06-05-governance-closeout-summary.json
+            artifacts/closeout/2026-06-05-governance-closeout-summary.md

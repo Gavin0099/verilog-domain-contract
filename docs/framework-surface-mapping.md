@@ -93,3 +93,17 @@ Behavior enforcement requires replay validation using:
 - [precondition-completeness-model.md](precondition-completeness-model.md)
 - [completion-evidence-levels.md](completion-evidence-levels.md)
 - [refusal-vs-error-metrics.md](refusal-vs-error-metrics.md)
+
+## Reviewer Closeout Surface
+
+- reviewer checklist schema:
+  - `schemas/review-checklist.yaml`
+- machine-readable closeout aggregate:
+  - `artifacts/closeout/2026-06-05-governance-closeout-summary.json`
+- human-readable closeout report:
+  - `artifacts/closeout/2026-06-05-governance-closeout-summary.md`
+- required backing evidence:
+  - `artifacts/replay-results/2026-06-05-validator-replay.yaml`
+  - `artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json`
+  - `artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json`
+  - `artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json`

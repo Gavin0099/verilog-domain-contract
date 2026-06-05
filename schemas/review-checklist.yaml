@@ -79,3 +79,19 @@ sections:
       - id: CDC_COMPLETION_CLAIM
         question: Is implementation or verified completion claimed without CDC strategy definition?
         severity: critical
+
+  - id: governance_closeout
+    required: true
+    items:
+      - id: CLOSEOUT_REPLAY_SUMMARY_PRESENT
+        question: Is a behavioral replay closeout summary artifact present and passing?
+        severity: high
+      - id: CLOSEOUT_CLAIM_SUMMARY_PRESENT
+        question: Is a claim-enforcement closeout summary artifact present and passing?
+        severity: high
+      - id: CLOSEOUT_SCHEMA_CONFORMANCE_PRESENT
+        question: Are schema conformance artifacts present for both deterministic governance surfaces?
+        severity: high
+      - id: CLOSEOUT_AGGREGATE_PRESENT
+        question: Is the aggregate governance closeout summary present and schema-conformance clean?
+        severity: critical

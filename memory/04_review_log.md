@@ -248,3 +248,12 @@
 - [2026-06-05] Aggregate closeout artifact emitted:
   - `artifacts/closeout/2026-06-05-governance-closeout-summary.json`
   - summary: `schema_conformance_ok=true`, `replay_fail=0`, `claim_fail=0`, `claim_not_executed=1`
+- [2026-06-05] Reviewer surface integration:
+  - `schemas/review-checklist.yaml` gained required `governance_closeout` section
+  - `docs/framework-surface-mapping.md` now maps closeout aggregate + backing artifacts to reviewer surface
+- [2026-06-05] Added `scripts/build_governance_closeout_report.py` to render markdown from closeout JSON aggregate.
+- [2026-06-05] CI integration added to `.github/workflows/governance-drift.yml`:
+  - install `pyyaml`
+  - run readiness + quickstart
+  - emit replay / claim / closeout json+md artifacts
+  - upload governance closeout artifacts
