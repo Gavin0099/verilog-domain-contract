@@ -65,6 +65,19 @@
   - `backpressure not specified` / `latency not specified` now count as missing handshake preconditions
 - [2026-06-05] Updated `docs/behavioral-replay-oracle.md` with executable replay instructions and corrected BR-004 prompt to isolate assignment semantics instead of accidentally triggering FSM contract.
 - [2026-06-05] Validation after replay-surface implementation: `run_behavioral_replay.py`, `precondition_gate_smoke.py`, `governance_drift_checker`, `readiness_audit`, and `quickstart_smoke --contract contract.yaml` all PASS.
+- [2026-06-05] Added executable claim-enforcement surface: `scripts/run_claim_enforcement.py` evaluates deterministic repo-local claim-boundary scenarios and supports `--format human|json` plus `--out`.
+- [2026-06-05] Added claim-enforcement artifact: `artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json` with 4 scenarios (`pass=3`, `fail=0`, `not_executed=1`).
+- [2026-06-05] Claim-enforcement suite coverage:
+  - baseline bounded-support posture remains allowed without semantic drift
+  - strong wording with unchanged evidence is downgraded to `stronger_than_allowed`
+  - same-evidence posture escalation is flagged as semantic drift risk
+  - missing preconditions blocks strong-claim execution as `not_executed`
+- [2026-06-05] Updated `docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md` with executable runner usage and explicit scope note: deterministic repo-local enforcement runner, not live runtime closeout.
+- [2026-06-05] Validation after claim-enforcement implementation:
+  - `python scripts/run_claim_enforcement.py --format human`: PASS (`pass=3`, `fail=0`, `not_executed=1`)
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

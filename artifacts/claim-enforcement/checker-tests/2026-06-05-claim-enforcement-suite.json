@@ -1,0 +1,71 @@
+{
+  "repo": "verilog-domain-contract",
+  "artifact_type": "claim-enforcement-checker-suite",
+  "schema_version": "0.1",
+  "scenarios": [
+    {
+      "repo": "verilog-domain-contract",
+      "scenario": "baseline",
+      "preconditions_met": true,
+      "precondition_status": "ok",
+      "scenario_result": "pass",
+      "expected": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "observed": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      }
+    },
+    {
+      "repo": "verilog-domain-contract",
+      "scenario": "drift_injection_same_evidence",
+      "preconditions_met": true,
+      "precondition_status": "ok",
+      "injected_wording": "This result is proven and production-ready.",
+      "scenario_result": "pass",
+      "expected": {
+        "claim_level": "stronger_than_allowed",
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "claim_level": "stronger_than_allowed",
+        "semantic_drift_risk": true
+      }
+    },
+    {
+      "repo": "verilog-domain-contract",
+      "scenario": "same_evidence_posture_escalation",
+      "preconditions_met": true,
+      "precondition_status": "ok",
+      "same_evidence_as_previous": true,
+      "attempted_posture": "stronger_than_previous",
+      "scenario_result": "pass",
+      "expected": {
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "semantic_drift_risk": true
+      }
+    },
+    {
+      "repo": "verilog-domain-contract",
+      "scenario": "missing_preconditions_strong_claim",
+      "preconditions_met": false,
+      "scenario_result": "not_executed",
+      "precondition_status": "missing",
+      "expected": {
+        "claim_level": "stronger_than_allowed",
+        "semantic_drift_risk": true
+      },
+      "observed": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "pass": 3,
+    "fail": 0,
+    "not_executed": 1
+  }
+}

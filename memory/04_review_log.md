@@ -203,3 +203,21 @@
   - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Added executable claim-enforcement surface:
+  - `scripts/run_claim_enforcement.py`
+  - deterministic repo-local suite for claim boundary / evidence posture enforcement
+  - supports `--format human|json` and `--out`
+- [2026-06-05] Added claim-enforcement artifact:
+  - `artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json`
+  - summary: `total=4`, `pass=3`, `fail=0`, `not_executed=1`
+- [2026-06-05] Scenario coverage in claim-enforcement runner:
+  - baseline bounded-support posture
+  - drift injection with unchanged evidence but stronger wording
+  - same-evidence posture escalation
+  - strong claim attempted under missing preconditions
+- [2026-06-05] Updated `docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md` with executable surface usage and scope note that this runner is validator-backed deterministic enforcement, not live session closeout.
+- [2026-06-05] Validation after claim-enforcement implementation:
+  - `python scripts/run_claim_enforcement.py --format human`: PASS (`pass=3`, `fail=0`, `not_executed=1`)
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS

@@ -1,5 +1,17 @@
 # CLAIM_ENFORCEMENT_MINIMAL_SPEC
 
+## Executable Surface
+
+Run deterministic claim-enforcement scenarios against the repo-local policy surface:
+
+```bash
+python scripts/run_claim_enforcement.py --format human
+python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
+```
+
+This surface validates claim-boundary policy coherence and scenario outcome mapping.
+It is a deterministic repo-local enforcement runner, not a live runtime closeout trace.
+
 ## Scenarios
 1. Baseline closeout
 - expected: claim_level=bounded_support
