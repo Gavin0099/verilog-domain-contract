@@ -52,12 +52,21 @@ RE_INTERFACE_INTENT = re.compile(
 RE_RESET_MENTION = re.compile(r"\b(reset|rst|rst_n|reset_n)\b", re.IGNORECASE)
 RE_RESET_POLARITY = re.compile(r"\b(active[- ]low|active[- ]high|polarity|rst_n|reset_n)\b", re.IGNORECASE)
 RE_RESET_TYPE = re.compile(r"\b(sync(?:hronous)? reset|async(?:hronous)? reset|reset type)\b", re.IGNORECASE)
-RE_POLARITY_UNSPEC = re.compile(r"\b(reset\s+)?polarity\b.{0,40}\b(not specified|unspecified|unknown|tbd)\b", re.IGNORECASE)
-RE_TYPE_UNSPEC = re.compile(r"\b(reset\s+)?type\b.{0,40}\b(not specified|unspecified|unknown|tbd)\b", re.IGNORECASE)
+RE_POLARITY_UNSPEC = re.compile(
+    r"\b(reset\s+)?polarity\b.{0,40}\b(not specified|unspecified|unknown|tbd|not restated)\b|"
+    r"\breset\b.{0,80}\b(inherited from top[- ]level|inherited from integration)\b",
+    re.IGNORECASE,
+)
+RE_TYPE_UNSPEC = re.compile(
+    r"\b(reset\s+)?type\b.{0,40}\b(not specified|unspecified|unknown|tbd|not restated)\b|"
+    r"\breset\b.{0,80}\b(inherited from top[- ]level|inherited from integration)\b",
+    re.IGNORECASE,
+)
 RE_PROTOCOL = re.compile(r"\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics)\b", re.IGNORECASE)
 RE_PROTOCOL_UNSPEC = re.compile(
     r"\b(not specified|unspecified|unknown|tbd|not provided|missing)\b|"
-    r"\b(no|without)\b.{0,40}\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics|protocol semantics)\b",
+    r"\b(no|without)\b.{0,40}\b(valid\s*/?\s*ready|ready\s*/?\s*valid|req\s*/?\s*ack|handshake semantics|protocol semantics)\b|"
+    r"\b(protocol|handshake)\b.{0,40}\b(implied by context|to be aligned later|defined later|specified later)\b",
     re.IGNORECASE,
 )
 RE_BACKPRESSURE = re.compile(r"\b(backpressure|stall|downstream not ready|ready deassert)\b", re.IGNORECASE)
@@ -104,7 +113,8 @@ RE_ASSIGNMENT_UNSPEC = re.compile(
 RE_CDC_INTENT = re.compile(
     r"\b(cdc|clock\s+domain\s+cross(?:ing)?|multi[- ]clock|multiple\s+clock\s+domains?|"
     r"two\s+clock\s+domains?|clock\s+boundary|cross[- ]domain|metastabilit(?:y|ies)|"
-    r"asynchronous\s+clock|different\s+clock\s+(?:domain|source))\b",
+    r"asynchronous\s+clock|different\s+clock\s+(?:domain|source)|"
+    r"derived\s+clock(?:\s+domain)?|related\s+clock\s+domains?)\b",
     re.IGNORECASE,
 )
 RE_CDC_STRATEGY_PRESENT = re.compile(

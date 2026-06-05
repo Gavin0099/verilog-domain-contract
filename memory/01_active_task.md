@@ -164,6 +164,14 @@
 - [2026-06-05] Added smoke coverage:
   - `PG-RESET-NEG-001`
   - `PG-HS-NEG-001`
+- [2026-06-05] Added boundary-sentence regression coverage for gray-zone phrasing:
+  - `reset inherited from top-level` does not count as reset polarity/type definition
+  - `protocol implied by context` does not count as handshake protocol definition
+  - `derived but related clock domains` still triggers CDC precondition requirements
+- [2026-06-05] Added smoke coverage:
+  - `PG-RESET-BOUNDARY-001`
+  - `PG-HS-BOUNDARY-001`
+  - `PG-CDC-BOUNDARY-001`
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

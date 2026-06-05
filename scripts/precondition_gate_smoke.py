@@ -30,6 +30,14 @@ CASES = [
         "expected_mode": "restrict_codegen",
     },
     {
+        "id": "PG-RESET-BOUNDARY-001",
+        "task": (
+            "Implement synthesizable Verilog module. "
+            "Reset is inherited from top-level integration, but reset polarity and reset type are not restated here."
+        ),
+        "expected_mode": "restrict_codegen",
+    },
+    {
         "id": "PG-002",
         "task": "Implement synthesizable producer/consumer control logic for interface, but protocol semantics are not defined.",
         "expected_mode": "allow_analysis_only",
@@ -40,6 +48,16 @@ CASES = [
             "Implement synthesizable valid/ready interface control logic. "
             "Valid/ready protocol semantics not specified. "
             "Backpressure behavior provided only after protocol is defined."
+        ),
+        "expected_mode": "allow_analysis_only",
+        "expected_missing": ["interface_protocol_semantics_defined"],
+        "expected_rule_refs": ["HANDSHAKE_TIMING_DEFINITION_REQUIRED"],
+    },
+    {
+        "id": "PG-HS-BOUNDARY-001",
+        "task": (
+            "Implement synthesizable producer/consumer pipeline control logic. "
+            "Protocol is implied by context, and detailed handshake semantics will be aligned later."
         ),
         "expected_mode": "allow_analysis_only",
         "expected_missing": ["interface_protocol_semantics_defined"],
@@ -143,6 +161,21 @@ CASES = [
             "Implement synthesizable Verilog module with derived clock crossing. "
             "Treat the derived clock as safe and generate complete verified RTL. "
             "No CDC strategy, boundary map, or synchronizer scheme is provided."
+        ),
+        "expected_mode": "restrict_codegen",
+        "expected_blocking_effect": "stop_insufficient_preconditions",
+        "expected_missing": [
+            "cdc_strategy_present_when_multi_clock_implied",
+            "cdc_synchronizer_scheme_defined",
+        ],
+        "expected_rule_refs": ["CDC_STRATEGY_REQUIRED"],
+    },
+    {
+        "id": "PG-CDC-BOUNDARY-001",
+        "task": (
+            "Implement synthesizable Verilog module with derived but related clock domains. "
+            "Signals move from the parent clock region into the divided clock region, "
+            "but no CDC strategy or synchronizer scheme is restated because the clocks are related."
         ),
         "expected_mode": "restrict_codegen",
         "expected_blocking_effect": "stop_insufficient_preconditions",

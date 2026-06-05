@@ -296,3 +296,8 @@
 - [2026-06-05] Added smoke cases `PG-ASSIGN-NEG-001` and `PG-FSM-NEG-001` to prevent regression of assignment/FSM false-negative handling.
 - [2026-06-05] Tightened negation-aware handshake protocol detection so `valid/ready` or equivalent protocol tokens no longer count as defined when paired with `not specified` / `unknown` / `without` wording.
 - [2026-06-05] Added smoke cases `PG-RESET-NEG-001` and `PG-HS-NEG-001` to preserve reset/handshake negation coverage in the five-rule validator surface.
+- [2026-06-05] Added boundary-sentence smoke coverage for gray-zone phrasing:
+  - `reset inherited from top-level` remains insufficient for reset contract completion
+  - `protocol implied by context` remains insufficient for handshake protocol completion
+  - `derived but related clock domains` remains insufficient to bypass CDC strategy requirements
+- [2026-06-05] Expanded CDC intent matching so derived/related clock-domain wording is still treated as CDC-relevant precondition territory.
