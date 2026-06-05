@@ -257,3 +257,7 @@
   - run readiness + quickstart
   - emit replay / claim / closeout json+md artifacts
   - upload governance closeout artifacts
+- [2026-06-05] Added dedicated closeout schemas:
+  - `schemas/governance-closeout-summary.yaml` for aggregate JSON structure
+  - `schemas/governance-closeout-report.yaml` for markdown heading structure
+- [2026-06-05] Added `scripts/check_governance_closeout_schema.py` for direct closeout summary/report conformance checks.

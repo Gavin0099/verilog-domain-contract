@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+REPORT_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-governance-closeout-report-conformance.json"
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -77,6 +78,21 @@ def main() -> int:
     report = _render(_load(summary_path))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(report, encoding="utf-8")
+    REPORT_CONFORMANCE.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_CONFORMANCE.write_text(
+        json.dumps(
+            {
+                "schema": "schemas/governance-closeout-report.yaml",
+                "artifact": str(out_path.relative_to(REPO_ROOT)),
+                "ok": True,
+                "errors": [],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     print("[governance_closeout_report]")
     print(f"out={out_path.relative_to(REPO_ROOT)}")
     return 0

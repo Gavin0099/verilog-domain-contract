@@ -1,0 +1,10 @@
+schema_version: "0.1"
+name: governance-closeout-report
+description: Required markdown section structure for human-readable governance closeout reports.
+
+required_headings:
+  - "# Governance Closeout Summary"
+  - "## Overall"
+  - "## Behavioral Replay"
+  - "## Claim Enforcement"
+  - "## Inputs"

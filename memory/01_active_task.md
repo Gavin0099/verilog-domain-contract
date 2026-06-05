@@ -109,6 +109,10 @@
   - mapped reviewer-facing closeout evidence in `docs/framework-surface-mapping.md`
 - [2026-06-05] Added human-readable closeout report generator: `scripts/build_governance_closeout_report.py`.
 - [2026-06-05] Extended CI workflow `.github/workflows/governance-drift.yml` to install `pyyaml`, emit replay/claim/closeout artifacts, render closeout markdown report, and upload closeout artifacts.
+- [2026-06-05] Added formal closeout schemas:
+  - `schemas/governance-closeout-summary.yaml`
+  - `schemas/governance-closeout-report.yaml`
+- [2026-06-05] Added `scripts/check_governance_closeout_schema.py` to validate closeout JSON and markdown structures against dedicated closeout schemas.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

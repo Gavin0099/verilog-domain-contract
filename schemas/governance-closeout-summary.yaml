@@ -1,0 +1,36 @@
+schema_version: "0.1"
+name: governance-closeout-summary
+description: Structured aggregate summary for deterministic governance closeout surfaces.
+
+fields:
+  - schema_version
+  - name
+  - generated_from
+  - surfaces
+  - overall
+
+generated_from_fields:
+  - behavioral_replay_artifact
+  - claim_enforcement_artifact
+  - behavioral_replay_conformance
+  - claim_enforcement_conformance
+
+surface_fields:
+  - artifact_family
+  - suite_id
+  - execution_surface
+  - summary
+  - schema_conformance_ok
+  - schema_conformance_errors
+
+surface_summary_fields:
+  - total
+  - pass
+  - fail
+  - not_executed
+
+overall_fields:
+  - schema_conformance_ok
+  - replay_fail
+  - claim_fail
+  - claim_not_executed

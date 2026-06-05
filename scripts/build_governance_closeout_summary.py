@@ -19,6 +19,7 @@ REPLAY_ARTIFACT = REPO_ROOT / "artifacts/replay-results/2026-06-05-validator-rep
 CLAIM_ARTIFACT = REPO_ROOT / "artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json"
 REPLAY_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json"
 CLAIM_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json"
+CLOSEOUT_CONFORMANCE = REPO_ROOT / "artifacts/schema-conformance/2026-06-05-governance-closeout-summary-conformance.json"
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -86,6 +87,22 @@ def main() -> int:
     out_path = REPO_ROOT / args.out if not Path(args.out).is_absolute() else Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    closeout_ok = result["overall"]["schema_conformance_ok"] and result["name"] == "governance-closeout-summary"
+    CLOSEOUT_CONFORMANCE.parent.mkdir(parents=True, exist_ok=True)
+    CLOSEOUT_CONFORMANCE.write_text(
+        json.dumps(
+            {
+                "schema": "schemas/governance-closeout-summary.yaml",
+                "artifact": str(out_path.relative_to(REPO_ROOT)),
+                "ok": closeout_ok,
+                "errors": [] if closeout_ok else ["closeout_summary_basic_validation_failed"],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     if args.format == "json":
         print(json.dumps(result, ensure_ascii=False, indent=2))
