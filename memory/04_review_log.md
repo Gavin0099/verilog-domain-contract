@@ -284,3 +284,5 @@
   - `governance-claim-artifacts`
   - `governance-closeout-artifacts`
   - `governance-reviewer-artifacts`
+- [2026-06-05] Added `scripts/build_governance_bundle_manifest.py` to emit `artifacts/closeout/<tag>-governance-bundle-manifest.json`, which indexes the four CI artifact bundles and their per-tag file membership for reviewer handoff.
+- [2026-06-05] Updated `docs/framework-surface-mapping.md` so reviewers can choose the correct bundle by task (replay / claim / closeout / reviewer) without unpacking the full governance artifact set.

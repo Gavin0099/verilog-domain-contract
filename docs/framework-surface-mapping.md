@@ -98,12 +98,20 @@ Behavior enforcement requires replay validation using:
 
 - reviewer checklist schema:
   - `schemas/review-checklist.yaml`
-- machine-readable closeout aggregate:
-  - `artifacts/closeout/2026-06-05-governance-closeout-summary.json`
-- human-readable closeout report:
-  - `artifacts/closeout/2026-06-05-governance-closeout-summary.md`
-- required backing evidence:
-  - `artifacts/replay-results/2026-06-05-validator-replay.yaml`
-  - `artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json`
-  - `artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json`
-  - `artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json`
+- bundle selection rule:
+  - reviewer should download the bundle that matches the review task instead of unpacking all governance artifacts
+- bundle purposes:
+  - `governance-replay-artifacts`: replay evidence and replay schema conformance for rule-behavior review
+  - `governance-claim-artifacts`: claim-enforcement evidence and claim schema conformance for claim-boundary review
+  - `governance-closeout-artifacts`: aggregate closeout JSON/markdown and closeout schema conformance for closeout review
+  - `governance-reviewer-artifacts`: executable reviewer verdict, reviewer-verdict conformance, and bundle manifest for reviewer handoff
+- reviewer bundle index:
+  - `artifacts/closeout/<artifact-tag>-governance-bundle-manifest.json`
+- aggregate closeout files:
+  - `artifacts/closeout/<artifact-tag>-governance-closeout-summary.json`
+  - `artifacts/closeout/<artifact-tag>-governance-closeout-summary.md`
+- required backing evidence by bundle:
+  - replay: `artifacts/replay-results/<artifact-tag>-validator-replay.yaml`, `artifacts/schema-conformance/<artifact-tag>-validator-replay-conformance.json`
+  - claim: `artifacts/claim-enforcement/checker-tests/<artifact-tag>-claim-enforcement-suite.json`, `artifacts/schema-conformance/<artifact-tag>-claim-enforcement-conformance.json`
+  - closeout: `artifacts/schema-conformance/<artifact-tag>-governance-closeout-summary-conformance.json`, `artifacts/schema-conformance/<artifact-tag>-governance-closeout-report-conformance.json`
+  - reviewer: `artifacts/closeout/<artifact-tag>-reviewer-checklist-verdict.json`, `artifacts/schema-conformance/<artifact-tag>-reviewer-checklist-verdict-conformance.json`

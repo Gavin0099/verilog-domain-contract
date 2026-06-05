@@ -90,6 +90,7 @@ jobs:
           python scripts/check_governance_closeout_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_reviewer_checklist.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_reviewer_verdict_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/build_governance_bundle_manifest.py --artifact-tag "$ARTIFACT_TAG" --format human
 
       - name: Upload replay artifacts
         uses: actions/upload-artifact@v4
@@ -123,4 +124,5 @@ jobs:
           name: governance-reviewer-artifacts
           path: |
             artifacts/closeout/*-reviewer-checklist-verdict.json
+            artifacts/closeout/*-governance-bundle-manifest.json
             artifacts/schema-conformance/*-reviewer-checklist-verdict-conformance.json

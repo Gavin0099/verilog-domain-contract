@@ -49,3 +49,7 @@ def reviewer_verdict_path(repo_root: Path, tag: str) -> Path:
 
 def reviewer_verdict_conformance_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/schema-conformance/{tag}-reviewer-checklist-verdict-conformance.json"
+
+
+def reviewer_bundle_manifest_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/closeout/{tag}-governance-bundle-manifest.json"

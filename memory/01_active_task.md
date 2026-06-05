@@ -140,6 +140,10 @@
   - claim: claim-enforcement artifact + claim conformance
   - closeout: aggregate closeout JSON/MD + closeout conformance
   - reviewer: reviewer verdict + reviewer verdict conformance
+- [2026-06-05] Added reviewer-facing bundle manifest:
+  - `scripts/build_governance_bundle_manifest.py`
+  - `artifacts/closeout/2026-06-05-governance-bundle-manifest.json`
+- [2026-06-05] Updated reviewer documentation so bundle purpose and selection are explicit in `docs/framework-surface-mapping.md`; CI now emits the bundle manifest into the reviewer artifact bundle.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.
