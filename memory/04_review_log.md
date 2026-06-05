@@ -233,3 +233,4 @@
 - [2026-06-05] Updated `scripts/run_claim_enforcement.py` output shape so claim-specific fields now appear as first-class case keys instead of being only implicit inside `expected`, `observed`, or `checks`.
 - [2026-06-05] Added `scripts/check_deterministic_governance_schema.py` for direct artifact/schema conformance checks across replay and claim-enforcement surfaces.
 - [2026-06-05] Refined `schemas/behavioral-replay-results.yaml` so replay-specific extension fields are checked where they actually live: `observed.output_mode` and `checks.{refused_or_downgraded,error_detected,claim_violation,disclosure_complete,calibration_label}`.
+- [2026-06-05] Integrated schema self-check into both artifact emitters: replay and claim runners now validate the just-written artifact immediately after `--out` write and fail the run if schema conformance breaks.
