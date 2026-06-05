@@ -1,12 +1,42 @@
 #!/usr/bin/env python3
-"""No-op pre_task_check runtime hook."""
+"""Minimal deterministic pre_task_check runtime hook."""
 
-import sys
+from __future__ import annotations
+
+import argparse
+import json
 
 
-def main() -> int:
-    if len(sys.argv) > 1:
-        _ = sys.argv[1:]
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Runtime pre_task_check compatibility wrapper.")
+    parser.add_argument("--project-root", default=".")
+    parser.add_argument("--rules", default="common")
+    parser.add_argument("--risk", default="low")
+    parser.add_argument("--oversight", default="auto")
+    parser.add_argument("--memory-mode")
+    parser.add_argument("--task-text", default="")
+    parser.add_argument("--task-level", default="L1")
+    parser.add_argument("--contract")
+    parser.add_argument("--format", choices=("human", "json"), default="human")
+    args, _ = parser.parse_known_args(argv)
+
+    _ = (
+        args.project_root,
+        args.rules,
+        args.risk,
+        args.oversight,
+        args.memory_mode,
+        args.task_text,
+        args.task_level,
+        args.contract,
+    )
+
+    payload = {"ok": True}
+    if args.format == "json":
+        print(json.dumps(payload, ensure_ascii=True))
+    else:
+        print("[pre_task_check]")
+        print("ok=true")
     return 0
 
 
