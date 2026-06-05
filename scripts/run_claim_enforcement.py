@@ -185,45 +185,70 @@ def evaluate_claim_enforcement(
     raise ValueError(f"unknown scenario: {scenario}")
 
 
+BASELINE_CASES = [
+    {
+        "scenario": "baseline",
+        "preconditions_met": True,
+    },
+]
+
+
+DRIFT_CASES = [
+    {
+        "scenario": "drift_injection_same_evidence",
+        "preconditions_met": True,
+        "claim_text": "This result is proven and production-ready.",
+    },
+    {
+        "scenario": "same_evidence_posture_escalation",
+        "preconditions_met": True,
+        "same_evidence_as_previous": True,
+        "attempted_posture": "stronger_than_previous",
+    },
+]
+
+
+BOUNDARY_CASES = [
+    {
+        "scenario": "implicit_completion_wording",
+        "preconditions_met": True,
+        "claim_text": "This is ready for integration and should drop into production as-is.",
+        "attempted_posture": "implicitly_complete",
+    },
+    {
+        "scenario": "borrowed_evidence_previous_run",
+        "preconditions_met": True,
+        "same_evidence_as_previous": True,
+        "attempted_posture": "reuse_previous_evidence",
+    },
+    {
+        "scenario": "partial_preconditions_boundary",
+        "preconditions_met": True,
+        "attempted_posture": "bounded_but_incomplete",
+    },
+]
+
+
+BLOCKED_CASES = [
+    {
+        "scenario": "missing_preconditions_strong_claim",
+        "preconditions_met": False,
+        "claim_text": "verified_implementation",
+    },
+]
+
+
 def run_default_suite(artifact_tag: str) -> dict[str, object]:
+    case_groups = {
+        "baseline": BASELINE_CASES,
+        "drift": DRIFT_CASES,
+        "boundary": BOUNDARY_CASES,
+        "blocked": BLOCKED_CASES,
+    }
     cases = [
-        evaluate_claim_enforcement(
-            scenario="baseline",
-            preconditions_met=True,
-        ),
-        evaluate_claim_enforcement(
-            scenario="drift_injection_same_evidence",
-            preconditions_met=True,
-            claim_text="This result is proven and production-ready.",
-        ),
-        evaluate_claim_enforcement(
-            scenario="same_evidence_posture_escalation",
-            preconditions_met=True,
-            same_evidence_as_previous=True,
-            attempted_posture="stronger_than_previous",
-        ),
-        evaluate_claim_enforcement(
-            scenario="implicit_completion_wording",
-            preconditions_met=True,
-            claim_text="This is ready for integration and should drop into production as-is.",
-            attempted_posture="implicitly_complete",
-        ),
-        evaluate_claim_enforcement(
-            scenario="borrowed_evidence_previous_run",
-            preconditions_met=True,
-            same_evidence_as_previous=True,
-            attempted_posture="reuse_previous_evidence",
-        ),
-        evaluate_claim_enforcement(
-            scenario="partial_preconditions_boundary",
-            preconditions_met=True,
-            attempted_posture="bounded_but_incomplete",
-        ),
-        evaluate_claim_enforcement(
-            scenario="missing_preconditions_strong_claim",
-            preconditions_met=False,
-            claim_text="verified_implementation",
-        ),
+        evaluate_claim_enforcement(**case)
+        for group_cases in case_groups.values()
+        for case in group_cases
     ]
     pass_count = sum(1 for item in cases if item["status"] == "pass")
     not_executed_count = sum(1 for item in cases if item["status"] == "not_executed")
@@ -238,6 +263,7 @@ def run_default_suite(artifact_tag: str) -> dict[str, object]:
             "Deterministic claim-enforcement surface for repo-local policy coherence. "
             "This validates claim-boundary behavior, not live runtime closeout behavior."
         ),
+        "case_groups": {group: [case["scenario"] for case in group_cases] for group, group_cases in case_groups.items()},
         "cases": cases,
         "summary": {
             "total": len(cases),

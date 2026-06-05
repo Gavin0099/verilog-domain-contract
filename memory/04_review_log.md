@@ -307,3 +307,4 @@
   - implicit completion wording without explicit verified-implementation token
   - borrowed evidence from previous run/session
   - bounded posture under partial preconditions
+- [2026-06-05] Reorganized deterministic claim-enforcement suite into explicit `baseline` / `drift` / `boundary` / `blocked` groups so coverage intent is visible instead of remaining a flat scenario list.

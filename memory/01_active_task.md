@@ -219,3 +219,8 @@ Previous gap list (all fixed):
   - borrowed evidence from previous run
   - bounded posture under partial preconditions
 - [2026-06-05] Claim-enforcement suite now covers 7 scenarios instead of the earlier minimal 4-scenario slice.
+- [2026-06-05] Reorganized claim-enforcement suite into explicit groups:
+  - `baseline`
+  - `drift`
+  - `boundary`
+  - `blocked`
