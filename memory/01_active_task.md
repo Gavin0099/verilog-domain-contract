@@ -55,6 +55,9 @@
 - [2026-06-05] Recovered governance-document deltas from `stash@{0}` into mainline docs only; left governance-test artifacts and reviewer ledgers inside the stash.
 - [2026-06-05] Recovered topics: evidence lifecycle / stale evidence policy, replay evidence currency, authority resolution between `contract.yaml` and `governance/rules/`, FSM/CDC entries in precondition completeness model, and sync-check gap history.
 - [2026-06-05] Validation after stash-doc recovery: `governance_drift_checker`, `readiness_audit`, and `quickstart_smoke --contract contract.yaml` all PASS.
+- [2026-06-05] Recovered remaining stash experiment history into mainline: governance-test runs `028`-`051`, ablation artifacts A-D, Gate C status docs/logs, claim-enforcement artifacts, governance extension docs, and supporting index/update scripts.
+- [2026-06-05] Validation after history recovery: `governance_drift_checker`, `readiness_audit`, and `quickstart_smoke --contract contract.yaml` all PASS.
+- [2026-06-05] Commit created: `62c6556` (`artifacts: recover governance test history through run 051`).
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

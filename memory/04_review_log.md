@@ -172,3 +172,16 @@
   - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Recovered remaining stash history set into mainline in commit `62c6556`:
+  - governance-test summaries and ledger updates through `run-051`
+  - `artifacts/governance-test/runs/run-028` through `run-051`
+  - ablation artifacts A-D
+  - claim-enforcement session artifacts
+  - Gate C status docs and NDJSON logs under `docs/status/`
+  - governance extension docs under `governance/`
+  - helper scripts: `scripts/append_phase2_ndjson.py`, `scripts/create_phase2_artifacts.py`, `scripts/update_phase2_indexes.py`
+- [2026-06-05] Recovery note: `git checkout stash@{0}^3 -- ...` restored both working tree content and index entries for the untracked stash payload, so Gate C docs and governance extension docs landed in the same semantic recovery commit as the artifact history.
+- [2026-06-05] Validation after history recovery:
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS
