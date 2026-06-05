@@ -40,6 +40,16 @@ Trial cost includes:
 
 If `bounded_trial_cost` exceeds threshold, `need_more_info` outranks `proceed_with_assumption`.
 
+## Stale Evidence Handling
+
+When evidence from a prior session is used without confirming lifecycle validity, treat as:
+- `evidence_quality`: weak
+- `epistemic_risk`: high (unknown premise with weak evidence)
+- forced outcome: `need_more_info`
+
+See `docs/completion-evidence-levels.md` section `Evidence Lifecycle Policy` for the three conditions
+that must hold for cross-session evidence to remain valid.
+
 ## Non-Claim
 
 This policy improves decision semantics calibration. It does not prove end-to-end correctness of generated RTL.

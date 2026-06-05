@@ -39,6 +39,27 @@ behavioral guidance level, not via the precondition_gate_validator.
 
 ---
 
+## Authority Resolution Policy
+
+When a Verilog domain contract rule and a general behavioral rule both apply to the same task,
+they operate at different levels and do not conflict:
+
+- The Verilog domain contract rules (System 1) govern RTL-specific precondition gate behavior:
+  what inputs are required, what output mode is permitted, what claims are forbidden.
+- The general behavioral rules (System 2) govern session-level behavioral discipline:
+  escalation, scope enforcement, refactor boundaries, traceability.
+
+Resolution priority when both systems address the same situation:
+1. Defer to the Verilog domain contract rule for RTL precondition and completion claim decisions.
+2. Apply the general behavioral rule at the behavioral/output scope level (escalation, disclosure format).
+3. If a general behavioral rule appears to contradict a Verilog domain contract decision, the Verilog
+   domain contract rule governs RTL output mode and claims; the general rule governs behavioral framing.
+
+Explicit conflict between the two systems is not anticipated in v0.1 scope.
+If observed, escalate per `CMN-001`.
+
+---
+
 ## Severity Vocabulary
 
 | Severity | Meaning |

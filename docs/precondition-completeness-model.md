@@ -10,6 +10,8 @@ This model makes downgrade/stop behavior deterministic.
 - `timing_expectation`
 - `assignment_intent_partition`
 - `verification_expectation`
+- `fsm_state_model`
+- `cdc_strategy_when_multi_clock`
 
 ## Completeness Rules
 
@@ -24,6 +26,8 @@ This model makes downgrade/stop behavior deterministic.
 ### Conditionally Required
 
 - `timing_expectation`: required when interface/control timing behavior is part of requested output
+- `fsm_state_model`: required for implementation claims involving FSM tasks
+- `cdc_strategy_when_multi_clock`: required when multi-clock design is implied or explicitly stated
 
 ## Deterministic Action Matrix
 
@@ -33,6 +37,8 @@ This model makes downgrade/stop behavior deterministic.
 - missing `assignment_intent_partition` -> `draft_only` + `escalate`
 - missing `timing_expectation` (timing-relevant task) -> `draft_with_explicit_assumptions`
 - missing `verification_expectation` -> allow draft, block completion claims
+- missing `fsm_state_model` (FSM task implied) -> `draft_with_explicit_assumptions` + `escalate`
+- missing `cdc_strategy_when_multi_clock` (multi-clock implied) -> `stop_insufficient_preconditions`
 
 ## Stop Conditions (v0.1)
 

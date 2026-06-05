@@ -153,3 +153,22 @@
   - `5af65ce` `fix: tighten CDC precondition gate`
   - `c64eef8` `docs: sync five-rule governance surfaces`
   - `18141b5` `docs: harden claim boundary under missing preconditions`
+- [2026-06-05] Selectively recovered mainline documentation deltas from `stash@{0}` without restoring artifact churn:
+  - `docs/completion-evidence-levels.md`
+  - `docs/refusal-vs-error-metrics.md`
+  - `docs/epistemic-decision-policy.md`
+  - `docs/mode-volatility-note.md`
+  - `docs/rtl-scope-boundary.md`
+  - `docs/precondition-completeness-model.md`
+  - `docs/contract-sync-check.md`
+  - `governance/rules/RULE_INDEX.md`
+- [2026-06-05] Recovered semantics:
+  - evidence lifecycle and stale-evidence policy
+  - live_observed vs reconstructed replay currency
+  - authority resolution between Verilog domain rules and general behavioral rules
+  - FSM/CDC additions in precondition completeness model
+  - sync-check history for review-checklist and precondition-model surface gaps
+- [2026-06-05] Validation after stash-doc recovery:
+  - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS

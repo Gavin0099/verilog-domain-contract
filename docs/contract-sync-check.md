@@ -60,6 +60,8 @@ When a leaf doc gains a new enforcement section (or has one modified):
 | G-022-03 | Run 022 | CDC_STRATEGY_REQUIRED | `must_not_assume` missing CDC entries | Fixed Run 022 |
 | G-022-04 | Run 022 | CDC_STRATEGY_REQUIRED | `completion_claim_disallow_without_evidence` missing CDC entry | Fixed Run 022 |
 | G-022-05 | Run 022 | CDC_STRATEGY_REQUIRED | validator Rule 5 + regex absent (PG-006/007 added) | Fixed Run 022 |
+| G-028-01 | Run 028 | FSM_CONTRACT_REQUIRED + CDC_STRATEGY_REQUIRED | `schemas/review-checklist.yaml` `fsm_contract` and `cdc_contract` sections absent | Fixed Run 028 |
+| G-030-01 | Run 030 | FSM_CONTRACT_REQUIRED + CDC_STRATEGY_REQUIRED | `docs/precondition-completeness-model.md` missing FSM/CDC decision inputs and action-matrix entries | Fixed Run 030 |
 
 ---
 
