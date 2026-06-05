@@ -1,0 +1,38 @@
+schema_version: "0.1"
+name: claim-enforcement-results
+description: Structured results schema for deterministic claim-enforcement scenarios and future closeout-boundary extensions.
+extends: schemas/deterministic-governance-suite.yaml
+
+fields:
+  - schema_version
+  - name
+  - artifact_family
+  - suite_id
+  - generated_at
+  - execution_surface
+  - note
+  - cases
+  - summary
+
+case_fields:
+  - case_id
+  - case_type
+  - rule_family
+  - status
+  - preconditions_met
+  - expected
+  - observed
+  - checks
+  - notes
+  - claim_level
+  - semantic_drift_risk
+  - precondition_status
+  - strong_claim_attempted
+  - same_evidence_as_previous
+  - attempted_posture
+
+summary_fields:
+  - total
+  - pass
+  - fail
+  - not_executed

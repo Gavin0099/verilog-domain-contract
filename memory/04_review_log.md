@@ -229,3 +229,4 @@
   - `governance_drift_checker.py`: PASS (`ok=True`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-05] Added `schemas/claim-enforcement-results.yaml` as the claim-domain extension over `schemas/deterministic-governance-suite.yaml`, mirroring the replay-side `common envelope + domain extension` pattern.

@@ -14,8 +14,10 @@ It is a deterministic repo-local enforcement runner, not a live runtime closeout
 
 Artifact schema alignment:
 - common envelope: `schemas/deterministic-governance-suite.yaml`
+- claim-specific extension: `schemas/claim-enforcement-results.yaml`
 - shared top-level fields: `artifact_family`, `suite_id`, `generated_at`, `execution_surface`, `cases`, `summary`
 - shared per-case fields: `case_id`, `case_type`, `rule_family`, `status`, `preconditions_met`, `expected`, `observed`, `checks`, `notes`
+- claim-specific case fields: `claim_level`, `semantic_drift_risk`, `precondition_status`, `strong_claim_attempted`, `same_evidence_as_previous`, `attempted_posture`
 
 ## Scenarios
 1. Baseline closeout
