@@ -113,6 +113,7 @@
   - `schemas/governance-closeout-summary.yaml`
   - `schemas/governance-closeout-report.yaml`
 - [2026-06-05] Added `scripts/check_governance_closeout_schema.py` to validate closeout JSON and markdown structures against dedicated closeout schemas.
+- [2026-06-05] Extended CI closeout flow so workflow now runs `scripts/check_governance_closeout_schema.py` immediately after generating closeout JSON/MD and uploads the resulting closeout conformance artifacts.
 - [2026-04-30] Completed CLAIM_ENFORCEMENT precondition docs + pilot A/B/C rerun (pass).
 - [2026-04-30] Added expansion aggregate summary for writing-contract and SpecAuthority.
 - [2026-05-08] Completed governance-test Rounds 1–4 (Runs 001–016): full audit trail with run-record, scorecard, diff.patch per run; all scorecards reviewer_decision = accept.

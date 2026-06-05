@@ -261,3 +261,4 @@
   - `schemas/governance-closeout-summary.yaml` for aggregate JSON structure
   - `schemas/governance-closeout-report.yaml` for markdown heading structure
 - [2026-06-05] Added `scripts/check_governance_closeout_schema.py` for direct closeout summary/report conformance checks.
+- [2026-06-05] CI workflow now runs `scripts/check_governance_closeout_schema.py` after closeout artifact generation and uploads closeout-summary/report conformance artifacts alongside the replay/claim artifacts.

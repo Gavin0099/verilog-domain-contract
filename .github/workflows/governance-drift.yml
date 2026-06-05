@@ -86,6 +86,7 @@ jobs:
           python scripts/run_claim_enforcement.py --format json --out artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
           python scripts/build_governance_closeout_summary.py --format human
           python scripts/build_governance_closeout_report.py
+          python scripts/check_governance_closeout_schema.py --format human
 
       - name: Upload governance closeout artifacts
         uses: actions/upload-artifact@v4
@@ -96,5 +97,7 @@ jobs:
             artifacts/claim-enforcement/checker-tests/2026-06-05-claim-enforcement-suite.json
             artifacts/schema-conformance/2026-06-05-validator-replay-conformance.json
             artifacts/schema-conformance/2026-06-05-claim-enforcement-conformance.json
+            artifacts/schema-conformance/2026-06-05-governance-closeout-summary-conformance.json
+            artifacts/schema-conformance/2026-06-05-governance-closeout-report-conformance.json
             artifacts/closeout/2026-06-05-governance-closeout-summary.json
             artifacts/closeout/2026-06-05-governance-closeout-summary.md
