@@ -28,6 +28,7 @@ def _render(summary: dict[str, object]) -> str:
     surfaces = summary["surfaces"]
     overall = summary["overall"]
     generated_from = summary["generated_from"]
+    precondition_coverage = surfaces["precondition_gate"].get("coverage_summary", {})
     replay_coverage = surfaces["behavioral_replay"].get("coverage_summary", {})
     claim_coverage = surfaces["claim_enforcement"].get("coverage_summary", {})
 
@@ -44,9 +45,20 @@ def _render(summary: dict[str, object]) -> str:
         "## Overall",
         "",
         f"- `schema_conformance_ok`: `{str(overall['schema_conformance_ok']).lower()}`",
+        f"- `precondition_fail`: `{overall['precondition_fail']}`",
         f"- `replay_fail`: `{overall['replay_fail']}`",
         f"- `claim_fail`: `{overall['claim_fail']}`",
         f"- `claim_not_executed`: `{overall['claim_not_executed']}`",
+        "",
+        "## Precondition Gate",
+        "",
+        f"- `suite_id`: `{surfaces['precondition_gate']['suite_id']}`",
+        f"- `execution_surface`: `{surfaces['precondition_gate']['execution_surface']}`",
+        f"- `summary.total`: `{surfaces['precondition_gate']['summary']['total']}`",
+        f"- `summary.pass`: `{surfaces['precondition_gate']['summary']['pass']}`",
+        f"- `summary.fail`: `{surfaces['precondition_gate']['summary']['fail']}`",
+        f"- `schema_conformance_ok`: `{str(surfaces['precondition_gate']['schema_conformance_ok']).lower()}`",
+        *render_coverage("coverage_summary", precondition_coverage),
         "",
         "## Behavioral Replay",
         "",
@@ -71,8 +83,10 @@ def _render(summary: dict[str, object]) -> str:
         "",
         "## Inputs",
         "",
+        f"- precondition artifact: `{generated_from['precondition_gate_artifact']}`",
         f"- replay artifact: `{generated_from['behavioral_replay_artifact']}`",
         f"- claim artifact: `{generated_from['claim_enforcement_artifact']}`",
+        f"- precondition conformance: `{generated_from['precondition_gate_conformance']}`",
         f"- replay conformance: `{generated_from['behavioral_replay_conformance']}`",
         f"- claim conformance: `{generated_from['claim_enforcement_conformance']}`",
         "",

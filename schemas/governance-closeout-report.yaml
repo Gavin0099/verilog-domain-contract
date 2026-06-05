@@ -5,6 +5,7 @@ description: Required markdown section structure for human-readable governance c
 required_headings:
   - "# Governance Closeout Summary"
   - "## Overall"
+  - "## Precondition Gate"
   - "## Behavioral Replay"
   - "## Claim Enforcement"
   - "## Inputs"

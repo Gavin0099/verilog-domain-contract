@@ -239,3 +239,8 @@ Previous gap list (all fixed):
   - `scripts/run_precondition_gate.py`
   - `artifacts/precondition-gate/2026-06-05-precondition-gate-suite.json`
   - `artifacts/schema-conformance/2026-06-05-precondition-gate-conformance.json`
+- [2026-06-05] Integrated precondition-gate into governance closeout aggregate:
+  - `scripts/build_governance_closeout_summary.py` now aggregates precondition/replay/claim surfaces together
+  - `scripts/build_governance_closeout_report.py` now renders a dedicated `## Precondition Gate` section plus precondition coverage summary
+  - `schemas/governance-closeout-summary.yaml` and `schemas/governance-closeout-report.yaml` now require the precondition-gate fields/section
+  - CI workflow now emits `run_precondition_gate.py` before closeout generation so aggregate inputs exist under the runtime artifact tag

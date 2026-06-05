@@ -55,7 +55,7 @@ def validate_summary(summary_artifact: Path) -> dict[str, object]:
     if not isinstance(surfaces, dict):
         errors.append("surfaces_not_object")
     else:
-        for surface_name in ("behavioral_replay", "claim_enforcement"):
+        for surface_name in ("precondition_gate", "behavioral_replay", "claim_enforcement"):
             surface = surfaces.get(surface_name)
             if not isinstance(surface, dict):
                 errors.append(f"{surface_name}_not_object")

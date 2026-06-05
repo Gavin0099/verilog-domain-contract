@@ -83,6 +83,7 @@ jobs:
       - name: Emit deterministic governance artifacts
         run: |
           ARTIFACT_TAG="$(date -u +%F)"
+          python scripts/run_precondition_gate.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/run_behavioral_replay.py --artifact-tag "$ARTIFACT_TAG" --format yaml
           python scripts/run_claim_enforcement.py --artifact-tag "$ARTIFACT_TAG" --format json
           python scripts/build_governance_closeout_summary.py --artifact-tag "$ARTIFACT_TAG" --format human

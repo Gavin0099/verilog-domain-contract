@@ -3,7 +3,7 @@
   "name": "precondition-gate-results",
   "artifact_family": "precondition_gate",
   "suite_id": "precondition-gate-2026-06-05",
-  "generated_at": "2026-06-05T10:27:03.297888+00:00",
+  "generated_at": "2026-06-05T10:53:14.818649+00:00",
   "execution_surface": "validator_backed_deterministic_precondition_gate",
   "note": "Deterministic precondition-gate surface for repo-local validator coverage. This validates gate behavior against curated coverage cases, not live runtime requests.",
   "coverage_summary": {

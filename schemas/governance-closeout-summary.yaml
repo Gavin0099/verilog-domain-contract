@@ -10,8 +10,10 @@ fields:
   - overall
 
 generated_from_fields:
+  - precondition_gate_artifact
   - behavioral_replay_artifact
   - claim_enforcement_artifact
+  - precondition_gate_conformance
   - behavioral_replay_conformance
   - claim_enforcement_conformance
 
@@ -19,6 +21,7 @@ surface_fields:
   - artifact_family
   - suite_id
   - execution_surface
+  - coverage_summary
   - summary
   - schema_conformance_ok
   - schema_conformance_errors
@@ -31,6 +34,7 @@ surface_summary_fields:
 
 overall_fields:
   - schema_conformance_ok
+  - precondition_fail
   - replay_fail
   - claim_fail
   - claim_not_executed

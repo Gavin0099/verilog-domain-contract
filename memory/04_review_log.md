@@ -313,3 +313,8 @@
 - [2026-06-05] Added machine-readable coverage summaries across executable surfaces so each output now exposes grouped case counts and membership without requiring downstream consumers to infer coverage structure from raw case lists.
 - [2026-06-05] Extended governance closeout aggregation so replay/claim `coverage_summary` data is preserved in the aggregate JSON and surfaced in the human-readable closeout report.
 - [2026-06-05] Added `schemas/precondition-gate-results.yaml` and `scripts/run_precondition_gate.py` so precondition-gate is now a formal deterministic artifact emitter with schema conformance, instead of only a smoke script.
+- [2026-06-05] Extended governance closeout aggregation to include the formal precondition-gate surface:
+  - closeout JSON now records precondition artifact + conformance inputs, `surfaces.precondition_gate`, and `overall.precondition_fail`
+  - closeout markdown now renders a dedicated `## Precondition Gate` section with summary + coverage
+  - closeout schemas/checker now require the third surface
+  - CI now emits `run_precondition_gate.py` before building closeout artifacts so aggregate generation remains self-contained

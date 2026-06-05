@@ -23,6 +23,8 @@ from scripts.governance_artifact_paths import (
     closeout_summary_conformance_path,
     closeout_summary_path,
     default_artifact_tag,
+    precondition_gate_artifact_path,
+    precondition_gate_conformance_path,
     replay_artifact_path,
     replay_conformance_path,
 )
@@ -36,15 +38,20 @@ def _load(path: Path) -> dict[str, object]:
 
 
 def build_summary(artifact_tag: str) -> dict[str, object]:
+    precondition_artifact = precondition_gate_artifact_path(REPO_ROOT, artifact_tag)
     replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
     claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
+    precondition_conformance_artifact = precondition_gate_conformance_path(REPO_ROOT, artifact_tag)
     replay_conformance_artifact = replay_conformance_path(REPO_ROOT, artifact_tag)
     claim_conformance_artifact = claim_conformance_path(REPO_ROOT, artifact_tag)
+    precondition = _load(precondition_artifact)
     replay = _load(replay_artifact)
     claim = _load(claim_artifact)
+    precondition_conformance = _load(precondition_conformance_artifact)
     replay_conformance = _load(replay_conformance_artifact)
     claim_conformance = _load(claim_conformance_artifact)
 
+    precondition_summary = precondition["summary"]
     replay_summary = replay["summary"]
     claim_summary = claim["summary"]
 
@@ -52,12 +59,23 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
         "schema_version": "0.1",
         "name": "governance-closeout-summary",
         "generated_from": {
+            "precondition_gate_artifact": str(precondition_artifact.relative_to(REPO_ROOT)),
             "behavioral_replay_artifact": str(replay_artifact.relative_to(REPO_ROOT)),
             "claim_enforcement_artifact": str(claim_artifact.relative_to(REPO_ROOT)),
+            "precondition_gate_conformance": str(precondition_conformance_artifact.relative_to(REPO_ROOT)),
             "behavioral_replay_conformance": str(replay_conformance_artifact.relative_to(REPO_ROOT)),
             "claim_enforcement_conformance": str(claim_conformance_artifact.relative_to(REPO_ROOT)),
         },
         "surfaces": {
+            "precondition_gate": {
+                "artifact_family": precondition["artifact_family"],
+                "suite_id": precondition["suite_id"],
+                "execution_surface": precondition["execution_surface"],
+                "coverage_summary": precondition.get("coverage_summary", {}),
+                "summary": precondition_summary,
+                "schema_conformance_ok": precondition_conformance["ok"],
+                "schema_conformance_errors": precondition_conformance["errors"],
+            },
             "behavioral_replay": {
                 "artifact_family": replay["artifact_family"],
                 "suite_id": replay["suite_id"],
@@ -78,7 +96,10 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
             },
         },
         "overall": {
-            "schema_conformance_ok": replay_conformance["ok"] and claim_conformance["ok"],
+            "schema_conformance_ok": (
+                precondition_conformance["ok"] and replay_conformance["ok"] and claim_conformance["ok"]
+            ),
+            "precondition_fail": precondition_summary["fail"],
             "replay_fail": replay_summary["fail"],
             "claim_fail": claim_summary["fail"],
             "claim_not_executed": claim_summary["not_executed"],
@@ -122,6 +143,7 @@ def main() -> int:
     else:
         print("[governance_closeout_summary]")
         print(f"schema_conformance_ok={result['overall']['schema_conformance_ok']}")
+        print(f"precondition_fail={result['overall']['precondition_fail']}")
         print(f"replay_fail={result['overall']['replay_fail']}")
         print(f"claim_fail={result['overall']['claim_fail']}")
         print(f"claim_not_executed={result['overall']['claim_not_executed']}")

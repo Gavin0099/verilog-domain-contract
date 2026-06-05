@@ -2,12 +2,67 @@
   "schema_version": "0.1",
   "name": "governance-closeout-summary",
   "generated_from": {
+    "precondition_gate_artifact": "artifacts\\precondition-gate\\2026-06-05-precondition-gate-suite.json",
     "behavioral_replay_artifact": "artifacts\\replay-results\\2026-06-05-validator-replay.yaml",
     "claim_enforcement_artifact": "artifacts\\claim-enforcement\\checker-tests\\2026-06-05-claim-enforcement-suite.json",
+    "precondition_gate_conformance": "artifacts\\schema-conformance\\2026-06-05-precondition-gate-conformance.json",
     "behavioral_replay_conformance": "artifacts\\schema-conformance\\2026-06-05-validator-replay-conformance.json",
     "claim_enforcement_conformance": "artifacts\\schema-conformance\\2026-06-05-claim-enforcement-conformance.json"
   },
   "surfaces": {
+    "precondition_gate": {
+      "artifact_family": "precondition_gate",
+      "suite_id": "precondition-gate-2026-06-05",
+      "execution_surface": "validator_backed_deterministic_precondition_gate",
+      "coverage_summary": {
+        "groups": {
+          "negation": {
+            "count": 12,
+            "case_ids": [
+              "PG-001",
+              "PG-RESET-NEG-001",
+              "PG-002",
+              "PG-HS-NEG-001",
+              "PG-004",
+              "PG-ASSIGN-NEG-001",
+              "PG-006",
+              "PG-CDC-NEG-001",
+              "PG-CDC-NEG-002",
+              "PG-CDC-NEG-003",
+              "PG-008",
+              "PG-FSM-NEG-001"
+            ]
+          },
+          "boundary": {
+            "count": 3,
+            "case_ids": [
+              "PG-RESET-BOUNDARY-001",
+              "PG-HS-BOUNDARY-001",
+              "PG-CDC-BOUNDARY-001"
+            ]
+          },
+          "positive": {
+            "count": 5,
+            "case_ids": [
+              "PG-003",
+              "PG-005",
+              "PG-007",
+              "PG-CDC-POS-001",
+              "PG-009"
+            ]
+          }
+        },
+        "total_cases": 20
+      },
+      "summary": {
+        "total": 20,
+        "pass": 20,
+        "fail": 0,
+        "not_executed": 0
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
+    },
     "behavioral_replay": {
       "artifact_family": "behavioral_replay",
       "suite_id": "validator-replay-2026-06-05",
@@ -109,6 +164,7 @@
   },
   "overall": {
     "schema_conformance_ok": true,
+    "precondition_fail": 0,
     "replay_fail": 0,
     "claim_fail": 0,
     "claim_not_executed": 1
