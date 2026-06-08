@@ -257,3 +257,8 @@ Previous gap list (all fixed):
   - `scripts/build_governance_release_handoff.py`
   - `artifacts/closeout/2026-06-08-governance-release-handoff.json`
   - entrypoint aggregates closeout summary/report, reviewer verdict, and bundle manifest into one reviewer-facing handoff index
+- [2026-06-08] Upgraded `runtime_hooks/core/post_task_check.py` from compatibility no-op to advisory/runtime closeout gate:
+  - reads closeout summary, reviewer verdict, and release handoff for a given `--artifact-tag`
+  - returns machine-readable status for `closeout_status`, `reviewer_status`, and `release_status`
+  - stays compatibility-safe when artifacts are absent by reporting `artifacts_missing` + `emit_closeout_artifacts`
+  - returns non-zero only when artifacts exist but closeout/reviewer/handoff are not handoff-ready

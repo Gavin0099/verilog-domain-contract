@@ -332,3 +332,8 @@
   - builder script aggregates `governance-closeout-summary`, reviewer verdict, and governance bundle manifest
   - release handoff artifact provides one top-level release status plus the recommended review sequence
   - reviewer handoff guide now points to the release handoff JSON as the fastest entrypoint
+- [2026-06-08] Promoted `runtime_hooks/core/post_task_check.py` into a real closeout/runtime surface:
+  - runtime hook now reads `governance-closeout-summary`, `reviewer-checklist-verdict`, and `governance-release-handoff` for the requested `--artifact-tag`
+  - emits machine-readable runtime status (`closeout_status`, `reviewer_status`, `release_status`, `recommended_action`)
+  - preserves compatibility when artifacts are missing by returning advisory `artifacts_missing`
+  - fails closed only when closeout artifacts exist but are not handoff-ready
