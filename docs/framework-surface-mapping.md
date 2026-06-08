@@ -103,6 +103,7 @@ Behavior enforcement requires replay validation using:
 - bundle selection rule:
   - reviewer should download the bundle that matches the review task instead of unpacking all governance artifacts
 - bundle purposes:
+  - `governance-precondition-artifacts`: precondition-gate evidence, grouped coverage summary, and precondition schema conformance for gate-completeness review
   - `governance-replay-artifacts`: replay evidence and replay schema conformance for rule-behavior review
   - `governance-claim-artifacts`: claim-enforcement evidence and claim schema conformance for claim-boundary review
   - `governance-closeout-artifacts`: aggregate closeout JSON/markdown and closeout schema conformance for closeout review
@@ -113,6 +114,7 @@ Behavior enforcement requires replay validation using:
   - `artifacts/closeout/<artifact-tag>-governance-closeout-summary.json`
   - `artifacts/closeout/<artifact-tag>-governance-closeout-summary.md`
 - required backing evidence by bundle:
+  - precondition: `artifacts/precondition-gate/<artifact-tag>-precondition-gate-suite.json`, `artifacts/schema-conformance/<artifact-tag>-precondition-gate-conformance.json`
   - replay: `artifacts/replay-results/<artifact-tag>-validator-replay.yaml`, `artifacts/schema-conformance/<artifact-tag>-validator-replay-conformance.json`
   - claim: `artifacts/claim-enforcement/checker-tests/<artifact-tag>-claim-enforcement-suite.json`, `artifacts/schema-conformance/<artifact-tag>-claim-enforcement-conformance.json`
   - closeout: `artifacts/schema-conformance/<artifact-tag>-governance-closeout-summary-conformance.json`, `artifacts/schema-conformance/<artifact-tag>-governance-closeout-report-conformance.json`

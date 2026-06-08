@@ -1,0 +1,13 @@
+{
+  "total": 1,
+  "pass": 1,
+  "fail": 0,
+  "results": [
+    {
+      "schema": "schemas\\reviewer-checklist-verdict.yaml",
+      "artifact": "artifacts\\closeout\\2026-06-08-reviewer-checklist-verdict.json",
+      "ok": true,
+      "errors": []
+    }
+  ]
+}

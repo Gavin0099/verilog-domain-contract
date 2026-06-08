@@ -244,3 +244,8 @@ Previous gap list (all fixed):
   - `scripts/build_governance_closeout_report.py` now renders a dedicated `## Precondition Gate` section plus precondition coverage summary
   - `schemas/governance-closeout-summary.yaml` and `schemas/governance-closeout-report.yaml` now require the precondition-gate fields/section
   - CI workflow now emits `run_precondition_gate.py` before closeout generation so aggregate inputs exist under the runtime artifact tag
+- [2026-06-08] Extended reviewer consumption to include explicit precondition coverage judgment:
+  - `schemas/review-checklist.yaml` now requires precondition summary and grouped coverage checks inside `governance_closeout`
+  - `scripts/check_reviewer_checklist.py` now fails reviewer verdicts if precondition closeout coverage is missing `negation`, `boundary`, or `positive` groups
+  - CI artifact upload now has a dedicated `governance-precondition-artifacts` bundle and the reviewer manifest/handoff docs now describe five bundles instead of four
+  - `schemas/governance-bundle-manifest.yaml` + `scripts/check_governance_bundle_manifest_schema.py` now explicitly require all five bundle names, including the new precondition bundle

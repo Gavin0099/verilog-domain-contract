@@ -54,7 +54,8 @@ def validate_manifest(manifest_artifact: Path) -> dict[str, object]:
         errors.append("bundles_not_list")
         bundles = []
 
-    if len(bundles) != 4:
+    expected_bundle_names = schema.get("expected_bundle_names", [])
+    if len(bundles) != len(expected_bundle_names):
         errors.append(f"bundle_count_mismatch={len(bundles)}")
 
     seen_bundle_names: list[str] = []
@@ -79,6 +80,11 @@ def validate_manifest(manifest_artifact: Path) -> dict[str, object]:
             continue
         if len(files) == 0:
             errors.append(f"bundle_{idx}_files_empty")
+
+    if isinstance(expected_bundle_names, list):
+        missing_expected = [name for name in expected_bundle_names if name not in seen_bundle_names]
+        if missing_expected:
+            errors.append("missing_expected_bundle_names=" + ",".join(missing_expected))
 
     return {
         "schema": str(MANIFEST_SCHEMA.relative_to(REPO_ROOT)),

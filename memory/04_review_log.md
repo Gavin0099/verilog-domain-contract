@@ -318,3 +318,9 @@
   - closeout markdown now renders a dedicated `## Precondition Gate` section with summary + coverage
   - closeout schemas/checker now require the third surface
   - CI now emits `run_precondition_gate.py` before building closeout artifacts so aggregate generation remains self-contained
+- [2026-06-08] Extended reviewer/CI consumption for the precondition-gate surface:
+  - `schemas/review-checklist.yaml` now includes `CLOSEOUT_PRECONDITION_SUMMARY_PRESENT` and `CLOSEOUT_PRECONDITION_COVERAGE_PRESENT`
+  - reviewer verdict logic now inspects closeout precondition coverage and requires non-empty `negation` / `boundary` / `positive` groups
+  - CI artifact uploads are now symmetric across executable surfaces with a dedicated `governance-precondition-artifacts` bundle
+  - bundle manifest and handoff docs now describe five reviewer-facing bundles, including the new precondition bundle
+  - manifest schema checker now validates the expected five bundle names instead of the previous hardcoded four-bundle assumption

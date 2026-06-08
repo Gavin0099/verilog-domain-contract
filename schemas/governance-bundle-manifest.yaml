@@ -12,3 +12,10 @@ bundle_fields:
   - bundle_name
   - purpose
   - files
+
+expected_bundle_names:
+  - governance-precondition-artifacts
+  - governance-replay-artifacts
+  - governance-claim-artifacts
+  - governance-closeout-artifacts
+  - governance-reviewer-artifacts

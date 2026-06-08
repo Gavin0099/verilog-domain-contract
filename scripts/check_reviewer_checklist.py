@@ -22,6 +22,7 @@ from scripts.governance_artifact_paths import (
     claim_artifact_path,
     closeout_summary_path,
     default_artifact_tag,
+    precondition_gate_artifact_path,
     replay_artifact_path,
     reviewer_verdict_path,
 )
@@ -51,15 +52,33 @@ def _result(item_id: str, passed: bool, evidence: list[str], rationale: str) -> 
     }
 
 
+def _coverage_groups_present(coverage: dict[str, object], required_groups: list[str]) -> bool:
+    if not isinstance(coverage, dict):
+        return False
+    groups = coverage.get("groups")
+    if not isinstance(groups, dict):
+        return False
+    for group_name in required_groups:
+        group_payload = groups.get(group_name)
+        if not isinstance(group_payload, dict):
+            return False
+        if int(group_payload.get("count", 0)) <= 0:
+            return False
+    return int(coverage.get("total_cases", 0)) > 0
+
+
 def build_verdict(artifact_tag: str) -> dict[str, object]:
     checklist = _load(CHECKLIST_SCHEMA)
     closeout_summary = closeout_summary_path(REPO_ROOT, artifact_tag)
+    precondition_artifact = precondition_gate_artifact_path(REPO_ROOT, artifact_tag)
     replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
     claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
     closeout = _load(closeout_summary)
+    precondition = _load(precondition_artifact)
     replay = _load(replay_artifact)
     claim = _load(claim_artifact)
 
+    precondition_cases = _case_map(precondition["cases"])
     replay_cases = _case_map(replay["cases"])
     claim_cases = _case_map(claim["cases"])
     closeout_overall = closeout["overall"]
@@ -127,12 +146,29 @@ def build_verdict(artifact_tag: str) -> dict[str, object]:
                 ]
             )
         elif sid == "governance_closeout":
+            precondition_ok = closeout_surfaces["precondition_gate"]["summary"]["fail"] == 0
+            precondition_coverage_ok = _coverage_groups_present(
+                closeout_surfaces["precondition_gate"].get("coverage_summary", {}),
+                ["negation", "boundary", "positive"],
+            ) and len(precondition_cases) > 0
             replay_ok = closeout_surfaces["behavioral_replay"]["summary"]["fail"] == 0
             claim_ok = closeout_surfaces["claim_enforcement"]["summary"]["fail"] == 0
             schema_ok = closeout_overall["schema_conformance_ok"]
-            aggregate_ok = schema_ok and replay_ok and claim_ok
+            aggregate_ok = schema_ok and precondition_ok and precondition_coverage_ok and replay_ok and claim_ok
             items.extend(
                 [
+                    _result(
+                        "CLOSEOUT_PRECONDITION_SUMMARY_PRESENT",
+                        precondition_ok,
+                        ["governance-closeout-summary", "precondition-gate-suite"],
+                        "Precondition-gate closeout summary is present and reports zero failures.",
+                    ),
+                    _result(
+                        "CLOSEOUT_PRECONDITION_COVERAGE_PRESENT",
+                        precondition_coverage_ok,
+                        ["governance-closeout-summary", "precondition-gate-suite"],
+                        "Precondition-gate coverage summary exposes negation, boundary, and positive groups.",
+                    ),
                     _result("CLOSEOUT_REPLAY_SUMMARY_PRESENT", replay_ok, ["governance-closeout-summary"], "Replay closeout summary is present and reports zero failures."),
                     _result("CLOSEOUT_CLAIM_SUMMARY_PRESENT", claim_ok, ["governance-closeout-summary"], "Claim closeout summary is present and reports zero failures."),
                     _result("CLOSEOUT_SCHEMA_CONFORMANCE_PRESENT", schema_ok, ["governance-closeout-summary", "schema-conformance"], "Closeout surfaces report schema conformance cleanly."),

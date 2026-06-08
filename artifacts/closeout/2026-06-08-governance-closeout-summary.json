@@ -1,0 +1,172 @@
+{
+  "schema_version": "0.1",
+  "name": "governance-closeout-summary",
+  "generated_from": {
+    "precondition_gate_artifact": "artifacts\\precondition-gate\\2026-06-08-precondition-gate-suite.json",
+    "behavioral_replay_artifact": "artifacts\\replay-results\\2026-06-08-validator-replay.yaml",
+    "claim_enforcement_artifact": "artifacts\\claim-enforcement\\checker-tests\\2026-06-08-claim-enforcement-suite.json",
+    "precondition_gate_conformance": "artifacts\\schema-conformance\\2026-06-08-precondition-gate-conformance.json",
+    "behavioral_replay_conformance": "artifacts\\schema-conformance\\2026-06-08-validator-replay-conformance.json",
+    "claim_enforcement_conformance": "artifacts\\schema-conformance\\2026-06-08-claim-enforcement-conformance.json"
+  },
+  "surfaces": {
+    "precondition_gate": {
+      "artifact_family": "precondition_gate",
+      "suite_id": "precondition-gate-2026-06-08",
+      "execution_surface": "validator_backed_deterministic_precondition_gate",
+      "coverage_summary": {
+        "groups": {
+          "negation": {
+            "count": 12,
+            "case_ids": [
+              "PG-001",
+              "PG-RESET-NEG-001",
+              "PG-002",
+              "PG-HS-NEG-001",
+              "PG-004",
+              "PG-ASSIGN-NEG-001",
+              "PG-006",
+              "PG-CDC-NEG-001",
+              "PG-CDC-NEG-002",
+              "PG-CDC-NEG-003",
+              "PG-008",
+              "PG-FSM-NEG-001"
+            ]
+          },
+          "boundary": {
+            "count": 3,
+            "case_ids": [
+              "PG-RESET-BOUNDARY-001",
+              "PG-HS-BOUNDARY-001",
+              "PG-CDC-BOUNDARY-001"
+            ]
+          },
+          "positive": {
+            "count": 5,
+            "case_ids": [
+              "PG-003",
+              "PG-005",
+              "PG-007",
+              "PG-CDC-POS-001",
+              "PG-009"
+            ]
+          }
+        },
+        "total_cases": 20
+      },
+      "summary": {
+        "total": 20,
+        "pass": 20,
+        "fail": 0,
+        "not_executed": 0
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
+    },
+    "behavioral_replay": {
+      "artifact_family": "behavioral_replay",
+      "suite_id": "validator-replay-2026-06-08",
+      "execution_surface": "validator_backed_deterministic_replay",
+      "coverage_summary": {
+        "groups": {
+          "precondition": {
+            "count": 5,
+            "case_ids": [
+              "BR-001",
+              "BR-002",
+              "BR-003",
+              "BR-004",
+              "BR-006"
+            ],
+            "rules": [
+              "ASSIGNMENT_SEMANTICS_REQUIRED",
+              "FSM_CONTRACT_REQUIRED",
+              "HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+              "RESET_DEFINITION_REQUIRED"
+            ]
+          },
+          "claim_boundary": {
+            "count": 1,
+            "case_ids": [
+              "BR-005"
+            ],
+            "rules": [
+              "GENERAL_CLAIM_BOUNDARY"
+            ]
+          },
+          "cdc": {
+            "count": 1,
+            "case_ids": [
+              "BR-007"
+            ],
+            "rules": [
+              "CDC_STRATEGY_REQUIRED"
+            ]
+          }
+        },
+        "total_cases": 7
+      },
+      "summary": {
+        "total": 7,
+        "pass": 7,
+        "fail": 0,
+        "not_executed": 0,
+        "rules_covered": 6
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
+    },
+    "claim_enforcement": {
+      "artifact_family": "claim_enforcement",
+      "suite_id": "claim-enforcement-2026-06-08",
+      "execution_surface": "validator_backed_deterministic_claim_enforcement",
+      "coverage_summary": {
+        "groups": {
+          "baseline": {
+            "count": 1,
+            "case_ids": [
+              "baseline"
+            ]
+          },
+          "drift": {
+            "count": 2,
+            "case_ids": [
+              "drift_injection_same_evidence",
+              "same_evidence_posture_escalation"
+            ]
+          },
+          "boundary": {
+            "count": 3,
+            "case_ids": [
+              "implicit_completion_wording",
+              "borrowed_evidence_previous_run",
+              "partial_preconditions_boundary"
+            ]
+          },
+          "blocked": {
+            "count": 1,
+            "case_ids": [
+              "missing_preconditions_strong_claim"
+            ]
+          }
+        },
+        "total_cases": 7
+      },
+      "summary": {
+        "total": 7,
+        "pass": 6,
+        "fail": 0,
+        "not_executed": 1
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
+    }
+  },
+  "overall": {
+    "schema_conformance_ok": true,
+    "precondition_fail": 0,
+    "replay_fail": 0,
+    "claim_fail": 0,
+    "claim_not_executed": 1
+  }
+}

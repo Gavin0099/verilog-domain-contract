@@ -19,6 +19,8 @@ from scripts.governance_artifact_paths import (
     closeout_summary_conformance_path,
     closeout_summary_path,
     default_artifact_tag,
+    precondition_gate_artifact_path,
+    precondition_gate_conformance_path,
     replay_artifact_path,
     replay_conformance_path,
     reviewer_bundle_manifest_path,
@@ -32,6 +34,8 @@ def _rel(path: Path) -> str:
 
 
 def build_manifest(artifact_tag: str) -> dict[str, object]:
+    precondition_artifact = precondition_gate_artifact_path(REPO_ROOT, artifact_tag)
+    precondition_conformance = precondition_gate_conformance_path(REPO_ROOT, artifact_tag)
     replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
     replay_conformance = replay_conformance_path(REPO_ROOT, artifact_tag)
     claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
@@ -48,6 +52,11 @@ def build_manifest(artifact_tag: str) -> dict[str, object]:
         "name": "governance-bundle-manifest",
         "artifact_tag": artifact_tag,
         "bundles": [
+            {
+                "bundle_name": "governance-precondition-artifacts",
+                "purpose": "Precondition-gate evidence, grouped coverage summary, and precondition schema conformance.",
+                "files": [_rel(precondition_artifact), _rel(precondition_conformance)],
+            },
             {
                 "bundle_name": "governance-replay-artifacts",
                 "purpose": "Replay rule-behavior evidence and replay schema conformance.",

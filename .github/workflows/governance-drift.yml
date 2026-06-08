@@ -94,6 +94,14 @@ jobs:
           python scripts/build_governance_bundle_manifest.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_governance_bundle_manifest_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
 
+      - name: Upload precondition artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-precondition-artifacts
+          path: |
+            artifacts/precondition-gate/*
+            artifacts/schema-conformance/*-precondition-gate-conformance.json
+
       - name: Upload replay artifacts
         uses: actions/upload-artifact@v4
         with:

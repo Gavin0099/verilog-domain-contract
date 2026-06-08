@@ -1,0 +1,6 @@
+{
+  "schema": "schemas\\claim-enforcement-results.yaml",
+  "artifact": "artifacts\\claim-enforcement\\checker-tests\\2026-06-08-claim-enforcement-suite.json",
+  "ok": true,
+  "errors": []
+}

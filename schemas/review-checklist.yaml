@@ -83,6 +83,12 @@ sections:
   - id: governance_closeout
     required: true
     items:
+      - id: CLOSEOUT_PRECONDITION_SUMMARY_PRESENT
+        question: Is a precondition-gate closeout summary artifact present and passing?
+        severity: high
+      - id: CLOSEOUT_PRECONDITION_COVERAGE_PRESENT
+        question: Does the precondition-gate closeout surface expose grouped coverage for negation, boundary, and positive cases?
+        severity: high
       - id: CLOSEOUT_REPLAY_SUMMARY_PRESENT
         question: Is a behavioral replay closeout summary artifact present and passing?
         severity: high

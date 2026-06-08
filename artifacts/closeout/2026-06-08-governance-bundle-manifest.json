@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1",
+  "name": "governance-bundle-manifest",
+  "artifact_tag": "2026-06-08",
+  "bundles": [
+    {
+      "bundle_name": "governance-precondition-artifacts",
+      "purpose": "Precondition-gate evidence, grouped coverage summary, and precondition schema conformance.",
+      "files": [
+        "artifacts/precondition-gate/2026-06-08-precondition-gate-suite.json",
+        "artifacts/schema-conformance/2026-06-08-precondition-gate-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-replay-artifacts",
+      "purpose": "Replay rule-behavior evidence and replay schema conformance.",
+      "files": [
+        "artifacts/replay-results/2026-06-08-validator-replay.yaml",
+        "artifacts/schema-conformance/2026-06-08-validator-replay-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-claim-artifacts",
+      "purpose": "Claim-enforcement evidence and claim schema conformance.",
+      "files": [
+        "artifacts/claim-enforcement/checker-tests/2026-06-08-claim-enforcement-suite.json",
+        "artifacts/schema-conformance/2026-06-08-claim-enforcement-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-closeout-artifacts",
+      "purpose": "Aggregate closeout summary/report and closeout schema conformance.",
+      "files": [
+        "artifacts/closeout/2026-06-08-governance-closeout-summary.json",
+        "artifacts/closeout/2026-06-08-governance-closeout-summary.md",
+        "artifacts/schema-conformance/2026-06-08-governance-closeout-summary-conformance.json",
+        "artifacts/schema-conformance/2026-06-08-governance-closeout-report-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-reviewer-artifacts",
+      "purpose": "Executable reviewer verdict plus reviewer-verdict schema conformance and bundle index.",
+      "files": [
+        "artifacts/closeout/2026-06-08-reviewer-checklist-verdict.json",
+        "artifacts/schema-conformance/2026-06-08-reviewer-checklist-verdict-conformance.json",
+        "artifacts/closeout/2026-06-08-governance-bundle-manifest.json"
+      ]
+    }
+  ]
+}

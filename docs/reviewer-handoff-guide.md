@@ -8,11 +8,24 @@ This guide tells a reviewer which governance artifact bundle to download first a
 - Then open:
   - `artifacts/closeout/<artifact-tag>-governance-bundle-manifest.json`
 - This manifest tells you:
-  - which four bundles exist for that tag
+  - which five bundles exist for that tag
   - what each bundle is for
   - which files belong to each bundle
 
 ## 2. Which Bundle to Download
+
+### If you are reviewing precondition-gate completeness coverage
+
+- Download: `governance-precondition-artifacts`
+- Read first:
+  - `artifacts/precondition-gate/<artifact-tag>-precondition-gate-suite.json`
+- Read second:
+  - `artifacts/schema-conformance/<artifact-tag>-precondition-gate-conformance.json`
+
+Use this bundle when the question is:
+- did the precondition gate cover negation, boundary, and positive cases
+- did the deterministic precondition suite pass cleanly
+- is the precondition-gate artifact schema-clean
 
 ### If you are reviewing rule-behavior enforcement
 
@@ -52,7 +65,7 @@ Use this bundle when the question is:
   - `artifacts/schema-conformance/<artifact-tag>-governance-closeout-report-conformance.json`
 
 Use this bundle when the question is:
-- did replay and claim results aggregate cleanly
+- did precondition, replay, and claim results aggregate cleanly
 - is the closeout summary internally consistent
 - are the closeout JSON and markdown outputs schema-clean
 
@@ -77,11 +90,13 @@ If you want the shortest possible review path:
 
 1. Read `governance-reviewer-artifacts`
 2. If the verdict looks suspicious, open `governance-closeout-artifacts`
-3. If the problem is rule behavior, open `governance-replay-artifacts`
-4. If the problem is claim posture, open `governance-claim-artifacts`
+3. If the problem is precondition coverage completeness, open `governance-precondition-artifacts`
+4. If the problem is rule behavior, open `governance-replay-artifacts`
+5. If the problem is claim posture, open `governance-claim-artifacts`
 
 ## 4. What Each Bundle Does Not Prove
 
+- precondition bundle does not prove replay or claim-policy correctness
 - replay bundle does not prove full RTL correctness
 - claim bundle does not prove implementation quality
 - closeout bundle does not replace rule-level evidence
@@ -92,6 +107,7 @@ If you want the shortest possible review path:
 This repository is a Verilog domain governance repository.
 
 These bundles provide:
+- precondition-gate completeness evidence
 - rule-behavior evidence
 - claim-boundary evidence
 - reviewer closeout evidence
