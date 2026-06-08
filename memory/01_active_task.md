@@ -253,3 +253,7 @@ Previous gap list (all fixed):
   - `schemas/reviewer-checklist-verdict.yaml` now requires top-level `coverage_summary.precondition_gate`
   - reviewer verdict output now includes `source_artifact`, `total_cases`, and grouped `negation` / `boundary` / `positive` case coverage
   - reviewer verdict schema checker now validates the presence and non-empty shape of those required precondition coverage groups
+- [2026-06-08] Added a single release-style handoff entrypoint:
+  - `scripts/build_governance_release_handoff.py`
+  - `artifacts/closeout/2026-06-08-governance-release-handoff.json`
+  - entrypoint aggregates closeout summary/report, reviewer verdict, and bundle manifest into one reviewer-facing handoff index

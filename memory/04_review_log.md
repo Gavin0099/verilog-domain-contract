@@ -328,3 +328,7 @@
   - top-level `coverage_summary.precondition_gate` added to reviewer verdict artifact
   - payload includes `source_artifact`, `total_cases`, and grouped counts/case_ids for `negation`, `boundary`, and `positive`
   - reviewer verdict schema checker now fails if any required precondition coverage group is missing or empty
+- [2026-06-08] Added `governance-release-handoff` as a single reviewer-facing index:
+  - builder script aggregates `governance-closeout-summary`, reviewer verdict, and governance bundle manifest
+  - release handoff artifact provides one top-level release status plus the recommended review sequence
+  - reviewer handoff guide now points to the release handoff JSON as the fastest entrypoint

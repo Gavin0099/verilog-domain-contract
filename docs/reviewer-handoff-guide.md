@@ -5,6 +5,8 @@ This guide tells a reviewer which governance artifact bundle to download first a
 ## 1. Start Here
 
 - First identify the `artifact-tag` for the run under review.
+- If you want a single release-style entrypoint, open:
+  - `artifacts/closeout/<artifact-tag>-governance-release-handoff.json`
 - Then open:
   - `artifacts/closeout/<artifact-tag>-governance-bundle-manifest.json`
 - This manifest tells you:
@@ -88,11 +90,12 @@ Use this bundle when the question is:
 
 If you want the shortest possible review path:
 
-1. Read `governance-reviewer-artifacts`
-2. If the verdict looks suspicious, open `governance-closeout-artifacts`
-3. If the problem is precondition coverage completeness, open `governance-precondition-artifacts`
-4. If the problem is rule behavior, open `governance-replay-artifacts`
-5. If the problem is claim posture, open `governance-claim-artifacts`
+1. Read `artifacts/closeout/<artifact-tag>-governance-release-handoff.json`
+2. Read `governance-reviewer-artifacts`
+3. If the verdict looks suspicious, open `governance-closeout-artifacts`
+4. If the problem is precondition coverage completeness, open `governance-precondition-artifacts`
+5. If the problem is rule behavior, open `governance-replay-artifacts`
+6. If the problem is claim posture, open `governance-claim-artifacts`
 
 ## 4. What Each Bundle Does Not Prove
 
