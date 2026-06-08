@@ -262,3 +262,11 @@ Previous gap list (all fixed):
   - returns machine-readable status for `closeout_status`, `reviewer_status`, and `release_status`
   - stays compatibility-safe when artifacts are absent by reporting `artifacts_missing` + `emit_closeout_artifacts`
   - returns non-zero only when artifacts exist but closeout/reviewer/handoff are not handoff-ready
+- [2026-06-08] Upgraded `runtime_hooks/core/pre_task_check.py` from compatibility no-op to deterministic precondition-surface reader:
+  - reads precondition-gate artifact + closeout summary for a given `--artifact-tag`
+  - exposes suite/coverage status through admitted `decision_boundary`, `boundary_effect`, `preconditions_checked`, and `snapshot`
+  - stays compatibility-safe when artifacts are absent by reporting advisory `artifacts_missing`
+- [2026-06-08] Upgraded `runtime_hooks/core/session_start.py` from compatibility no-op to deterministic handoff-context reader:
+  - reads release handoff + reviewer verdict for a given `--artifact-tag`
+  - exposes release/reviewer context through admitted `state`, `governance_classification`, and `closeout_context`
+  - stays compatibility-safe when artifacts are absent by reporting advisory `missing_artifacts`

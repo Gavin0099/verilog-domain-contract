@@ -337,3 +337,11 @@
   - emits machine-readable runtime status (`closeout_status`, `reviewer_status`, `release_status`, `recommended_action`)
   - preserves compatibility when artifacts are missing by returning advisory `artifacts_missing`
   - fails closed only when closeout artifacts exist but are not handoff-ready
+- [2026-06-08] Promoted `runtime_hooks/core/pre_task_check.py` into a real precondition/runtime surface:
+  - runtime hook now reads `precondition-gate-suite` and optional closeout aggregate for the requested `--artifact-tag`
+  - emits admitted runtime fields only (`decision_boundary`, `boundary_effect`, `preconditions_checked`, `effect`, `snapshot`)
+  - reports suite/coverage health without crossing expansion-boundary
+- [2026-06-08] Promoted `runtime_hooks/core/session_start.py` into a real handoff-context surface:
+  - runtime hook now reads `governance-release-handoff` and `reviewer-checklist-verdict` for the requested `--artifact-tag`
+  - exposes release/reviewer readiness via admitted `state`, `governance_classification`, and `closeout_context`
+  - remains non-blocking when artifacts are missing, preserving compatibility with quickstart/bootstrap paths
