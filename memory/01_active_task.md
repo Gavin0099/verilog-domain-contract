@@ -249,3 +249,7 @@ Previous gap list (all fixed):
   - `scripts/check_reviewer_checklist.py` now fails reviewer verdicts if precondition closeout coverage is missing `negation`, `boundary`, or `positive` groups
   - CI artifact upload now has a dedicated `governance-precondition-artifacts` bundle and the reviewer manifest/handoff docs now describe five bundles instead of four
   - `schemas/governance-bundle-manifest.yaml` + `scripts/check_governance_bundle_manifest_schema.py` now explicitly require all five bundle names, including the new precondition bundle
+- [2026-06-08] Extended reviewer verdict artifact with machine-readable precondition coverage detail:
+  - `schemas/reviewer-checklist-verdict.yaml` now requires top-level `coverage_summary.precondition_gate`
+  - reviewer verdict output now includes `source_artifact`, `total_cases`, and grouped `negation` / `boundary` / `positive` case coverage
+  - reviewer verdict schema checker now validates the presence and non-empty shape of those required precondition coverage groups

@@ -58,6 +58,35 @@ def validate_verdict(verdict_artifact: Path) -> dict[str, object]:
         errors.append("sections_not_list")
         sections = []
 
+    coverage_summary = payload.get("coverage_summary")
+    if not isinstance(coverage_summary, dict):
+        errors.append("coverage_summary_not_object")
+    else:
+        missing_coverage = _missing_fields(coverage_summary, schema["coverage_summary_fields"])
+        if missing_coverage:
+            errors.append("coverage_summary_missing=" + ",".join(missing_coverage))
+        precondition_coverage = coverage_summary.get("precondition_gate")
+        if not isinstance(precondition_coverage, dict):
+            errors.append("precondition_gate_coverage_not_object")
+        else:
+            missing_precondition = _missing_fields(precondition_coverage, schema["precondition_coverage_fields"])
+            if missing_precondition:
+                errors.append("precondition_gate_coverage_missing=" + ",".join(missing_precondition))
+            groups = precondition_coverage.get("groups")
+            if not isinstance(groups, dict):
+                errors.append("precondition_gate_groups_not_object")
+            else:
+                for group_name in schema.get("required_precondition_groups", []):
+                    payload = groups.get(group_name)
+                    if not isinstance(payload, dict):
+                        errors.append(f"precondition_gate_group_missing={group_name}")
+                        continue
+                    if int(payload.get("count", 0)) <= 0:
+                        errors.append(f"precondition_gate_group_empty={group_name}")
+                    case_ids = payload.get("case_ids")
+                    if not isinstance(case_ids, list):
+                        errors.append(f"precondition_gate_group_case_ids_not_list={group_name}")
+
     for idx, section in enumerate(sections):
         if not isinstance(section, dict):
             errors.append(f"section_{idx}_not_object")

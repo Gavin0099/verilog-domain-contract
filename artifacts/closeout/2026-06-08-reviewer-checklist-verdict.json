@@ -3,6 +3,49 @@
   "name": "reviewer-checklist-verdict",
   "checklist_schema": "schemas\\review-checklist.yaml",
   "closeout_summary": "artifacts\\closeout\\2026-06-08-governance-closeout-summary.json",
+  "coverage_summary": {
+    "precondition_gate": {
+      "source_artifact": "artifacts\\precondition-gate\\2026-06-08-precondition-gate-suite.json",
+      "total_cases": 20,
+      "groups": {
+        "negation": {
+          "count": 12,
+          "case_ids": [
+            "PG-001",
+            "PG-RESET-NEG-001",
+            "PG-002",
+            "PG-HS-NEG-001",
+            "PG-004",
+            "PG-ASSIGN-NEG-001",
+            "PG-006",
+            "PG-CDC-NEG-001",
+            "PG-CDC-NEG-002",
+            "PG-CDC-NEG-003",
+            "PG-008",
+            "PG-FSM-NEG-001"
+          ]
+        },
+        "boundary": {
+          "count": 3,
+          "case_ids": [
+            "PG-RESET-BOUNDARY-001",
+            "PG-HS-BOUNDARY-001",
+            "PG-CDC-BOUNDARY-001"
+          ]
+        },
+        "positive": {
+          "count": 5,
+          "case_ids": [
+            "PG-003",
+            "PG-005",
+            "PG-007",
+            "PG-CDC-POS-001",
+            "PG-009"
+          ]
+        }
+      }
+    }
+  },
   "result": "pass",
   "sections": [
     {

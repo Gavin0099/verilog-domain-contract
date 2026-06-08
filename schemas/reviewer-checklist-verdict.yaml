@@ -7,6 +7,7 @@ fields:
   - name
   - checklist_schema
   - closeout_summary
+  - coverage_summary
   - result
   - sections
 
@@ -21,3 +22,16 @@ item_fields:
   - result
   - evidence
   - rationale
+
+coverage_summary_fields:
+  - precondition_gate
+
+precondition_coverage_fields:
+  - source_artifact
+  - total_cases
+  - groups
+
+required_precondition_groups:
+  - negation
+  - boundary
+  - positive

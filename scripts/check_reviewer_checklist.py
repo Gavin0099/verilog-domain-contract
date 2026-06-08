@@ -67,6 +67,23 @@ def _coverage_groups_present(coverage: dict[str, object], required_groups: list[
     return int(coverage.get("total_cases", 0)) > 0
 
 
+def _extract_precondition_coverage(closeout_surfaces: dict[str, object], precondition_artifact: Path) -> dict[str, object]:
+    coverage = closeout_surfaces["precondition_gate"].get("coverage_summary", {})
+    groups = coverage.get("groups", {}) if isinstance(coverage, dict) else {}
+    return {
+        "source_artifact": str(precondition_artifact.relative_to(REPO_ROOT)),
+        "total_cases": coverage.get("total_cases", 0) if isinstance(coverage, dict) else 0,
+        "groups": {
+            group_name: {
+                "count": group_payload.get("count", 0),
+                "case_ids": group_payload.get("case_ids", []),
+            }
+            for group_name, group_payload in groups.items()
+            if isinstance(group_payload, dict)
+        },
+    }
+
+
 def build_verdict(artifact_tag: str) -> dict[str, object]:
     checklist = _load(CHECKLIST_SCHEMA)
     closeout_summary = closeout_summary_path(REPO_ROOT, artifact_tag)
@@ -192,6 +209,9 @@ def build_verdict(artifact_tag: str) -> dict[str, object]:
         "name": "reviewer-checklist-verdict",
         "checklist_schema": str(CHECKLIST_SCHEMA.relative_to(REPO_ROOT)),
         "closeout_summary": str(closeout_summary.relative_to(REPO_ROOT)),
+        "coverage_summary": {
+            "precondition_gate": _extract_precondition_coverage(closeout_surfaces, precondition_artifact),
+        },
         "result": "pass" if all_pass else "fail",
         "sections": section_results,
     }

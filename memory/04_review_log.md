@@ -324,3 +324,7 @@
   - CI artifact uploads are now symmetric across executable surfaces with a dedicated `governance-precondition-artifacts` bundle
   - bundle manifest and handoff docs now describe five reviewer-facing bundles, including the new precondition bundle
   - manifest schema checker now validates the expected five bundle names instead of the previous hardcoded four-bundle assumption
+- [2026-06-08] Reviewer verdict schema/output now exposes precondition coverage as first-class machine-readable data:
+  - top-level `coverage_summary.precondition_gate` added to reviewer verdict artifact
+  - payload includes `source_artifact`, `total_cases`, and grouped counts/case_ids for `negation`, `boundary`, and `positive`
+  - reviewer verdict schema checker now fails if any required precondition coverage group is missing or empty
