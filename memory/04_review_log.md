@@ -345,3 +345,4 @@
   - runtime hook now reads `governance-release-handoff` and `reviewer-checklist-verdict` for the requested `--artifact-tag`
   - exposes release/reviewer readiness via admitted `state`, `governance_classification`, and `closeout_context`
   - remains non-blocking when artifacts are missing, preserving compatibility with quickstart/bootstrap paths
+- [2026-06-08] Refactored shared runtime artifact access into `runtime_hooks/core/artifact_runtime_context.py` so the three runtime hooks no longer duplicate JSON loading, repo-relative artifact rendering, and missing-artifact list construction.

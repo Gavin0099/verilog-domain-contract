@@ -270,3 +270,7 @@ Previous gap list (all fixed):
   - reads release handoff + reviewer verdict for a given `--artifact-tag`
   - exposes release/reviewer context through admitted `state`, `governance_classification`, and `closeout_context`
   - stays compatibility-safe when artifacts are absent by reporting advisory `missing_artifacts`
+- [2026-06-08] Extracted shared runtime artifact-loading helper:
+  - `runtime_hooks/core/artifact_runtime_context.py`
+  - centralizes `load_json`, repo-relative path rendering, and missing-artifact collection
+  - `session_start`, `pre_task_check`, and `post_task_check` now use the same helper to reduce drift

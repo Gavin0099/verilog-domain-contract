@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import sys
+
+
+from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -17,14 +19,7 @@ from scripts.governance_artifact_paths import (
     default_artifact_tag,
     precondition_gate_artifact_path,
 )
-
-
-def _load_json(path: Path) -> dict[str, object]:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _rel(path: Path) -> str:
-    return str(path.relative_to(REPO_ROOT)).replace("\\", "/")
+from runtime_hooks.core.artifact_runtime_context import load_json, missing_rel_paths, rel_repo
 
 
 def _build_pre_task_payload(artifact_tag: str) -> dict[str, object]:
@@ -32,6 +27,7 @@ def _build_pre_task_payload(artifact_tag: str) -> dict[str, object]:
     closeout_path = closeout_summary_path(REPO_ROOT, artifact_tag)
 
     if not precondition_path.exists():
+        missing = missing_rel_paths([precondition_path])
         payload = {
             "decision_boundary": {
                 "artifact_status": "artifacts_missing",
@@ -46,14 +42,14 @@ def _build_pre_task_payload(artifact_tag: str) -> dict[str, object]:
             "snapshot": {
                 "artifact_tag": artifact_tag,
                 "recommended_action": "emit_precondition_artifact",
-                "missing_artifacts": [_rel(precondition_path)],
+                "missing_artifacts": missing,
             },
         }
         payload["ok"] = True
         return payload
 
-    precondition = _load_json(precondition_path)
-    closeout = _load_json(closeout_path) if closeout_path.exists() else None
+    precondition = load_json(precondition_path)
+    closeout = load_json(closeout_path) if closeout_path.exists() else None
 
     summary = precondition.get("summary", {})
     coverage = precondition.get("coverage_summary", {})
@@ -116,16 +112,16 @@ def _build_pre_task_payload(artifact_tag: str) -> dict[str, object]:
         "observations": [
             {
                 "observation": "precondition_gate_artifact_loaded",
-                "artifact": _rel(precondition_path),
-                "closeout_artifact": _rel(closeout_path) if closeout_path.exists() else None,
+                "artifact": rel_repo(precondition_path),
+                "closeout_artifact": rel_repo(closeout_path) if closeout_path.exists() else None,
             }
         ],
         "snapshot": {
             "artifact_tag": artifact_tag,
             "recommended_action": "proceed_with_runtime_contract" if ok else "review_precondition_surface",
             "artifacts": {
-                "precondition_gate": _rel(precondition_path),
-                "closeout_summary": _rel(closeout_path) if closeout_path.exists() else None,
+                "precondition_gate": rel_repo(precondition_path),
+                "closeout_summary": rel_repo(closeout_path) if closeout_path.exists() else None,
             },
         },
     }

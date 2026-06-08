@@ -5,8 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import sys
+
+from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -18,14 +19,7 @@ from scripts.governance_artifact_paths import (
     release_handoff_index_path,
     reviewer_verdict_path,
 )
-
-
-def _load_json(path: Path) -> dict[str, object]:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _rel(path: Path) -> str:
-    return str(path.relative_to(REPO_ROOT)).replace("\\", "/")
+from runtime_hooks.core.artifact_runtime_context import load_json, missing_rel_paths, rel_repo
 
 
 def _evaluate_closeout(artifact_tag: str) -> dict[str, object]:
@@ -33,7 +27,7 @@ def _evaluate_closeout(artifact_tag: str) -> dict[str, object]:
     reviewer_path = reviewer_verdict_path(REPO_ROOT, artifact_tag)
     handoff_path = release_handoff_index_path(REPO_ROOT, artifact_tag)
     expected = [closeout_path, reviewer_path, handoff_path]
-    missing = [_rel(path) for path in expected if not path.exists()]
+    missing = missing_rel_paths(expected)
 
     if missing:
         return {
@@ -56,9 +50,9 @@ def _evaluate_closeout(artifact_tag: str) -> dict[str, object]:
             },
         }
 
-    closeout = _load_json(closeout_path)
-    reviewer = _load_json(reviewer_path)
-    handoff = _load_json(handoff_path)
+    closeout = load_json(closeout_path)
+    reviewer = load_json(reviewer_path)
+    handoff = load_json(handoff_path)
 
     closeout_ok = (
         bool(closeout["overall"]["schema_conformance_ok"])
@@ -84,9 +78,9 @@ def _evaluate_closeout(artifact_tag: str) -> dict[str, object]:
             "artifact_tag": artifact_tag,
             "recommended_action": "handoff_ready" if ok else "review_closeout_artifacts",
             "artifacts": {
-                "closeout_summary": _rel(closeout_path),
-                "reviewer_verdict": _rel(reviewer_path),
-                "release_handoff": _rel(handoff_path),
+                "closeout_summary": rel_repo(closeout_path),
+                "reviewer_verdict": rel_repo(reviewer_path),
+                "release_handoff": rel_repo(handoff_path),
             },
         },
     }

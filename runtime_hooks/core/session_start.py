@@ -5,8 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import sys
+
+from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -17,14 +18,7 @@ from scripts.governance_artifact_paths import (
     release_handoff_index_path,
     reviewer_verdict_path,
 )
-
-
-def _load_json(path: Path) -> dict[str, object]:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _rel(path: Path) -> str:
-    return str(path.relative_to(REPO_ROOT)).replace("\\", "/")
+from runtime_hooks.core.artifact_runtime_context import load_json, missing_rel_paths, rel_repo
 
 
 def _build_session_payload(artifact_tag: str, task_text: str, task_level: str) -> dict[str, object]:
@@ -32,11 +26,7 @@ def _build_session_payload(artifact_tag: str, task_text: str, task_level: str) -
     reviewer_path = reviewer_verdict_path(REPO_ROOT, artifact_tag)
 
     if not handoff_path.exists() or not reviewer_path.exists():
-        missing = []
-        if not handoff_path.exists():
-            missing.append(_rel(handoff_path))
-        if not reviewer_path.exists():
-            missing.append(_rel(reviewer_path))
+        missing = missing_rel_paths([handoff_path, reviewer_path])
         return {
             "ok": True,
             "project_root": str(REPO_ROOT),
@@ -67,8 +57,8 @@ def _build_session_payload(artifact_tag: str, task_text: str, task_level: str) -
             },
         }
 
-    handoff = _load_json(handoff_path)
-    reviewer = _load_json(reviewer_path)
+    handoff = load_json(handoff_path)
+    reviewer = load_json(reviewer_path)
     release_status = handoff.get("release_status", "unknown")
     reviewer_result = reviewer.get("result", "unknown")
 
