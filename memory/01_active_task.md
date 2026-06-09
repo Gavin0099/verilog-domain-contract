@@ -278,3 +278,7 @@ Previous gap list (all fixed):
   - `claim-enforcement`
   - closeout/reviewer/bundle-manifest/release-handoff surfaces
 - [2026-06-09] Added `scripts/run_runtime_hook_smoke.py` to exercise `runtime_hooks/core/pre_task_check.py`, `session_start.py`, and `post_task_check.py` against one artifact tag and persist a repo-local runtime smoke artifact.
+- [2026-06-09] Wired repo-local runtime smoke into CI:
+  - workflow now emits `governance-release-handoff`
+  - workflow now runs `scripts/run_runtime_hook_smoke.py` under the same `ARTIFACT_TAG`
+  - closeout artifact bundle now uploads release handoff + runtime smoke artifacts

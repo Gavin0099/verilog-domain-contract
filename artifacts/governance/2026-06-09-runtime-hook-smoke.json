@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "name": "runtime-hook-smoke",
   "artifact_tag": "2026-06-09",
-  "generated_at": "2026-06-09T02:25:32.316776+00:00",
+  "generated_at": "2026-06-09T02:53:10.989102+00:00",
   "checks": [
     {
       "hook": "pre_task_check",
