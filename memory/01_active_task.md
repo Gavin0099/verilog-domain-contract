@@ -330,3 +330,7 @@ Previous gap list (all fixed):
   - `artifacts/schema-conformance/2026-06-09-runtime-hook-smoke-conformance.json`
 - [2026-06-09] `build_governance_closeout_summary.py` now consumes the runtime-hook-smoke conformance artifact instead of treating `summary.overall_ok` as a schema-conformance surrogate.
 - [2026-06-09] CI closeout artifact flow now runs runtime-hook-smoke schema validation and uploads the conformance artifact together with runtime smoke and other closeout surfaces.
+- [2026-06-09] Added aggregate coherence checker across closeout summary / release handoff / reviewer verdict:
+  - `scripts/check_governance_aggregate_coherence.py`
+  - `artifacts/governance/2026-06-09-aggregate-coherence.json`
+- [2026-06-09] CI closeout artifact flow now runs aggregate coherence validation and uploads the resulting artifact with the closeout bundle.

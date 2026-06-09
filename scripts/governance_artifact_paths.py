@@ -89,3 +89,7 @@ def runtime_hook_smoke_path(repo_root: Path, tag: str) -> Path:
 
 def runtime_hook_smoke_conformance_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/schema-conformance/{tag}-runtime-hook-smoke-conformance.json"
+
+
+def aggregate_coherence_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/governance/{tag}-aggregate-coherence.json"

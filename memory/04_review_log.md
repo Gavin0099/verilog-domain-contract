@@ -396,3 +396,8 @@
   - `schemas/runtime-hook-smoke.yaml` defines required top-level fields, required per-check fields, and runtime smoke summary fields
   - `scripts/check_runtime_hook_smoke_schema.py` validates emitted runtime hook smoke artifacts and writes `artifacts/schema-conformance/<tag>-runtime-hook-smoke-conformance.json`
   - closeout aggregation now reads this conformance artifact directly, so `runtime_hooks.schema_conformance_ok` means actual schema conformance rather than reusing runtime pass/fail semantics
+- [2026-06-09] Added `check_governance_aggregate_coherence.py` to verify that:
+  - closeout summary fail counts match the corresponding release-handoff surface summaries
+  - reviewer result and section count match handoff reviewer status
+  - release readiness state matches the aggregate inputs from closeout + reviewer
+  - runtime overall_ok and fail count stay aligned between closeout summary and release handoff

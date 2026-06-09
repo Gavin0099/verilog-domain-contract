@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "name": "governance-aggregate-coherence-check",
+  "artifact_tag": "2026-06-09",
+  "ok": true,
+  "checks": {
+    "artifact_tag_match": true,
+    "precondition_summary_matches_handoff": true,
+    "replay_summary_matches_handoff": true,
+    "claim_summary_matches_handoff": true,
+    "runtime_summary_matches_handoff": true,
+    "reviewer_result_matches_handoff": true,
+    "reviewer_sections_match_handoff": true,
+    "release_status_matches_aggregate_inputs": true
+  },
+  "artifacts": {
+    "closeout_summary": "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
+    "release_handoff": "artifacts/closeout/2026-06-09-governance-release-handoff.json",
+    "reviewer_verdict": "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json"
+  }
+}
