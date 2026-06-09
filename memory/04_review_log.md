@@ -384,3 +384,7 @@
   - Problem: `.governance/baseline.yaml` had a Windows-refresh hash (`f3daf503...`) while Linux Actions checked out LF content (`c16617ac...`).
   - Fix: added `.gitattributes` with `AGENTS.base.md text eol=lf`, rewrote `AGENTS.base.md` to LF, and reran `adopt_governance.py --refresh`.
   - Result: `.governance/baseline.yaml` now records `sha256.AGENTS.base.md: c16617acca72...`; local drift/readiness/quickstart all pass, matching the Linux-side expected hash family.
+- [2026-06-09] Reviewer-facing consistency surface is now schema-governed:
+  - `schemas/reviewer-handoff-consistency.yaml` defines required top-level fields, artifact references, and eight required boolean checks
+  - `scripts/check_reviewer_handoff_consistency_schema.py` validates emitted consistency artifacts and writes `artifacts/schema-conformance/<tag>-reviewer-handoff-consistency-conformance.json`
+  - CI reviewer bundle upload now includes this new conformance artifact so reviewer-facing surfaces are consistently schema-backed end-to-end

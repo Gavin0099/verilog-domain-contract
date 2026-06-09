@@ -314,3 +314,8 @@ Previous gap list (all fixed):
   - `governance_drift_checker.py`: PASS (`protected_files_unmodified=PASS`, `severity=ok`)
   - `readiness_audit.py`: PASS
   - `quickstart_smoke.py --contract contract.yaml`: PASS
+- [2026-06-09] Added formal schema + conformance checker for reviewer handoff consistency:
+  - `schemas/reviewer-handoff-consistency.yaml`
+  - `scripts/check_reviewer_handoff_consistency_schema.py`
+  - `artifacts/schema-conformance/2026-06-09-reviewer-handoff-consistency-conformance.json`
+- [2026-06-09] CI reviewer artifact flow now runs reviewer-handoff-consistency schema validation and uploads the resulting conformance artifact together with verdict / manifest / consistency outputs.

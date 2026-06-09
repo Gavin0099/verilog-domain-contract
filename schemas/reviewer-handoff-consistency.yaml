@@ -1,0 +1,26 @@
+schema_version: "0.1"
+name: reviewer-handoff-consistency-check
+description: Machine-readable consistency result across governance release handoff, reviewer verdict, and bundle manifest.
+
+fields:
+  - schema_version
+  - name
+  - artifact_tag
+  - ok
+  - checks
+  - artifacts
+
+artifacts_fields:
+  - release_handoff
+  - bundle_manifest
+  - reviewer_verdict
+
+required_checks:
+  - artifact_tag_match
+  - reviewer_verdict_entrypoint_match
+  - bundle_manifest_entrypoint_match
+  - reviewer_bundle_contains_verdict
+  - closeout_bundle_contains_handoff
+  - reviewer_result_matches_handoff_surface
+  - reviewer_section_count_matches_handoff_surface
+  - release_status_consistent_with_verdict
