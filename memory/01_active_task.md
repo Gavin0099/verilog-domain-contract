@@ -295,3 +295,4 @@ Previous gap list (all fixed):
 - [2026-06-09] Extended `governance-release-handoff` to expose runtime hook smoke directly:
   - release readiness now also requires `runtime_hook_fail = 0`
   - handoff `surface_status` and `coverage_snapshot` now include runtime hook smoke summary
+- [2026-06-09] Reviewer-facing bundle description now explicitly includes release handoff and runtime hook smoke inside the closeout bundle so reviewer packaging matches actual closeout/runtime surfaces.

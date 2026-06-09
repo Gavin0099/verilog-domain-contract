@@ -23,6 +23,7 @@ from scripts.governance_artifact_paths import (
     precondition_gate_conformance_path,
     replay_artifact_path,
     replay_conformance_path,
+    release_handoff_index_path,
     reviewer_bundle_manifest_path,
     reviewer_verdict_conformance_path,
     reviewer_verdict_path,
@@ -42,6 +43,7 @@ def build_manifest(artifact_tag: str) -> dict[str, object]:
     claim_conformance = claim_conformance_path(REPO_ROOT, artifact_tag)
     closeout_summary = closeout_summary_path(REPO_ROOT, artifact_tag)
     closeout_report = closeout_report_path(REPO_ROOT, artifact_tag)
+    release_handoff = release_handoff_index_path(REPO_ROOT, artifact_tag)
     closeout_summary_conformance = closeout_summary_conformance_path(REPO_ROOT, artifact_tag)
     closeout_report_conformance = closeout_report_conformance_path(REPO_ROOT, artifact_tag)
     reviewer_verdict = reviewer_verdict_path(REPO_ROOT, artifact_tag)
@@ -69,17 +71,19 @@ def build_manifest(artifact_tag: str) -> dict[str, object]:
             },
             {
                 "bundle_name": "governance-closeout-artifacts",
-                "purpose": "Aggregate closeout summary/report and closeout schema conformance.",
+                "purpose": "Aggregate closeout summary/report, release handoff, runtime smoke, and closeout schema conformance.",
                 "files": [
                     _rel(closeout_summary),
                     _rel(closeout_report),
+                    _rel(release_handoff),
+                    f"artifacts/governance/{artifact_tag}-runtime-hook-smoke.json",
                     _rel(closeout_summary_conformance),
                     _rel(closeout_report_conformance),
                 ],
             },
             {
                 "bundle_name": "governance-reviewer-artifacts",
-                "purpose": "Executable reviewer verdict plus reviewer-verdict schema conformance and bundle index.",
+                "purpose": "Executable reviewer verdict, reviewer-verdict schema conformance, and bundle index for final reviewer-facing handoff.",
                 "files": [
                     _rel(reviewer_verdict),
                     _rel(reviewer_verdict_conformance),

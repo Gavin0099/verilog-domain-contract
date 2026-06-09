@@ -29,17 +29,19 @@
     },
     {
       "bundle_name": "governance-closeout-artifacts",
-      "purpose": "Aggregate closeout summary/report and closeout schema conformance.",
+      "purpose": "Aggregate closeout summary/report, release handoff, runtime smoke, and closeout schema conformance.",
       "files": [
         "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
         "artifacts/closeout/2026-06-09-governance-closeout-summary.md",
+        "artifacts/closeout/2026-06-09-governance-release-handoff.json",
+        "artifacts/governance/2026-06-09-runtime-hook-smoke.json",
         "artifacts/schema-conformance/2026-06-09-governance-closeout-summary-conformance.json",
         "artifacts/schema-conformance/2026-06-09-governance-closeout-report-conformance.json"
       ]
     },
     {
       "bundle_name": "governance-reviewer-artifacts",
-      "purpose": "Executable reviewer verdict plus reviewer-verdict schema conformance and bundle index.",
+      "purpose": "Executable reviewer verdict, reviewer-verdict schema conformance, and bundle index for final reviewer-facing handoff.",
       "files": [
         "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json",
         "artifacts/schema-conformance/2026-06-09-reviewer-checklist-verdict-conformance.json",

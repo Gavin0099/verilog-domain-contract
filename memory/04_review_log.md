@@ -369,3 +369,6 @@
   - `build_governance_release_handoff.py` includes `surface_status.runtime_hooks`
   - release gate now also requires `closeout.overall.runtime_hook_fail == 0`
   - reviewer handoff guide explicitly tells reviewers to inspect runtime hook coherence from closeout/handoff when runtime readiness is in question
+- [2026-06-09] Bundle-manifest and framework-surface mapping were aligned with current runtime-aware handoff model:
+  - closeout bundle purpose now explicitly includes `governance-release-handoff` and `runtime-hook-smoke`
+  - reviewer bundle purpose remains verdict + conformance + manifest only

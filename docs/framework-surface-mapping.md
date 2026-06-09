@@ -106,16 +106,17 @@ Behavior enforcement requires replay validation using:
   - `governance-precondition-artifacts`: precondition-gate evidence, grouped coverage summary, and precondition schema conformance for gate-completeness review
   - `governance-replay-artifacts`: replay evidence and replay schema conformance for rule-behavior review
   - `governance-claim-artifacts`: claim-enforcement evidence and claim schema conformance for claim-boundary review
-  - `governance-closeout-artifacts`: aggregate closeout JSON/markdown and closeout schema conformance for closeout review
-  - `governance-reviewer-artifacts`: executable reviewer verdict, reviewer-verdict conformance, and bundle manifest for reviewer handoff
+  - `governance-closeout-artifacts`: aggregate closeout JSON/markdown, release handoff, runtime hook smoke, and closeout schema conformance for closeout/runtime-readiness review
+  - `governance-reviewer-artifacts`: executable reviewer verdict, reviewer-verdict conformance, and bundle manifest for final reviewer handoff
 - reviewer bundle index:
   - `artifacts/closeout/<artifact-tag>-governance-bundle-manifest.json`
 - aggregate closeout files:
   - `artifacts/closeout/<artifact-tag>-governance-closeout-summary.json`
   - `artifacts/closeout/<artifact-tag>-governance-closeout-summary.md`
+  - `artifacts/closeout/<artifact-tag>-governance-release-handoff.json`
 - required backing evidence by bundle:
   - precondition: `artifacts/precondition-gate/<artifact-tag>-precondition-gate-suite.json`, `artifacts/schema-conformance/<artifact-tag>-precondition-gate-conformance.json`
   - replay: `artifacts/replay-results/<artifact-tag>-validator-replay.yaml`, `artifacts/schema-conformance/<artifact-tag>-validator-replay-conformance.json`
   - claim: `artifacts/claim-enforcement/checker-tests/<artifact-tag>-claim-enforcement-suite.json`, `artifacts/schema-conformance/<artifact-tag>-claim-enforcement-conformance.json`
-  - closeout: `artifacts/schema-conformance/<artifact-tag>-governance-closeout-summary-conformance.json`, `artifacts/schema-conformance/<artifact-tag>-governance-closeout-report-conformance.json`
+  - closeout: `artifacts/governance/<artifact-tag>-runtime-hook-smoke.json`, `artifacts/schema-conformance/<artifact-tag>-governance-closeout-summary-conformance.json`, `artifacts/schema-conformance/<artifact-tag>-governance-closeout-report-conformance.json`
   - reviewer: `artifacts/closeout/<artifact-tag>-reviewer-checklist-verdict.json`, `artifacts/schema-conformance/<artifact-tag>-reviewer-checklist-verdict-conformance.json`
