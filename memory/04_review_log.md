@@ -360,3 +360,7 @@
   - `build_governance_closeout_summary.py` now records runtime hook smoke in `generated_from`, `surfaces.runtime_hooks`, and `overall.runtime_hook_fail`
   - closeout markdown now renders a dedicated `## Runtime Hooks` section
   - reviewer closeout section now requires `CLOSEOUT_RUNTIME_HOOK_SMOKE_PRESENT`
+- [2026-06-09] Merge decision for current governance lane:
+  - `origin/main...codex/memory-authority-observation` = `0 9`
+  - branch is linear over `origin/main`, so mainline integration can use fast-forward merge without a merge commit
+  - future modifications should resume on `main`

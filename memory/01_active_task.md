@@ -285,3 +285,6 @@ Previous gap list (all fixed):
 - [2026-06-09] Integrated `runtime_hook_smoke` into closeout/reviewer consumption:
   - closeout summary/report now treat runtime hooks as a fourth executable governance surface
   - reviewer verdict now requires runtime hook smoke to pass inside `governance_closeout`
+- [2026-06-09] Branch integration decision:
+  - `codex/memory-authority-observation` is ready to fast-forward into `main`
+  - subsequent repo work should continue directly on `main`
