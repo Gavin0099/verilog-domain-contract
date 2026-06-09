@@ -305,3 +305,12 @@ Previous gap list (all fixed):
   - records `surface_status.reviewer_verdict.consistency_ok`
   - treats failed reviewer-facing consistency as `review_required`
 - [2026-06-09] CI emit order now rebuilds release handoff after `check_reviewer_handoff_consistency.py` so the final handoff artifact includes the consistency result instead of leaving it as a disconnected downstream receipt.
+- [2026-06-09] Fixed CI-only `protected_files_unmodified` drift failure for `AGENTS.base.md`:
+  - root cause was cross-platform line-ending drift (`w/crlf` on Windows vs `lf` on Linux) changing the protected-file hash recorded in `.governance/baseline.yaml`
+  - added `.gitattributes` entry `AGENTS.base.md text eol=lf`
+  - normalized `AGENTS.base.md` to LF in the working tree
+  - reran `adopt_governance.py --refresh` so baseline now records Linux-stable hash `c16617acca72...`
+- [2026-06-09] Validation after protected-hash portability fix:
+  - `governance_drift_checker.py`: PASS (`protected_files_unmodified=PASS`, `severity=ok`)
+  - `readiness_audit.py`: PASS
+  - `quickstart_smoke.py --contract contract.yaml`: PASS

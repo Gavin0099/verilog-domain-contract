@@ -11,15 +11,15 @@
 # ── PROVENANCE ────────────────────────────────────────────────────────────────
 schema_version: "1"
 baseline_version: 1.0.0
-source_commit: fb51614d8883ee73fb02146250fafd012e93bafb
-framework_root: E:\BackUp\Git_EE\ai-governance-framework
-initialized_at: 2026-06-04T10:49:45Z
+source_commit: 14d3f51c1a9d8ce14db33d3448e47f34a65fea47
+framework_root: E:\BackUp\Git_EE\verilog-domain-contract\additional\ai-governance-framework
+initialized_at: 2026-06-09T05:41:43Z
 initialized_by: governance_tools/adopt_governance.py
 
 # ── INTEGRITY ─────────────────────────────────────────────────────────────────
 # sha256.<file>: hash recorded at init/refresh time; "protected" files are hash-verified
 # overridable.<file>: protected = must not change | overridable = repo may extend freely
-sha256.AGENTS.base.md: f3daf5037a36606d546dc8d621dbb32963c6e3067f419187e4afd6f2d6dc14a7
+sha256.AGENTS.base.md: c16617acca72b517fe6f6280e75372a1b30ef7b10edd6ed9000a1a948ca691b9
 sha256.PLAN.md: e01940b92024e5afc44bdd14b11ce0deeb55f876ae135695c54a1f8ad24bf8f6
 sha256.contract.yaml: bb9c47ff0bd4a1f502a364ac098fbd70c6f71070409371ff966e211809aa0bec
 sha256.AGENTS.md: 5208730d31161ecac5a8d3e578a44a0bafd1f908e631a9ddb0dee259e6ab6c72

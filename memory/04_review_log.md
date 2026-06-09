@@ -380,3 +380,7 @@
   - `surface_status.reviewer_verdict` now exposes `consistency_ok` and per-check status
   - release readiness falls back to `review_required` if reviewer-facing consistency is false
 - [2026-06-09] CI emit order updated so `build_governance_release_handoff.py` runs once before and once after `check_reviewer_handoff_consistency.py`; the second pass persists the final handoff artifact with embedded consistency status.
+- [2026-06-09] Resolved CI critical drift finding `protected_files_unmodified` for `AGENTS.base.md`.
+  - Problem: `.governance/baseline.yaml` had a Windows-refresh hash (`f3daf503...`) while Linux Actions checked out LF content (`c16617ac...`).
+  - Fix: added `.gitattributes` with `AGENTS.base.md text eol=lf`, rewrote `AGENTS.base.md` to LF, and reran `adopt_governance.py --refresh`.
+  - Result: `.governance/baseline.yaml` now records `sha256.AGENTS.base.md: c16617acca72...`; local drift/readiness/quickstart all pass, matching the Linux-side expected hash family.
