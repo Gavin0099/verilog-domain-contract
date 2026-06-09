@@ -1,0 +1,37 @@
+schema_version: "0.1"
+name: governance-release-handoff
+description: Single reviewer-facing handoff index that aggregates closeout, reviewer verdict, bundle manifest, and runtime-aware readiness.
+
+fields:
+  - schema_version
+  - name
+  - artifact_tag
+  - release_status
+  - primary_entrypoints
+  - surface_status
+  - coverage_snapshot
+  - recommended_review_sequence
+  - bundles
+
+entrypoint_fields:
+  - closeout_summary
+  - closeout_report
+  - reviewer_verdict
+  - bundle_manifest
+
+surface_status_fields:
+  - precondition_gate
+  - behavioral_replay
+  - claim_enforcement
+  - runtime_hooks
+  - reviewer_verdict
+
+coverage_snapshot_fields:
+  - precondition_gate
+  - behavioral_replay
+  - claim_enforcement
+  - runtime_hooks
+
+allowed_release_status:
+  - ready_for_handoff
+  - review_required

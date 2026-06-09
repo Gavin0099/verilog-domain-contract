@@ -94,6 +94,7 @@ jobs:
           python scripts/build_governance_bundle_manifest.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_governance_bundle_manifest_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/build_governance_release_handoff.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/check_governance_release_handoff_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_reviewer_handoff_consistency.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_reviewer_handoff_consistency_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/build_governance_release_handoff.py --artifact-tag "$ARTIFACT_TAG" --format human
@@ -134,6 +135,7 @@ jobs:
             artifacts/governance/*-runtime-hook-smoke.json
             artifacts/schema-conformance/*-governance-closeout-summary-conformance.json
             artifacts/schema-conformance/*-governance-closeout-report-conformance.json
+            artifacts/schema-conformance/*-governance-release-handoff-conformance.json
 
       - name: Upload reviewer artifacts
         uses: actions/upload-artifact@v4

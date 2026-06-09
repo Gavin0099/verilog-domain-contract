@@ -319,3 +319,8 @@ Previous gap list (all fixed):
   - `scripts/check_reviewer_handoff_consistency_schema.py`
   - `artifacts/schema-conformance/2026-06-09-reviewer-handoff-consistency-conformance.json`
 - [2026-06-09] CI reviewer artifact flow now runs reviewer-handoff-consistency schema validation and uploads the resulting conformance artifact together with verdict / manifest / consistency outputs.
+- [2026-06-09] Added formal schema + conformance checker for release handoff:
+  - `schemas/governance-release-handoff.yaml`
+  - `scripts/check_governance_release_handoff_schema.py`
+  - `artifacts/schema-conformance/2026-06-09-governance-release-handoff-conformance.json`
+- [2026-06-09] CI closeout artifact flow now runs release-handoff schema validation and uploads the conformance artifact together with closeout summary/report, release handoff, and runtime smoke.

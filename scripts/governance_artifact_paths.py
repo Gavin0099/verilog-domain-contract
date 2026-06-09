@@ -71,6 +71,10 @@ def release_handoff_index_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/closeout/{tag}-governance-release-handoff.json"
 
 
+def release_handoff_conformance_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/schema-conformance/{tag}-governance-release-handoff-conformance.json"
+
+
 def reviewer_handoff_consistency_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/governance/{tag}-reviewer-handoff-consistency.json"
 
