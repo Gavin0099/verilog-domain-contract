@@ -365,3 +365,7 @@
   - `origin/main...codex/memory-authority-observation` = `0 9`
   - branch is linear over `origin/main`, so mainline integration can use fast-forward merge without a merge commit
   - future modifications should resume on `main`
+- [2026-06-09] Release handoff surface now consumes runtime hook smoke directly:
+  - `build_governance_release_handoff.py` includes `surface_status.runtime_hooks`
+  - release gate now also requires `closeout.overall.runtime_hook_fail == 0`
+  - reviewer handoff guide explicitly tells reviewers to inspect runtime hook coherence from closeout/handoff when runtime readiness is in question

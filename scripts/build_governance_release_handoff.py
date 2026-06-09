@@ -45,6 +45,7 @@ def build_handoff(artifact_tag: str) -> dict[str, object]:
         and closeout["overall"]["precondition_fail"] == 0
         and closeout["overall"]["replay_fail"] == 0
         and closeout["overall"]["claim_fail"] == 0
+        and closeout["overall"]["runtime_hook_fail"] == 0
         and reviewer["result"] == "pass"
     )
 
@@ -63,6 +64,7 @@ def build_handoff(artifact_tag: str) -> dict[str, object]:
             "precondition_gate": closeout["surfaces"]["precondition_gate"]["summary"],
             "behavioral_replay": closeout["surfaces"]["behavioral_replay"]["summary"],
             "claim_enforcement": closeout["surfaces"]["claim_enforcement"]["summary"],
+            "runtime_hooks": closeout["surfaces"]["runtime_hooks"]["summary"],
             "reviewer_verdict": {
                 "result": reviewer["result"],
                 "sections": len(reviewer["sections"]),
@@ -72,6 +74,12 @@ def build_handoff(artifact_tag: str) -> dict[str, object]:
             "precondition_gate": reviewer["coverage_summary"]["precondition_gate"],
             "behavioral_replay": closeout["surfaces"]["behavioral_replay"]["coverage_summary"],
             "claim_enforcement": closeout["surfaces"]["claim_enforcement"]["coverage_summary"],
+            "runtime_hooks": {
+                "total_checks": closeout["surfaces"]["runtime_hooks"]["summary"]["total"],
+                "pass": closeout["surfaces"]["runtime_hooks"]["summary"]["pass"],
+                "fail": closeout["surfaces"]["runtime_hooks"]["summary"]["fail"],
+                "overall_ok": closeout["surfaces"]["runtime_hooks"]["summary"]["overall_ok"],
+            },
         },
         "recommended_review_sequence": [
             {

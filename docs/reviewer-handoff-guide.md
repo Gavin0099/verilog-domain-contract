@@ -68,6 +68,7 @@ Use this bundle when the question is:
 
 Use this bundle when the question is:
 - did precondition, replay, and claim results aggregate cleanly
+- did repo-local runtime hooks pass coherently under the same artifact-tag
 - is the closeout summary internally consistent
 - are the closeout JSON and markdown outputs schema-clean
 
@@ -93,9 +94,10 @@ If you want the shortest possible review path:
 1. Read `artifacts/closeout/<artifact-tag>-governance-release-handoff.json`
 2. Read `governance-reviewer-artifacts`
 3. If the verdict looks suspicious, open `governance-closeout-artifacts`
-4. If the problem is precondition coverage completeness, open `governance-precondition-artifacts`
-5. If the problem is rule behavior, open `governance-replay-artifacts`
-6. If the problem is claim posture, open `governance-claim-artifacts`
+4. If the concern is runtime readiness or hook coherence, inspect `runtime_hook_fail` and `surfaces.runtime_hooks`
+5. If the problem is precondition coverage completeness, open `governance-precondition-artifacts`
+6. If the problem is rule behavior, open `governance-replay-artifacts`
+7. If the problem is claim posture, open `governance-claim-artifacts`
 
 ## 4. What Each Bundle Does Not Prove
 

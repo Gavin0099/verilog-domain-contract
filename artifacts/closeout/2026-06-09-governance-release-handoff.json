@@ -29,6 +29,12 @@
       "fail": 0,
       "not_executed": 1
     },
+    "runtime_hooks": {
+      "total": 3,
+      "pass": 3,
+      "fail": 0,
+      "overall_ok": true
+    },
     "reviewer_verdict": {
       "result": "pass",
       "sections": 6
@@ -146,6 +152,12 @@
         }
       },
       "total_cases": 7
+    },
+    "runtime_hooks": {
+      "total_checks": 3,
+      "pass": 3,
+      "fail": 0,
+      "overall_ok": true
     }
   },
   "recommended_review_sequence": [

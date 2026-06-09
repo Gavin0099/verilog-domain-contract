@@ -292,3 +292,6 @@ Previous gap list (all fixed):
 - [2026-06-09] Branch integration decision:
   - `codex/memory-authority-observation` is ready to fast-forward into `main`
   - subsequent repo work should continue directly on `main`
+- [2026-06-09] Extended `governance-release-handoff` to expose runtime hook smoke directly:
+  - release readiness now also requires `runtime_hook_fail = 0`
+  - handoff `surface_status` and `coverage_snapshot` now include runtime hook smoke summary
