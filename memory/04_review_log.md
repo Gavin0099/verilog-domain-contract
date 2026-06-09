@@ -345,3 +345,11 @@
   - runtime hook now reads `governance-release-handoff` and `reviewer-checklist-verdict` for the requested `--artifact-tag`
   - exposes release/reviewer readiness via admitted `state`, `governance_classification`, and `closeout_context`
   - remains non-blocking when artifacts are missing, preserving compatibility with quickstart/bootstrap paths
+- [2026-06-09] Latest framework update (`additional/ai-governance-framework` -> `9eb793d`) introduced a hard version-compatibility gate in framework `session_start`; `quickstart_smoke` failed with `version_compatibility_unsupported` because `.governance/version_manifest.yaml` was missing.
+- [2026-06-09] Added minimal repo-side `.governance/version_manifest.yaml` with all required keys:
+  - `governance_version: 0.4.0`
+  - `contract_schema_version: 1.2.0`
+  - `runtime_entrypoint_version: 1.1.0`
+  - `hook_wiring_version: 1.0.0`
+  - `artifact_layout_version: 1.0.0`
+  - `memory_layout_version: 1.0.0`

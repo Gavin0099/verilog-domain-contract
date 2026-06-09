@@ -270,3 +270,5 @@ Previous gap list (all fixed):
   - reads release handoff + reviewer verdict for a given `--artifact-tag`
   - exposes release/reviewer context through admitted `state`, `governance_classification`, and `closeout_context`
   - stays compatibility-safe when artifacts are absent by reporting advisory `missing_artifacts`
+- [2026-06-09] Updated `additional/ai-governance-framework` submodule checkout to latest `origin/main` (`9eb793d`).
+- [2026-06-09] Added `.governance/version_manifest.yaml` required by the latest framework version-compatibility gate so framework `session_start`/`quickstart_smoke` can run in supported mode.
