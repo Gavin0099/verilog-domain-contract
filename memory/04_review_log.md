@@ -375,3 +375,8 @@
 - [2026-06-09] Added reviewer-facing consistency gate:
   - `check_reviewer_handoff_consistency.py` checks artifact-tag, handoff entrypoints, bundle membership, reviewer result, and section-count agreement across the three reviewer-facing surfaces
   - CI now runs it and uploads the resulting machine-readable consistency artifact with reviewer artifacts
+- [2026-06-09] Release handoff now consumes reviewer-facing consistency when available:
+  - `build_governance_release_handoff.py` adds `primary_entrypoints.reviewer_handoff_consistency`
+  - `surface_status.reviewer_verdict` now exposes `consistency_ok` and per-check status
+  - release readiness falls back to `review_required` if reviewer-facing consistency is false
+- [2026-06-09] CI emit order updated so `build_governance_release_handoff.py` runs once before and once after `check_reviewer_handoff_consistency.py`; the second pass persists the final handoff artifact with embedded consistency status.

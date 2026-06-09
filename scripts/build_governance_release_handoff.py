@@ -17,6 +17,7 @@ from scripts.governance_artifact_paths import (
     closeout_summary_path,
     default_artifact_tag,
     release_handoff_index_path,
+    reviewer_handoff_consistency_path,
     reviewer_bundle_manifest_path,
     reviewer_verdict_path,
 )
@@ -35,10 +36,12 @@ def build_handoff(artifact_tag: str) -> dict[str, object]:
     closeout_report_artifact = closeout_report_path(REPO_ROOT, artifact_tag)
     reviewer_verdict_artifact = reviewer_verdict_path(REPO_ROOT, artifact_tag)
     bundle_manifest_artifact = reviewer_bundle_manifest_path(REPO_ROOT, artifact_tag)
+    consistency_artifact = reviewer_handoff_consistency_path(REPO_ROOT, artifact_tag)
 
     closeout = _load(closeout_summary_artifact)
     reviewer = _load(reviewer_verdict_artifact)
     manifest = _load(bundle_manifest_artifact)
+    consistency = _load(consistency_artifact) if consistency_artifact.exists() else None
 
     release_ok = (
         bool(closeout["overall"]["schema_conformance_ok"])
@@ -47,28 +50,38 @@ def build_handoff(artifact_tag: str) -> dict[str, object]:
         and closeout["overall"]["claim_fail"] == 0
         and closeout["overall"]["runtime_hook_fail"] == 0
         and reviewer["result"] == "pass"
+        and (consistency is None or bool(consistency["ok"]))
     )
+
+    primary_entrypoints = {
+        "closeout_summary": _rel(closeout_summary_artifact),
+        "closeout_report": _rel(closeout_report_artifact),
+        "reviewer_verdict": _rel(reviewer_verdict_artifact),
+        "bundle_manifest": _rel(bundle_manifest_artifact),
+    }
+    if consistency is not None:
+        primary_entrypoints["reviewer_handoff_consistency"] = _rel(consistency_artifact)
+
+    reviewer_surface = {
+        "result": reviewer["result"],
+        "sections": len(reviewer["sections"]),
+    }
+    if consistency is not None:
+        reviewer_surface["consistency_ok"] = bool(consistency["ok"])
+        reviewer_surface["consistency_checks"] = consistency["checks"]
 
     return {
         "schema_version": "0.1",
         "name": "governance-release-handoff",
         "artifact_tag": artifact_tag,
         "release_status": "ready_for_handoff" if release_ok else "review_required",
-        "primary_entrypoints": {
-            "closeout_summary": _rel(closeout_summary_artifact),
-            "closeout_report": _rel(closeout_report_artifact),
-            "reviewer_verdict": _rel(reviewer_verdict_artifact),
-            "bundle_manifest": _rel(bundle_manifest_artifact),
-        },
+        "primary_entrypoints": primary_entrypoints,
         "surface_status": {
             "precondition_gate": closeout["surfaces"]["precondition_gate"]["summary"],
             "behavioral_replay": closeout["surfaces"]["behavioral_replay"]["summary"],
             "claim_enforcement": closeout["surfaces"]["claim_enforcement"]["summary"],
             "runtime_hooks": closeout["surfaces"]["runtime_hooks"]["summary"],
-            "reviewer_verdict": {
-                "result": reviewer["result"],
-                "sections": len(reviewer["sections"]),
-            },
+            "reviewer_verdict": reviewer_surface,
         },
         "coverage_snapshot": {
             "precondition_gate": reviewer["coverage_summary"]["precondition_gate"],

@@ -300,3 +300,8 @@ Previous gap list (all fixed):
   - validates consistency across `governance-release-handoff`, `governance-bundle-manifest`, and `reviewer-checklist-verdict`
   - emits `artifacts/governance/<artifact-tag>-reviewer-handoff-consistency.json`
   - wired into CI and reviewer artifact upload
+- [2026-06-09] Updated `build_governance_release_handoff.py` so release handoff now consumes the reviewer-handoff consistency artifact when present:
+  - exposes `primary_entrypoints.reviewer_handoff_consistency`
+  - records `surface_status.reviewer_verdict.consistency_ok`
+  - treats failed reviewer-facing consistency as `review_required`
+- [2026-06-09] CI emit order now rebuilds release handoff after `check_reviewer_handoff_consistency.py` so the final handoff artifact includes the consistency result instead of leaving it as a disconnected downstream receipt.

@@ -95,6 +95,7 @@ jobs:
           python scripts/check_governance_bundle_manifest_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/build_governance_release_handoff.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_reviewer_handoff_consistency.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/build_governance_release_handoff.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/run_runtime_hook_smoke.py --artifact-tag "$ARTIFACT_TAG" --format human
 
       - name: Upload precondition artifacts
