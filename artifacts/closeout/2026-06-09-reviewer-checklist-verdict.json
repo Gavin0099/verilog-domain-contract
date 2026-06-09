@@ -1,0 +1,307 @@
+{
+  "schema_version": "0.1",
+  "name": "reviewer-checklist-verdict",
+  "checklist_schema": "schemas\\review-checklist.yaml",
+  "closeout_summary": "artifacts\\closeout\\2026-06-09-governance-closeout-summary.json",
+  "coverage_summary": {
+    "precondition_gate": {
+      "source_artifact": "artifacts\\precondition-gate\\2026-06-09-precondition-gate-suite.json",
+      "total_cases": 20,
+      "groups": {
+        "negation": {
+          "count": 12,
+          "case_ids": [
+            "PG-001",
+            "PG-RESET-NEG-001",
+            "PG-002",
+            "PG-HS-NEG-001",
+            "PG-004",
+            "PG-ASSIGN-NEG-001",
+            "PG-006",
+            "PG-CDC-NEG-001",
+            "PG-CDC-NEG-002",
+            "PG-CDC-NEG-003",
+            "PG-008",
+            "PG-FSM-NEG-001"
+          ]
+        },
+        "boundary": {
+          "count": 3,
+          "case_ids": [
+            "PG-RESET-BOUNDARY-001",
+            "PG-HS-BOUNDARY-001",
+            "PG-CDC-BOUNDARY-001"
+          ]
+        },
+        "positive": {
+          "count": 5,
+          "case_ids": [
+            "PG-003",
+            "PG-005",
+            "PG-007",
+            "PG-CDC-POS-001",
+            "PG-009"
+          ]
+        }
+      }
+    }
+  },
+  "result": "pass",
+  "sections": [
+    {
+      "section_id": "reset_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "RESET_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Missing reset definition replay case was correctly downgraded and disclosed."
+        },
+        {
+          "item_id": "RESET_TYPE_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Reset type gap was surfaced by replay enforcement."
+        },
+        {
+          "item_id": "RESET_ASSUMPTION_DISCLOSED",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Replay output required explicit reset assumption disclosure."
+        },
+        {
+          "item_id": "RESET_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-001"
+          ],
+          "rationale": "Completion claims remained blocked under missing reset preconditions."
+        }
+      ]
+    },
+    {
+      "section_id": "assignment_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "ASSIGNMENT_INTENT_CLEAR",
+          "result": "pass",
+          "evidence": [
+            "BR-004"
+          ],
+          "rationale": "Ambiguous assignment intent replay case was contained by governance."
+        },
+        {
+          "item_id": "ASSIGNMENT_OPERATOR_MATCH",
+          "result": "pass",
+          "evidence": [
+            "BR-004"
+          ],
+          "rationale": "Assignment semantics replay path remained bounded to explicit assumptions."
+        },
+        {
+          "item_id": "ASSIGNMENT_MIXED_STATE_PATH",
+          "result": "pass",
+          "evidence": [
+            "BR-004"
+          ],
+          "rationale": "Assignment contract replay did not permit unsafe completion posture."
+        }
+      ]
+    },
+    {
+      "section_id": "handshake_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "HANDSHAKE_PROTOCOL_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-002"
+          ],
+          "rationale": "Protocol-missing handshake replay case was downgraded to analysis-only."
+        },
+        {
+          "item_id": "HANDSHAKE_BACKPRESSURE_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-003"
+          ],
+          "rationale": "Backpressure gap replay case required explicit handshake assumptions."
+        },
+        {
+          "item_id": "HANDSHAKE_LATENCY_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-003"
+          ],
+          "rationale": "Latency gap replay case required explicit handshake assumptions."
+        },
+        {
+          "item_id": "HANDSHAKE_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-002",
+            "BR-003"
+          ],
+          "rationale": "Handshake completion claims remained bounded under missing protocol/timing detail."
+        }
+      ]
+    },
+    {
+      "section_id": "fsm_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "FSM_STATE_MODEL_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM replay case surfaced missing state model assumptions."
+        },
+        {
+          "item_id": "FSM_DECOMPOSITION_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM replay case surfaced missing decomposition style assumptions."
+        },
+        {
+          "item_id": "FSM_ILLEGAL_STATE_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM replay case surfaced missing illegal-state handling assumptions."
+        },
+        {
+          "item_id": "FSM_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-006"
+          ],
+          "rationale": "FSM completion claims remained bounded under incomplete contract inputs."
+        }
+      ]
+    },
+    {
+      "section_id": "cdc_contract",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "CDC_MULTI_CLOCK_DETECTED",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC replay case correctly detected multi-clock crossing intent."
+        },
+        {
+          "item_id": "CDC_STRATEGY_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC replay case blocked completion without explicit CDC strategy."
+        },
+        {
+          "item_id": "CDC_SYNCHRONIZER_DEFINED",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC replay case blocked completion without synchronizer scheme."
+        },
+        {
+          "item_id": "CDC_COMPLETION_CLAIM",
+          "result": "pass",
+          "evidence": [
+            "BR-007"
+          ],
+          "rationale": "CDC completion claims remained blocked under missing CDC strategy."
+        }
+      ]
+    },
+    {
+      "section_id": "governance_closeout",
+      "required": true,
+      "result": "pass",
+      "items": [
+        {
+          "item_id": "CLOSEOUT_PRECONDITION_SUMMARY_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary",
+            "precondition-gate-suite"
+          ],
+          "rationale": "Precondition-gate closeout summary is present and reports zero failures."
+        },
+        {
+          "item_id": "CLOSEOUT_PRECONDITION_COVERAGE_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary",
+            "precondition-gate-suite"
+          ],
+          "rationale": "Precondition-gate coverage summary exposes negation, boundary, and positive groups."
+        },
+        {
+          "item_id": "CLOSEOUT_REPLAY_SUMMARY_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary"
+          ],
+          "rationale": "Replay closeout summary is present and reports zero failures."
+        },
+        {
+          "item_id": "CLOSEOUT_CLAIM_SUMMARY_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary"
+          ],
+          "rationale": "Claim closeout summary is present and reports zero failures."
+        },
+        {
+          "item_id": "CLOSEOUT_RUNTIME_HOOK_SMOKE_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary",
+            "runtime-hook-smoke"
+          ],
+          "rationale": "Runtime hook smoke summary is present and all three repo-local hooks passed under the same artifact tag."
+        },
+        {
+          "item_id": "CLOSEOUT_SCHEMA_CONFORMANCE_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary",
+            "schema-conformance"
+          ],
+          "rationale": "Closeout surfaces report schema conformance cleanly."
+        },
+        {
+          "item_id": "CLOSEOUT_AGGREGATE_PRESENT",
+          "result": "pass",
+          "evidence": [
+            "governance-closeout-summary"
+          ],
+          "rationale": "Aggregate closeout summary is present and internally consistent."
+        }
+      ]
+    }
+  ]
+}

@@ -346,3 +346,22 @@
   - exposes release/reviewer readiness via admitted `state`, `governance_classification`, and `closeout_context`
   - remains non-blocking when artifacts are missing, preserving compatibility with quickstart/bootstrap paths
 - [2026-06-08] Refactored shared runtime artifact access into `runtime_hooks/core/artifact_runtime_context.py` so the three runtime hooks no longer duplicate JSON loading, repo-relative artifact rendering, and missing-artifact list construction.
+- [2026-06-09] Latest framework update (`additional/ai-governance-framework` -> `9eb793d`) introduced a hard version-compatibility gate in framework `session_start`; `quickstart_smoke` failed with `version_compatibility_unsupported` because `.governance/version_manifest.yaml` was missing.
+- [2026-06-09] Added minimal repo-side `.governance/version_manifest.yaml` with all required keys:
+  - `governance_version: 0.4.0`
+  - `contract_schema_version: 1.2.0`
+  - `runtime_entrypoint_version: 1.1.0`
+  - `hook_wiring_version: 1.0.0`
+  - `artifact_layout_version: 1.0.0`
+  - `memory_layout_version: 1.0.0`
+- [2026-06-09] Regenerated `2026-06-09` deterministic artifacts for precondition / replay / claim surfaces, then rebuilt closeout / reviewer / manifest / release-handoff surfaces under the same tag.
+- [2026-06-09] Added repo-local runtime smoke runner `scripts/run_runtime_hook_smoke.py` so runtime hook coherence can be checked directly against a single artifact tag without depending on framework quickstart output alone.
+- [2026-06-09] Updated CI workflow `.github/workflows/governance-drift.yml` so deterministic artifact emit now also builds `governance-release-handoff` and runs `run_runtime_hook_smoke.py`; closeout bundle upload now includes both runtime-facing artifacts.
+- [2026-06-09] Extended closeout/reviewer aggregation so `runtime_hook_smoke` is no longer an orphan artifact:
+  - `build_governance_closeout_summary.py` now records runtime hook smoke in `generated_from`, `surfaces.runtime_hooks`, and `overall.runtime_hook_fail`
+  - closeout markdown now renders a dedicated `## Runtime Hooks` section
+  - reviewer closeout section now requires `CLOSEOUT_RUNTIME_HOOK_SMOKE_PRESENT`
+- [2026-06-09] Merge decision for current governance lane:
+  - `origin/main...codex/memory-authority-observation` = `0 9`
+  - branch is linear over `origin/main`, so mainline integration can use fast-forward merge without a merge commit
+  - future modifications should resume on `main`

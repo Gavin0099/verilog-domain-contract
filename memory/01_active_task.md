@@ -274,3 +274,21 @@ Previous gap list (all fixed):
   - `runtime_hooks/core/artifact_runtime_context.py`
   - centralizes `load_json`, repo-relative path rendering, and missing-artifact collection
   - `session_start`, `pre_task_check`, and `post_task_check` now use the same helper to reduce drift
+- [2026-06-09] Updated `additional/ai-governance-framework` submodule checkout to latest `origin/main` (`9eb793d`).
+- [2026-06-09] Added `.governance/version_manifest.yaml` required by the latest framework version-compatibility gate so framework `session_start`/`quickstart_smoke` can run in supported mode.
+- [2026-06-09] Regenerated deterministic governance artifacts under artifact tag `2026-06-09` for:
+  - `precondition-gate`
+  - `behavioral-replay`
+  - `claim-enforcement`
+  - closeout/reviewer/bundle-manifest/release-handoff surfaces
+- [2026-06-09] Added `scripts/run_runtime_hook_smoke.py` to exercise `runtime_hooks/core/pre_task_check.py`, `session_start.py`, and `post_task_check.py` against one artifact tag and persist a repo-local runtime smoke artifact.
+- [2026-06-09] Wired repo-local runtime smoke into CI:
+  - workflow now emits `governance-release-handoff`
+  - workflow now runs `scripts/run_runtime_hook_smoke.py` under the same `ARTIFACT_TAG`
+  - closeout artifact bundle now uploads release handoff + runtime smoke artifacts
+- [2026-06-09] Integrated `runtime_hook_smoke` into closeout/reviewer consumption:
+  - closeout summary/report now treat runtime hooks as a fourth executable governance surface
+  - reviewer verdict now requires runtime hook smoke to pass inside `governance_closeout`
+- [2026-06-09] Branch integration decision:
+  - `codex/memory-authority-observation` is ready to fast-forward into `main`
+  - subsequent repo work should continue directly on `main`

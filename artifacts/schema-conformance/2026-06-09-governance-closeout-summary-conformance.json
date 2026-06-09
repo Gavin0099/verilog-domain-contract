@@ -1,0 +1,6 @@
+{
+  "schema": "schemas/governance-closeout-summary.yaml",
+  "artifact": "artifacts\\closeout\\2026-06-09-governance-closeout-summary.json",
+  "ok": true,
+  "errors": []
+}

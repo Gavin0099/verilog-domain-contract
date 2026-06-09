@@ -41,12 +41,14 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
     precondition_artifact = precondition_gate_artifact_path(REPO_ROOT, artifact_tag)
     replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
     claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
+    runtime_hook_smoke_artifact = REPO_ROOT / f"artifacts/governance/{artifact_tag}-runtime-hook-smoke.json"
     precondition_conformance_artifact = precondition_gate_conformance_path(REPO_ROOT, artifact_tag)
     replay_conformance_artifact = replay_conformance_path(REPO_ROOT, artifact_tag)
     claim_conformance_artifact = claim_conformance_path(REPO_ROOT, artifact_tag)
     precondition = _load(precondition_artifact)
     replay = _load(replay_artifact)
     claim = _load(claim_artifact)
+    runtime_hooks = _load(runtime_hook_smoke_artifact)
     precondition_conformance = _load(precondition_conformance_artifact)
     replay_conformance = _load(replay_conformance_artifact)
     claim_conformance = _load(claim_conformance_artifact)
@@ -54,6 +56,7 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
     precondition_summary = precondition["summary"]
     replay_summary = replay["summary"]
     claim_summary = claim["summary"]
+    runtime_summary = runtime_hooks["summary"]
 
     return {
         "schema_version": "0.1",
@@ -62,6 +65,7 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
             "precondition_gate_artifact": str(precondition_artifact.relative_to(REPO_ROOT)),
             "behavioral_replay_artifact": str(replay_artifact.relative_to(REPO_ROOT)),
             "claim_enforcement_artifact": str(claim_artifact.relative_to(REPO_ROOT)),
+            "runtime_hook_smoke_artifact": str(runtime_hook_smoke_artifact.relative_to(REPO_ROOT)),
             "precondition_gate_conformance": str(precondition_conformance_artifact.relative_to(REPO_ROOT)),
             "behavioral_replay_conformance": str(replay_conformance_artifact.relative_to(REPO_ROOT)),
             "claim_enforcement_conformance": str(claim_conformance_artifact.relative_to(REPO_ROOT)),
@@ -94,6 +98,15 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
                 "schema_conformance_ok": claim_conformance["ok"],
                 "schema_conformance_errors": claim_conformance["errors"],
             },
+            "runtime_hooks": {
+                "artifact_family": "runtime_hooks",
+                "suite_id": f"runtime-hook-smoke-{artifact_tag}",
+                "execution_surface": "repo_local_runtime_hook_smoke",
+                "coverage_summary": {},
+                "summary": runtime_summary,
+                "schema_conformance_ok": runtime_summary["overall_ok"],
+                "schema_conformance_errors": [] if runtime_summary["overall_ok"] else ["runtime_hook_smoke_failed"],
+            },
         },
         "overall": {
             "schema_conformance_ok": (
@@ -103,6 +116,7 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
             "replay_fail": replay_summary["fail"],
             "claim_fail": claim_summary["fail"],
             "claim_not_executed": claim_summary["not_executed"],
+            "runtime_hook_fail": runtime_summary["fail"],
         },
     }
 
@@ -147,6 +161,7 @@ def main() -> int:
         print(f"replay_fail={result['overall']['replay_fail']}")
         print(f"claim_fail={result['overall']['claim_fail']}")
         print(f"claim_not_executed={result['overall']['claim_not_executed']}")
+        print(f"runtime_hook_fail={result['overall']['runtime_hook_fail']}")
         print(f"out={out_path.relative_to(REPO_ROOT)}")
     return 0 if result["overall"]["schema_conformance_ok"] else 1
 

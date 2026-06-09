@@ -13,6 +13,7 @@ generated_from_fields:
   - precondition_gate_artifact
   - behavioral_replay_artifact
   - claim_enforcement_artifact
+  - runtime_hook_smoke_artifact
   - precondition_gate_conformance
   - behavioral_replay_conformance
   - claim_enforcement_conformance
@@ -38,3 +39,4 @@ overall_fields:
   - replay_fail
   - claim_fail
   - claim_not_executed
+  - runtime_hook_fail

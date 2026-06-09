@@ -31,6 +31,7 @@ def _render(summary: dict[str, object]) -> str:
     precondition_coverage = surfaces["precondition_gate"].get("coverage_summary", {})
     replay_coverage = surfaces["behavioral_replay"].get("coverage_summary", {})
     claim_coverage = surfaces["claim_enforcement"].get("coverage_summary", {})
+    runtime_summary = surfaces["runtime_hooks"]["summary"]
 
     def render_coverage(prefix: str, coverage: dict[str, object]) -> list[str]:
         groups = coverage.get("groups", {}) if isinstance(coverage, dict) else {}
@@ -49,6 +50,7 @@ def _render(summary: dict[str, object]) -> str:
         f"- `replay_fail`: `{overall['replay_fail']}`",
         f"- `claim_fail`: `{overall['claim_fail']}`",
         f"- `claim_not_executed`: `{overall['claim_not_executed']}`",
+        f"- `runtime_hook_fail`: `{overall['runtime_hook_fail']}`",
         "",
         "## Precondition Gate",
         "",
@@ -81,11 +83,22 @@ def _render(summary: dict[str, object]) -> str:
         f"- `schema_conformance_ok`: `{str(surfaces['claim_enforcement']['schema_conformance_ok']).lower()}`",
         *render_coverage("coverage_summary", claim_coverage),
         "",
+        "## Runtime Hooks",
+        "",
+        f"- `suite_id`: `{surfaces['runtime_hooks']['suite_id']}`",
+        f"- `execution_surface`: `{surfaces['runtime_hooks']['execution_surface']}`",
+        f"- `summary.total`: `{runtime_summary['total']}`",
+        f"- `summary.pass`: `{runtime_summary['pass']}`",
+        f"- `summary.fail`: `{runtime_summary['fail']}`",
+        f"- `summary.overall_ok`: `{str(runtime_summary['overall_ok']).lower()}`",
+        f"- `schema_conformance_ok`: `{str(surfaces['runtime_hooks']['schema_conformance_ok']).lower()}`",
+        "",
         "## Inputs",
         "",
         f"- precondition artifact: `{generated_from['precondition_gate_artifact']}`",
         f"- replay artifact: `{generated_from['behavioral_replay_artifact']}`",
         f"- claim artifact: `{generated_from['claim_enforcement_artifact']}`",
+        f"- runtime hook smoke artifact: `{generated_from['runtime_hook_smoke_artifact']}`",
         f"- precondition conformance: `{generated_from['precondition_gate_conformance']}`",
         f"- replay conformance: `{generated_from['behavioral_replay_conformance']}`",
         f"- claim conformance: `{generated_from['claim_enforcement_conformance']}`",
