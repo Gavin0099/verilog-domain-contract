@@ -339,3 +339,14 @@ Previous gap list (all fixed):
   - `scripts/check_governance_aggregate_coherence_schema.py`
   - `artifacts/schema-conformance/2026-06-09-aggregate-coherence-conformance.json`
 - [2026-06-09] CI closeout artifact flow now runs aggregate coherence schema validation and uploads the resulting conformance artifact with the closeout bundle.
+- [2026-06-09] Added release-readiness executable checker:
+  - `scripts/check_governance_release_readiness.py`
+  - `artifacts/governance/2026-06-09-release-readiness.json`
+- [2026-06-09] Release-readiness checker now collapses:
+  - `governance-release-handoff` readiness
+  - `aggregate-coherence` pass/fail
+  - all required schema-conformance artifacts
+- [2026-06-09] Release-readiness checker accepts both conformance payload families:
+  - legacy single-result shape: `{schema, artifact, ok, errors}`
+  - newer envelope shape: `{total, pass, fail, results}`
+- [2026-06-09] CI closeout artifact flow now runs release-readiness validation and uploads the resulting artifact with the closeout bundle.

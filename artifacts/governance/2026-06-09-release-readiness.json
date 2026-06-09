@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1",
+  "name": "governance-release-readiness-check",
+  "artifact_tag": "2026-06-09",
+  "verdict": "pass",
+  "ready_for_handoff": true,
+  "checks": {
+    "release_handoff_ready": true,
+    "aggregate_coherence_ok": true,
+    "schema_conformance_all_pass": true
+  },
+  "artifacts": {
+    "release_handoff": "artifacts/closeout/2026-06-09-governance-release-handoff.json",
+    "aggregate_coherence": "artifacts/governance/2026-06-09-aggregate-coherence.json",
+    "schema_conformance": [
+      "artifacts/schema-conformance/2026-06-09-precondition-gate-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-validator-replay-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-claim-enforcement-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-governance-closeout-summary-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-governance-closeout-report-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-reviewer-checklist-verdict-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-governance-bundle-manifest-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-reviewer-handoff-consistency-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-governance-release-handoff-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-runtime-hook-smoke-conformance.json",
+      "artifacts/schema-conformance/2026-06-09-aggregate-coherence-conformance.json"
+    ]
+  },
+  "release_status": "ready_for_handoff",
+  "aggregate_coherence_status": true,
+  "conformance_summary": {
+    "total_artifacts": 11,
+    "pass": 11,
+    "fail": 0,
+    "results": [
+      {
+        "name": "precondition_gate",
+        "artifact": "artifacts/schema-conformance/2026-06-09-precondition-gate-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "behavioral_replay",
+        "artifact": "artifacts/schema-conformance/2026-06-09-validator-replay-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "claim_enforcement",
+        "artifact": "artifacts/schema-conformance/2026-06-09-claim-enforcement-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "closeout_summary",
+        "artifact": "artifacts/schema-conformance/2026-06-09-governance-closeout-summary-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "closeout_report",
+        "artifact": "artifacts/schema-conformance/2026-06-09-governance-closeout-report-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "reviewer_verdict",
+        "artifact": "artifacts/schema-conformance/2026-06-09-reviewer-checklist-verdict-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "bundle_manifest",
+        "artifact": "artifacts/schema-conformance/2026-06-09-governance-bundle-manifest-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "reviewer_handoff_consistency",
+        "artifact": "artifacts/schema-conformance/2026-06-09-reviewer-handoff-consistency-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "release_handoff",
+        "artifact": "artifacts/schema-conformance/2026-06-09-governance-release-handoff-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "runtime_hook_smoke",
+        "artifact": "artifacts/schema-conformance/2026-06-09-runtime-hook-smoke-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      {
+        "name": "aggregate_coherence",
+        "artifact": "artifacts/schema-conformance/2026-06-09-aggregate-coherence-conformance.json",
+        "ok": true,
+        "reason": "pass",
+        "total": 1,
+        "pass": 1,
+        "fail": 0
+      }
+    ]
+  }
+}

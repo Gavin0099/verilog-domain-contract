@@ -405,3 +405,11 @@
   - `schemas/governance-aggregate-coherence.yaml` defines required top-level fields, artifact references, and eight required boolean coherence checks
   - `scripts/check_governance_aggregate_coherence_schema.py` validates emitted aggregate coherence artifacts and writes `artifacts/schema-conformance/<tag>-aggregate-coherence-conformance.json`
   - CI closeout bundle upload now includes this conformance artifact so the aggregate coherence surface is schema-backed like the other reviewer-facing and closeout-facing artifacts
+- [2026-06-09] Added `scripts/check_governance_release_readiness.py` as the top-level executable verdict for handoff readiness.
+  - consumes `governance-release-handoff`, `aggregate-coherence`, and all required schema-conformance artifacts
+  - emits `artifacts/governance/<tag>-release-readiness.json`
+  - returns non-zero unless handoff is `ready_for_handoff`, aggregate coherence is true, and every required conformance artifact passes
+- [2026-06-09] Release-readiness checker is backward-compatible with both schema-conformance payload shapes already present in the repo:
+  - legacy single-result `{schema, artifact, ok, errors}`
+  - newer aggregated `{total, pass, fail, results}`
+- [2026-06-09] CI closeout artifact flow now runs the release-readiness checker after release handoff / aggregate coherence / schema-conformance checks and uploads the resulting artifact with the closeout bundle.

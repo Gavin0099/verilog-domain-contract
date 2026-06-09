@@ -97,3 +97,7 @@ def aggregate_coherence_path(repo_root: Path, tag: str) -> Path:
 
 def aggregate_coherence_conformance_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/schema-conformance/{tag}-aggregate-coherence-conformance.json"
+
+
+def release_readiness_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/governance/{tag}-release-readiness.json"
