@@ -356,3 +356,7 @@
 - [2026-06-09] Regenerated `2026-06-09` deterministic artifacts for precondition / replay / claim surfaces, then rebuilt closeout / reviewer / manifest / release-handoff surfaces under the same tag.
 - [2026-06-09] Added repo-local runtime smoke runner `scripts/run_runtime_hook_smoke.py` so runtime hook coherence can be checked directly against a single artifact tag without depending on framework quickstart output alone.
 - [2026-06-09] Updated CI workflow `.github/workflows/governance-drift.yml` so deterministic artifact emit now also builds `governance-release-handoff` and runs `run_runtime_hook_smoke.py`; closeout bundle upload now includes both runtime-facing artifacts.
+- [2026-06-09] Extended closeout/reviewer aggregation so `runtime_hook_smoke` is no longer an orphan artifact:
+  - `build_governance_closeout_summary.py` now records runtime hook smoke in `generated_from`, `surfaces.runtime_hooks`, and `overall.runtime_hook_fail`
+  - closeout markdown now renders a dedicated `## Runtime Hooks` section
+  - reviewer closeout section now requires `CLOSEOUT_RUNTIME_HOOK_SMOKE_PRESENT`

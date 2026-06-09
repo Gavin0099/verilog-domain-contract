@@ -7,6 +7,7 @@
 - `replay_fail`: `0`
 - `claim_fail`: `0`
 - `claim_not_executed`: `1`
+- `runtime_hook_fail`: `0`
 
 ## Precondition Gate
 
@@ -49,11 +50,22 @@
 - `coverage_summary.groups.boundary.count`: `3`
 - `coverage_summary.groups.blocked.count`: `1`
 
+## Runtime Hooks
+
+- `suite_id`: `runtime-hook-smoke-2026-06-09`
+- `execution_surface`: `repo_local_runtime_hook_smoke`
+- `summary.total`: `3`
+- `summary.pass`: `3`
+- `summary.fail`: `0`
+- `summary.overall_ok`: `true`
+- `schema_conformance_ok`: `true`
+
 ## Inputs
 
 - precondition artifact: `artifacts\precondition-gate\2026-06-09-precondition-gate-suite.json`
 - replay artifact: `artifacts\replay-results\2026-06-09-validator-replay.yaml`
 - claim artifact: `artifacts\claim-enforcement\checker-tests\2026-06-09-claim-enforcement-suite.json`
+- runtime hook smoke artifact: `artifacts\governance\2026-06-09-runtime-hook-smoke.json`
 - precondition conformance: `artifacts\schema-conformance\2026-06-09-precondition-gate-conformance.json`
 - replay conformance: `artifacts\schema-conformance\2026-06-09-validator-replay-conformance.json`
 - claim conformance: `artifacts\schema-conformance\2026-06-09-claim-enforcement-conformance.json`

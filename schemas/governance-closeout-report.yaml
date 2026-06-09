@@ -8,4 +8,5 @@ required_headings:
   - "## Precondition Gate"
   - "## Behavioral Replay"
   - "## Claim Enforcement"
+  - "## Runtime Hooks"
   - "## Inputs"

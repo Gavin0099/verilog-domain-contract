@@ -5,6 +5,7 @@
     "precondition_gate_artifact": "artifacts\\precondition-gate\\2026-06-09-precondition-gate-suite.json",
     "behavioral_replay_artifact": "artifacts\\replay-results\\2026-06-09-validator-replay.yaml",
     "claim_enforcement_artifact": "artifacts\\claim-enforcement\\checker-tests\\2026-06-09-claim-enforcement-suite.json",
+    "runtime_hook_smoke_artifact": "artifacts\\governance\\2026-06-09-runtime-hook-smoke.json",
     "precondition_gate_conformance": "artifacts\\schema-conformance\\2026-06-09-precondition-gate-conformance.json",
     "behavioral_replay_conformance": "artifacts\\schema-conformance\\2026-06-09-validator-replay-conformance.json",
     "claim_enforcement_conformance": "artifacts\\schema-conformance\\2026-06-09-claim-enforcement-conformance.json"
@@ -160,6 +161,20 @@
       },
       "schema_conformance_ok": true,
       "schema_conformance_errors": []
+    },
+    "runtime_hooks": {
+      "artifact_family": "runtime_hooks",
+      "suite_id": "runtime-hook-smoke-2026-06-09",
+      "execution_surface": "repo_local_runtime_hook_smoke",
+      "coverage_summary": {},
+      "summary": {
+        "total": 3,
+        "pass": 3,
+        "fail": 0,
+        "overall_ok": true
+      },
+      "schema_conformance_ok": true,
+      "schema_conformance_errors": []
     }
   },
   "overall": {
@@ -167,6 +182,7 @@
     "precondition_fail": 0,
     "replay_fail": 0,
     "claim_fail": 0,
-    "claim_not_executed": 1
+    "claim_not_executed": 1,
+    "runtime_hook_fail": 0
   }
 }

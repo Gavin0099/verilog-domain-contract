@@ -170,8 +170,11 @@ def build_verdict(artifact_tag: str) -> dict[str, object]:
             ) and len(precondition_cases) > 0
             replay_ok = closeout_surfaces["behavioral_replay"]["summary"]["fail"] == 0
             claim_ok = closeout_surfaces["claim_enforcement"]["summary"]["fail"] == 0
+            runtime_ok = closeout_surfaces["runtime_hooks"]["summary"]["fail"] == 0 and bool(
+                closeout_surfaces["runtime_hooks"]["summary"]["overall_ok"]
+            )
             schema_ok = closeout_overall["schema_conformance_ok"]
-            aggregate_ok = schema_ok and precondition_ok and precondition_coverage_ok and replay_ok and claim_ok
+            aggregate_ok = schema_ok and precondition_ok and precondition_coverage_ok and replay_ok and claim_ok and runtime_ok
             items.extend(
                 [
                     _result(
@@ -188,6 +191,7 @@ def build_verdict(artifact_tag: str) -> dict[str, object]:
                     ),
                     _result("CLOSEOUT_REPLAY_SUMMARY_PRESENT", replay_ok, ["governance-closeout-summary"], "Replay closeout summary is present and reports zero failures."),
                     _result("CLOSEOUT_CLAIM_SUMMARY_PRESENT", claim_ok, ["governance-closeout-summary"], "Claim closeout summary is present and reports zero failures."),
+                    _result("CLOSEOUT_RUNTIME_HOOK_SMOKE_PRESENT", runtime_ok, ["governance-closeout-summary", "runtime-hook-smoke"], "Runtime hook smoke summary is present and all three repo-local hooks passed under the same artifact tag."),
                     _result("CLOSEOUT_SCHEMA_CONFORMANCE_PRESENT", schema_ok, ["governance-closeout-summary", "schema-conformance"], "Closeout surfaces report schema conformance cleanly."),
                     _result("CLOSEOUT_AGGREGATE_PRESENT", aggregate_ok, ["governance-closeout-summary"], "Aggregate closeout summary is present and internally consistent."),
                 ]

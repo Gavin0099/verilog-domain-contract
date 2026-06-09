@@ -282,3 +282,6 @@ Previous gap list (all fixed):
   - workflow now emits `governance-release-handoff`
   - workflow now runs `scripts/run_runtime_hook_smoke.py` under the same `ARTIFACT_TAG`
   - closeout artifact bundle now uploads release handoff + runtime smoke artifacts
+- [2026-06-09] Integrated `runtime_hook_smoke` into closeout/reviewer consumption:
+  - closeout summary/report now treat runtime hooks as a fourth executable governance surface
+  - reviewer verdict now requires runtime hook smoke to pass inside `governance_closeout`
