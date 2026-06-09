@@ -94,6 +94,7 @@ jobs:
           python scripts/build_governance_bundle_manifest.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_governance_bundle_manifest_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/build_governance_release_handoff.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/check_reviewer_handoff_consistency.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/run_runtime_hook_smoke.py --artifact-tag "$ARTIFACT_TAG" --format human
 
       - name: Upload precondition artifacts
@@ -141,3 +142,4 @@ jobs:
             artifacts/closeout/*-governance-bundle-manifest.json
             artifacts/schema-conformance/*-reviewer-checklist-verdict-conformance.json
             artifacts/schema-conformance/*-governance-bundle-manifest-conformance.json
+            artifacts/governance/*-reviewer-handoff-consistency.json

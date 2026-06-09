@@ -81,11 +81,14 @@ Use this bundle when the question is:
   - `artifacts/schema-conformance/<artifact-tag>-reviewer-checklist-verdict-conformance.json`
 - Read third:
   - `artifacts/closeout/<artifact-tag>-governance-bundle-manifest.json`
+- Read fourth:
+  - `artifacts/governance/<artifact-tag>-reviewer-handoff-consistency.json`
 
 Use this bundle when the question is:
 - did the executable reviewer checklist pass
 - which checklist sections passed or failed
 - does the reviewer-facing verdict conform to its schema
+- is the reviewer-facing handoff internally consistent across verdict / manifest / release index
 
 ## 3. Fastest Review Order
 

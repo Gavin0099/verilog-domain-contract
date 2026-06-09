@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "name": "reviewer-handoff-consistency-check",
+  "artifact_tag": "2026-06-09",
+  "ok": true,
+  "checks": {
+    "artifact_tag_match": true,
+    "reviewer_verdict_entrypoint_match": true,
+    "bundle_manifest_entrypoint_match": true,
+    "reviewer_bundle_contains_verdict": true,
+    "closeout_bundle_contains_handoff": true,
+    "reviewer_result_matches_handoff_surface": true,
+    "reviewer_section_count_matches_handoff_surface": true,
+    "release_status_consistent_with_verdict": true
+  },
+  "artifacts": {
+    "release_handoff": "artifacts/closeout/2026-06-09-governance-release-handoff.json",
+    "bundle_manifest": "artifacts/closeout/2026-06-09-governance-bundle-manifest.json",
+    "reviewer_verdict": "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json"
+  }
+}

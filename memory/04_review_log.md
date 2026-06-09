@@ -372,3 +372,6 @@
 - [2026-06-09] Bundle-manifest and framework-surface mapping were aligned with current runtime-aware handoff model:
   - closeout bundle purpose now explicitly includes `governance-release-handoff` and `runtime-hook-smoke`
   - reviewer bundle purpose remains verdict + conformance + manifest only
+- [2026-06-09] Added reviewer-facing consistency gate:
+  - `check_reviewer_handoff_consistency.py` checks artifact-tag, handoff entrypoints, bundle membership, reviewer result, and section-count agreement across the three reviewer-facing surfaces
+  - CI now runs it and uploads the resulting machine-readable consistency artifact with reviewer artifacts
