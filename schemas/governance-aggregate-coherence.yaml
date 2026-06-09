@@ -1,0 +1,26 @@
+schema_version: "0.1"
+name: governance-aggregate-coherence-check
+description: Machine-readable coherence result across closeout summary, release handoff, and reviewer verdict.
+
+fields:
+  - schema_version
+  - name
+  - artifact_tag
+  - ok
+  - checks
+  - artifacts
+
+artifacts_fields:
+  - closeout_summary
+  - release_handoff
+  - reviewer_verdict
+
+required_checks:
+  - artifact_tag_match
+  - precondition_summary_matches_handoff
+  - replay_summary_matches_handoff
+  - claim_summary_matches_handoff
+  - runtime_summary_matches_handoff
+  - reviewer_result_matches_handoff
+  - reviewer_sections_match_handoff
+  - release_status_matches_aggregate_inputs

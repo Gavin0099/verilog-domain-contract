@@ -101,6 +101,7 @@ jobs:
           python scripts/run_runtime_hook_smoke.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_runtime_hook_smoke_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
           python scripts/check_governance_aggregate_coherence.py --artifact-tag "$ARTIFACT_TAG" --format human
+          python scripts/check_governance_aggregate_coherence_schema.py --artifact-tag "$ARTIFACT_TAG" --format human
 
       - name: Upload precondition artifacts
         uses: actions/upload-artifact@v4
@@ -140,6 +141,7 @@ jobs:
             artifacts/schema-conformance/*-governance-closeout-report-conformance.json
             artifacts/schema-conformance/*-governance-release-handoff-conformance.json
             artifacts/schema-conformance/*-runtime-hook-smoke-conformance.json
+            artifacts/schema-conformance/*-aggregate-coherence-conformance.json
 
       - name: Upload reviewer artifacts
         uses: actions/upload-artifact@v4

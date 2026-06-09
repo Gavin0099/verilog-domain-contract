@@ -1,0 +1,13 @@
+{
+  "total": 1,
+  "pass": 1,
+  "fail": 0,
+  "results": [
+    {
+      "schema": "schemas\\governance-aggregate-coherence.yaml",
+      "artifact": "artifacts\\governance\\2026-06-09-aggregate-coherence.json",
+      "ok": true,
+      "errors": []
+    }
+  ]
+}

@@ -401,3 +401,7 @@
   - reviewer result and section count match handoff reviewer status
   - release readiness state matches the aggregate inputs from closeout + reviewer
   - runtime overall_ok and fail count stay aligned between closeout summary and release handoff
+- [2026-06-09] Aggregate coherence surface is now schema-governed:
+  - `schemas/governance-aggregate-coherence.yaml` defines required top-level fields, artifact references, and eight required boolean coherence checks
+  - `scripts/check_governance_aggregate_coherence_schema.py` validates emitted aggregate coherence artifacts and writes `artifacts/schema-conformance/<tag>-aggregate-coherence-conformance.json`
+  - CI closeout bundle upload now includes this conformance artifact so the aggregate coherence surface is schema-backed like the other reviewer-facing and closeout-facing artifacts
