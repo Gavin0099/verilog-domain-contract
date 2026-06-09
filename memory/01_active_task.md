@@ -324,3 +324,9 @@ Previous gap list (all fixed):
   - `scripts/check_governance_release_handoff_schema.py`
   - `artifacts/schema-conformance/2026-06-09-governance-release-handoff-conformance.json`
 - [2026-06-09] CI closeout artifact flow now runs release-handoff schema validation and uploads the conformance artifact together with closeout summary/report, release handoff, and runtime smoke.
+- [2026-06-09] Added formal schema + conformance checker for runtime hook smoke:
+  - `schemas/runtime-hook-smoke.yaml`
+  - `scripts/check_runtime_hook_smoke_schema.py`
+  - `artifacts/schema-conformance/2026-06-09-runtime-hook-smoke-conformance.json`
+- [2026-06-09] `build_governance_closeout_summary.py` now consumes the runtime-hook-smoke conformance artifact instead of treating `summary.overall_ok` as a schema-conformance surrogate.
+- [2026-06-09] CI closeout artifact flow now runs runtime-hook-smoke schema validation and uploads the conformance artifact together with runtime smoke and other closeout surfaces.

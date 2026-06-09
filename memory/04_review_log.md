@@ -392,3 +392,7 @@
   - `schemas/governance-release-handoff.yaml` defines required top-level fields, required entrypoints, surface-status groups, coverage-snapshot groups, and allowed `release_status`
   - `scripts/check_governance_release_handoff_schema.py` validates emitted release handoff artifacts and writes `artifacts/schema-conformance/<tag>-governance-release-handoff-conformance.json`
   - CI closeout bundle upload now includes the release-handoff conformance artifact, so the handoff index is no longer the only reviewer-facing aggregate surface without its own schema check
+- [2026-06-09] Runtime hook smoke surface is now schema-governed:
+  - `schemas/runtime-hook-smoke.yaml` defines required top-level fields, required per-check fields, and runtime smoke summary fields
+  - `scripts/check_runtime_hook_smoke_schema.py` validates emitted runtime hook smoke artifacts and writes `artifacts/schema-conformance/<tag>-runtime-hook-smoke-conformance.json`
+  - closeout aggregation now reads this conformance artifact directly, so `runtime_hooks.schema_conformance_ok` means actual schema conformance rather than reusing runtime pass/fail semantics

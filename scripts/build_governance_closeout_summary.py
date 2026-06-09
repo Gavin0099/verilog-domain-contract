@@ -27,6 +27,8 @@ from scripts.governance_artifact_paths import (
     precondition_gate_conformance_path,
     replay_artifact_path,
     replay_conformance_path,
+    runtime_hook_smoke_conformance_path,
+    runtime_hook_smoke_path,
 )
 
 
@@ -41,10 +43,11 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
     precondition_artifact = precondition_gate_artifact_path(REPO_ROOT, artifact_tag)
     replay_artifact = replay_artifact_path(REPO_ROOT, artifact_tag)
     claim_artifact = claim_artifact_path(REPO_ROOT, artifact_tag)
-    runtime_hook_smoke_artifact = REPO_ROOT / f"artifacts/governance/{artifact_tag}-runtime-hook-smoke.json"
+    runtime_hook_smoke_artifact = runtime_hook_smoke_path(REPO_ROOT, artifact_tag)
     precondition_conformance_artifact = precondition_gate_conformance_path(REPO_ROOT, artifact_tag)
     replay_conformance_artifact = replay_conformance_path(REPO_ROOT, artifact_tag)
     claim_conformance_artifact = claim_conformance_path(REPO_ROOT, artifact_tag)
+    runtime_conformance_artifact = runtime_hook_smoke_conformance_path(REPO_ROOT, artifact_tag)
     precondition = _load(precondition_artifact)
     replay = _load(replay_artifact)
     claim = _load(claim_artifact)
@@ -52,6 +55,7 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
     precondition_conformance = _load(precondition_conformance_artifact)
     replay_conformance = _load(replay_conformance_artifact)
     claim_conformance = _load(claim_conformance_artifact)
+    runtime_conformance = _load(runtime_conformance_artifact)
 
     precondition_summary = precondition["summary"]
     replay_summary = replay["summary"]
@@ -69,6 +73,7 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
             "precondition_gate_conformance": str(precondition_conformance_artifact.relative_to(REPO_ROOT)),
             "behavioral_replay_conformance": str(replay_conformance_artifact.relative_to(REPO_ROOT)),
             "claim_enforcement_conformance": str(claim_conformance_artifact.relative_to(REPO_ROOT)),
+            "runtime_hook_smoke_conformance": str(runtime_conformance_artifact.relative_to(REPO_ROOT)),
         },
         "surfaces": {
             "precondition_gate": {
@@ -104,13 +109,13 @@ def build_summary(artifact_tag: str) -> dict[str, object]:
                 "execution_surface": "repo_local_runtime_hook_smoke",
                 "coverage_summary": {},
                 "summary": runtime_summary,
-                "schema_conformance_ok": runtime_summary["overall_ok"],
-                "schema_conformance_errors": [] if runtime_summary["overall_ok"] else ["runtime_hook_smoke_failed"],
+                "schema_conformance_ok": runtime_conformance["ok"],
+                "schema_conformance_errors": runtime_conformance["errors"],
             },
         },
         "overall": {
             "schema_conformance_ok": (
-                precondition_conformance["ok"] and replay_conformance["ok"] and claim_conformance["ok"]
+                precondition_conformance["ok"] and replay_conformance["ok"] and claim_conformance["ok"] and runtime_conformance["ok"]
             ),
             "precondition_fail": precondition_summary["fail"],
             "replay_fail": replay_summary["fail"],

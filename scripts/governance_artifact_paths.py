@@ -81,3 +81,11 @@ def reviewer_handoff_consistency_path(repo_root: Path, tag: str) -> Path:
 
 def reviewer_handoff_consistency_conformance_path(repo_root: Path, tag: str) -> Path:
     return repo_root / f"artifacts/schema-conformance/{tag}-reviewer-handoff-consistency-conformance.json"
+
+
+def runtime_hook_smoke_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/governance/{tag}-runtime-hook-smoke.json"
+
+
+def runtime_hook_smoke_conformance_path(repo_root: Path, tag: str) -> Path:
+    return repo_root / f"artifacts/schema-conformance/{tag}-runtime-hook-smoke-conformance.json"

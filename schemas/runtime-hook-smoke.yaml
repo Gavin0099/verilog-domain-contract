@@ -1,0 +1,25 @@
+schema_version: "0.1"
+name: runtime-hook-smoke
+description: Machine-readable smoke result for the three repo-local runtime hooks under one artifact tag.
+
+fields:
+  - schema_version
+  - name
+  - artifact_tag
+  - generated_at
+  - checks
+  - summary
+
+summary_fields:
+  - total
+  - pass
+  - fail
+  - overall_ok
+
+check_fields:
+  - hook
+  - script
+  - returncode
+  - ok
+  - payload
+  - stderr
