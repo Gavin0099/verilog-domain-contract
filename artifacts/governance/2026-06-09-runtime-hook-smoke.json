@@ -1,0 +1,300 @@
+{
+  "schema_version": "0.1",
+  "name": "runtime-hook-smoke",
+  "artifact_tag": "2026-06-09",
+  "generated_at": "2026-06-09T02:25:32.316776+00:00",
+  "checks": [
+    {
+      "hook": "pre_task_check",
+      "script": "runtime_hooks/core/pre_task_check.py",
+      "returncode": 0,
+      "ok": true,
+      "payload": {
+        "decision_boundary": {
+          "artifact_status": "present",
+          "suite_status": "pass",
+          "coverage_status": "pass",
+          "closeout_status": "pass",
+          "summary": {
+            "total": 20,
+            "pass": 20,
+            "fail": 0,
+            "not_executed": 0
+          },
+          "coverage_summary": {
+            "groups": {
+              "negation": {
+                "count": 12,
+                "case_ids": [
+                  "PG-001",
+                  "PG-RESET-NEG-001",
+                  "PG-002",
+                  "PG-HS-NEG-001",
+                  "PG-004",
+                  "PG-ASSIGN-NEG-001",
+                  "PG-006",
+                  "PG-CDC-NEG-001",
+                  "PG-CDC-NEG-002",
+                  "PG-CDC-NEG-003",
+                  "PG-008",
+                  "PG-FSM-NEG-001"
+                ]
+              },
+              "boundary": {
+                "count": 3,
+                "case_ids": [
+                  "PG-RESET-BOUNDARY-001",
+                  "PG-HS-BOUNDARY-001",
+                  "PG-CDC-BOUNDARY-001"
+                ]
+              },
+              "positive": {
+                "count": 5,
+                "case_ids": [
+                  "PG-003",
+                  "PG-005",
+                  "PG-007",
+                  "PG-CDC-POS-001",
+                  "PG-009"
+                ]
+              }
+            },
+            "total_cases": 20
+          }
+        },
+        "boundary_effect": "pass",
+        "preconditions_checked": [
+          {
+            "type": "precondition_gate_suite_health",
+            "applies": true,
+            "present": true,
+            "action": "pass",
+            "reason": null
+          },
+          {
+            "type": "precondition_gate_coverage_groups",
+            "applies": true,
+            "present": true,
+            "action": "pass",
+            "reason": null
+          }
+        ],
+        "effect": "pass",
+        "signals_checked": [
+          {
+            "signal": "precondition_gate_artifact_available",
+            "triggered": true,
+            "action": "pass"
+          }
+        ],
+        "observations": [
+          {
+            "observation": "precondition_gate_artifact_loaded",
+            "artifact": "artifacts/precondition-gate/2026-06-09-precondition-gate-suite.json",
+            "closeout_artifact": "artifacts/closeout/2026-06-09-governance-closeout-summary.json"
+          }
+        ],
+        "snapshot": {
+          "artifact_tag": "2026-06-09",
+          "recommended_action": "proceed_with_runtime_contract",
+          "artifacts": {
+            "precondition_gate": "artifacts/precondition-gate/2026-06-09-precondition-gate-suite.json",
+            "closeout_summary": "artifacts/closeout/2026-06-09-governance-closeout-summary.json"
+          }
+        },
+        "ok": true
+      },
+      "stderr": ""
+    },
+    {
+      "hook": "session_start",
+      "script": "runtime_hooks/core/session_start.py",
+      "returncode": 0,
+      "ok": true,
+      "payload": {
+        "ok": true,
+        "project_root": "E:\\BackUp\\Git_EE\\verilog-domain-contract",
+        "task_level": "L1",
+        "task_text": "",
+        "state": {
+          "artifact_tag": "2026-06-09",
+          "release_status": "ready_for_handoff",
+          "recommended_action": "use_release_handoff_context"
+        },
+        "pre_task_check": {},
+        "suggested_rules_preview": [],
+        "suggested_skills": [],
+        "suggested_agent": null,
+        "rule_pack_suggestions": {},
+        "governance_classification": {
+          "effective_agent_class": "instruction_capable",
+          "governance_strategy": "deterministic_runtime_context",
+          "classification_evidence": {
+            "release_handoff": "ready_for_handoff",
+            "reviewer_verdict": "pass"
+          }
+        },
+        "closeout_context": {
+          "available": true,
+          "artifact_tag": "2026-06-09",
+          "release_status": "ready_for_handoff",
+          "reviewer_result": "pass",
+          "primary_entrypoints": {
+            "closeout_summary": "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
+            "closeout_report": "artifacts/closeout/2026-06-09-governance-closeout-summary.md",
+            "reviewer_verdict": "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json",
+            "bundle_manifest": "artifacts/closeout/2026-06-09-governance-bundle-manifest.json"
+          },
+          "coverage_snapshot": {
+            "precondition_gate": {
+              "source_artifact": "artifacts\\precondition-gate\\2026-06-09-precondition-gate-suite.json",
+              "total_cases": 20,
+              "groups": {
+                "negation": {
+                  "count": 12,
+                  "case_ids": [
+                    "PG-001",
+                    "PG-RESET-NEG-001",
+                    "PG-002",
+                    "PG-HS-NEG-001",
+                    "PG-004",
+                    "PG-ASSIGN-NEG-001",
+                    "PG-006",
+                    "PG-CDC-NEG-001",
+                    "PG-CDC-NEG-002",
+                    "PG-CDC-NEG-003",
+                    "PG-008",
+                    "PG-FSM-NEG-001"
+                  ]
+                },
+                "boundary": {
+                  "count": 3,
+                  "case_ids": [
+                    "PG-RESET-BOUNDARY-001",
+                    "PG-HS-BOUNDARY-001",
+                    "PG-CDC-BOUNDARY-001"
+                  ]
+                },
+                "positive": {
+                  "count": 5,
+                  "case_ids": [
+                    "PG-003",
+                    "PG-005",
+                    "PG-007",
+                    "PG-CDC-POS-001",
+                    "PG-009"
+                  ]
+                }
+              }
+            },
+            "behavioral_replay": {
+              "groups": {
+                "precondition": {
+                  "count": 5,
+                  "case_ids": [
+                    "BR-001",
+                    "BR-002",
+                    "BR-003",
+                    "BR-004",
+                    "BR-006"
+                  ],
+                  "rules": [
+                    "ASSIGNMENT_SEMANTICS_REQUIRED",
+                    "FSM_CONTRACT_REQUIRED",
+                    "HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+                    "RESET_DEFINITION_REQUIRED"
+                  ]
+                },
+                "claim_boundary": {
+                  "count": 1,
+                  "case_ids": [
+                    "BR-005"
+                  ],
+                  "rules": [
+                    "GENERAL_CLAIM_BOUNDARY"
+                  ]
+                },
+                "cdc": {
+                  "count": 1,
+                  "case_ids": [
+                    "BR-007"
+                  ],
+                  "rules": [
+                    "CDC_STRATEGY_REQUIRED"
+                  ]
+                }
+              },
+              "total_cases": 7
+            },
+            "claim_enforcement": {
+              "groups": {
+                "baseline": {
+                  "count": 1,
+                  "case_ids": [
+                    "baseline"
+                  ]
+                },
+                "drift": {
+                  "count": 2,
+                  "case_ids": [
+                    "drift_injection_same_evidence",
+                    "same_evidence_posture_escalation"
+                  ]
+                },
+                "boundary": {
+                  "count": 3,
+                  "case_ids": [
+                    "implicit_completion_wording",
+                    "borrowed_evidence_previous_run",
+                    "partial_preconditions_boundary"
+                  ]
+                },
+                "blocked": {
+                  "count": 1,
+                  "case_ids": [
+                    "missing_preconditions_strong_claim"
+                  ]
+                }
+              },
+              "total_cases": 7
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "hook": "post_task_check",
+      "script": "runtime_hooks/core/post_task_check.py",
+      "returncode": 0,
+      "ok": true,
+      "payload": {
+        "ok": true,
+        "compliant": true,
+        "checks": {
+          "closeout_status": "pass",
+          "reviewer_status": "pass",
+          "release_status": "ready_for_handoff"
+        },
+        "warnings": [],
+        "errors": [],
+        "snapshot": {
+          "artifact_tag": "2026-06-09",
+          "recommended_action": "handoff_ready",
+          "artifacts": {
+            "closeout_summary": "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
+            "reviewer_verdict": "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json",
+            "release_handoff": "artifacts/closeout/2026-06-09-governance-release-handoff.json"
+          }
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "pass": 3,
+    "fail": 0,
+    "overall_ok": true
+  }
+}

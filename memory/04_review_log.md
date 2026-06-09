@@ -353,3 +353,5 @@
   - `hook_wiring_version: 1.0.0`
   - `artifact_layout_version: 1.0.0`
   - `memory_layout_version: 1.0.0`
+- [2026-06-09] Regenerated `2026-06-09` deterministic artifacts for precondition / replay / claim surfaces, then rebuilt closeout / reviewer / manifest / release-handoff surfaces under the same tag.
+- [2026-06-09] Added repo-local runtime smoke runner `scripts/run_runtime_hook_smoke.py` so runtime hook coherence can be checked directly against a single artifact tag without depending on framework quickstart output alone.

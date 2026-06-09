@@ -1,0 +1,6 @@
+{
+  "schema": "schemas\\behavioral-replay-results.yaml",
+  "artifact": "artifacts\\replay-results\\2026-06-09-validator-replay.yaml",
+  "ok": true,
+  "errors": []
+}

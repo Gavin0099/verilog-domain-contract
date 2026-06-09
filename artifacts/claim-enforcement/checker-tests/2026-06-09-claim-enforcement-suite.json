@@ -1,0 +1,218 @@
+{
+  "schema_version": "0.1",
+  "name": "claim-enforcement-results",
+  "artifact_family": "claim_enforcement",
+  "suite_id": "claim-enforcement-2026-06-09",
+  "generated_at": "2026-06-09T02:22:47.595789+00:00",
+  "execution_surface": "validator_backed_deterministic_claim_enforcement",
+  "note": "Deterministic claim-enforcement surface for repo-local policy coherence. This validates claim-boundary behavior, not live runtime closeout behavior.",
+  "case_groups": {
+    "baseline": [
+      "baseline"
+    ],
+    "drift": [
+      "drift_injection_same_evidence",
+      "same_evidence_posture_escalation"
+    ],
+    "boundary": [
+      "implicit_completion_wording",
+      "borrowed_evidence_previous_run",
+      "partial_preconditions_boundary"
+    ],
+    "blocked": [
+      "missing_preconditions_strong_claim"
+    ]
+  },
+  "coverage_summary": {
+    "groups": {
+      "baseline": {
+        "count": 1,
+        "case_ids": [
+          "baseline"
+        ]
+      },
+      "drift": {
+        "count": 2,
+        "case_ids": [
+          "drift_injection_same_evidence",
+          "same_evidence_posture_escalation"
+        ]
+      },
+      "boundary": {
+        "count": 3,
+        "case_ids": [
+          "implicit_completion_wording",
+          "borrowed_evidence_previous_run",
+          "partial_preconditions_boundary"
+        ]
+      },
+      "blocked": {
+        "count": 1,
+        "case_ids": [
+          "missing_preconditions_strong_claim"
+        ]
+      }
+    },
+    "total_cases": 7
+  },
+  "cases": [
+    {
+      "case_id": "baseline",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "bounded_support",
+      "semantic_drift_risk": false,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "",
+      "notes": "baseline bounded-support closeout",
+      "status": "pass",
+      "expected": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "observed": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "drift_injection_same_evidence",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": true,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "",
+      "notes": "injected_wording=This result is proven and production-ready.",
+      "status": "pass",
+      "expected": {
+        "claim_level": "stronger_than_allowed",
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "claim_level": "stronger_than_allowed",
+        "semantic_drift_risk": true
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "same_evidence_posture_escalation",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": true,
+      "attempted_posture": "stronger_than_previous",
+      "notes": "same evidence must not justify stronger claim posture",
+      "status": "pass",
+      "expected": {
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "semantic_drift_risk": true
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "implicit_completion_wording",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "implicitly_complete",
+      "notes": "implicit completion wording must not bypass explicit claim boundary",
+      "status": "pass",
+      "expected": {
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "semantic_drift_risk": true
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "borrowed_evidence_previous_run",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "ok",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": true,
+      "attempted_posture": "reuse_previous_evidence",
+      "notes": "evidence borrowed from previous run must not justify stronger present-session claim",
+      "status": "pass",
+      "expected": {
+        "semantic_drift_risk": true
+      },
+      "observed": {
+        "semantic_drift_risk": true
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "partial_preconditions_boundary",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": true,
+      "claim_level": "bounded_support",
+      "semantic_drift_risk": false,
+      "precondition_status": "partial",
+      "strong_claim_attempted": false,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "bounded_but_incomplete",
+      "notes": "partial preconditions may support bounded posture only",
+      "status": "pass",
+      "expected": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "observed": {
+        "claim_level": "bounded_support",
+        "semantic_drift_risk": false
+      },
+      "checks": {}
+    },
+    {
+      "case_id": "missing_preconditions_strong_claim",
+      "case_type": "claim_enforcement",
+      "rule_family": "GENERAL_CLAIM_BOUNDARY",
+      "preconditions_met": false,
+      "claim_level": "stronger_than_allowed",
+      "semantic_drift_risk": true,
+      "precondition_status": "missing",
+      "strong_claim_attempted": true,
+      "same_evidence_as_previous": false,
+      "attempted_posture": "",
+      "notes": "preconditions missing; strong claim must not execute",
+      "status": "not_executed",
+      "expected": {
+        "claim_level": "stronger_than_allowed",
+        "semantic_drift_risk": true
+      },
+      "observed": null,
+      "checks": {}
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "pass": 6,
+    "fail": 0,
+    "not_executed": 1
+  }
+}

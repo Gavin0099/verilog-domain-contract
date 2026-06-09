@@ -1,0 +1,218 @@
+{
+  "schema_version": "0.1",
+  "name": "governance-release-handoff",
+  "artifact_tag": "2026-06-09",
+  "release_status": "ready_for_handoff",
+  "primary_entrypoints": {
+    "closeout_summary": "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
+    "closeout_report": "artifacts/closeout/2026-06-09-governance-closeout-summary.md",
+    "reviewer_verdict": "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json",
+    "bundle_manifest": "artifacts/closeout/2026-06-09-governance-bundle-manifest.json"
+  },
+  "surface_status": {
+    "precondition_gate": {
+      "total": 20,
+      "pass": 20,
+      "fail": 0,
+      "not_executed": 0
+    },
+    "behavioral_replay": {
+      "total": 7,
+      "pass": 7,
+      "fail": 0,
+      "not_executed": 0,
+      "rules_covered": 6
+    },
+    "claim_enforcement": {
+      "total": 7,
+      "pass": 6,
+      "fail": 0,
+      "not_executed": 1
+    },
+    "reviewer_verdict": {
+      "result": "pass",
+      "sections": 6
+    }
+  },
+  "coverage_snapshot": {
+    "precondition_gate": {
+      "source_artifact": "artifacts\\precondition-gate\\2026-06-09-precondition-gate-suite.json",
+      "total_cases": 20,
+      "groups": {
+        "negation": {
+          "count": 12,
+          "case_ids": [
+            "PG-001",
+            "PG-RESET-NEG-001",
+            "PG-002",
+            "PG-HS-NEG-001",
+            "PG-004",
+            "PG-ASSIGN-NEG-001",
+            "PG-006",
+            "PG-CDC-NEG-001",
+            "PG-CDC-NEG-002",
+            "PG-CDC-NEG-003",
+            "PG-008",
+            "PG-FSM-NEG-001"
+          ]
+        },
+        "boundary": {
+          "count": 3,
+          "case_ids": [
+            "PG-RESET-BOUNDARY-001",
+            "PG-HS-BOUNDARY-001",
+            "PG-CDC-BOUNDARY-001"
+          ]
+        },
+        "positive": {
+          "count": 5,
+          "case_ids": [
+            "PG-003",
+            "PG-005",
+            "PG-007",
+            "PG-CDC-POS-001",
+            "PG-009"
+          ]
+        }
+      }
+    },
+    "behavioral_replay": {
+      "groups": {
+        "precondition": {
+          "count": 5,
+          "case_ids": [
+            "BR-001",
+            "BR-002",
+            "BR-003",
+            "BR-004",
+            "BR-006"
+          ],
+          "rules": [
+            "ASSIGNMENT_SEMANTICS_REQUIRED",
+            "FSM_CONTRACT_REQUIRED",
+            "HANDSHAKE_TIMING_DEFINITION_REQUIRED",
+            "RESET_DEFINITION_REQUIRED"
+          ]
+        },
+        "claim_boundary": {
+          "count": 1,
+          "case_ids": [
+            "BR-005"
+          ],
+          "rules": [
+            "GENERAL_CLAIM_BOUNDARY"
+          ]
+        },
+        "cdc": {
+          "count": 1,
+          "case_ids": [
+            "BR-007"
+          ],
+          "rules": [
+            "CDC_STRATEGY_REQUIRED"
+          ]
+        }
+      },
+      "total_cases": 7
+    },
+    "claim_enforcement": {
+      "groups": {
+        "baseline": {
+          "count": 1,
+          "case_ids": [
+            "baseline"
+          ]
+        },
+        "drift": {
+          "count": 2,
+          "case_ids": [
+            "drift_injection_same_evidence",
+            "same_evidence_posture_escalation"
+          ]
+        },
+        "boundary": {
+          "count": 3,
+          "case_ids": [
+            "implicit_completion_wording",
+            "borrowed_evidence_previous_run",
+            "partial_preconditions_boundary"
+          ]
+        },
+        "blocked": {
+          "count": 1,
+          "case_ids": [
+            "missing_preconditions_strong_claim"
+          ]
+        }
+      },
+      "total_cases": 7
+    }
+  },
+  "recommended_review_sequence": [
+    {
+      "step": 1,
+      "artifact": "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json",
+      "why": "Fastest top-level verdict and per-section result surface."
+    },
+    {
+      "step": 2,
+      "artifact": "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
+      "why": "Aggregate precondition/replay/claim status and coverage snapshot."
+    },
+    {
+      "step": 3,
+      "artifact": "artifacts/closeout/2026-06-09-governance-bundle-manifest.json",
+      "why": "Resolve the exact bundle/files to download for deeper review."
+    },
+    {
+      "step": 4,
+      "artifact": "artifacts/closeout/2026-06-09-governance-closeout-summary.md",
+      "why": "Human-readable closeout narrative for handoff consumption."
+    }
+  ],
+  "bundles": [
+    {
+      "bundle_name": "governance-precondition-artifacts",
+      "purpose": "Precondition-gate evidence, grouped coverage summary, and precondition schema conformance.",
+      "files": [
+        "artifacts/precondition-gate/2026-06-09-precondition-gate-suite.json",
+        "artifacts/schema-conformance/2026-06-09-precondition-gate-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-replay-artifacts",
+      "purpose": "Replay rule-behavior evidence and replay schema conformance.",
+      "files": [
+        "artifacts/replay-results/2026-06-09-validator-replay.yaml",
+        "artifacts/schema-conformance/2026-06-09-validator-replay-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-claim-artifacts",
+      "purpose": "Claim-enforcement evidence and claim schema conformance.",
+      "files": [
+        "artifacts/claim-enforcement/checker-tests/2026-06-09-claim-enforcement-suite.json",
+        "artifacts/schema-conformance/2026-06-09-claim-enforcement-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-closeout-artifacts",
+      "purpose": "Aggregate closeout summary/report and closeout schema conformance.",
+      "files": [
+        "artifacts/closeout/2026-06-09-governance-closeout-summary.json",
+        "artifacts/closeout/2026-06-09-governance-closeout-summary.md",
+        "artifacts/schema-conformance/2026-06-09-governance-closeout-summary-conformance.json",
+        "artifacts/schema-conformance/2026-06-09-governance-closeout-report-conformance.json"
+      ]
+    },
+    {
+      "bundle_name": "governance-reviewer-artifacts",
+      "purpose": "Executable reviewer verdict plus reviewer-verdict schema conformance and bundle index.",
+      "files": [
+        "artifacts/closeout/2026-06-09-reviewer-checklist-verdict.json",
+        "artifacts/schema-conformance/2026-06-09-reviewer-checklist-verdict-conformance.json",
+        "artifacts/closeout/2026-06-09-governance-bundle-manifest.json"
+      ]
+    }
+  ]
+}

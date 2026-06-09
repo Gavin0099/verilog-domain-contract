@@ -272,3 +272,9 @@ Previous gap list (all fixed):
   - stays compatibility-safe when artifacts are absent by reporting advisory `missing_artifacts`
 - [2026-06-09] Updated `additional/ai-governance-framework` submodule checkout to latest `origin/main` (`9eb793d`).
 - [2026-06-09] Added `.governance/version_manifest.yaml` required by the latest framework version-compatibility gate so framework `session_start`/`quickstart_smoke` can run in supported mode.
+- [2026-06-09] Regenerated deterministic governance artifacts under artifact tag `2026-06-09` for:
+  - `precondition-gate`
+  - `behavioral-replay`
+  - `claim-enforcement`
+  - closeout/reviewer/bundle-manifest/release-handoff surfaces
+- [2026-06-09] Added `scripts/run_runtime_hook_smoke.py` to exercise `runtime_hooks/core/pre_task_check.py`, `session_start.py`, and `post_task_check.py` against one artifact tag and persist a repo-local runtime smoke artifact.
