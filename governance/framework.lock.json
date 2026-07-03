@@ -1,7 +1,7 @@
 {
   "framework_repo": "https://github.com/Gavin0099/ai-governance-framework.git",
   "adopted_release": "1.2.0",
-  "adopted_commit": "8f36f3d8b5ec74fcc5aa9d6cc6bfe07f40b787a1",
+  "adopted_commit": "80e5ec5194009b44a6d2afaa9787e376c84ddb93",
   "framework_interface_version": "1",
   "framework_compatible": ">=1.0.0,<2.0.0"
 }

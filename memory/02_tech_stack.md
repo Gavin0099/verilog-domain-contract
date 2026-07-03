@@ -4,7 +4,7 @@
 
 - Domain: Verilog / RTL governance contract pack
 - Governance runtime: `ai-governance-framework` (git submodule)
-- Current adopted governance framework: release `1.2.0`, commit `8f36f3d8b5ec74fcc5aa9d6cc6bfe07f40b787a1` (updated 2026-07-03)
+- Current adopted governance framework: release `1.2.0`, commit `80e5ec5194009b44a6d2afaa9787e376c84ddb93` (updated 2026-07-03)
 - Primary tooling: Python governance tools, Git submodule workflow, Markdown + YAML contract artifacts
 - PDF to Markdown extraction: `pypdf` (`PdfReader.extract_text`) for knowledge ingestion
 - Governance rule normalization: flat machine-readable rule encoding in `contract.yaml` to match framework parser constraints
@@ -37,6 +37,7 @@
   - `.git/hooks/pre-push`
   - `.git/hooks/ai-governance-framework-root`
   - `.github/copilot-instructions.md`
+- `artifacts/governance/version_compatibility.json` is intentionally untracked; it is a regenerated runtime compatibility artifact ignored by the managed hygiene block.
 - Runtime extension entry points added (2026-06-04):
   - `runtime_hooks/core/session_start.py` (no-op)
   - `runtime_hooks/core/pre_task_check.py` (no-op)

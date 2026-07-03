@@ -8,6 +8,7 @@
 - Governance maturity summary treats `governance/framework.lock.json` as not fully consistent while the updated lock is still uncommitted; confirm lock-vs-checkout consistency again after committing the framework pointer and lock update.
 - `validators/check_documents.py` is strict: once registered in `contract.yaml`, all governed docs/schemas/replay artifacts under its glob list must be included in `documents:`; otherwise the validator fails even if external readiness only checks validator presence.
 - Framework-side `LANG = Verilog | SystemVerilog` support needs an upstream `ai-governance-framework` commit before this repo can safely point to or claim that enum support; do not commit a parent submodule pointer to an unpushed framework commit.
+- After explicit user approval, HDL LANG enum support was pushed to upstream `ai-governance-framework` as commit `80e5ec51`; parent repos may now safely update their submodule pointer and framework lock to that commit.
 - Framework warnings about `expansion_boundary` may appear even when repo readiness is `True`.
 - Extracted Markdown text from PDF may include OCR/encoding noise (for example special characters in author names); keep source page markers for traceability.
 - Governance value comes from constraints that change AI decisions, not from tutorial coverage volume.
