@@ -31,6 +31,12 @@
   - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework --refresh`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/external_repo_readiness.py --repo . --framework-root additional/ai-governance-framework --format human`
+  - `python validators/check_documents.py --repo-root . --format json`
+- Installed local AI Governance hook files:
+  - `.git/hooks/pre-commit`
+  - `.git/hooks/pre-push`
+  - `.git/hooks/ai-governance-framework-root`
+  - `.github/copilot-instructions.md`
 - Runtime extension entry points added (2026-06-04):
   - `runtime_hooks/core/session_start.py` (no-op)
   - `runtime_hooks/core/pre_task_check.py` (no-op)

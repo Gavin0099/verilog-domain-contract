@@ -8,6 +8,9 @@
   - `governance_drift_checker.py --format json`: PASS (`ok=True`, `severity=ok`)
   - `external_repo_readiness.py --format human`: PASS (`ready=True`, `framework_version_current=True`, `plan_fresh_enough=True`)
   - `scripts/check_governance_release_readiness.py --artifact-tag 2026-06-09 --format human`: PASS (`verdict=pass`, `ready_for_handoff=true`, `conformance_pass=11`, `conformance_fail=0`)
+- 2026-07-03: Registered `validators/check_documents.py` in `contract.yaml`, expanded `documents:` to all 89 governed files, and verified `check_documents.py` PASS (`broken_refs=[]`, `missing_entries=[]`).
+- 2026-07-03: Installed local AI Governance hooks and Copilot instructions; `external_repo_readiness.py` now reports `hooks_ready=True`.
+- 2026-07-03: Created local framework commit `7af95c14` for HDL LANG enum support (`Verilog`, `SystemVerilog`), but upstream framework push was not authorized by tool review and remains pending explicit user approval.
 - 2026-04-22: Imported framework as submodule and adopted governance baseline.
 - 2026-04-22: Implemented Verilog/RTL domain contract pack v0.1 skeleton (docs/examples/schema/contract).
 - 2026-04-22: Validation snapshot:

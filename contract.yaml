@@ -36,27 +36,62 @@ documents:
   - docs/traceability-contract.md
   - docs/traceability-examples.md
   - docs/contract-sync-check.md
+  - docs/reviewer-handoff-guide.md
   - docs/CLAIM_BOUNDARY.md
   - docs/CLAIM_ENFORCEMENT_MINIMAL_SPEC.md
   - governance/rules/RULE_INDEX.md
   - governance/AGENT.md
   - governance/AUTHORITY.md
+  - governance/CLAIM_ENFORCEMENT_EVIDENCE_POLICY.md
+  - governance/CONFIDENCE_SEMANTICS_FREEZE.md
+  - governance/EPISTEMIC_BASE_ASSUMPTIONS.md
   - governance/HUMAN-OVERSIGHT.md
+  - governance/MEMORY_AUTHORITY_CONTRACT.md
+  - governance/METRIC_INTERPRETABILITY_CONTRACT.md
   - governance/NATIVE-INTEROP.md
+  - governance/NULL_ONTOLOGY.md
+  - governance/PHASE_D_CLOSE_AUTHORITY.md
+  - governance/RESPONSE_ENVELOPE_CONTRACT.md
   - governance/REVIEW_CRITERIA.md
   - governance/RULE_REGISTRY.md
+  - governance/SEMANTIC_FAILURE_MODES.md
+  - governance/SEMANTIC_FAILURE_TAXONOMY.md
+  - governance/STRUCTURAL_PROMOTION_CONTRACT.md
+  - governance/STRUCTURAL_PROMOTION_COVERAGE_CLOSEOUT_2026-04-30.md
+  - governance/STRUCTURAL_PROMOTION_DECISION_2026-04-30_CLAIM_DISCIPLINE_GUARDRAIL.md
+  - governance/STRUCTURAL_PROMOTION_DECISION_2026-04-30_CONVENTIONS.md
   - governance/SYSTEM_PROMPT.md
   - governance/TESTING.md
   - governance/ARCHITECTURE.md
+  - governance/copilot-instructions-template.md
+  - schemas/claim-enforcement-results.yaml
+  - schemas/deterministic-governance-suite.yaml
+  - schemas/gate-c-window-report.yaml
+  - schemas/governance-aggregate-coherence.yaml
+  - schemas/governance-bundle-manifest.yaml
+  - schemas/governance-closeout-report.yaml
+  - schemas/governance-closeout-summary.yaml
+  - schemas/governance-release-handoff.yaml
+  - schemas/precondition-gate-results.yaml
   - schemas/review-checklist.yaml
+  - schemas/reviewer-checklist-verdict.yaml
+  - schemas/reviewer-handoff-consistency.yaml
+  - schemas/runtime-hook-smoke.yaml
+  - schemas/spyglass-evidence-profile.yaml
   - schemas/behavioral-replay-results.yaml
   - artifacts/replay-results/2026-04-22-baseline.md
   - artifacts/replay-results/2026-04-22-baseline.yaml
   - artifacts/replay-results/2026-04-22-cross-run.md
   - artifacts/replay-results/2026-04-22-cross-run.yaml
   - artifacts/replay-results/2026-05-08-replay-extended.yaml
+  - artifacts/replay-results/2026-06-05-validator-replay.yaml
+  - artifacts/replay-results/2026-06-08-validator-replay.yaml
+  - artifacts/replay-results/2026-06-09-validator-replay.yaml
   - artifacts/precondition-gate/2026-04-22-smoke.json
   - artifacts/precondition-gate/2026-05-08-smoke.json
+  - artifacts/precondition-gate/2026-06-05-precondition-gate-suite.json
+  - artifacts/precondition-gate/2026-06-08-precondition-gate-suite.json
+  - artifacts/precondition-gate/2026-06-09-precondition-gate-suite.json
   - artifacts/decision-semantics/epistemic_cases_v1.json
   - artifacts/decision-semantics/2026-04-23-epistemic-smoke.json
 
@@ -70,6 +105,7 @@ rule_roots:
 
 validators:
   - validators/precondition_gate_validator.py
+  - validators/check_documents.py
 
 precondition_effects:
   - clock_definition_present|required|restrict_codegen_and_escalate
