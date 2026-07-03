@@ -1,0 +1,12 @@
+{
+  "status": "reviewer_verified",
+  "reviewed_at": "2026-07-03",
+  "review_scope": "AGENTS.md repo-specific Verilog / RTL governance calibration",
+  "evidence": [
+    "AGENTS.md declares concrete HIGH/MEDIUM/LOW risk levels for contract.yaml, core docs, and example RTL changes.",
+    "AGENTS.md declares must-test paths for contract.yaml, schemas/review-checklist.yaml, and completion-claim docs.",
+    "AGENTS.md declares L1 -> L2 escalation triggers for compile/lint-only implementation claims, missing clock/reset/interface specs, CDC/protocol/vendor-specific expansion, and implicit timing defaults.",
+    "AGENTS.md declares forbidden repo-specific behaviors including silent critical precondition filling and verified implementation claims without explicit evidence scope."
+  ],
+  "claim_boundary": "Reviewer verification covers repo-specific calibration of AGENTS.md only; it does not prove runtime enforcement, semantic correctness, or full governance adoption."
+}

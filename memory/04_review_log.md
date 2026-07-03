@@ -13,6 +13,8 @@
 - 2026-07-03: Created local framework commit `7af95c14` for HDL LANG enum support (`Verilog`, `SystemVerilog`), but upstream framework push was not authorized by tool review and remains pending explicit user approval.
 - 2026-07-03: With explicit user approval, rebased HDL LANG enum support onto upstream framework `origin/main` and pushed `80e5ec51 feat(contract): allow HDL governance languages`.
 - 2026-07-03: Removed tracked `artifacts/governance/version_compatibility.json` with `git rm --cached`; managed `.gitignore` already treats it as regenerated runtime artifact.
+- 2026-07-03: Added `.governance/agents_calibration_review.json` reviewer evidence, moving AGENTS calibration from repo-specific minimal toward reviewer-verified evidence in readiness/maturity tooling.
+- 2026-07-03: Added `plan_reconciliation: updated` to both `memory/2026-07-03.md` records to clear the pre-push advisory.
 - 2026-04-22: Imported framework as submodule and adopted governance baseline.
 - 2026-04-22: Implemented Verilog/RTL domain contract pack v0.1 skeleton (docs/examples/schema/contract).
 - 2026-04-22: Validation snapshot:

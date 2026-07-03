@@ -7,6 +7,7 @@
 - [2026-07-03] Installed AI Governance hooks/Copilot instructions and registered `validators/check_documents.py`; readiness now reports `hooks_ready=True`, `documents=89`, and `validators=2`.
 - [2026-07-03] Prepared framework-side HDL LANG enum support as local framework commit `7af95c14`, but upstream framework push is blocked pending explicit user authorization.
 - [2026-07-03] Removed `artifacts/governance/version_compatibility.json` from tracking as a regenerated runtime artifact and pushed framework HDL LANG enum support upstream as `80e5ec51`.
+- [2026-07-03] Added reviewer evidence for AGENTS calibration and plan_reconciliation declarations for today's memory records; runtime/memory workflow maturity fields remain report-only diagnostics, not repo-local blockers.
 - [2026-06-04] Added `runtime_hooks/core/session_start.py`, `runtime_hooks/core/pre_task_check.py`, `runtime_hooks/core/post_task_check.py` as minimal no-op hooks to satisfy expansion-boundary.
 - [2026-06-04] Re-ran `governance_drift_checker` after hooks + refresh; all checks now pass (`ok=True`, `severity=ok`).
 - Imported `ai-governance-framework` as submodule at `additional/ai-governance-framework`.
