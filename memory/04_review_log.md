@@ -2,6 +2,12 @@
 
 ## Entries
 
+- 2026-07-03: Updated AI Governance framework submodule from `9eb793db` to `8f36f3d8` (`origin/main`) and aligned `governance/framework.lock.json` to release `1.2.0`.
+- 2026-07-03: Refreshed governance baseline with `adopt_governance.py --refresh`; updated PLAN freshness date to clear the drift freshness gate.
+- 2026-07-03: Validation snapshot after governance update:
+  - `governance_drift_checker.py --format json`: PASS (`ok=True`, `severity=ok`)
+  - `external_repo_readiness.py --format human`: PASS (`ready=True`, `framework_version_current=True`, `plan_fresh_enough=True`)
+  - `scripts/check_governance_release_readiness.py --artifact-tag 2026-06-09 --format human`: PASS (`verdict=pass`, `ready_for_handoff=true`, `conformance_pass=11`, `conformance_fail=0`)
 - 2026-04-22: Imported framework as submodule and adopted governance baseline.
 - 2026-04-22: Implemented Verilog/RTL domain contract pack v0.1 skeleton (docs/examples/schema/contract).
 - 2026-04-22: Validation snapshot:

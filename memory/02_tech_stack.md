@@ -4,6 +4,7 @@
 
 - Domain: Verilog / RTL governance contract pack
 - Governance runtime: `ai-governance-framework` (git submodule)
+- Current adopted governance framework: release `1.2.0`, commit `8f36f3d8b5ec74fcc5aa9d6cc6bfe07f40b787a1` (updated 2026-07-03)
 - Primary tooling: Python governance tools, Git submodule workflow, Markdown + YAML contract artifacts
 - PDF to Markdown extraction: `pypdf` (`PdfReader.extract_text`) for knowledge ingestion
 - Governance rule normalization: flat machine-readable rule encoding in `contract.yaml` to match framework parser constraints
@@ -27,7 +28,7 @@
   - `artifacts/decision-semantics/epistemic_cases_v1.json`
   - `artifacts/decision-semantics/2026-04-23-epistemic-smoke.json`
 - Key integration commands:
-  - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework`
+  - `python additional/ai-governance-framework/governance_tools/adopt_governance.py --target . --framework-root additional/ai-governance-framework --refresh`
   - `python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework`
   - `python additional/ai-governance-framework/governance_tools/external_repo_readiness.py --repo . --framework-root additional/ai-governance-framework --format human`
 - Runtime extension entry points added (2026-06-04):

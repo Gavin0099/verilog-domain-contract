@@ -2,6 +2,8 @@
 
 ## Current Status
 
+- [2026-07-03] Updated `additional/ai-governance-framework` to `8f36f3d8b5ec74fcc5aa9d6cc6bfe07f40b787a1` (`origin/main`) and aligned `governance/framework.lock.json` to `adopted_release=1.2.0`.
+- [2026-07-03] Refreshed governance baseline after updating PLAN freshness; validation now passes with `governance_drift_checker` `ok=True`, `external_repo_readiness` `ready=True`, and release readiness `verdict=pass`.
 - [2026-06-04] Added `runtime_hooks/core/session_start.py`, `runtime_hooks/core/pre_task_check.py`, `runtime_hooks/core/post_task_check.py` as minimal no-op hooks to satisfy expansion-boundary.
 - [2026-06-04] Re-ran `governance_drift_checker` after hooks + refresh; all checks now pass (`ok=True`, `severity=ok`).
 - Imported `ai-governance-framework` as submodule at `additional/ai-governance-framework`.
